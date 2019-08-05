@@ -1,6 +1,5 @@
 
 
-![](https://raw.githubusercontent.com/qiubaiying/qiubaiying.github.io/master/img/readme-home.png)
 
 [![Build Status](https://travis-ci.org/qiubaiying/qiubaiying.github.io.svg?branch=master)](https://travis-ci.org/qiubaiying/qiubaiying.github.io)
 [![codebeat badge](https://codebeat.co/badges/5f031df3-f6c1-4ec0-911a-ff6617ca50b9)](https://codebeat.co/projects/github-com-qiubaiying-qiubaiying-github-io-master)
@@ -152,11 +151,7 @@ featured-condition-size: 1     # A tag will be featured if the size of it is mor
 friends: [
     {
         title: "BY Blog",
-        href: "https://qiubaiying.github.io/"
-    },
-    {
-        title: "Apple",
-        href: "https://apple.com/"
+        href: "https://ChengKeJ.github.io/"
     }
 ]
 ```
@@ -203,7 +198,7 @@ iframe在不同的设备中，将会自动的调整大小。保留内边距是�
 ```
 # 评论系统
 # Disqus（https://disqus.com/）
-disqus_username: qiubaiying
+disqus_username: ChengKeJ
 ```
 
 #### Gitalk
