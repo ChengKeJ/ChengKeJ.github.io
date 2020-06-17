@@ -1,9 +1,9 @@
 ---
 layout:     post
-title:      BYPhoneNumTF
+title:      小技术君PhoneNumTF
 subtitle:   一个电话号码格式的文本框
 date:       2017-02-04
-author:     BY
+author:     小技术君
 header-img: img/post-bg-ios9-web.jpg
 catalog: true
 tags:
@@ -11,7 +11,7 @@ tags:
     - 轮子
 ---
 
->**BYPhoneNumTF** 一个电话号码格式的文本框
+>**小技术君PhoneNumTF** 一个电话号码格式的文本框
 
 # 功能
 
@@ -197,10 +197,10 @@ tags:
 
 ```
 //
-//  BYPhoneNumTF.h
+//  小技术君PhoneNumTF.h
 //
-//  Created by BY on 16/12/2.
-//  Copyright © 2016年 BY. All rights reserved.
+//  Created by 小技术君 on 16/12/2.
+//  Copyright © 2016年 小技术君. All rights reserved.
 //  电话号码类型的文本输入框，且只能输入数字
 //  输入显示：137 9922 1234 或 137-9922-1234
 //  使用方法：在XIB中的TextField继承该类即可
@@ -211,7 +211,7 @@ tags:
 // @" " or @"-"
 #define placeholder @" "
 
-@interface BYPhoneNumTF : UITextField
+@interface 小技术君PhoneNumTF : UITextField
 
 /** 去掉格式的电话号码 */
 @property (nonatomic, strong) NSString *plainPhoneNum;
@@ -221,21 +221,21 @@ tags:
 
 ```
 //
-//  BYPhoneNumTF.m
+//  小技术君PhoneNumTF.m
 //  dev-Jack
 //
-//  Created by BY on 16/12/2.
+//  Created by 小技术君 on 16/12/2.
 //  Copyright © 2016年 Jack. All rights reserved.
 //
 
-#import "BYPhoneNumTF.h"
+#import "小技术君PhoneNumTF.h"
 
 
-@interface BYPhoneNumTF ()<UITextFieldDelegate>
+@interface 小技术君PhoneNumTF ()<UITextFieldDelegate>
 
 @end
 
-@implementation BYPhoneNumTF
+@implementation 小技术君PhoneNumTF
 
 - (NSString *)plainPhoneNum {
     return [self _noneSpaseString:self.text];
@@ -392,6 +392,6 @@ tags:
 
 # 使用方法
 
-在storyboard中的`TextField`控件的Calss类型选择该类`BYPhoneNumTF`即可。
+在storyboard中的`TextField`控件的Calss类型选择该类`小技术君PhoneNumTF`即可。
 
-代码及Demo下载地址：[BYPhoneNumTF](https://github.com/qiubaiying/BYPhoneNumTF)
+代码及Demo下载地址：[小技术君PhoneNumTF](https://github.com/qiubaiying/小技术君PhoneNumTF)

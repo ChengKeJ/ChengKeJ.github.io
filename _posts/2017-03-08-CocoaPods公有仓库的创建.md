@@ -3,7 +3,7 @@ layout:     post
 title:      CocoaPods公有仓库的创建
 subtitle:   手把手教你创建 CocoaPods 公有仓库
 date:       2017-03-08
-author:     BY
+author:     小技术君
 header-img: img/post-bg-ios10.jpg
 catalog: true
 tags:
@@ -12,7 +12,7 @@ tags:
     - Git
 ---
 
-> 本文发布于 [BY Blog](http://qiubaiying.github.io)、[简书](http://www.jianshu.com/p/d2d98298b1b8) 转载请保留链接
+> 本文发布于 [小技术君 Blog](http://qiubaiying.github.io)、[简书](http://www.jianshu.com/p/d2d98298b1b8) 转载请保留链接
 
 # 前言
 
@@ -66,7 +66,7 @@ pod搜索 Specs 文件夹中的框架，输出框架信息
 我们在 CocoaPods 发布我们的框架时，就是要在 `master` 仓库中添加我们的仓库描述信息，然后push到远程仓库中。不过这个过程不用我们手动去操作，只需要通过`pod`命令进行操作即可。
 
 
-下面我们将一步步把我封装的这个简单的TextFiled控件 [BYPhoneNumTF](https://github.com/qiubaiying/BYPhoneNumTF) 上传到 Cocoapods 公有仓库中。
+下面我们将一步步把我封装的这个简单的TextFiled控件 [小技术君PhoneNumTF](https://github.com/qiubaiying/小技术君PhoneNumTF) 上传到 Cocoapods 公有仓库中。
 
 # 正文
 
@@ -98,15 +98,15 @@ pod搜索 Specs 文件夹中的框架，输出框架信息
 - `LICENSE`:开源许可证
 - `README.md`:仓库说明
 - 你的代码
-- `BYPhoneNumTF.podspec`: CocoaPods 的描述文件，这个文件**非常重要**
+- `小技术君PhoneNumTF.podspec`: CocoaPods 的描述文件，这个文件**非常重要**
 
 如下图：
 
 ![](https://ww2.sinaimg.cn/large/006tNbRwgy1fdfhvy3c19j31iq0dqn03.jpg)
 
-`BYPhoneNumTF` 文件夹下是我存放代码的地方
+`小技术君PhoneNumTF` 文件夹下是我存放代码的地方
 
-`BYPhoneNumTF_Demo` 是代码使用样例（不是必须的）
+`小技术君PhoneNumTF_Demo` 是代码使用样例（不是必须的）
 
 
 #### 创建`.podspec`
@@ -114,9 +114,9 @@ pod搜索 Specs 文件夹中的框架，输出框架信息
 
 在你的仓库目录下，使用终端命令创建
 
-	$ pod spec create BYPhoneNumTF
+	$ pod spec create 小技术君PhoneNumTF
 	
-这时就会在你的仓库下生成 `BYPhoneNumTF.podspec` 文件
+这时就会在你的仓库下生成 `小技术君PhoneNumTF.podspec` 文件
 
 ![](https://ww4.sinaimg.cn/large/006tNbRwgy1fdfioo1c4zj31bq0s20zn.jpg)
 
@@ -128,21 +128,21 @@ so~**强烈建议**，直接拷贝下面的主要配置进行修改
 
 ```ruby
 Pod::Spec.new do |s|
-  s.name         = "BYPhoneNumTF" # 项目名称
+  s.name         = "小技术君PhoneNumTF" # 项目名称
   s.version      = "1.0.0"        # 版本号 与 你仓库的 标签号 对应
   s.license      = "MIT"          # 开源证书
   s.summary      = "A delightful TextField of PhoneNumber" # 项目简介
 
-  s.homepage     = "https://github.com/qiubaiying/BYPhoneNumTF" # 你的主页
-  s.source       = { :git => "https://github.com/qiubaiying/BYPhoneNumTF.git", :tag => "#{s.version}" }#你的仓库地址，不能用SSH地址
-  s.source_files = "BYPhoneNumTF/*.{h,m}" # 你代码的位置， BYPhoneNumTF/*.{h,m} 表示 BYPhoneNumTF 文件夹下所有的.h和.m文件
+  s.homepage     = "https://github.com/qiubaiying/小技术君PhoneNumTF" # 你的主页
+  s.source       = { :git => "https://github.com/qiubaiying/小技术君PhoneNumTF.git", :tag => "#{s.version}" }#你的仓库地址，不能用SSH地址
+  s.source_files = "小技术君PhoneNumTF/*.{h,m}" # 你代码的位置， 小技术君PhoneNumTF/*.{h,m} 表示 小技术君PhoneNumTF 文件夹下所有的.h和.m文件
   s.requires_arc = true # 是否启用ARC
   s.platform     = :ios, "7.0" #平台及支持的最低版本
   s.frameworks   = "UIKit", "Foundation" #支持的框架
   # s.dependency   = "AFNetworking" # 依赖库
   
   # User
-  s.author             = { "BY" => "qiubaiyingios@163.com" } # 作者信息
+  s.author             = { "小技术君" => "qiubaiyingios@163.com" } # 作者信息
   s.social_media_url   = "http://qiubaiying.github.io" # 个人主页
 
 end
@@ -153,16 +153,16 @@ end
 
 验证会出现成功出现
 
-	 -> BYPhoneNumTF (1.0.0)
+	 -> 小技术君PhoneNumTF (1.0.0)
 
-	BYPhoneNumTF passed validation.	
+	小技术君PhoneNumTF passed validation.	
 
 但是很多情况没这么顺利，比如:
 
-	 -> BYPhoneNumTF (1.0.0)
+	 -> 小技术君PhoneNumTF (1.0.0)
 	    - WARN  | url: There was a problem validating the URL http://qiubaiying.github.io.
 	
-	[!] BYPhoneNumTF did not pass validation, due to 1 warning (but you can use `--allow-warnings` to ignore it) and all results apply only to public specs, but you can use `--private` to ignore them if linting the specification for a private pod.
+	[!] 小技术君PhoneNumTF did not pass validation, due to 1 warning (but you can use `--allow-warnings` to ignore it) and all results apply only to public specs, but you can use `--private` to ignore them if linting the specification for a private pod.
 	[!] The validator for Swift projects uses Swift 3.0 by default, if you are using a different version of swift you can use a `.swift-version` file to set the version for your Pod. For example to use Swift 2.3, run: 
 	    `echo "2.3" > .swift-version`.
 	You can use the `--no-clean` option to inspect any issue.
@@ -189,13 +189,13 @@ end
 	
 #### 发布`.podspec`
 
-最后一步，发布项目的描述的文件 `BYPhoneNumTF.podspec` 
+最后一步，发布项目的描述的文件 `小技术君PhoneNumTF.podspec` 
 
 在仓库目录下执行
 	
-	pod trunk push BYPhoneNumTF.podspec
+	pod trunk push 小技术君PhoneNumTF.podspec
 	
-将你的 `BYPhoneNumTF.podspec` 发布到公有的speecs上,这一步其实做了很多操作,包括 
+将你的 `小技术君PhoneNumTF.podspec` 发布到公有的speecs上,这一步其实做了很多操作,包括 
 
 1. 更新本地 pods 库 `~/.cocoaPods.repo/master`
 - 验证`.podspec`格式是否正确
@@ -207,19 +207,19 @@ end
 
 	Updating spec repo `master`
 	Validating podspec
-	 -> BYPhoneNumTF (1.0.0)
+	 -> 小技术君PhoneNumTF (1.0.0)
 	
 	Updating spec repo `master`
 	
 	--------------------------------------------------------------------------------
 	 🎉  Congrats
 	
-	 🚀  BYPhoneNumTF (1.0.0) successfully published
+	 🚀  小技术君PhoneNumTF (1.0.0) successfully published
 	 📅  March 7th, 01:39
-	 🌎  https://cocoapods.org/pods/BYPhoneNumTF
+	 🌎  https://cocoapods.org/pods/小技术君PhoneNumTF
 	 👍  Tell your friends!
 	 
-说明发布成功，你就可以通过上面的URL: <https://cocoapods.org/pods/BYPhoneNumTF> 进入的Pods查看自己的仓库信息了.
+说明发布成功，你就可以通过上面的URL: <https://cocoapods.org/pods/小技术君PhoneNumTF> 进入的Pods查看自己的仓库信息了.
 
 ![](https://ww3.sinaimg.cn/large/006tNbRwgy1fded7yh8ugj31kw19djyk.jpg)
 
@@ -231,17 +231,17 @@ end
 
 查询仓库
 	
-	$ pod search BYPhoneNumTF
+	$ pod search 小技术君PhoneNumTF
 ---
-	-> BYPhoneNumTF (1.0.0)
+	-> 小技术君PhoneNumTF (1.0.0)
 	   A delightful TextField of PhoneNumber
-	   pod 'BYPhoneNumTF', '~> 1.0.0'
-	   - Homepage: https://github.com/qiubaiying/BYPhoneNumTF
-	   - Source:   https://github.com/qiubaiying/BYPhoneNumTF.git
-	   - Versions: 1.0.0, 0.0.1 [BYPhoneNumTF repo]
+	   pod '小技术君PhoneNumTF', '~> 1.0.0'
+	   - Homepage: https://github.com/qiubaiying/小技术君PhoneNumTF
+	   - Source:   https://github.com/qiubaiying/小技术君PhoneNumTF.git
+	   - Versions: 1.0.0, 0.0.1 [小技术君PhoneNumTF repo]
 	(END)
 
-若出现仓库信息说明已经成功了，这时候你就可以在 `Podfile` 添加、使用自己的仓库了 `pod 'BYPhoneNumTF', '~> 1.0.0'`
+若出现仓库信息说明已经成功了，这时候你就可以在 `Podfile` 添加、使用自己的仓库了 `pod '小技术君PhoneNumTF', '~> 1.0.0'`
 
 ![](https://ww1.sinaimg.cn/large/006tNbRwgy1fdedvficvaj30fu0loaex.jpg)
 
@@ -249,9 +249,9 @@ end
 
 当你的代码更新维护后，就需要重写发布，流程是：
 
-- 更新`BYPhoneNumTF.podspec`中的版本号
+- 更新`小技术君PhoneNumTF.podspec`中的版本号
 - 打上标签推送远程
-- `pod trunk push BYPhoneNumTF.podspec` 推送到pods仓库
+- `pod trunk push 小技术君PhoneNumTF.podspec` 推送到pods仓库
 
 更新后你就可以在 [CocoaPods Master Repo](https://github.com/CocoaPods/Specs) 仓库上看到自己的提交记录了。
 

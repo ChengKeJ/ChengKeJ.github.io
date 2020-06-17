@@ -1,10 +1,10 @@
 # Site settings
-title: BY Blog
+title: 小技术君 Blog
 SEOTitle: 记得要让着本宝宝 | BLOG
 header-img: img/post-bg-desk.jpg
 email: ischeng.kejun@gmail.com
 description: "Every failure is leading towards success."
-keyword: "BY, BY Blog, 记得要让着本宝宝的博客"
+keyword: "小技术君, 小技术君 Blog, 记得要让着本宝宝的博客"
 url: "http://ChengKeJ.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/ChengKeJ/ChengKeJ.github.io.git" # you code repository
@@ -102,7 +102,7 @@ service-worker: true
 #         title: "WY",
 #         href: "http://zhengwuyang.com"
 #     },{
-#         title: "简书·BY",
+#         title: "简书·小技术君",
 #         href: "http://www.jianshu.com/u/e71990ada2fd"
 #     },{
 #         title: "Apple",

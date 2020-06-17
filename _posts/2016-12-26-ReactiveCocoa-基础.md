@@ -3,7 +3,7 @@ layout:     post
 title:      ReactiveCocoa 基础
 subtitle:   函数式编程框架 ReactiveCocoa 基础入门
 date:       2016-12-26
-author:     BY
+author:     小技术君
 header-img: img/post-bg-ios9-web.jpg
 catalog: true
 tags:
@@ -556,7 +556,7 @@ end
     
     
     // 2.遍历字典,遍历出来的键值对 都会包装成 RACTuple(元组对象) @[key, value]
-    NSDictionary *dic = @{@"name": @"BYqiu", @"age": @18};
+    NSDictionary *dic = @{@"name": @"小技术君qiu", @"age": @18};
     
     [dic.rac_sequence.signal subscribeNext:^(RACTuple *x) {
         

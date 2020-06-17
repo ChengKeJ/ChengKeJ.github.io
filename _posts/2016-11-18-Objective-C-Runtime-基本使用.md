@@ -3,7 +3,7 @@ layout:     post
 title:      Objective-C Runtime 基本使用
 subtitle:   Runtime 使用案例
 date:       2017-02-04
-author:     BY
+author:     小技术君
 header-img: img/post-bg-ios9-web.jpg
 catalog: true
 tags:
@@ -591,11 +591,11 @@ performSelector:@selector(resolveThisMethodDynamically)];
 先上代码：
 
 ```
-#import "NSObject+BYModel.h"
+#import "NSObject+小技术君Model.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
 
-@implementation NSObject (BYModel)
+@implementation NSObject (小技术君Model)
 
 - (void)by_modelSetDictionary:(NSDictionary *)dic {
 

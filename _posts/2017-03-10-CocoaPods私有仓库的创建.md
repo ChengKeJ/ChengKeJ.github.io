@@ -3,7 +3,7 @@ layout:     post
 title:      CocoaPods私有仓库的创建
 subtitle:   继续带你创建 CocoaPods 私有有仓库
 date:       2017-03-10
-author:     BY
+author:     小技术君
 header-img: img/post-bg-iWatch.jpg
 catalog: true
 tags:
@@ -12,7 +12,7 @@ tags:
     - Git
 ---
 
-> 本文发布于 [BY Blog](http://qiubaiying.github.io)、[简书](http://www.jianshu.com/p/d2d98298b1b8) 转载请保留链接
+> 本文发布于 [小技术君 Blog](http://qiubaiying.github.io)、[简书](http://www.jianshu.com/p/d2d98298b1b8) 转载请保留链接
 > 
 > 上一篇文章 [《CocoaPods公有仓库的创建》](http://ChengKeJ.github.io/2017/03/08/CocoaPods公有仓库的创建/)
 
@@ -94,14 +94,14 @@ Pod::Spec.new do |s|
 
   s.homepage     = "https://git.oschina.net/baiyingqiu/MyAdditions" # 仓库的主页
   s.source       = { :git => "https://git.oschina.net/baiyingqiu/MyAdditions.git", :tag => "#{s.version}" }#你的仓库地址，不能用SSH地址
-  s.source_files = "MyAdditions/*.{h,m}" # 你代码的位置， BYPhoneNumTF/*.{h,m} 表示 BYPhoneNumTF 文件夹下所有的.h和.m文件
+  s.source_files = "MyAdditions/*.{h,m}" # 你代码的位置， 小技术君PhoneNumTF/*.{h,m} 表示 小技术君PhoneNumTF 文件夹下所有的.h和.m文件
   s.requires_arc = true # 是否启用ARC
   s.platform     = :ios, "7.0" #平台及支持的最低版本
   # s.frameworks   = "UIKit", "Foundation" #支持的框架
   # s.dependency   = "AFNetworking" # 依赖库
   
   # User
-  s.author             = { "BY" => "qiubaiyingios@163.com" } # 作者信息
+  s.author             = { "小技术君" => "qiubaiyingios@163.com" } # 作者信息
   s.social_media_url   = "http://qiubaiying.github.io" # 个人主页
 
 end
@@ -190,9 +190,9 @@ end
 	target ‘MyPodTest’ do
 	use_frameworks!
 	
-	pod “BYPhoneNumTF” #公有库
+	pod “小技术君PhoneNumTF” #公有库
 	pod ‘MyAdditions’ #我们的私有库
-	pod ‘BYAdditions’ #这是我又添加到版本库中的另一个代码库
+	pod ‘小技术君Additions’ #这是我又添加到版本库中的另一个代码库
 	
 	end
 
