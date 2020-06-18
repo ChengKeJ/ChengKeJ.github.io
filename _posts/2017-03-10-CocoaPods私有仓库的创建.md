@@ -12,7 +12,7 @@ tags:
     - Git
 ---
 
-> 本文发布于 [小技术君 Blog](http://qiubaiying.github.io)、[简书](http://www.jianshu.com/p/d2d98298b1b8) 转载请保留链接
+> 本文发布于 [小技术君 Blog](http://ChengKeJ.github.io)、[简书](http://www.jianshu.com/p/d2d98298b1b8) 转载请保留链接
 > 
 > 上一篇文章 [《CocoaPods公有仓库的创建》](http://ChengKeJ.github.io/2017/03/08/CocoaPods公有仓库的创建/)
 
@@ -101,8 +101,8 @@ Pod::Spec.new do |s|
   # s.dependency   = "AFNetworking" # 依赖库
   
   # User
-  s.author             = { "小技术君" => "qiubaiyingios@163.com" } # 作者信息
-  s.social_media_url   = "http://qiubaiying.github.io" # 个人主页
+  s.author             = { "小技术君" => "ischeng.kejun@gmail.com" } # 作者信息
+  s.social_media_url   = "http://ChengKeJ.github.io" # 个人主页
 
 end
 ```
