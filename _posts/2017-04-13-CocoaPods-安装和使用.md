@@ -178,4 +178,4 @@ end
 - [CocoaPods公有仓库的创建](http://ChengKeJ.github.io/2017/03/08/CocoaPods%E5%85%AC%E6%9C%89%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA/)
 - [CocoaPods私有仓库的创建](http://ChengKeJ.github.io/2017/03/10/CocoaPods%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA/)
  
- > 本文首次发布于 [小技术君 Blog](http://ChengKeJ.github.io), 作者 [@柏荧(小技术君)](http://github.com/qiubaiying) ,转载请保留原文链接.
+ > 本文首次发布于 [小技术君 Blog](http://ChengKeJ.github.io), 作者 [@柏荧(小技术君)](http://github.com/ChengKeJ) ,转载请保留原文链接.

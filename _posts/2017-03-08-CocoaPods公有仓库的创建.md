@@ -66,7 +66,7 @@ pod搜索 Specs 文件夹中的框架，输出框架信息
 我们在 CocoaPods 发布我们的框架时，就是要在 `master` 仓库中添加我们的仓库描述信息，然后push到远程仓库中。不过这个过程不用我们手动去操作，只需要通过`pod`命令进行操作即可。
 
 
-下面我们将一步步把我封装的这个简单的TextFiled控件 [小技术君PhoneNumTF](https://github.com/qiubaiying/小技术君PhoneNumTF) 上传到 Cocoapods 公有仓库中。
+下面我们将一步步把我封装的这个简单的TextFiled控件 [小技术君PhoneNumTF](https://github.com/ChengKeJ/小技术君PhoneNumTF) 上传到 Cocoapods 公有仓库中。
 
 # 正文
 
@@ -133,8 +133,8 @@ Pod::Spec.new do |s|
   s.license      = "MIT"          # 开源证书
   s.summary      = "A delightful TextField of PhoneNumber" # 项目简介
 
-  s.homepage     = "https://github.com/qiubaiying/小技术君PhoneNumTF" # 你的主页
-  s.source       = { :git => "https://github.com/qiubaiying/小技术君PhoneNumTF.git", :tag => "#{s.version}" }#你的仓库地址，不能用SSH地址
+  s.homepage     = "https://github.com/ChengKeJ/小技术君PhoneNumTF" # 你的主页
+  s.source       = { :git => "https://github.com/ChengKeJ/小技术君PhoneNumTF.git", :tag => "#{s.version}" }#你的仓库地址，不能用SSH地址
   s.source_files = "小技术君PhoneNumTF/*.{h,m}" # 你代码的位置， 小技术君PhoneNumTF/*.{h,m} 表示 小技术君PhoneNumTF 文件夹下所有的.h和.m文件
   s.requires_arc = true # 是否启用ARC
   s.platform     = :ios, "7.0" #平台及支持的最低版本
@@ -236,8 +236,8 @@ end
 	-> 小技术君PhoneNumTF (1.0.0)
 	   A delightful TextField of PhoneNumber
 	   pod '小技术君PhoneNumTF', '~> 1.0.0'
-	   - Homepage: https://github.com/qiubaiying/小技术君PhoneNumTF
-	   - Source:   https://github.com/qiubaiying/小技术君PhoneNumTF.git
+	   - Homepage: https://github.com/ChengKeJ/小技术君PhoneNumTF
+	   - Source:   https://github.com/ChengKeJ/小技术君PhoneNumTF.git
 	   - Versions: 1.0.0, 0.0.1 [小技术君PhoneNumTF repo]
 	(END)
 

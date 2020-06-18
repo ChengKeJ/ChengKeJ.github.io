@@ -394,4 +394,4 @@ tags:
 
 在storyboard中的`TextField`控件的Calss类型选择该类`小技术君PhoneNumTF`即可。
 
-代码及Demo下载地址：[小技术君PhoneNumTF](https://github.com/qiubaiying/小技术君PhoneNumTF)
+代码及Demo下载地址：[小技术君PhoneNumTF](https://github.com/ChengKeJ/小技术君PhoneNumTF)
