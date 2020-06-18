@@ -62,8 +62,8 @@ kramdown:
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: 3bea69473b3a33474b94                            #生成的clientID
-  clientSecret: 0bc2fff2064a2e3d6fa0068641c0e31eedee6fd8    #生成的clientSecret
+  clientID: ad276d025f4887ea5a0e                            #生成的clientID
+  clientSecret: fb8a698b484c4b62eabcb31f55e8a14c5db01be5    #生成的clientSecret
   repo: ChengKeJ.github.io    #仓库名称
   owner: ChengKeJ    #github用户名
   admin: ChengKeJ
