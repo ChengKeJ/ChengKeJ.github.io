@@ -6,19 +6,19 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title:  纯洁的微笑
+title:  小技术君
 subtitle: 分享技术，品味人生
-name: 纯洁的微笑 
-email: ityouknow@126.com
-description: 本站是纯洁的微笑的技术分享博客。内容涵盖生活故事、Java后端技术、Spring Boot、Spring Cloud、微服务架构、大数据演进、高可用架构、中间件使用、系统监控等相关的研究与知识分享。
-keywords: ityouknow,纯洁的微笑,Spring,Spring Boot,Spring Cloud,MongoDB,Jvm,Docker,生活故事,架构,大数据,一线,FastDFS,开发者,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,IT技术博客,Java,Python,
+name: 小技术君
+email: ischeng.kejun@gmail.com
+description: 本站是小技术君的技术分享博客。内容涵盖生活故事、Java后端技术、Spring Boot、Spring Cloud、微服务架构、大数据演进、高可用架构、中间件使用、系统监控等相关的研究与知识分享。
+keywords: 小技术君,Spring,Spring Boot,Spring Cloud,MongoDB,Jvm,Docker,生活故事,架构,大数据,一线,FastDFS,开发者,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,IT技术博客,Java,Python,
 encoding: "utf-8"
-favicon: favicon.ico 
+favicon: favicon.ico
 
-repository: ityouknow/ityouknow.github.io
-github_url: https://github.com/ityouknow
-url: http://www.ityouknow.com
-enforce_ssl: ityouknow.com
+repository: ChengKeJ/ChengKeJ.github.io
+github_url: https://github.com/ChengKeJ
+url: https://smalltechnologyjun.com
+enforce_ssl: smalltechnologyjun.com
 
 ## Gem
 plugins:
@@ -59,7 +59,7 @@ menus:
   -
     href: /money.html
     label: 挣钱
-    target: _self   
+    target: _self
 
   -
     href: /it.html
@@ -121,14 +121,14 @@ navs:
       -
         subHref: /java.html
         subLabel: Jvm 系列文章
-        
+
       -
         subHref: http://www.justdojava.com
         subLabel: Java 极客技术
         target: _blank
 
   -
-    
+
     href: /python.html
     label: Python
     subnav:
@@ -136,7 +136,7 @@ navs:
       -
         subHref: /python.html
         subLabel: Python 教程
-        
+
       -
         subHref: http://www.justdopython.com
         subLabel: Python 技术
@@ -154,7 +154,7 @@ labels:
 
   -
     href: /payment.html
-    label: Pay     
+    label: Pay
     target: _self
 
   -
@@ -174,7 +174,7 @@ labels:
 
   -
     href: /open-source.html
-    label: Code  
+    label: Code
     target: _blank
 
   -
@@ -246,8 +246,9 @@ gitment:
 # https://github.com/gitalk/gitalk#install
 gitalk:
     owner: ityouknow
-    repo: blog-comments
-    clientID: 61bfc53d957e74e78f8f
-    clientSecret: 31c61e66cdcc9ada8db2267ee779d0bdafac434c
+    clientID: 3bea69473b3a33474b94                            #生成的clientID
+    clientSecret: 0bc2fff2064a2e3d6fa0068641c0e31eedee6fd8    #生成的clientSecret
+    repo: ChengKeJ.github.io    #仓库名称
+    admin: ChengKeJ
 # 在使用其它评论组件时可点击显示 Disqus
 lazy_load_disqus : true
