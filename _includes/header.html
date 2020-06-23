@@ -1,43 +1,34 @@
-<header class="site-header">
-    <div class="site-header-topbar">
-        <div class="container">
-            <div class="topbar-menu">
-                {% for menu in site.menus %}
-                <div class="item">
-                    <a href="{{ menu.href }}"
-                       target="{{ menu.target | default: _self }}"
-                       title="{{ menu.label }}">
-                        {{ menu.label }}
+<header id="top">
+    <div class="wrapper">
+        <a href="{{ site.baseurl }}/" class="brand">{{ site.title }}</a>
+        <small>{{site.brief-intro}}</small>
+        <button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    {% if page.url == '/' %}
+                    <a class="active" href="{{site.baseurl}}/">
+                        {% else %}
+                    <a href="{{site.baseurl}}/">
+                    {% endif %}
+                        <i class="fa fa-home"></i>Home
                     </a>
-                </div>
+                </li>
+
+                {% for my_page in site.pages %}
+                    {% if my_page.type == 'page' %}
+                    <li>
+                        {% if my_page.url == page.url %}
+                        <a class="active" href="{{ my_page.url | prepend: site.baseurl }}">
+                            {% else %}
+                        <a href="{{ my_page.url | prepend: site.baseurl }}">
+                        {% endif %}
+                            <i class="fa fa-{{my_page.icon}}"></i>{{ my_page.title }}
+                        </a>
+                    </li>
+                    {% endif %}
                 {% endfor %}
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <a id="site-header-brand" href="/" title="{{ site.name }}">
-            <span class="octicon octicon-smiley"></span>
-            {{ site.name }}
-        </a>
-        <nav class="site-header-nav" role="navigation">
-            {% for nav in site.navs %}
-            <div class="{% if page.menu == nav.label %} selected {% endif %} site-header-nav-item hvr-underline-from-center">
-                <a href="{{ nav.href }}"
-                   target="{{ nav.target | default: _self }}"
-                   title="{{ nav.label }}">
-                    {{ nav.label }}
-                </a>
-                {% if nav.subnav %}
-                <ul class="submenu">
-                    {% for subItem in nav.subnav %}
-                    <li><a href="{{ subItem.subHref }}" 
-                           target="{{ subItem.target | default: _self }}"
-                     >{{ subItem.subLabel }}</a></li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-            </div>
-            {% endfor %}
+            </ul>
         </nav>
     </div>
 </header>

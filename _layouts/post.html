@@ -1,54 +1,122 @@
 ---
 layout: default
-css: ['sidebar-post-nav.css']
 ---
-{% include jumbotron.html %}
-<article class="post container {{ page.lock }}" itemscope itemtype="http://schema.org/BlogPosting">
 
-    <div class="row">
+<div class="page clearfix" post>
+    <div class="left">
+        <h1>{{page.title}}</h1>
+        <div class="label">
 
-        {% if page.no-post-nav %}
-        <div class="col-md-12 markdown-body">
-
-            {{ content }}
-
-            {% include copyright.html %}
-
-            <!-- Comments -->
-           <div class="comment">
-             {% include comments.html %}
-           </div>
-
-        </div>
-        {% else %}
-        <div class="col-md-9 markdown-body">
-
-            {{ content }}
-
-            {% include copyright.html %}
-
-            <!-- Comments -->
-            <div class="comment">
-             {% include comments.html %}
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>{{ page.date | date: "%F" }}
             </div>
-        </div>
 
-        <div class="col-md-3">
-            {% include sidebar-post-nav.html %}
+            <div class="label-card">
+                {% if page.author %}<i class="fa fa-user"></i>{{ page.author }}
+                {% endif %}
+            </div>
+
+            <div class="label-card">
+                {% if page.meta %}<i class="fa fa-key"></i>{{ page.meta }}  {% endif %}
+            </div>
+
+            <div class="label-card">
+            {% include category.html %}
+            </div>
+
+            <div class="label-card">
+            {% include tag.html %}
+            </div>
+
         </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        {{content}}
+        </article>
+        <hr>
+
+        <!--<div class="l">-->
+            <!--<ul>-->
+                <!--<li>版权声明：本文由&nbsp;<b>方志朋</b>&nbsp;发表于&nbsp;<a href="http://blog.720ui.com">方志朋的博客</a>&nbsp;</li>-->
+                <!--<li>转载声明：自由转载-非商用-非衍生-保持署名（<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">创意共享3.0许可证</a>），非商业转载请注明作者及出处，商业转载请联系作者本人。</li>-->
+                <!--<li>文章标题：<a href="{{ site.baseurl }}{{ post.url }}">{{page.title}}</a></li>-->
+                <!--<li>文章链接：<a href="{{ site.baseurl }}{{ post.url }}">{{ site.baseurl }}{{ post.url }}</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+
+        {% assign hasSimilar = '' %}
+        {% for post in site.related_posts %}
+            {% assign postHasSimilar = false %}
+            {% for tag in post.tags %}
+                {% for thisTag in page.tags %}
+                    {% if postHasSimilar == false and hasSimilar.size < 6 and post != page and tag == thisTag %}
+                        {% if hasSimilar.size == 0 %}
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        {% endif %}
+                        <li class="relatedPost">
+                            <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}
+                            {% if post.series %}
+                                (Series: {{ post.series }})
+                            {% endif %}
+                            </a>
+                        </li>
+                        {% capture hasSimilar %}{{ hasSimilar }}*{% endcapture %}
+                        {% assign postHasSimilar = true %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+        {% if hasSimilar.size > 0 %}
+            </ul>
         {% endif %}
 
+        {% include previousAndNext.html %}
+
+        <h2 id="comments">Comments</h2>
+        {% include comments.html %}
+
+
     </div>
-     <div class="asb-post-01">
-        <div class="mask"></div>
-            <div class="info">
-                <div>扫码关注公众号：<span style="color: #E9405A; font-weight: bold;">纯洁的微笑</span></div>
-            <div>
-            <span>发送 </span><span class="token" style="color: #e9415a; font-weight: bold; font-size: 17px; margin-bottom: 45px;">290992</span>
-            <div>
-                即可<span style="color: #e9415a; font-weight: bold;">立即永久</span>解锁本站全部文章
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    {% if hasSimilar.size > 0 %}
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    {% endif %}
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
             </div>
-            <img class="code-img" style="width: 300px;display:unset" src="http://favorites.ren/assets/images/keeppuresmile.jpg">
+            <!-- 其他div框放到这里 这里对文章详细内容生效 -->
+             <!--<div class="side content">-->
+
+                 <!--<div>-->
+                     <!--Content-->
+                 <!--</div>-->
+                 <!--<br>-->
+                 <!--<div  align="center">-->
+                     <!--<img src="https://upload-images.jianshu.io/upload_images/2279594-b17699ce79ff4934.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="200" height="200/">-->
+                 <!--</div>-->
+             <!--</div>-->
         </div>
     </div>
-</article>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="{{ "/js/pageContent.js " | prepend: site.baseurl }}" charset="utf-8"></script>
