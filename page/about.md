@@ -15,7 +15,7 @@ type: page
 
 对技术有着狂热的追求，活跃于各大技术社区，热爱分享，欢迎和各路大神交流。
 
-加我微信，拉你进技术分享群
+加我微信，拉你进技术分享群 
 <br>
 <br>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gg2ilporgwj30u012utb9.jpg" width="200" height="220">
