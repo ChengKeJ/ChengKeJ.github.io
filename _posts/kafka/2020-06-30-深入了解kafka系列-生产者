@@ -1,3 +1,11 @@
+
+---
+layout: post
+title:  "深入了解kafka系列-生产者"
+categories: kafka
+tags:  kafka
+---
+
 ### 基本概念
 
 > 整个Kafka体系结构中引入了以下3个术语。
