@@ -11,7 +11,8 @@ tags: zookeeper
 
 ### brew安装
 
-```$xslt
+```
+
 brew install zookeeper
 ```
 
