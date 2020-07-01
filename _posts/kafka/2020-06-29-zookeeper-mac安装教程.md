@@ -12,7 +12,6 @@ tags: zookeeper
 ### brew安装
 
 ```
-
 brew install zookeeper
 ```
 
