@@ -131,13 +131,13 @@ docker run -d -p 8080:8080 pgbi/kong-dashboard:v2 -a user=password
 
 在上一小节启动docker之后，打开网页http://192.168.86.128:8080（我unbuntu虚拟机的host为192.168.86.128）,填写kong的管理urlhttp://192.168.86.128:8001，就可以进入了。
 
-![](http://fangzhipeng.oss-cn-hangzhou.aliyuncs.com/blog/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170830111958.png?x-oss-process=style/caijai)
+![](http://chris .oss-cn-hangzhou.aliyuncs.com/blog/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170830111958.png?x-oss-process=style/caijai)
 
 在kong管理界面创建一个api接口：
 
 填写相关的参数即可，创建完成后如下：
 
-![](http://fangzhipeng.oss-cn-hangzhou.aliyuncs.com/blog/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170830112038.png?x-oss-process=style/caijai)
+![](http://chris .oss-cn-hangzhou.aliyuncs.com/blog/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170830112038.png?x-oss-process=style/caijai)
 
 在浏览器上访问：http://192.168.86.128:8000/hi
 
@@ -146,13 +146,13 @@ docker run -d -p 8080:8080 pgbi/kong-dashboard:v2 -a user=password
 
 添加api限流插件,一个ip一分钟10次。
 
-![](http://fangzhipeng.oss-cn-hangzhou.aliyuncs.com/blog/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170830112602.png?x-oss-process=style/caijai)
+![](http://chris .oss-cn-hangzhou.aliyuncs.com/blog/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170830112602.png?x-oss-process=style/caijai)
 
 访问超过10次后，会拒绝访问。
 
 添加file-log的插件,文件存放目录为/temp/file.log  ：
 
-![](http://fangzhipeng.oss-cn-hangzhou.aliyuncs.com/blog/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170830114620.png?x-oss-process=style/caijai)
+![](http://chris .oss-cn-hangzhou.aliyuncs.com/blog/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170830114620.png?x-oss-process=style/caijai)
 
 再次访问：http://192.168.86.128:8000/hi
 

@@ -48,7 +48,7 @@ AquiredLockWorker接口类，，主要是用于获取锁后需要处理的逻辑
 
 ```
 /**
- * Created by fangzhipeng on 2017/4/5.
+ * Created by chris  on 2017/4/5.
  * 获取锁后需要处理的逻辑
  */
 public interface AquiredLockWorker<T> {
@@ -62,7 +62,7 @@ DistributedLocker 获取锁管理类：
 ```
 
 /**
- * Created by fangzhipeng on 2017/4/5.
+ * Created by chris  on 2017/4/5.
  * 获取锁管理类
  */
 public interface DistributedLocker {
@@ -87,7 +87,7 @@ UnableToAquireLockException ，不能获取锁的异常类：
 
 ```
 /**
- * Created by fangzhipeng on 2017/4/5.
+ * Created by chris  on 2017/4/5.
  * 异常类
  */
 public class UnableToAquireLockException extends RuntimeException {
@@ -110,7 +110,7 @@ RedissonConnector 连接类：
 
 ```
 /**
- * Created by fangzhipeng on 2017/4/5.
+ * Created by chris  on 2017/4/5.
  * 获取RedissonClient连接类
  */
 @Component
@@ -141,7 +141,7 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by fangzhipeng on 2017/4/5.
+ * Created by chris  on 2017/4/5.
  */
 @Component
 public class RedisLocker  implements DistributedLocker{

@@ -142,7 +142,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Created by fangzhipeng on 2017/4/20.
+ * Created by chris  on 2017/4/20.
  */
 @Repository
 public class AccountDaoImpl implements IAccountDAO {
@@ -260,7 +260,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Created by fangzhipeng on 2017/4/20.
+ * Created by chris  on 2017/4/20.
  */
 
 @RestController

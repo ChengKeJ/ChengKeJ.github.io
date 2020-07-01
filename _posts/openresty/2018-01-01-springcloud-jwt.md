@@ -30,7 +30,7 @@ import feign.RequestTemplate;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by fangzhipeng on 2017/7/28.
+ * Created by chris  on 2017/7/28.
  */
 @Component
 public class JwtFeignInterceptor implements RequestInterceptor {

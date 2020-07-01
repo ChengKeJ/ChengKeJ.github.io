@@ -155,7 +155,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Created by fangzhipeng on 2017/4/20.
+ * Created by chris  on 2017/4/20.
  */
 @RestController
 @RequestMapping("/account")
@@ -228,5 +228,4 @@ public class AccountController {
 
 * 更多springboot 教程：[springBoot非官方教程 | 文章汇总](http://blog.csdn.net/forezp/article/details/70341818)
 * 更多springcoud 教程：[史上最简单的 SpringCloud 教程 |  文章汇总](http://blog.csdn.net/forezp/article/details/70148833)
- 
  

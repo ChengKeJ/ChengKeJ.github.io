@@ -123,7 +123,7 @@ import java.security.MessageDigest;
 
 /**
  * SHA的全称是Secure Hash Algorithm，即安全散列算法
- * Created by fangzhipeng on 2017/3/21.
+ * Created by chris  on 2017/3/21.
  */
 public class SHAUtil {
 
@@ -383,7 +383,7 @@ import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 /**
- * Created by fangzhipeng on 2017/3/21.
+ * Created by chris  on 2017/3/21.
  */
 public class AESUtil {
 
@@ -479,7 +479,7 @@ RSA非对称加密算法是1977年由Ron Rivest、 Adi Shamirh和LenAdleman开�
 ```
 
 /**
- * Created by fangzhipeng on 2017/3/21.
+ * Created by chris  on 2017/3/21.
  * RSA ：RSA非对称加密算法是1977年由Ron Rivest、 Adi Shamirh和LenAdleman开发   *  的， RSA取名来
  *  自开发他们三者的名字。
  * 参考：http://blog.csdn.net/wangqiuyun/article/details/42143957

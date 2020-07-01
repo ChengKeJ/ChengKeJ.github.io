@@ -328,7 +328,7 @@ location /lua_redirect{
 
 
 ```
-ngx.redirect("http://www.fangzhipeng.com", 302)
+ngx.redirect("http://www.chris .com", 302)
 
 ```
 
