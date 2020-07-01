@@ -17,7 +17,8 @@ brew install zookeeper
 
 <!--more-->
 
-```$xslt
+```
+
 ==> Downloading https://homebrew.bintray.com/bottles/zookeeper-3.4.13.mojave.bottle.tar.gz
 ==> Downloading from https://akamai.bintray.com/d1/d1e4e7738cd147dceb3d91b32480c20ac5da27d129905f336ba51c0c01b8a476?__gd
 ######################################################################## 100.0%
@@ -33,10 +34,12 @@ Or, if you don't want/need a background service you can just run:
 查看zookeeper 信息
 
 
-```$xslt
+```
+
 brew info zookeeper
 ```
-```$xslt
+```
+
 zookeeper: stable 3.4.13 (bottled), HEAD
 Centralized server for distributed coordination of services
 https://zookeeper.apache.org/
@@ -57,14 +60,16 @@ install_on_request: 2,192 (30 days), 6,831 (90 days), 25,814 (365 days)
 build_error: 0 (30 days)
 ```
 brew nstall 完成之后 对应配置如下
-```$xslt
+```
+
 /usr/local/etc/zookeeper
 chengkejundeMacBook-Pro:zookeeper c.kj$ ls
 defaults		log4j.properties	zoo.cfg			zoo_sample.cfg
 chengkejundeMacBook-Pro:zookeeper c.kj$
 ```
 修改 zoo.cfg 搭建集群修改这些配置 因为只需要搭建一个伪集群所以没有修改其中参数，感兴趣的可以自己搜索一些教程～
-```$xslt
+```
+
 # The number of milliseconds of each tick
 tickTime=2000
 # The number of ticks that the initial
@@ -98,7 +103,8 @@ clientPort=2181
 为了能够在任意目录启动zookeeper集群，我们需要配置环境变量.
  <br> ps:你也可以不配，这不是搭建集群的必要操作，只不过如果你不配置环境变量，那么每次启动zookeeper需要到安装文件的 bin 目录下去启动。
  <br> 配置如下
-```$xslt
+```
+
 chengkejundeMacBook-Pro:data c.kj$ open -e ~/.bash_profile
 chengkejundeMacBook-Pro:data c.kj$ cat ~/.bash_profile
 export M3_HOME=/usr/local/mvn/apache-maven-3.3.9
@@ -130,7 +136,8 @@ zkServer restart
 ``
 zkServer status
 ``
-```$xslt
+```
+
 chengkejundeMacBook-Pro:~ c.kj$ zkServer start
 ZooKeeper JMX enabled by default
 Using config: /usr/local/etc/zookeeper/zoo.cfg
