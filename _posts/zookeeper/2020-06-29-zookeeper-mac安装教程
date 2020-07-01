@@ -30,6 +30,8 @@ Or, if you don't want/need a background service you can just run:
 ```
 查看zookeeper 信息
 
+<!--more-->
+
 ```$xslt
 brew info zookeeper
 ```
