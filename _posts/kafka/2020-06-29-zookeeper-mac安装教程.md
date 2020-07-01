@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "zookeeper 安装教程"
-categories: zookeeper
+categories: kafka
 tags: zookeeper
 ---
 
