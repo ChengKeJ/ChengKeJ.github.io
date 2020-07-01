@@ -15,6 +15,8 @@ tags: zookeeper
 brew install zookeeper
 ```
 
+<!--more-->
+
 ```$xslt
 ==> Downloading https://homebrew.bintray.com/bottles/zookeeper-3.4.13.mojave.bottle.tar.gz
 ==> Downloading from https://akamai.bintray.com/d1/d1e4e7738cd147dceb3d91b32480c20ac5da27d129905f336ba51c0c01b8a476?__gd
@@ -30,7 +32,6 @@ Or, if you don't want/need a background service you can just run:
 ```
 查看zookeeper 信息
 
-<!--more-->
 
 ```$xslt
 brew info zookeeper
