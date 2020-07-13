@@ -12,7 +12,6 @@ tags: Spring
 
 反应式编程是一种可以替代命令式编程的编程范式。这种可替代性存在的原因在于反应式编程解决了命令式编程中的一些限制。理解这些限制，有助于你更好地理解反应式编程模型的优点
 
-<!--more-->
 
 ### 反应式流规范
 
@@ -188,15 +187,16 @@ Flux和Mono共有500多个操作，这些操作都可以大致归类为：
 合并:
 
 ```
-        Flux<String> fruitFluxA = Flux.just("Apple","Orange");
+  Flux<String> fruitFluxA = Flux.just("Apple","Orange");
 
-        Flux<String> fruitFluxB = Flux.just("Banana","watermelon");
+  Flux<String> fruitFluxB = Flux.just("Banana","watermelon");
         
-        fruitFluxA.mergeWith(fruitFluxB).subscribe(System.out::println);
+  fruitFluxA.mergeWith(fruitFluxB).subscribe(System.out::println);
 ```
 
 ```
-6:03:07.343 [main] DEBUG reactor.util.Loggers$LoggerFactory - Using Slf4j logging framework
+ com.ckj.superlearn.superlearn.base.ReactorStrategy
+16:03:07.343 [main] DEBUG reactor.util.Loggers$LoggerFactory - Using Slf4j logging framework
 Apple
 Orange
 Banana
@@ -210,19 +210,19 @@ mergeWith()方法不能完美地保证源Flux之间的先后顺序，所以我�
 
 ```
 
-        Flux<String> fruitFluxA = Flux.just("Apple","Orange").delayElements(Duration.ofMillis(10));
+  Flux<String> fruitFluxA = Flux.just("Apple","Orange").delayElements(Duration.ofMillis(10));
 
-        Flux<String> fruitFluxB = Flux.just("Banana","watermelon").delayElements(Duration.ofMillis(50));
+  Flux<String> fruitFluxB = Flux.just("Banana","watermelon").delayElements(Duration.ofMillis(50));
 
-        Flux<String> allFlux = fruitFluxA.mergeWith(fruitFluxB);
+  Flux<String> allFlux = fruitFluxA.mergeWith(fruitFluxB);
 
-        allFlux.subscribe(x-> System.out.println("allFlux:"+x));
+  allFlux.subscribe(x-> System.out.println("allFlux:"+x));
 
-        Flux<Tuple2<String, String>> zip = Flux.zip(fruitFluxA, fruitFluxB);
+  Flux<Tuple2<String, String>> zip = Flux.zip(fruitFluxA, fruitFluxB);
 
-        zip.subscribe(x-> System.out.println("zip:"+x));
+  zip.subscribe(x-> System.out.println("zip:"+x));
 
-        Thread.sleep(1000);
+  Thread.sleep(1000);
 
 ```
 
@@ -231,6 +231,7 @@ mergeWith()方法不能完美地保证源Flux之间的先后顺序，所以我�
 控制台：
 
 ```
+/com.ckj.superlearn.superlearn.base.ReactorStrategy
 16:49:44.543 [main] DEBUG reactor.util.Loggers$LoggerFactory - Using Slf4j logging framework
 allFlux:Apple
 allFlux:Orange
@@ -247,16 +248,17 @@ Process finished with exit code 0
 针对具有多个数据项的Flux，skip操作将创建一个新的Flux，它会首先跳过指定数量的数据项，然后从源Flux中发布剩余的数据项。下面的测试方法展示如何使用skip()方法：
 
 ```
-       Flux<String> fruitFluxA = Flux.just("Apple","Orange","Banana","watermelon").skip(2);
+  Flux<String> fruitFluxA = Flux.just("Apple","Orange","Banana","watermelon").skip(2);
 
-        fruitFluxA.subscribe(x->{
+    fruitFluxA.subscribe(x->{
 
-            System.out.println(x);
+        System.out.println(x);
 
         });
 ```
 
 ```
+/com.ckj.superlearn.superlearn.base.ReactorStrategy
 17:05:00.141 [main] DEBUG reactor.util.Loggers$LoggerFactory - Using Slf4j logging framework
 Banana
 watermelon
@@ -278,6 +280,7 @@ Process finished with exit code 0
 
 ```
 
+ com.ckj.superlearn.superlearn.base.ReactorStrategy
 17:20:59.483 [main] DEBUG reactor.util.Loggers$LoggerFactory - Using Slf4j logging framework
 Apple
 Orange
@@ -288,15 +291,18 @@ Process finished with exit code 0
 filter()的过滤效果
 
 ```
-        Flux<String> fruitFluxA = Flux.just("Apple","Orange","Banana","watermelon").take(2);
+  Flux<String> fruitFluxA = Flux.just("Apple","Orange","Banana","watermelon").take(2);
 
-        fruitFluxA.filter(x->x.equals("Apple")).subscribe(x->{
-            System.out.println(x);
-        });
+  fruitFluxA.filter(x->x.equals("Apple")).subscribe(x->{
+
+     System.out.println(x);
+
+	 });
 
 ```
 
 ```
+com.ckj.superlearn.superlearn.base.ReactorStrategy
 17:24:03.242 [main] DEBUG reactor.util.Loggers$LoggerFactory - Using Slf4j logging framework
 Apple
 
@@ -306,10 +312,10 @@ Process finished with exit code 0
 如何使用flatMap()方法和subscribeOn()方法
 
 ```
-        Flux<String> fruitFluxA = Flux.just("Apple", "Orange", "Banana", "watermelon", "Apple", "Orange", "Banana",
+  Flux<String> fruitFluxA = Flux.just("Apple", "Orange", "Banana", "watermelon", "Apple", "Orange", "Banana",
                 "watermelon", "Apple", "Orange", "Banana", "watermelon", "Apple", "Orange", "Banana", "watermelon");
 
-        fruitFluxA.flatMap(Mono::just).map(String::toUpperCase).subscribeOn(Schedulers.parallel());
+   fruitFluxA.flatMap(Mono::just).map(String::toUpperCase).subscribeOn(Schedulers.parallel());
 
 ```
 ![](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggm1rjb3naj31580kgguh.jpg)
