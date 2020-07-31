@@ -11,14 +11,13 @@ type: page
 
 ## 关于我
 
-小技术君，目前在上海从事保险行业的后端开发工作，会一点前端，懂一点后端，希望自己的技术始终在路上，一如既往热爱这个行业，个人站点纯粹分享有意思或者在看的东西～
+小技术君，目前在上海从事保险行业的后端开发工作，会一点前端，懂一点后端，希望自己的技术始终在路上，
 
-<br>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gg2ilporgwj30u012utb9.jpg" width="200" height="220">
-<br>
-<br>
+一如既往热爱这个行业，个人站点纯粹分享有意思或者在看的东西～
+
 关注我的微信公众号，技术内容不定期分享
 <br>
+
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gg2il7ycfij3076076jru.jpg" width="200" height="200/">
  
 ## 联系我
