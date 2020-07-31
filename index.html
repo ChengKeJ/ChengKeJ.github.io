@@ -9,9 +9,9 @@ layout: default
         <hr>
         <ul>
             {% for post in paginator.posts %}
-              <li>
+            <li>
                 <h2>
-                  <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                    <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
                 </h2>
                 <div class="label">
                     <div class="label-card">
@@ -22,47 +22,48 @@ layout: default
                         {% endif %}
                     </div>
                     <div class="label-card">
-                        {% if page.meta %}<i class="fa fa-key"></i>{{ page.meta }}  {% endif %}
+                        {% if page.meta %}<i class="fa fa-key"></i>{{ page.meta }} {% endif %}
                     </div>
 
                     <div class="label-card">
-                    {% include category.html %}
+                        {% include category.html %}
                     </div>
 
                     <div class="label-card">
-                    {% include tag.html %}
+                        {% include tag.html %}
                     </div>
                 </div>
                 <div class="excerpt">
                     {{post.excerpt}}
                 </div>
                 <div class="read-all">
-                    <a  href="{{ post.url | prepend: site.baseurl }}"><i class="fa fa-newspaper-o"></i>Read All</a>
+                    <a href="{{ post.url | prepend: site.baseurl }}"><i class="fa fa-newspaper-o"></i>Read All</a>
                 </div>
                 <hr>
-              </li>
+            </li>
             {% endfor %}
         </ul>
 
 
-
         <!-- Pagination links -->
         <div class="pagination">
-          {% if paginator.previous_page %}
+            {% if paginator.previous_page %}
             <a href="/index.html" class="previous"><i class="fa fa-angle-double-left"></i></a>
-            <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="previous"><i class="fa fa-angle-left"></i></a>
-          {% else %}
+            <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="previous"><i
+                    class="fa fa-angle-left"></i></a>
+            {% else %}
             <span class="previous disable"><i class="fa fa-angle-double-left"></i></span>
             <span class="previous disable"><i class="fa fa-angle-left"></i></span>
-          {% endif %}
-          <span class="page_number ">{{ paginator.page }}/{{ paginator.total_pages }}</span>
-          {% if paginator.next_page %}
+            {% endif %}
+            <span class="page_number ">{{ paginator.page }}/{{ paginator.total_pages }}</span>
+            {% if paginator.next_page %}
             <a href="{{ paginator.next_page_path }}" class="next"><i class="fa fa-angle-right"></i></a>
-            <a href="{{ site.baseurl }}/page{{ paginator.total_pages }}" class="next"><i class="fa fa-angle-double-right"></i></a>
-          {% else %}
+            <a href="{{ site.baseurl }}/page{{ paginator.total_pages }}" class="next"><i
+                    class="fa fa-angle-double-right"></i></a>
+            {% else %}
             <span class="next disable"><i class="fa fa-angle-right"></i></span>
             <span class="next disable"><i class="fa fa-angle-double-right"></i></span>
-          {% endif %}
+            {% endif %}
         </div>
     </div>
     <!-- <button class="anchor"><i class="fa fa-anchor"></i></button> -->
@@ -70,17 +71,20 @@ layout: default
 
         <div class="wrap">
 
-		<div class="side">
+            <div class="side">
                 <div>
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     关于我
                 </div>
                 <ul class="content-ul" recent>
-                    <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gg2il7ycfij3076076jru.jpg" width="200" height="200/">
+                    <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gg2il7ycfij3076076jru.jpg" width="200"
+                         height="200/">
 
                     <br>
 
-                    <div class="text" style=" text-align:center ;font-size:14px;color:#00F;">扫一扫关注我的微信公众号，也可以加我微信ckj1396987477 一对一交流。</div>
+                    <div class="text" style=" text-align:center ;font-size:14px;color:#00F;">
+                        扫一扫关注我的微信公众号，也可以加我微信ckj1396987477 一对一交流。
+                    </div>
 
 
                 </ul>
@@ -105,8 +109,8 @@ layout: default
                     Recent Posts
                 </div>
                 <ul class="content-ul" recent>
-                    {% for post in site.posts offset: 0 limit: 10  %}
-                        <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+                    {% for post in site.posts offset: 0 limit: 10 %}
+                    <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
@@ -120,7 +124,8 @@ layout: default
                 <ul class="content-ul" cate>
                     {% for category in site.categories %}
                     <li>
-                        <a href="{{ root_url }}/{{ site.category_dir }}#{{ category | first }}" class="categories-list-item" cate="{{ category | first }}">
+                        <a href="{{ root_url }}/{{ site.category_dir }}#{{ category | first }}"
+                           class="categories-list-item" cate="{{ category | first }}">
                             <span class="name">
                                 {{ category | first }}
                             </span>
@@ -139,26 +144,26 @@ layout: default
                 <ul class="content-ul" recent>
                     <li><a href="http://springcloud.cn/">Spring Cloud中国社区</a></li>
 
-					<li><a href="https://blog.csdn.net/weixin_37604985">我的CSDN</a></li>
+                    <li><a href="https://blog.csdn.net/weixin_37604985">我的CSDN</a></li>
 
-					<li><a href="https://www.toutiao.com/c/user/2634063691384084/#mid=1656268071744520">我的今日头条</a></li>
+                    <li><a href="https://www.toutiao.com/c/user/2634063691384084/#mid=1656268071744520">我的今日头条</a></li>
 
 
                 </ul>
             </div>
 
-        	<div class="side">
+            <div class="side">
                 <div>
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     个人微信
                 </div>
                 <ul class="content-ul" recent>
-                    <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gg2ilporgwj30u012utb9.jpg" width="200" height="220">
+                    <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gg2ilporgwj30u012utb9.jpg" width="200"
+                         height="220">
 
 
                 </ul>
             </div>
-
 
 
             <!-- 其他div框放到这里 -->
@@ -172,52 +177,53 @@ layout: default
                     {% assign max = first[1].size %}
                     {% assign min = max %}
                     {% for tag in site.tags offset:1 %}
-                      {% if tag[1].size > max %}
-                        {% assign max = tag[1].size %}
-                      {% elsif tag[1].size < min %}
-                        {% assign min = tag[1].size %}
-                      {% endif %}
+                    {% if tag[1].size > max %}
+                    {% assign max = tag[1].size %}
+                    {% elsif tag[1].size < min %}
+                    {% assign min = tag[1].size %}
+                    {% endif %}
                     {% endfor %}
 
                     {% if max == min %}
-                        {% assign diff = 1 %}
+                    {% assign diff = 1 %}
                     {% else %}
-                        {% assign diff = max | minus: min %}
+                    {% assign diff = max | minus: min %}
                     {% endif %}
 
                     {% for tag in site.tags %}
-                      {% assign temp = tag[1].size | minus: min | times: 36 | divided_by: diff %}
-                      {% assign base = temp | divided_by: 4 %}
-                      {% assign remain = temp | modulo: 4 %}
-                      {% if remain == 0 %}
-                        {% assign size = base | plus: 9 %}
-                      {% elsif remain == 1 or remain == 2 %}
-                        {% assign size = base | plus: 9 | append: '.5' %}
-                      {% else %}
-                        {% assign size = base | plus: 10 %}
-                      {% endif %}
-                      {% if remain == 0 or remain == 1 %}
-                        {% assign color = 9 | minus: base %}
-                      {% else %}
-                        {% assign color = 8 | minus: base %}
-                      {% endif %}
-                      <a href="{{ root_url }}/{{ site.tag_dir }}#{{ tag[0] }}" style="font-size: {{ size }}pt; color: #{{ color }}{{ color }}{{ color }};">{{ tag[0] }}</a>
+                    {% assign temp = tag[1].size | minus: min | times: 36 | divided_by: diff %}
+                    {% assign base = temp | divided_by: 4 %}
+                    {% assign remain = temp | modulo: 4 %}
+                    {% if remain == 0 %}
+                    {% assign size = base | plus: 9 %}
+                    {% elsif remain == 1 or remain == 2 %}
+                    {% assign size = base | plus: 9 | append: '.5' %}
+                    {% else %}
+                    {% assign size = base | plus: 10 %}
+                    {% endif %}
+                    {% if remain == 0 or remain == 1 %}
+                    {% assign color = 9 | minus: base %}
+                    {% else %}
+                    {% assign color = 8 | minus: base %}
+                    {% endif %}
+                    <a href="{{ root_url }}/{{ site.tag_dir }}#{{ tag[0] }}"
+                       style="font-size: {{ size }}pt; color: #{{ color }}{{ color }}{{ color }};">{{ tag[0] }}</a>
                     {% endfor %}
                 </div>
             </div>
 
-            <!-- <div class="side">
+            <div class="side">
                 <div>
                     <i class="fa fa-external-link"></i>
-                    Links
+                    大白鲸旅游攻略
                 </div>
-                <ul  class="content-ul">
-
+                <ul class="content-ul" recent>
+                    <img src=" https://tva1.sinaimg.cn/large/007S8ZIlgy1ghacevja62j3076076jsd.jpg" width="200"
+                         height="220">
                 </ul>
-            </div> -->
+            </div>
         </div>
     </div>
-
 
 
 </div>
