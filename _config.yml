@@ -7,7 +7,7 @@
 
 # Site settings
 title: 小技术君
-brief-intro: 专注于微服务、容器、持续集成等领域
+brief-intro: 个人站点纯粹分享有意思或者在看的东西～
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://www.smalltechnologyjun.com" # the base hostname & protocol for your site
 
