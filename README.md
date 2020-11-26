@@ -18,4 +18,20 @@ Configuration file: /Users/c.kj/project/ChengKeJ.github.io/_config.yml
 
 ![](https://tva1.sinaimg.cn/large/0081Kckwgy1gl2n3br8jtj31rj0u07wi.jpg)
 
-### step 3:
+### step 3: update _config.yml for title or brief intro .
+```
+# Site settings
+title: 小技术君
+brief-intro: 个人站点纯粹分享有意思或者在看的东西～
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://www.smalltechnologyjun.com" # the base hostname & protocol for your site
+permalink: /:year/:month/:day/:title/
+
+```
+### step 4: update cname for you website domain name .
+
+### step 5: release online
+
+![](https://tva1.sinaimg.cn/large/0081Kckwgy1gl2nlncz53j31dv0u0tev.jpg)
+
+### step 6: run success !
