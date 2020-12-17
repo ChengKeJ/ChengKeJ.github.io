@@ -23,10 +23,25 @@ type: page
 
 ## 关于本站
 
+* 小站利用 Jekyll & Github Pages 部署，感兴趣的可以
+[Fork](https://github.com/ChengKeJ/ChengKeJ.github.io) 过来～
 
-~欢迎使用~
+* 使用 Gitee 可以[Fork](https://gitee.com/ckjcode/ckjcode) 过来～
 
-欢迎大家提出宝贵的意见，另外因为由于国内的评论插件，比如畅言等的不稳定性，所以关闭此功能。有事加我微信～
+## 微信小程序
+
+>如果想拥有一个小程序端博客，如果想在手机上随时随地流畅的审核回复评论、上传附件，添加图库等，欢迎搭建配置以下小程序~
+
+* Gitee: [https://gitee.com/ckjcode/smallTechnology](https://gitee.com/ckjcode/smallTechnology)
+
+<img src="https://images.gitee.com/uploads/images/2019/1107/151220_f85016d8_1593966.jpeg" width="30%" height="30%">
+<br>
+
+
+<img src="https://images.gitee.com/uploads/images/2019/1107/152040_5b56ff32_1593966.jpeg" width="40%" height="50%">
+&nbsp;
+<img src="https://images.gitee.com/uploads/images/2019/1107/152049_1712cb48_1593966.jpeg" width="40%" height="50%">
+&nbsp;
 
 
 ## 友情链接
