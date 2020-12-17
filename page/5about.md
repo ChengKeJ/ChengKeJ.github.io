@@ -34,7 +34,7 @@ type: page
 
 * Gitee: [https://gitee.com/ckjcode/smallTechnology](https://gitee.com/ckjcode/smallTechnology)
 
-<img src="https://images.gitee.com/uploads/images/2019/1107/151220_f85016d8_1593966.jpeg" width="30%" height="30%">
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glqp0el2x7j31bq0mgn0g.jpg" width="82.5%" height="20%">
 <br>
 
 
