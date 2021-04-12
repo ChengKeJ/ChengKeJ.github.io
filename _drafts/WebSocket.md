@@ -5,8 +5,7 @@ categories: JavaScript
 tags:  WebSocket 通信 协议
 ---
 
-* content
-{:toc}
+
 
 ## WebSocket 适用场景
 

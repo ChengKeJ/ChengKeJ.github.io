@@ -5,8 +5,7 @@ categories: javascript
 tags:  javascript
 ---
 
-* content
-{:toc}
+
 
 
 1.继续循环continue;

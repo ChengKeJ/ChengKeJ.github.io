@@ -5,8 +5,7 @@ categories: SpringBoot
 tags:  SpringBoot
 ---
 
-* content
-{:toc}
+
 
 
 ## 构架工程

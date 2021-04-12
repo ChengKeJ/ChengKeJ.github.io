@@ -5,8 +5,7 @@ categories: javascript
 tags:  javascript
 ---
 
-* content
-{:toc}
+
 
 ##  认识DOM 
 ----

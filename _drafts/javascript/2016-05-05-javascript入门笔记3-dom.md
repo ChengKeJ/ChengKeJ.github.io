@@ -5,8 +5,7 @@ categories: javascript
 tags:  javascript
 ---
 
-* content
-{:toc}
+
 
 1.通过ID获取元素
  document.getElementById(“id”) 

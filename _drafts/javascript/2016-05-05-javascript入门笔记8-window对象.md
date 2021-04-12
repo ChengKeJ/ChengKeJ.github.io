@@ -5,8 +5,7 @@ categories: javascript
 tags:  javascript
 ---
 
-* content
-{:toc}
+
 
 ## History 对象
 history对象记录了用户曾经浏览过的页面(URL)，并可以实现浏览器前进与后退相似导航的功能。

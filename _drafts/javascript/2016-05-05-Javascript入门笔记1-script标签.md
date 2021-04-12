@@ -5,8 +5,7 @@ categories: javascript
 tags:  javascript
 ---
 
-* content
-{:toc}
+
 
 1.script标签在HTML文件中添加JavaScript代码.
 

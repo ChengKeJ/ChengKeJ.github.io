@@ -5,8 +5,7 @@ categories: javascript
 tags:  javascript
 ---
 
-* content
-{:toc}
+
 
 1.Date 日期对象
 日期对象可以储存任意一个日期，并且可以精确到毫秒数（1/1000 秒）。
