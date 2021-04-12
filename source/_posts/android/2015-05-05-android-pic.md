@@ -3,6 +3,7 @@ layout: post
 title:  "拍照、选择相片"
 categories: android
 tags:  android
+date: 2015/5/05 20:46:25
 ---
 
 

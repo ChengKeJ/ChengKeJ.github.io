@@ -3,6 +3,7 @@ layout: post
 title:  "JWT如何在Spring Cloud微服务系统中在服务相互调时传递"
 categories: SpringCloud 
 tags:  SpringCloud JWT
+date: 2018/01/01 20:46:25
 ---
 
 

@@ -2,7 +2,8 @@
 layout: post
 title:  "Spring Boot教程第6篇：整合mybatis"
 categories: SpringBoot
-tags:  SpringBoot mybatis
+tags:  SpringBoot
+date: 2017/05/05 20:46:25
 ---
 
 

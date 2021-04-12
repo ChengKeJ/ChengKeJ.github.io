@@ -2,7 +2,8 @@
 layout: post
 title:  "Spring Boot教程第9篇：整合Redis"
 categories: SpringBoot
-tags:  SpringBoot redis
+tags:  SpringBoot
+date: 2017/05/05 20:46:25
 ---
 
 

@@ -3,6 +3,7 @@ layout: post
 title:  "工厂设计模式"
 categories: j2ee
 tags:  j2ee
+date: 2015/5/05 20:46:25
 ---
 
 

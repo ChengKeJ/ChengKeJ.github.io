@@ -4,6 +4,7 @@ layout: post
 title:  "改变shape里面的值"
 categories: android
 tags:  android
+date: 2015/5/05 20:46:25
 ---
 
 

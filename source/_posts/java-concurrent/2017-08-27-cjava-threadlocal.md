@@ -3,6 +3,7 @@ layout: post
 title:  "Java并发编程：线程封闭和ThreadLocal详解"
 categories: java并发编程
 tags:  java java并发编程 volatile
+date: 2017/11/12 20:46:25
 ---
 
 

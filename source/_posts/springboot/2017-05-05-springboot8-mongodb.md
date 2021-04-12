@@ -2,7 +2,8 @@
 layout: post
 title:  "Spring Boot教程第8篇：整合mongodb"
 categories: SpringBoot
-tags:  SpringBoot mongodb
+tags:  SpringBoot
+date: 2017/05/05 20:46:25
 ---
 
 

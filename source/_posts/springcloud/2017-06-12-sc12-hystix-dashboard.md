@@ -3,6 +3,7 @@ layout: post
 title:  "SpringCloud教程第12篇：Hystrix Dashboard"
 categories: SpringCloud
 tags:  SpringCloud HystrixDashboard
+date: 2017/06/12 20:46:25
 ---
 
 

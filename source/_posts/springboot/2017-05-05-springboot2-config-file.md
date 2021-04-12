@@ -2,7 +2,8 @@
 layout: post
 title:  "Spring Boot教程第2篇：配置文件详解"
 categories: SpringBoot
-tags:  SpringBoot mongodb
+tags:  SpringBoot
+date: 2017/05/05 20:46:25
 ---
 
 

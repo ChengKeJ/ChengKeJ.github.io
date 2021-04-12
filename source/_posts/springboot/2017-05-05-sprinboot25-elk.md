@@ -3,6 +3,7 @@ layout: post
 title:  "Spring Boot教程第22篇：整合elk，搭建实时日志平台"
 categories: SpringBoot
 tags:  SpringBoot
+date: 2017/05/05 20:46:25
 ---
 
 
