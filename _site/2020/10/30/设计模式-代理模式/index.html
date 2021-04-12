@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>设计模式-代理模式</title>
+    <meta name="description" content="在有些情况下，一个客户不能或者不想直接访问另一个对象，这时需要找一个中介帮忙完成某项任务，这个中介就是代理对象。例如，购买火车票不一定要去火车站买，可以通过 12306 网站或者去火车票代售点买。又如找女朋友、找保姆、找工作等都可以通过找中介完成。在软件设计中，使用代理模式的例子也很多，例如，要访问的远程对象比较...">
+    <meta name="google-site-verification" content="_H9d40c5Yjxyhu77n5hQ106TDOF5ukddljI5RS5im9o" />
+    <meta name="baidu_union_verify" content="0123e21b320ec5decff6573bb106a806">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2020/10/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
+    <link rel="alternate" type="application/rss+xml" title="小技术君" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c17de59570e96ad6f2e3d6c9e233c042";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-72449510-4', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+    <script data-ad-client="ca-pub-6064739425313900" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                        <a href="/">
+                            
+                            <i class="fa fa-home"></i>Home
+                        </a>
+                </li>
+
+                
+                
+                <li>
+                    
+                        <a href="/archive/">
+                            
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                </li>
+                
+                
+                
+                <li>
+                    
+                        <a href="/category/">
+                            
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                </li>
+                
+                
+                
+                <li>
+                    
+                        <a href="/tag/">
+                            
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                </li>
+                
+                
+                
+                <li>
+                    
+                        <a href="/collection/">
+                            
+                            <i class="fa fa-bookmark"></i>Link
+                        </a>
+                </li>
+                
+                
+                
+                <li>
+                    
+                        <a href="/demo/">
+                            
+                            <i class="fa fa-play"></i>汇总
+                        </a>
+                </li>
+                
+                
+                
+                <li>
+                    
+                        <a href="/about/">
+                            
+                            <i class="fa fa-heart"></i>关于我
+                        </a>
+                </li>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </ul>
+        </nav>
+        <br>
+        <a href="/" class="brand">小技术君</a>
+        &nbsp
+        &nbsp
+        <small>个人站点纯粹分享有意思或者在看的东西～</small>
+        <!--<small>个人站点纯粹分享有意思或者在看的东西～</small>-->
+        <!--<button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>-->
+
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>设计模式-代理模式</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2020-10-30
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#设计模式" title="Category: 设计模式" rel="category">设计模式</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" title="Tag: 设计模式" rel="tag">设计模式</a-->
+        <a href="/tag/#设计模式" title="Tag: 设计模式" rel="tag">设计模式</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#代理模式的定义与特点" id="markdown-toc-代理模式的定义与特点">代理模式的定义与特点</a></li>
+  <li><a href="#代理模式的主要优点有" id="markdown-toc-代理模式的主要优点有">代理模式的主要优点有：</a></li>
+  <li><a href="#其主要缺点是" id="markdown-toc-其主要缺点是">其主要缺点是：</a></li>
+  <li><a href="#代理模式的结构与实现" id="markdown-toc-代理模式的结构与实现">代理模式的结构与实现</a>    <ul>
+      <li><a href="#1-模式的结构" id="markdown-toc-1-模式的结构">1. 模式的结构</a></li>
+      <li><a href="#2-模式的实现" id="markdown-toc-2-模式的实现">2. 模式的实现</a></li>
+      <li><a href="#3-动态代理" id="markdown-toc-3-动态代理">3. 动态代理</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>在有些情况下，一个客户不能或者不想直接访问另一个对象，这时需要找一个中介帮忙完成某项任务，这个中介就是代理对象。例如，购买火车票不一定要去火车站买，可以通过 12306 网站或者去火车票代售点买。又如找女朋友、找保姆、找工作等都可以通过找中介完成。</p>
+
+<p>在软件设计中，使用代理模式的例子也很多，例如，要访问的远程对象比较大（如视频或大图像等），其下载要花很多时间。还有因为安全原因需要屏蔽客户端直接访问真实对象，如某单位的内部数据库等。</p>
+
+<!--more-->
+
+<h3 id="代理模式的定义与特点">代理模式的定义与特点</h3>
+<p>代理模式的定义：由于某些原因需要给某对象提供一个代理以控制对该对象的访问。这时，访问对象不适合或者不能直接引用目标对象，代理对象作为访问对象和目标对象之间的中介。</p>
+
+<h3 id="代理模式的主要优点有">代理模式的主要优点有：</h3>
+<ul>
+  <li>代理模式在客户端与目标对象之间起到一个中介作用和保护目标对象的作用；</li>
+  <li>代理对象可以扩展目标对象的功能；</li>
+  <li>代理模式能将客户端与目标对象分离，在一定程度上降低了系统的耦合度，增加了程序的可扩展性</li>
+</ul>
+
+<h3 id="其主要缺点是">其主要缺点是：</h3>
+<ul>
+  <li>代理模式会造成系统设计中类的数量增加</li>
+  <li>在客户端和目标对象之间增加一个代理对象，会造成请求处理速度变慢；</li>
+  <li>增加了系统的复杂度；</li>
+  <li>那么如何解决以上提到的缺点呢？答案是可以使用动态代理方式</li>
+</ul>
+
+<h3 id="代理模式的结构与实现">代理模式的结构与实现</h3>
+<p>代理模式的结构比较简单，主要是通过定义一个继承抽象主题的代理来包含真实主题，从而实现对真实主题的访问，下面来分析其基本结构和实现方法。</p>
+<h4 id="1-模式的结构">1. 模式的结构</h4>
+<p>代理模式的主要角色如下。</p>
+<ul>
+  <li>抽象主题（Subject）类：通过接口或抽象类声明真实主题和代理对象实现的业务方法。</li>
+  <li>真实主题（Real Subject）类：实现了抽象主题中的具体业务，是代理对象所代表的真实对象，是最终要引用的对象。</li>
+  <li>代理（Proxy）类：提供了与真实主题相同的接口，其内部含有对真实主题的引用，它可以访问、控制或扩展真实主题的功能。</li>
+</ul>
+
+<p>其结构图如图 1 所示
+<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7fvl8ky9g30i209mmxh.gif" alt="" /></p>
+
+<p>在代码中，一般代理会被理解为代码增强，实际上就是在原代码逻辑前后增加一些代码逻辑，而使调用者无感知。</p>
+
+<p>根据代理的创建时期，代理模式分为静态代理和动态代理。</p>
+<ul>
+  <li>静态：由程序员创建代理类或特定工具自动生成源代码再对其编译，在程序运行前代理类的 .class 文件就已经存在了。</li>
+  <li>动态：在程序运行时，运用反射机制动态创建而成</li>
+</ul>
+
+<h4 id="2-模式的实现">2. 模式的实现</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.三个抽象主题
+/**
+ * process check gamer ticket
+ */
+public interface CheckProcess {
+    void check();
+}
+
+public interface DietProcess {
+    void diet();
+}
+
+/**
+ * process game
+ */
+public interface GameProcess {
+    void play();
+}
+
+2. 三个真实主题
+public class BigGamePayer extends GamePayer {
+    @Override
+    public void play() {
+        log.info("=== big player start play ...");
+    }
+}
+
+public class BigChecker implements CheckProcess {
+    @Override
+    public void check() {
+        log.info("=== start check ticket");
+    }
+}
+
+public class Dieter implements DietProcess {
+    @Override
+    public void diet() {
+      log.info("== start make diet : ice ");
+    }
+}
+
+3. 代理类
+public class ProxyProcess implements GameProcess, CheckProcess, DietProcess {
+
+    // 代理检票
+    private CheckProcess checkProcess;
+
+    // 代理游戏
+    private GameProcess  gameProcess;
+
+    // 代理饮食
+    private DietProcess  dietProcess;
+
+    public &lt;T&gt; ProxyProcess(T t) {
+        if (t instanceof GameProcess) {
+            this.gameProcess = (GameProcess) t;
+        } else if (t instanceof CheckProcess) {
+            this.checkProcess = (CheckProcess) t;
+        } else if (t instanceof DietProcess) {
+            this.dietProcess = (DietProcess) t;
+        }
+    }
+
+    @Override
+    public void play() {
+        before();
+        this.gameProcess.play();
+        after();
+    }
+
+    @Override
+    public void check() {
+        this.checkProcess.check();
+    }
+
+    @Override
+    public void diet() {
+        this.dietProcess.diet();
+
+    }
+    public void before() {
+        log.info("=== proxy: start before play game");
+
+    }
+
+    public void after() {
+        log.info("=== proxy:  start after play game");
+
+    }
+}
+
+</code></pre></div></div>
+<p>游戏屋:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class GameHome {
+    public static void main(String[] args) {
+        proxyCheck();
+        proxyPlay();
+        proxyDiete();
+    }
+    public static void proxyPlay() {
+        // 代理玩游戏
+        BigGamePayer bigGamePayer = new BigGamePayer();
+        ProxyProcess proxyPayer = new ProxyProcess(bigGamePayer);
+        proxyPayer.play();
+    }
+    public static void proxyCheck() {
+        // 代理检票
+        BigChecker bigChecker = new BigChecker();
+        ProxyProcess proxyProcess = new ProxyProcess(bigChecker);
+        proxyProcess.check();
+    }
+    public static void proxyDiete() {
+        // 代理美食
+        Dieter dieter = new Dieter();
+        ProxyProcess proxyProcess = new ProxyProcess(dieter);
+        proxyProcess.diet();
+    }
+}
+</code></pre></div></div>
+
+<p>运行结果:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>16:29:18.572 [main] INFO com.ckj.base.designPatternes.proxy.extend.BigChecker - === start check ticket
+16:29:18.575 [main] INFO com.ckj.base.designPatternes.proxy.proxy.ProxyProcess - === proxy: start before play game
+16:29:18.575 [main] INFO com.ckj.base.designPatternes.proxy.extend.BigGamePayer - === big player start play ...
+16:29:18.575 [main] INFO com.ckj.base.designPatternes.proxy.proxy.ProxyProcess - === proxy:  start after play game
+16:29:18.576 [main] INFO com.ckj.base.designPatternes.proxy.extend.Dieter - == start make diet : ice 
+</code></pre></div></div>
+
+<h4 id="3-动态代理">3. 动态代理</h4>
+<p>在前面介绍的代理模式中，代理类中包含了对真实主题的引用，这种方式存在两个缺点。</p>
+<ul>
+  <li>真实主题与代理主题一一对应，增加真实主题也要增加代理。</li>
+  <li>设计代理以前真实主题必须事先存在，不太灵活。采用动态代理模式可以解决以上问题，如 SpringAOP，其结构图如图 4 所示。</li>
+</ul>
+
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7jnux1oeg30hi0g6js3.gif" alt="" /></p>
+
+<p>改造如下:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    // dynamic proxy
+        GameProcess proxy = (GameProcess) Proxy.newProxyInstance(GameProcess.class.getClassLoader(), new Class[]{GameProcess.class},
+                new InvocationHandler() {
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                log.info("start dynamic process...");
+                return method.invoke(new BigGamePayer(), args);
+            }
+        });
+        proxy.play();
+</code></pre></div></div>
+<p>运行结果:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>18:17:11.681 [main] INFO com.ckj.base.designPatternes.proxy.GameHome - start dynamic process...
+18:17:11.681 [main] INFO com.ckj.base.designPatternes.proxy.extend.BigGamePayer - === big player start play ...
+</code></pre></div></div>
+
+        </article>
+        <hr>
+
+        <!--<div class="l">-->
+            <!--<ul>-->
+                <!--<li>版权声明：本文由&nbsp;<b>方志朋</b>&nbsp;发表于&nbsp;<a href="http://blog.720ui.com">方志朋的博客</a>&nbsp;</li>-->
+                <!--<li>转载声明：自由转载-非商用-非衍生-保持署名（<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">创意共享3.0许可证</a>），非商业转载请注明作者及出处，商业转载请联系作者本人。</li>-->
+                <!--<li>文章标题：<a href="">设计模式-代理模式</a></li>-->
+                <!--<li>文章链接：<a href=""></a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+
+        
+        
+            
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+            
+                
+                    
+                
+            
+        
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2020/10/27/redis-%E7%9A%84%E4%BA%8B%E7%89%A9/">redis 的事物</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2020/11/12/%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">网络基本概念</a></p>
+        
+    </div>
+
+    <br>
+    <div class="">
+
+        <div align="center">
+
+            欢迎关注我的公众号
+
+        </div>
+
+        <div  align="center">
+            <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gg2il7ycfij3076076jru.jpg" width="200" height="200/">
+        </div>
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+
+
+<!--畅言PC和WAP自适应版-->
+
+<!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="http://localhost:4000/2020/10/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cyuU0XntJ';
+var conf = 'bea2fc4128727f993c8f7baeb8e8f205';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+<!-- UY BEGIN -->
+<!--<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2141383"></script>-->
+<!-- UY END -->
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 这里对文章详细内容生效 -->
+             <!--<div class="side content">-->
+
+                 <!--<div>-->
+                     <!--Content-->
+                 <!--</div>-->
+                 <!--<br>-->
+                 <!--<div  align="center">-->
+                     <!--<img src="https://upload-images.jianshu.io/upload_images/2279594-b17699ce79ff4934.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="200" height="200/">-->
+                 <!--</div>-->
+             <!--</div>-->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             珍惜每一片风景～ 
+        </p>
+        <p class="contact">
+            Contact me at: 
+            <a href="https://github.com/ChengKeJ" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:ischeng.kejun@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>   
+            <a href="https://www.zhihu.com/people/d-r-34-10" title="Zhihu"><i class="iconfont icon-daoruzhihu"></i></a>      
+        </p>
+        <!--<p>-->
+            <!--本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次-->
+        <!--</p>-->
+        <!--<p class="power">-->
+            <!--<span>-->
+                <!--Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.-->
+            <!--</span>-->
+            <!--<span>-->
+                <!--Theme designed by <a href="https://github.com/Gaohaoyang">HyG</a>.-->
+            <!--</span>-->
+        <!--</p>-->
+         <p class="power">
+            <span>
+
+            <span>
+                 <a href="http://www.miitbeian.gov.cn/">沪ICP备1908975号</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>

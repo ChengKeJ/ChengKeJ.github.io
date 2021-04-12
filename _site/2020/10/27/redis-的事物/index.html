@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>redis 的事物</title>
+    <meta name="description" content="MULTI 、 EXEC 、 DISCARD 和 WATCH 是 Redis 事务的基础。">
+    <meta name="google-site-verification" content="_H9d40c5Yjxyhu77n5hQ106TDOF5ukddljI5RS5im9o" />
+    <meta name="baidu_union_verify" content="0123e21b320ec5decff6573bb106a806">
+
+    <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico?" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
+    <link rel="stylesheet" href="/css/main.css ">
+    <link rel="canonical" href="http://localhost:4000/2020/10/27/redis-%E7%9A%84%E4%BA%8B%E7%89%A9/">
+    <link rel="alternate" type="application/rss+xml" title="小技术君" href="http://localhost:4000/feed.xml ">
+
+
+    <script>
+    // 百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?c17de59570e96ad6f2e3d6c9e233c042";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <script>
+    // google analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-72449510-4', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+
+
+    <script data-ad-client="ca-pub-6064739425313900" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+
+
+  <body>
+
+    <header id="top">
+    <div class="wrapper">
+        <nav id="headerNav">
+            <ul>
+                <li>
+                    
+                        <a href="/">
+                            
+                            <i class="fa fa-home"></i>Home
+                        </a>
+                </li>
+
+                
+                
+                <li>
+                    
+                        <a href="/archive/">
+                            
+                            <i class="fa fa-archive"></i>Archives
+                        </a>
+                </li>
+                
+                
+                
+                <li>
+                    
+                        <a href="/category/">
+                            
+                            <i class="fa fa-th-list"></i>Categories
+                        </a>
+                </li>
+                
+                
+                
+                <li>
+                    
+                        <a href="/tag/">
+                            
+                            <i class="fa fa-tags"></i>Tags
+                        </a>
+                </li>
+                
+                
+                
+                <li>
+                    
+                        <a href="/collection/">
+                            
+                            <i class="fa fa-bookmark"></i>Link
+                        </a>
+                </li>
+                
+                
+                
+                <li>
+                    
+                        <a href="/demo/">
+                            
+                            <i class="fa fa-play"></i>汇总
+                        </a>
+                </li>
+                
+                
+                
+                <li>
+                    
+                        <a href="/about/">
+                            
+                            <i class="fa fa-heart"></i>关于我
+                        </a>
+                </li>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </ul>
+        </nav>
+        <br>
+        <a href="/" class="brand">小技术君</a>
+        &nbsp
+        &nbsp
+        <small>个人站点纯粹分享有意思或者在看的东西～</small>
+        <!--<small>个人站点纯粹分享有意思或者在看的东西～</small>-->
+        <!--<button id="headerMenu" class="menu"><i class="fa fa-bars"></i></button>-->
+
+    </div>
+</header>
+
+
+        <div class="page clearfix" post>
+    <div class="left">
+        <h1>redis 的事物</h1>
+        <div class="label">
+
+            <div class="label-card">
+                <i class="fa fa-calendar"></i>2020-10-27
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+                
+            </div>
+
+            <div class="label-card">
+            
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#redis" title="Category: redis" rel="category">redis</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+            </div>
+
+            <div class="label-card">
+            
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <!--a href="/tag/#redis" title="Tag: redis" rel="tag">redis</a-->
+        <a href="/tag/#redis" title="Tag: redis" rel="tag">redis</a>&nbsp;
+    
+        <!--a href="/tag/#%E4%BA%8B%E7%89%A9" title="Tag: 事物" rel="tag">事物</a-->
+        <a href="/tag/#事物" title="Tag: 事物" rel="tag">事物</a>
+    
+  
+
+</span>
+
+            </div>
+
+        </div>
+        <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+        <ul id="markdown-toc">
+  <li><a href="#用法" id="markdown-toc-用法">用法</a></li>
+  <li><a href="#事务中的错误" id="markdown-toc-事务中的错误">事务中的错误</a></li>
+  <li><a href="#为什么-redis-不支持回滚roll-back" id="markdown-toc-为什么-redis-不支持回滚roll-back">为什么 Redis 不支持回滚（roll back）</a></li>
+  <li><a href="#放弃事务" id="markdown-toc-放弃事务">放弃事务</a></li>
+  <li><a href="#使用-check-and-set-操作实现乐观锁" id="markdown-toc-使用-check-and-set-操作实现乐观锁">使用 check-and-set 操作实现乐观锁</a></li>
+  <li><a href="#了解-watch" id="markdown-toc-了解-watch">了解 WATCH</a></li>
+  <li><a href="#使用-watch-实现-zpop" id="markdown-toc-使用-watch-实现-zpop">使用 WATCH 实现 ZPOP</a></li>
+  <li><a href="#redis-脚本和事务" id="markdown-toc-redis-脚本和事务">Redis 脚本和事务</a></li>
+</ul>
+
+<p>MULTI 、 EXEC 、 DISCARD 和 WATCH 是 Redis 事务的基础。</p>
+
+<!--more-->
+<p>事务可以一次执行多个命令， 并且带有以下两个重要的保证：</p>
+
+<ul>
+  <li>事务是一个单独的隔离操作：事务中的所有命令都会序列化、按顺序地执行。事务在执行的过程中，不会被其他客户端发送来的命令请求所打断。</li>
+  <li>事务是一个原子操作：事务中的命令要么全部被执行，要么全部都不执行。</li>
+</ul>
+
+<p>EXEC 命令负责触发并执行事务中的所有命令：
+当使用 AOF 方式做持久化的时候， Redis 会使用单个 write(2) 命令将事务写入到磁盘中。
+然而，如果 Redis 服务器因为某些原因被管理员杀死，或者遇上某种硬件故障，那么可能只有部分事务命令会被成功写入到磁盘中。
+如果 Redis 在重新启动时发现 AOF 文件出了这样的问题，那么它会退出，并汇报一个错误。
+使用 redis-check-aof 程序可以修复这一问题：它会移除 AOF 文件中不完整事务的信息，确保服务器可以顺利启动。</p>
+<ul>
+  <li>如果客户端在使用 MULTI 开启了一个事务之后，却因为断线而没有成功执行 EXEC ，那么事务中的所有命令都不会被执行。</li>
+  <li>另一方面，如果客户端成功在开启事务之后执行 EXEC ，那么事务中的所有命令都会被执行。
+从 2.2 版本开始，Redis 还可以通过乐观锁（optimistic lock）实现 CAS （check-and-set）操作，具体信息请参考文档的后半部分。</li>
+</ul>
+
+<h3 id="用法">用法</h3>
+<p>MULTI 命令用于开启一个事务，它总是返回 OK 。</p>
+
+<p>MULTI 执行之后， 客户端可以继续向服务器发送任意多条命令， 这些命令不会立即被执行， 而是被放到一个队列中， 当 EXEC 命令被调用时， 所有队列中的命令才会被执行。</p>
+
+<p>另一方面， 通过调用 DISCARD ， 客户端可以清空事务队列， 并放弃执行事务。</p>
+
+<p>以下是一个事务例子， 它原子地增加了 foo 和 bar 两个键的值：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; MULTI
+OK
+
+&gt; INCR foo
+QUEUED
+
+&gt; INCR bar
+QUEUED
+
+&gt; EXEC
+1) (integer) 1
+2) (integer) 1
+</code></pre></div></div>
+<p>EXEC 命令的回复是一个数组， 数组中的每个元素都是执行事务中的命令所产生的回复。 其中， 回复元素的先后顺序和命令发送的先后顺序一致。</p>
+
+<p>当客户端处于事务状态时， 所有传入的命令都会返回一个内容为 QUEUED 的状态回复（status reply）， 这些被入队的命令将在 EXEC 命令被调用时执行。</p>
+
+<h3 id="事务中的错误">事务中的错误</h3>
+<p>使用事务时可能会遇上以下两种错误：</p>
+
+<ul>
+  <li>事务在执行 EXEC 之前，入队的命令可能会出错。比如说，命令可能会产生语法错误（参数数量错误，参数名错误，等等），或者其他更严重的错误，比如内存不足（如果服务器使用 maxmemory 设置了最大内存限制的话）。</li>
+  <li>命令可能在 EXEC 调用之后失败。举个例子，事务中的命令可能处理了错误类型的键，比如将列表命令用在了字符串键上面，诸如此类。
+对于发生在 EXEC 执行之前的错误，客户端以前的做法是检查命令入队所得的返回值：如果命令入队时返回 QUEUED ，那么入队成功；否则，就是入队失败。如果有命令在入队时失败，那么大部分客户端都会停止并取消这个事务。</li>
+</ul>
+
+<p>不过，从 Redis 2.6.5 开始，服务器会对命令入队失败的情况进行记录，并在客户端调用 EXEC 命令时，拒绝执行并自动放弃这个事务。</p>
+
+<p>在 Redis 2.6.5 以前， Redis 只执行事务中那些入队成功的命令，而忽略那些入队失败的命令。 而新的处理方式则使得在流水线（pipeline）中包含事务变得简单，因为发送事务和读取事务的回复都只需要和服务器进行一次通讯。</p>
+
+<p>至于那些在 EXEC 命令执行之后所产生的错误， 并没有对它们进行特别处理： 即使事务中有某个/某些命令在执行时产生了错误， 事务中的其他命令仍然会继续执行。</p>
+
+<p>从协议的角度来看这个问题，会更容易理解一些。 以下例子中， LPOP 命令的执行将出错， 尽管调用它的语法是正确的：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+
+MULTI
++OK
+
+SET a 3
+abc
+
++QUEUED
+LPOP a
+
++QUEUED
+EXEC
+
+*2
++OK
+-ERR Operation against a key holding the wrong kind of value
+</code></pre></div></div>
+
+<p>EXEC 返回两条批量回复（bulk reply）： 第一条是 OK ，而第二条是 -ERR 。 至于怎样用合适的方法来表示事务中的错误， 则是由客户端自己决定的。</p>
+
+<p>最重要的是记住这样一条， 即使事务中有某条/某些命令执行失败了， 事务队列中的其他命令仍然会继续执行 —— Redis 不会停止执行事务中的命令。</p>
+
+<p>以下例子展示的是另一种情况， 当命令在入队时产生错误， 错误会立即被返回给客户端：</p>
+
+<p>MULTI
++OK</p>
+
+<p>INCR a b c
+-ERR wrong number of arguments for ‘incr’ command
+因为调用 INCR 命令的参数格式不正确， 所以这个 INCR 命令入队失败。</p>
+
+<h3 id="为什么-redis-不支持回滚roll-back">为什么 Redis 不支持回滚（roll back）</h3>
+<p>如果你有使用关系式数据库的经验， 那么 “Redis 在事务失败时不进行回滚，而是继续执行余下的命令”这种做法可能会让你觉得有点奇怪。</p>
+
+<p>以下是这种做法的优点：</p>
+
+<ul>
+  <li>Redis 命令只会因为错误的语法而失败（并且这些问题不能在入队时发现），或是命令用在了错误类型的键上面：这也就是说，从实用性的角度来说，失败的命令是由编程错误造成的，而这些错误应该在开发的过程中被发现，而不应该出现在生产环境中。</li>
+  <li>因为不需要对回滚进行支持，所以 Redis 的内部可以保持简单且快速。
+有种观点认为 Redis 处理事务的做法会产生 bug ， 然而需要注意的是， 在通常情况下， 回滚并不能解决编程错误带来的问题。 举个例子， 如果你本来想通过 INCR 命令将键的值加上 1 ， 却不小心加上了 2 ， 又或者对错误类型的键执行了 INCR ， 回滚是没有办法处理这些情况的。</li>
+</ul>
+
+<p>鉴于没有任何机制能避免程序员自己造成的错误， 并且这类错误通常不会在生产环境中出现， 所以 Redis 选择了更简单、更快速的无回滚方式来处理事务。</p>
+
+<h3 id="放弃事务">放弃事务</h3>
+<p>当执行 DISCARD 命令时， 事务会被放弃， 事务队列会被清空， 并且客户端会从事务状态中退出：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>redis&gt; SET foo 1
+OK
+
+redis&gt; MULTI
+OK
+
+redis&gt; INCR foo
+QUEUED
+
+redis&gt; DISCARD
+OK
+
+redis&gt; GET foo
+"1"
+</code></pre></div></div>
+<h3 id="使用-check-and-set-操作实现乐观锁">使用 check-and-set 操作实现乐观锁</h3>
+<p>WATCH 命令可以为 Redis 事务提供 check-and-set （CAS）行为。</p>
+
+<p>被 WATCH 的键会被监视，并会发觉这些键是否被改动过了。 如果有至少一个被监视的键在 EXEC 执行之前被修改了， 那么整个事务都会被取消， EXEC 返回空多条批量回复（null multi-bulk reply）来表示事务已经失败。</p>
+
+<p>举个例子， 假设我们需要原子性地为某个值进行增 1 操作（假设 INCR 不存在）。</p>
+
+<p>首先我们可能会这样做：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>val = GET mykey
+val = val + 1
+SET mykey $val
+</code></pre></div></div>
+<p>上面的这个实现在只有一个客户端的时候可以执行得很好。 但是， 当多个客户端同时对同一个键进行这样的操作时， 就会产生竞争条件。</p>
+
+<p>举个例子， 如果客户端 A 和 B 都读取了键原来的值， 比如 10 ， 那么两个客户端都会将键的值设为 11 ， 但正确的结果应该是 12 才对。</p>
+
+<p>有了 WATCH ， 我们就可以轻松地解决这类问题了：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>WATCH mykey
+
+val = GET mykey
+val = val + 1
+
+MULTI
+SET mykey $val
+EXEC
+</code></pre></div></div>
+<p>使用上面的代码， 如果在 WATCH 执行之后， EXEC 执行之前， 有其他客户端修改了 mykey 的值， 那么当前客户端的事务就会失败。 程序需要做的， 就是不断重试这个操作， 直到没有发生碰撞为止。</p>
+
+<p>这种形式的锁被称作乐观锁， 它是一种非常强大的锁机制。 并且因为大多数情况下， 不同的客户端会访问不同的键， 碰撞的情况一般都很少， 所以通常并不需要进行重试。</p>
+
+<h3 id="了解-watch">了解 WATCH</h3>
+<p>WATCH 使得 EXEC 命令需要有条件地执行： 事务只能在所有被监视键都没有被修改的前提下执行， 如果这个前提不能满足的话，事务就不会被执行。</p>
+
+<p>如果你使用 WATCH 监视了一个带过期时间的键， 那么即使这个键过期了， 事务仍然可以正常执行， 关于这方面的详细情况，请看这个帖子： http://code.google.com/p/redis/issues/detail?id=270</p>
+
+<p>WATCH 命令可以被调用多次。 对键的监视从 WATCH 执行之后开始生效， 直到调用 EXEC 为止。</p>
+
+<p>用户还可以在单个 WATCH 命令中监视任意多个键， 就像这样：</p>
+
+<p>redis&gt; WATCH key1 key2 key3
+OK
+当 EXEC 被调用时， 不管事务是否成功执行， 对所有键的监视都会被取消。</p>
+
+<p>另外， 当客户端断开连接时， 该客户端对键的监视也会被取消。</p>
+
+<p>使用无参数的 UNWATCH 命令可以手动取消对所有键的监视。 对于一些需要改动多个键的事务， 有时候程序需要同时对多个键进行加锁， 然后检查这些键的当前值是否符合程序的要求。 当值达不到要求时， 就可以使用 UNWATCH 命令来取消目前对键的监视， 中途放弃这个事务， 并等待事务的下次尝试。</p>
+
+<h3 id="使用-watch-实现-zpop">使用 WATCH 实现 ZPOP</h3>
+<p>WATCH 可以用于创建 Redis 没有内置的原子操作。</p>
+
+<p>举个例子， 以下代码实现了原创的 ZPOP 命令， 它可以原子地弹出有序集合中分值（score）最小的元素：</p>
+
+<p>WATCH zset
+element = ZRANGE zset 0 0
+MULTI
+    ZREM zset element
+EXEC
+程序只要重复执行这段代码， 直到 EXEC 的返回值不是空多条回复（null multi-bulk reply）即可。</p>
+
+<h3 id="redis-脚本和事务">Redis 脚本和事务</h3>
+<p>从定义上来说， Redis 中的脚本本身就是一种事务， 所以任何在事务里可以完成的事， 在脚本里面也能完成。 并且一般来说， 使用脚本要来得更简单，并且速度更快。</p>
+
+<p>因为脚本功能是 Redis 2.6 才引入的， 而事务功能则更早之前就存在了， 所以 Redis 才会同时存在两种处理事务的方法。</p>
+
+<p>不过我们并不打算在短时间内就移除事务功能， 因为事务提供了一种即使不使用脚本， 也可以避免竞争条件的方法， 而且事务本身的实现并不复杂。</p>
+
+<p>不过在不远的将来， 可能所有用户都会只使用脚本来实现事务也说不定。 如果真的发生这种情况的话， 那么我们将废弃并最终移除事务功能。</p>
+<blockquote>
+  <p>译者：黄健宏
+原文：http://redisdoc.com/topic/transaction.html
+本文档翻译自： http://redis.io/topics/transactions</p>
+</blockquote>
+
+        </article>
+        <hr>
+
+        <!--<div class="l">-->
+            <!--<ul>-->
+                <!--<li>版权声明：本文由&nbsp;<b>方志朋</b>&nbsp;发表于&nbsp;<a href="http://blog.720ui.com">方志朋的博客</a>&nbsp;</li>-->
+                <!--<li>转载声明：自由转载-非商用-非衍生-保持署名（<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">创意共享3.0许可证</a>），非商业转载请注明作者及出处，商业转载请联系作者本人。</li>-->
+                <!--<li>文章标题：<a href="">redis 的事物</a></li>-->
+                <!--<li>文章链接：<a href=""></a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+
+        
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2020/10/26/redis-%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">redis 的线程模型
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2020/07/29/redis-%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%AD%97%E5%85%B8/">redis 基础-数据结构-字典
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2020/07/28/redis-%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AE%80%E5%8D%95%E5%8A%A8%E6%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2/">redis 基础-数据结构-简单动态字符串
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2020/07/27/redis-%E5%9F%BA%E7%A1%80-5%E5%A4%A7%E5%AF%B9%E8%B1%A1/">redis 基础-5大对象
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2020/07/22/redis-%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E8%B7%B3%E8%B7%83%E8%A1%A8/">redis 基础-数据结构-跳跃表
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+        
+            </ul>
+        
+
+        <div class="post-recent">
+    <div class="pre">
+        
+        <p><strong>上一篇</strong> <a href="/2020/10/26/redis-%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">redis 的线程模型</a></p>
+        
+    </div>
+    <div class="nex">
+
+        
+        <p><strong>下一篇</strong> <a href="/2020/10/30/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">设计模式-代理模式</a></p>
+        
+    </div>
+
+    <br>
+    <div class="">
+
+        <div align="center">
+
+            欢迎关注我的公众号
+
+        </div>
+
+        <div  align="center">
+            <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gg2il7ycfij3076076jru.jpg" width="200" height="200/">
+        </div>
+    </div>
+</div>
+
+
+        <h2 id="comments">Comments</h2>
+        
+
+
+
+
+<!--畅言PC和WAP自适应版-->
+
+<!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="http://localhost:4000/2020/10/27/redis-%E7%9A%84%E4%BA%8B%E7%89%A9/" ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'cyuU0XntJ';
+var conf = 'bea2fc4128727f993c8f7baeb8e8f205';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+<!-- UY BEGIN -->
+<!--<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2141383"></script>-->
+<!-- UY END -->
+
+
+
+
+    </div>
+    <button class="anchor"><i class="fa fa-anchor"></i></button>
+    <div class="right">
+        <div class="wrap">
+
+            <!-- Content -->
+            <div class="side content">
+                <div>
+                    Content
+                </div>
+                <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
+                </ul>
+            </div>
+            <!-- 其他div框放到这里 这里对文章详细内容生效 -->
+             <!--<div class="side content">-->
+
+                 <!--<div>-->
+                     <!--Content-->
+                 <!--</div>-->
+                 <!--<br>-->
+                 <!--<div  align="center">-->
+                     <!--<img src="https://upload-images.jianshu.io/upload_images/2279594-b17699ce79ff4934.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" width="200" height="200/">-->
+                 <!--</div>-->
+             <!--</div>-->
+        </div>
+    </div>
+</div>
+<script>
+/**
+ * target _blank
+ */
+(function() {
+    var aTags = document.querySelectorAll('article a:not([id])')
+    for (var i = 0; i < aTags.length; i++) {
+        aTags[i].setAttribute('target', '_blank')
+    }
+}());
+</script>
+<script src="/js/pageContent.js " charset="utf-8"></script>
+
+
+    <footer class="site-footer">
+
+
+    <div class="wrapper">
+
+        <p class="description">
+             珍惜每一片风景～ 
+        </p>
+        <p class="contact">
+            Contact me at: 
+            <a href="https://github.com/ChengKeJ" title="GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>  
+            <a href="mailto:ischeng.kejun@gmail.com" title="email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>   
+            <a href="https://www.zhihu.com/people/d-r-34-10" title="Zhihu"><i class="iconfont icon-daoruzhihu"></i></a>      
+        </p>
+        <!--<p>-->
+            <!--本站总访问量<span id="busuanzi_value_site_pv"></span>次，本站访客数<span id="busuanzi_value_site_uv"></span>人次，本文总阅读量<span id="busuanzi_value_page_pv"></span>次-->
+        <!--</p>-->
+        <!--<p class="power">-->
+            <!--<span>-->
+                <!--Site powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://pages.github.com/">Github Pages</a>.-->
+            <!--</span>-->
+            <!--<span>-->
+                <!--Theme designed by <a href="https://github.com/Gaohaoyang">HyG</a>.-->
+            <!--</span>-->
+        <!--</p>-->
+         <p class="power">
+            <span>
+
+            <span>
+                 <a href="http://www.miitbeian.gov.cn/">沪ICP备1908975号</a>
+            </span>
+        </p>
+    </div>
+</footer>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <div class="back-to-top">
+    <a href="#top" data-scroll>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </a>
+</div>
+
+    <script src=" /js/main.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
+  </body>
+
+</html>
