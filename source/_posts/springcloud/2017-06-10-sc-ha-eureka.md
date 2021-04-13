@@ -3,7 +3,7 @@ layout: post
 title:  "SpringCloud教程第10篇：高可用的服务注册中心"
 categories: SpringCloud
 tags:  SpringCloud eureka
-date: 2017/06/010 20:46:25
+date: 2017/06/01 20:46:25
 ---
 
 
