@@ -36,9 +36,8 @@ type: about
 <br>
 
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gluk7x7uwkj30ok17iwr4.jpg" width="40%" height="50%">
-&nbsp;
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gluk8md1y1j30oc17cnfb.jpg" width="40%" height="50%">
+<img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gpj2xnq8bwj30zr0u04qq.jpg" width="82.5%" height="50%">
+
 &nbsp;
 
 
