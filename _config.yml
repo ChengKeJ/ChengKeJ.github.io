@@ -112,3 +112,8 @@ search:
   content: true
   format: html
   limit: 10000
+
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
