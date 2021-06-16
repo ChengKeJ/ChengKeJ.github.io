@@ -3,13 +3,15 @@ title: "Spring Tutorial: IoC Container"
 date: 2021-06-10 10:14:37
 tags: Spring
 ---
-
+<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_7d43390b66abdbb57cd5a8b2c6ef0169_30946.png" style="zoom:90%;" />
 
 #### **什么是IOC？**
 
 通俗理解就是 POJO 原本是自己需要然后new出来，现在是IOC 容器则是 你告诉我你需要什么，我们直接给你，让别人为你服务！
 
 **现实生活**： 1.你出门之前需要穿衣服，之前则是需要自己找对应的衣服，现在则反转成你的妻子把这些衣服找好给你穿上。
+
+<!--more-->
 
 当然为你服务的前提是知道你的需求：
 
@@ -19,7 +21,7 @@ tags: Spring
 
 IOC 可以很好的做到解耦，正常来说 我明确我需要什么，具体服务实现你提供给我即可。
 
-<!--more-->
+
 #### 看看spring 里的Ioc 容器：
 
 #####  beanFactory &  ApplicationContext
