@@ -4244,11 +4244,12 @@ session |cookie
   <entry>
     <title>如何快速玩转swagger</title>
     <url>/2020/11/28/java-2020-11-28-%E7%8E%A9%E8%BD%ACswagger/</url>
-    <content><![CDATA[<p>Spring Boot 框架是目前非常流行的微服务框架，我们很多情况下使用它来提供 Rest API。而对于 Rest API 来说很重要的一部分内容就是文档，Swagger 为我们提供了一套通过代码和注解自动生成文档的方法，这一点对于保证 API 文档的及时性将有很大的帮助。本文将使用 Swagger 2 规范的 Springfox 实现来了展示如何在 Spring Boot 项目中使用 Swagger，主要包含了如何使用 Swagger 自动生成文档、使用 Swagger 文档以及 Swagger 相关的一些高级配置和注解。</p>
+    <content><![CDATA[<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_d7ba37f67b9d5621a717ccfb7d239a8a_55997.png" style="zoom:90%;" />
+
+<p>Spring Boot 框架是目前非常流行的微服务框架，我们很多情况下使用它来提供 Rest API。而对于 Rest API 来说很重要的一部分内容就是文档，Swagger 为我们提供了一套通过代码和注解自动生成文档的方法，这一点对于保证 API 文档的及时性将有很大的帮助。</p>
 <span id="more"></span>
 
-
-
+<p>本文将使用 Swagger 2 规范的 Springfox 实现来了展示如何在 Spring Boot 项目中使用 Swagger，主要包含了如何使用 Swagger 自动生成文档、使用 Swagger 文档以及 Swagger 相关的一些高级配置和注解。</p>
 <h3 id="Swagger-简介"><a href="#Swagger-简介" class="headerlink" title="Swagger 简介"></a>Swagger 简介</h3><blockquote>
 <p>Swagger 是一套基于 OpenAPI 规范构建的开源工具，可以帮助我们设计、构建、记录以及使用 Rest API。Swagger 主要包含了以下三个部分：</p>
 </blockquote>
@@ -7651,8 +7652,12 @@ session |cookie
   <entry>
     <title>Spring Tutorial: IoC Container</title>
     <url>/2021/06/10/spring-06-10-spring-ioc/</url>
-    <content><![CDATA[<h4 id="什么是IOC？"><a href="#什么是IOC？" class="headerlink" title="什么是IOC？"></a><strong>什么是IOC？</strong></h4><p>通俗理解就是 POJO 原本是自己需要然后new出来，现在是IOC 容器则是 你告诉我你需要什么，我们直接给你，让别人为你服务！</p>
+    <content><![CDATA[<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_7d43390b66abdbb57cd5a8b2c6ef0169_30946.png" style="zoom:90%;" />
+
+<h4 id="什么是IOC？"><a href="#什么是IOC？" class="headerlink" title="什么是IOC？"></a><strong>什么是IOC？</strong></h4><p>通俗理解就是 POJO 原本是自己需要然后new出来，现在是IOC 容器则是 你告诉我你需要什么，我们直接给你，让别人为你服务！</p>
 <p><strong>现实生活</strong>： 1.你出门之前需要穿衣服，之前则是需要自己找对应的衣服，现在则反转成你的妻子把这些衣服找好给你穿上。</p>
+<span id="more"></span>
+
 <p>当然为你服务的前提是知道你的需求：</p>
 <ul>
 <li><p> 第一类似于你是酒吧常客，服务员立马知道你的需求 – 构造函数初始化 ，优点则是对象构造完成之后 对象就已经就绪可以用了</p>
@@ -7661,7 +7666,6 @@ session |cookie
 </li>
 </ul>
 <p>IOC 可以很好的做到解耦，正常来说 我明确我需要什么，具体服务实现你提供给我即可。</p>
-<span id="more"></span>
 <h4 id="看看spring-里的Ioc-容器："><a href="#看看spring-里的Ioc-容器：" class="headerlink" title="看看spring 里的Ioc 容器："></a>看看spring 里的Ioc 容器：</h4><h5 id="beanFactory-amp-ApplicationContext"><a href="#beanFactory-amp-ApplicationContext" class="headerlink" title="beanFactory &amp;  ApplicationContext"></a>beanFactory &amp;  ApplicationContext</h5><p><img src="https://i.loli.net/2021/05/27/fYeCTJqAKmWi1Sz.png" alt="image-20210527161111966"></p>
 <p><img src="https://i.loli.net/2021/05/27/N6eX1cO4mdLufng.png" alt="image-20210527160746029"></p>
 <p><strong>defaultListableBeanFactory</strong> 是一个比较通用的<strong>beanFactory</strong> ，不仅实现了 beanFactory 的getBean等方法，也实现了</p>
@@ -9076,11 +9080,17 @@ session |cookie
   <entry>
     <title>如何做好监控微服务调⽤?</title>
     <url>/2021/06/16/service-06-16-%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E7%9B%91%E6%8E%A7%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%B0%83%E2%BD%A4/</url>
-    <content><![CDATA[<h5 id="如何做好监控微服务调⽤？"><a href="#如何做好监控微服务调⽤？" class="headerlink" title="如何做好监控微服务调⽤？"></a>如何做好监控微服务调⽤？</h5><h6 id="监控对象"><a href="#监控对象" class="headerlink" title="监控对象"></a>监控对象</h6><ul>
+    <content><![CDATA[<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_17f35bc65eed401b374b1b5fcf552d44_83179.png" style="zoom:90%;" />
+
+<h6 id="监控对象"><a href="#监控对象" class="headerlink" title="监控对象"></a>监控对象</h6><ul>
 <li><p>⽤户端监控。通常是指业务直接对⽤户提供的功能的监控</p>
 </li>
 <li><p>接口监控。通常是指业务提供的功能所依赖的接口的监控</p>
 </li>
+</ul>
+<span id="more"></span>
+
+<ul>
 <li><p>资源监控。通常是指某个接⼝依赖的资源的监控。比如该接口使用的redis 缓存，对redis 的监控就是资源的</p>
 <p>监控</p>
 </li>
@@ -9088,8 +9098,6 @@ session |cookie
 <p>带宽等</p>
 </li>
 </ul>
-<span id="more"></span>
-
 <h6 id="监控指标"><a href="#监控指标" class="headerlink" title="监控指标"></a>监控指标</h6><ul>
 <li><p>请求量。请求量监控分为两个维度，⼀个是实时请求量QPS，⼀个是统计请求量PV。QPS（Queries Per</p>
 <p>Second） 即每秒查询次数来衡量，它反映了服务调⽤的实时变化情况。统计请求量⼀般⽤PV（Page View）</p>

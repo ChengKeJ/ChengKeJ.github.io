@@ -83,13 +83,14 @@
 
 
 
-<meta name="description" content="Spring Boot 框架是目前非常流行的微服务框架，我们很多情况下使用它来提供 Rest API。而对于 Rest API 来说很重要的一部分内容就是文档，Swagger 为我们提供了一套通过代码和注解自动生成文档的方法，这一点对于保证 API 文档的及时性将有很大的帮助。本文将使用 Swagger 2 规范的 Springfox 实现来了展示如何在 Spring Boot 项目中使用 Swa">
+<meta name="description" content="Spring Boot 框架是目前非常流行的微服务框架，我们很多情况下使用它来提供 Rest API。而对于 Rest API 来说很重要的一部分内容就是文档，Swagger 为我们提供了一套通过代码和注解自动生成文档的方法，这一点对于保证 API 文档的及时性将有很大的帮助。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何快速玩转swagger">
 <meta property="og:url" content="https://smalltechnologyjun.com/2020/11/28/java-2020-11-28-%E7%8E%A9%E8%BD%ACswagger/index.html">
 <meta property="og:site_name" content="小技术君">
-<meta property="og:description" content="Spring Boot 框架是目前非常流行的微服务框架，我们很多情况下使用它来提供 Rest API。而对于 Rest API 来说很重要的一部分内容就是文档，Swagger 为我们提供了一套通过代码和注解自动生成文档的方法，这一点对于保证 API 文档的及时性将有很大的帮助。本文将使用 Swagger 2 规范的 Springfox 实现来了展示如何在 Spring Boot 项目中使用 Swa">
+<meta property="og:description" content="Spring Boot 框架是目前非常流行的微服务框架，我们很多情况下使用它来提供 Rest API。而对于 Rest API 来说很重要的一部分内容就是文档，Swagger 为我们提供了一套通过代码和注解自动生成文档的方法，这一点对于保证 API 文档的及时性将有很大的帮助。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_d7ba37f67b9d5621a717ccfb7d239a8a_55997.png">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gl44nler8oj31d20u0k0p.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gl44ocdbwaj31410ki75x.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gl44oubk55j313y07jgls.jpg">
@@ -99,11 +100,11 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gl44q5dtaqj314g0l9q3s.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gl44qk33alj314g08ijri.jpg">
 <meta property="article:published_time" content="2020-11-28T12:46:25.000Z">
-<meta property="article:modified_time" content="2021-04-13T14:27:49.469Z">
+<meta property="article:modified_time" content="2021-06-16T16:01:25.415Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/0081Kckwgy1gl44nler8oj31d20u0k0p.jpg">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_d7ba37f67b9d5621a717ccfb7d239a8a_55997.png">
 
 
 
@@ -445,11 +446,12 @@
       
 
       
-        <p>Spring Boot 框架是目前非常流行的微服务框架，我们很多情况下使用它来提供 Rest API。而对于 Rest API 来说很重要的一部分内容就是文档，Swagger 为我们提供了一套通过代码和注解自动生成文档的方法，这一点对于保证 API 文档的及时性将有很大的帮助。本文将使用 Swagger 2 规范的 Springfox 实现来了展示如何在 Spring Boot 项目中使用 Swagger，主要包含了如何使用 Swagger 自动生成文档、使用 Swagger 文档以及 Swagger 相关的一些高级配置和注解。</p>
+        <img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_d7ba37f67b9d5621a717ccfb7d239a8a_55997.png" style="zoom:90%;" />
+
+<p>Spring Boot 框架是目前非常流行的微服务框架，我们很多情况下使用它来提供 Rest API。而对于 Rest API 来说很重要的一部分内容就是文档，Swagger 为我们提供了一套通过代码和注解自动生成文档的方法，这一点对于保证 API 文档的及时性将有很大的帮助。</p>
 <span id="more"></span>
 
-
-
+<p>本文将使用 Swagger 2 规范的 Springfox 实现来了展示如何在 Spring Boot 项目中使用 Swagger，主要包含了如何使用 Swagger 自动生成文档、使用 Swagger 文档以及 Swagger 相关的一些高级配置和注解。</p>
 <h3 id="Swagger-简介"><a href="#Swagger-简介" class="headerlink" title="Swagger 简介"></a>Swagger 简介</h3><blockquote>
 <p>Swagger 是一套基于 OpenAPI 规范构建的开源工具，可以帮助我们设计、构建、记录以及使用 Rest API。Swagger 主要包含了以下三个部分：</p>
 </blockquote>
