@@ -261,12 +261,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-online-markdown">
+        <li class="menu-item menu-item-markdown">
           <a href="/md/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-pencil"></i> <br />
             
-            Online markdown
+            Markdown
           </a>
         </li>
       
@@ -337,7 +337,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-round-pic/">
+    <link itemprop="mainEntityOfPage" href="https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-ssq-sjliand/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小技术君">
@@ -356,7 +356,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/05/05/android-2015-05-05-android-round-pic/" itemprop="url">android图片圆角实现方式</a></h2>
+                <a class="post-title-link" href="/2015/05/05/android-2015-05-05-android-ssq-sjliand/" itemprop="url">省市区三级联动</a></h2>
         
 
         <div class="post-meta">
@@ -409,9 +409,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2015/05/05/android-2015-05-05-android-round-pic/#comments" itemprop="discussionUrl">
+                <a href="/2015/05/05/android-2015-05-05-android-ssq-sjliand/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/05/05/android-2015-05-05-android-round-pic/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2015/05/05/android-2015-05-05-android-ssq-sjliand/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -440,10 +440,10 @@
 
       
         
-          <p>android 圆角图片的实现形式，包括用第三方、也有系统的。比如makeramen:roundedimageview，系统的cardview ， glide .fresco 。</p>
+          <p>最近项目，需要用到三级联动，在网上找了一些例子，进行了修改，实现，提炼出来了给大家分享<br>实现思路是在三个wheelview 进行联动。选择了省，马上就关联到市和区，选择了市 ，马上就可以关联到区。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2015/05/05/android-2015-05-05-android-round-pic/#more" rel="contents">
+            <a class="btn" href="/2015/05/05/android-2015-05-05-android-ssq-sjliand/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1125,163 +1125,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-java-timer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小技术君">
-      <meta itemprop="description" content="生命不息，奋斗不止">
-      <meta itemprop="image" content="/uploads/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小技术君">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/05/05/android-2015-05-05-java-timer/" itemprop="url">android 定时任务</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-05-05T20:46:25+08:00">
-                2015-05-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/android/" itemprop="url" rel="index">
-                    <span itemprop="name">android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/05/05/android-2015-05-05-java-timer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/05/05/android-2015-05-05-java-timer/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="1-android-自带闹钟定时任务"><a href="#1-android-自带闹钟定时任务" class="headerlink" title="1.android 自带闹钟定时任务"></a>1.android 自带闹钟定时任务</h4><p>安卓闹钟可以配合广播来实现（不推荐），系统资源浪费，安卓系统在5.0以后的定时<br>任务貌似触发时间不准了，因为了为了省电。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2015/05/05/android-2015-05-05-java-timer/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-eventbus/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1390,6 +1233,163 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2015/05/05/android-2015-05-05-eventbus/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-java-timer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小技术君">
+      <meta itemprop="description" content="生命不息，奋斗不止">
+      <meta itemprop="image" content="/uploads/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小技术君">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/05/05/android-2015-05-05-java-timer/" itemprop="url">android 定时任务</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-05-05T20:46:25+08:00">
+                2015-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/05/05/android-2015-05-05-java-timer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/05/05/android-2015-05-05-java-timer/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="1-android-自带闹钟定时任务"><a href="#1-android-自带闹钟定时任务" class="headerlink" title="1.android 自带闹钟定时任务"></a>1.android 自带闹钟定时任务</h4><p>安卓闹钟可以配合广播来实现（不推荐），系统资源浪费，安卓系统在5.0以后的定时<br>任务貌似触发时间不准了，因为了为了省电。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/05/05/android-2015-05-05-java-timer/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>

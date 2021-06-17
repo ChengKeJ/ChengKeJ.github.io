@@ -209,6 +209,10 @@
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
+    <loc>https://smalltechnologyjun.com/2018/01/01/openresty-2018-01-01-springcloud-jwt/</loc>
+    <lastmod>2021-04-13</lastmod>
+  </url>
+  <url>
     <loc>https://smalltechnologyjun.com/2017/04/04/python-2017-04-04-python-blogs/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
@@ -218,10 +222,6 @@
   </url>
   <url>
     <loc>https://smalltechnologyjun.com/2020/07/22/redis-2020-07-22-redis-%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%B4%E6%95%B0%E9%9B%86%E5%90%88/</loc>
-    <lastmod>2021-04-13</lastmod>
-  </url>
-  <url>
-    <loc>https://smalltechnologyjun.com/2018/01/01/openresty-2018-01-01-springcloud-jwt/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
@@ -277,10 +277,6 @@
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2016/05/29/linux-2016-05-05-linux-cmd/</loc>
-    <lastmod>2021-04-13</lastmod>
-  </url>
-  <url>
     <loc>https://smalltechnologyjun.com/2017/05/06/micorservice-2017-05-06-douban-rest-api/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
@@ -290,6 +286,10 @@
   </url>
   <url>
     <loc>https://smalltechnologyjun.com/2017/05/06/micorservice-2017-05-06-mongodb-id/</loc>
+    <lastmod>2021-04-13</lastmod>
+  </url>
+  <url>
+    <loc>https://smalltechnologyjun.com/2016/05/29/linux-2016-05-05-linux-cmd/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
@@ -309,11 +309,11 @@
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2020/10/12/jvm-2020-10-09-jvm%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/</loc>
+    <loc>https://smalltechnologyjun.com/2017/09/16/java-2017-09-16-java-annotation/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2017/09/16/java-2017-09-16-java-annotation/</loc>
+    <loc>https://smalltechnologyjun.com/2020/10/12/jvm-2020-10-09-jvm%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
@@ -325,19 +325,19 @@
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/java-2016-05-05-java8-lambda/</loc>
-    <lastmod>2021-04-13</lastmod>
-  </url>
-  <url>
     <loc>https://smalltechnologyjun.com/2015/05/05/java-2016-05-05-rxjava1/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/java-2016-05-05-threadpool/</loc>
+    <loc>https://smalltechnologyjun.com/2015/05/05/java-2016-05-05-rxjava2/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/java-2016-05-05-rxjava2/</loc>
+    <loc>https://smalltechnologyjun.com/2015/05/05/java-2016-05-05-java8-lambda/</loc>
+    <lastmod>2021-04-13</lastmod>
+  </url>
+  <url>
+    <loc>https://smalltechnologyjun.com/2015/05/05/java-2016-05-05-threadpool/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
@@ -353,19 +353,19 @@
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2017/11/12/java-concurrent-2017-08-25-jmm-volatile/</loc>
-    <lastmod>2021-04-13</lastmod>
-  </url>
-  <url>
-    <loc>https://smalltechnologyjun.com/2017/11/12/java-concurrent-2017-08-27-cjava-threadlocal/</loc>
-    <lastmod>2021-04-13</lastmod>
-  </url>
-  <url>
     <loc>https://smalltechnologyjun.com/2016/11/12/j2ee-2016-05-05-ssm3/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
     <loc>https://smalltechnologyjun.com/2016/11/12/j2ee-2016-05-05-web-listener/</loc>
+    <lastmod>2021-04-13</lastmod>
+  </url>
+  <url>
+    <loc>https://smalltechnologyjun.com/2017/11/12/java-concurrent-2017-08-25-jmm-volatile/</loc>
+    <lastmod>2021-04-13</lastmod>
+  </url>
+  <url>
+    <loc>https://smalltechnologyjun.com/2017/11/12/java-concurrent-2017-08-27-cjava-threadlocal/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
@@ -445,11 +445,11 @@
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-java-timer/</loc>
+    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-eventbus/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-eventbus/</loc>
+    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-java-timer/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
@@ -481,11 +481,11 @@
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-mvp/</loc>
+    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-pic/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-pic/</loc>
+    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-mvp/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
@@ -501,11 +501,11 @@
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-gif/</loc>
+    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-galaeery/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-galaeery/</loc>
+    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-gif/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
