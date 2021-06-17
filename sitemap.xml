@@ -2,21 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://smalltechnologyjun.com/2020/11/28/java-2020-11-28-%E7%8E%A9%E8%BD%ACswagger/</loc>
-    
-    <lastmod>2021-06-16</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://smalltechnologyjun.com/2021/06/10/spring-06-10-springIoc/</loc>
     
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/2021/06/16/service-06-16-%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E7%9B%91%E6%8E%A7%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%B0%83%E2%BD%A4/</loc>
+    
+    <lastmod>2021-06-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/2020/11/28/java-2020-11-28-%E7%8E%A9%E8%BD%ACswagger/</loc>
     
     <lastmod>2021-06-16</lastmod>
     
@@ -450,14 +450,14 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2018/01/01/openresty-2018-01-01-openresty-best-practice-1-Nginx/</loc>
+    <loc>https://smalltechnologyjun.com/2018/01/01/openresty-2018-01-01-openresty-best-practice-2-Lua/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2018/01/01/openresty-2018-01-01-openresty-best-practice-2-Lua/</loc>
+    <loc>https://smalltechnologyjun.com/2018/01/01/openresty-2018-01-01-openresty-best-practice-1-Nginx/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
@@ -472,6 +472,13 @@
   
   <url>
     <loc>https://smalltechnologyjun.com/2018/01/01/openresty-2018-01-01-openresty-best-practice-4-openresty-api/</loc>
+    
+    <lastmod>2021-04-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/2018/01/01/openresty-2018-01-01-openresty-all/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
@@ -493,13 +500,6 @@
   
   <url>
     <loc>https://smalltechnologyjun.com/2017/09/06/micorservice-2017-09-17-kong-api-gateway/</loc>
-    
-    <lastmod>2021-04-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/2018/01/01/openresty-2018-01-01-openresty-all/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
@@ -534,14 +534,14 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2020/07/01/kafka-2020-06-30-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3kafka%E7%B3%BB%E5%88%97-%E7%94%9F%E4%BA%A7%E8%80%85/</loc>
+    <loc>https://smalltechnologyjun.com/2020/07/03/kafka-2020-07-03-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3kafka%E7%B3%BB%E5%88%97-%E4%B8%BB%E9%A2%98/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2020/06/29/kafka-2020-06-31-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3kafka%E7%B3%BB%E5%88%97-%E6%B6%88%E8%B4%B9%E8%80%85/</loc>
+    <loc>https://smalltechnologyjun.com/2020/07/01/kafka-2020-06-30-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3kafka%E7%B3%BB%E5%88%97-%E7%94%9F%E4%BA%A7%E8%80%85/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
@@ -555,7 +555,7 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2020/07/03/kafka-2020-07-03-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3kafka%E7%B3%BB%E5%88%97-%E4%B8%BB%E9%A2%98/</loc>
+    <loc>https://smalltechnologyjun.com/2020/06/29/kafka-2020-06-31-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3kafka%E7%B3%BB%E5%88%97-%E6%B6%88%E8%B4%B9%E8%80%85/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
@@ -674,13 +674,6 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2016/11/12/j2ee-2016-05-05-spring-ioc/</loc>
-    
-    <lastmod>2021-04-13</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://smalltechnologyjun.com/2016/11/12/j2ee-2016-05-05-ssm1/</loc>
     
     <lastmod>2021-04-13</lastmod>
@@ -688,14 +681,14 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2016/11/12/j2ee-2016-05-05-ssm2/</loc>
+    <loc>https://smalltechnologyjun.com/2016/11/12/j2ee-2016-05-05-spring-ioc/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2016/11/12/j2ee-2016-05-05-jsp-detail/</loc>
+    <loc>https://smalltechnologyjun.com/2016/11/12/j2ee-2016-05-05-ssm2/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
@@ -723,14 +716,14 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2016/11/12/j2ee-2016-05-05-5minute-redis/</loc>
+    <loc>https://smalltechnologyjun.com/2016/11/12/j2ee-2016-05-05-jsp-detail/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2016/11/12/j2ee-2016-05-05-filter-aop/</loc>
+    <loc>https://smalltechnologyjun.com/2016/11/12/j2ee-2016-05-05-5minute-redis/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
@@ -744,7 +737,7 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2017/08/11/dive-into-sc-2017-08-14-springcloud-upload-file-problem/</loc>
+    <loc>https://smalltechnologyjun.com/2016/11/12/j2ee-2016-05-05-filter-aop/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
@@ -758,7 +751,7 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2017/08/11/dive-into-sc-2017-08-11-eureka-resources/</loc>
+    <loc>https://smalltechnologyjun.com/2017/08/11/dive-into-sc-2017-08-14-springcloud-upload-file-problem/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
@@ -772,7 +765,7 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2017/08/11/dive-into-sc-2017-08-11-Ribbon-resources/</loc>
+    <loc>https://smalltechnologyjun.com/2017/08/11/dive-into-sc-2017-08-11-eureka-resources/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
@@ -780,6 +773,13 @@
   
   <url>
     <loc>https://smalltechnologyjun.com/2020/10/30/designPattern-2020-10-30-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</loc>
+    
+    <lastmod>2021-04-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/2017/08/11/dive-into-sc-2017-08-11-Ribbon-resources/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
@@ -800,13 +800,6 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-java-timer/</loc>
-    
-    <lastmod>2021-04-13</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-eventbus/</loc>
     
     <lastmod>2021-04-13</lastmod>
@@ -814,14 +807,14 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-nestedscrollview-recyclerview/</loc>
+    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-java-timer/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-ssq-sjliand/</loc>
+    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-nestedscrollview-recyclerview/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
@@ -842,6 +835,13 @@
   </url>
   
   <url>
+    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-ssq-sjliand/</loc>
+    
+    <lastmod>2021-04-13</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-chaneg-shape-solid-color/</loc>
     
     <lastmod>2021-04-13</lastmod>
@@ -850,6 +850,13 @@
   
   <url>
     <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-cdswdq/</loc>
+    
+    <lastmod>2021-04-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-mvp/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
@@ -870,21 +877,7 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-mvp/</loc>
-    
-    <lastmod>2021-04-13</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-round-pic/</loc>
-    
-    <lastmod>2021-04-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-Javascript-android-react/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
@@ -899,6 +892,13 @@
   
   <url>
     <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-galaeery/</loc>
+    
+    <lastmod>2021-04-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-Javascript-android-react/</loc>
     
     <lastmod>2021-04-13</lastmod>
     
@@ -921,7 +921,7 @@
 
   <url>
     <loc>https://smalltechnologyjun.com/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -929,315 +929,315 @@
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/android/</loc>
-    <lastmod>2021-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/tags/SpringCloud-Ribbon/</loc>
-    <lastmod>2021-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/tags/SpringCloud-Eureka/</loc>
-    <lastmod>2021-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/tags/SpringCloud-Feign/</loc>
-    <lastmod>2021-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/tags/SpringCloud-zuul/</loc>
-    <lastmod>2021-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/tags/SpringCloud-Zuul/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/SpringCloud-Ribbon/</loc>
+    <lastmod>2021-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/SpringCloud-Feign/</loc>
+    <lastmod>2021-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/SpringCloud-Eureka/</loc>
+    <lastmod>2021-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/SpringCloud-Zuul/</loc>
+    <lastmod>2021-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/SpringCloud-zuul/</loc>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/j2ee-redis/</loc>
-    <lastmod>2021-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/tags/j2ee/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/java/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/j2ee/</loc>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/java-%E5%AE%89%E5%85%A8%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2021-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/tags/jvm/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/java-java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B-volatile/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/jvm/</loc>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/zookeeper/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/kafka/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/Spring/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/linux/</loc>
-    <lastmod>2021-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/tags/%E6%9E%B6%E6%9E%84/</loc>
-    <lastmod>2021-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/tags/%E6%BC%AB%E8%B0%88%E7%B3%BB%E5%88%97-%E6%9E%B6%E6%9E%84/</loc>
-    <lastmod>2021-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</loc>
-    <lastmod>2021-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/tags/SpringCloud-jwt/</loc>
-    <lastmod>2021-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/tags/nginx-kong/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/Openresty-Nginx/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/SpringCloud-JWT/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/%E6%9E%B6%E6%9E%84/</loc>
+    <lastmod>2021-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/%E6%BC%AB%E8%B0%88%E7%B3%BB%E5%88%97-%E6%9E%B6%E6%9E%84/</loc>
+    <lastmod>2021-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/</loc>
+    <lastmod>2021-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/SpringCloud-jwt/</loc>
+    <lastmod>2021-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/nginx-kong/</loc>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/python/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/python-%E7%88%AC%E8%99%AB/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/redis-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/redis-%E5%AF%B9%E8%B1%A1/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/redis-%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/redis-%E4%BA%8B%E7%89%A9/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/SpringBoot/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/SpringCloud-ribbon/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/SpringCloud-feign/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/SpringCloud-hystrix/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/SpringCloud-config/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/SpringCloud-SpringCloudBus/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/SpringCloud-sleuth/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/SpringCloud-eureka/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/SpringCloud-docker/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/SpringCloud-HystrixDashboard/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/SpringCloud-Turbine/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/SpringCloud-Consule/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/consule/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1246,119 +1246,119 @@
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/android/</loc>
-    <lastmod>2021-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/categories/SpringCloud/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/categories/SpringCloud/</loc>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/internet/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/j2ee/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/java/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/kafka/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/Spring/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/linux/</loc>
-    <lastmod>2021-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
-    <lastmod>2021-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/categories/nginx-kong/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/Openresty/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
+    <lastmod>2021-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/categories/nginx-kong/</loc>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/python/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/redis/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/SpringBoot/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2021-06-16</lastmod>
+    <lastmod>2021-06-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
