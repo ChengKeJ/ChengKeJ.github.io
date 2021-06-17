@@ -1,6 +1,7 @@
 ---
 title: "Spring Tutorial: IoC Container"
 date: 2021-06-10 10:14:37
+categories: Spring
 tags: Spring
 ---
 <img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_7d43390b66abdbb57cd5a8b2c6ef0169_30946.png" style="zoom:90%;" />
