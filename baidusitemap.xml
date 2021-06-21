@@ -77,19 +77,19 @@
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2017/05/05/springboot-2017-05-05-springboot9-redis/</loc>
-    <lastmod>2021-04-13</lastmod>
-  </url>
-  <url>
-    <loc>https://smalltechnologyjun.com/2017/05/05/springboot-2017-05-05-springbot22-modules/</loc>
-    <lastmod>2021-04-13</lastmod>
-  </url>
-  <url>
     <loc>https://smalltechnologyjun.com/2017/06/01/springcloud-2017-06-01-sc01-eureka/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
     <loc>https://smalltechnologyjun.com/2017/06/02/springcloud-2017-06-02-sc02-rest-ribbon/</loc>
+    <lastmod>2021-04-13</lastmod>
+  </url>
+  <url>
+    <loc>https://smalltechnologyjun.com/2017/05/05/springboot-2017-05-05-springboot9-redis/</loc>
+    <lastmod>2021-04-13</lastmod>
+  </url>
+  <url>
+    <loc>https://smalltechnologyjun.com/2017/05/05/springboot-2017-05-05-springbot22-modules/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
@@ -261,11 +261,11 @@
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2017/08/06/micorservice-2017-08-10-redlock-lock/</loc>
+    <loc>https://smalltechnologyjun.com/2017/08/11/micorservice-2017-08-11-jwt/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2017/08/11/micorservice-2017-08-11-jwt/</loc>
+    <loc>https://smalltechnologyjun.com/2017/08/06/micorservice-2017-08-10-redlock-lock/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
@@ -274,6 +274,10 @@
   </url>
   <url>
     <loc>https://smalltechnologyjun.com/2018/01/01/openresty-2018-01-01-openresty-all/</loc>
+    <lastmod>2021-04-13</lastmod>
+  </url>
+  <url>
+    <loc>https://smalltechnologyjun.com/2016/05/29/linux-2016-05-05-linux-cmd/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
@@ -286,10 +290,6 @@
   </url>
   <url>
     <loc>https://smalltechnologyjun.com/2017/05/06/micorservice-2017-05-06-mongodb-id/</loc>
-    <lastmod>2021-04-13</lastmod>
-  </url>
-  <url>
-    <loc>https://smalltechnologyjun.com/2016/05/29/linux-2016-05-05-linux-cmd/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
@@ -325,15 +325,15 @@
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
+    <loc>https://smalltechnologyjun.com/2015/05/05/java-2016-05-05-java8-lambda/</loc>
+    <lastmod>2021-04-13</lastmod>
+  </url>
+  <url>
     <loc>https://smalltechnologyjun.com/2015/05/05/java-2016-05-05-rxjava1/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
     <loc>https://smalltechnologyjun.com/2015/05/05/java-2016-05-05-rxjava2/</loc>
-    <lastmod>2021-04-13</lastmod>
-  </url>
-  <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/java-2016-05-05-java8-lambda/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
@@ -481,11 +481,11 @@
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-pic/</loc>
+    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-mvp/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-mvp/</loc>
+    <loc>https://smalltechnologyjun.com/2015/05/05/android-2015-05-05-android-pic/</loc>
     <lastmod>2021-04-13</lastmod>
   </url>
   <url>
