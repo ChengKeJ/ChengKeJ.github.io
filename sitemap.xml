@@ -450,13 +450,6 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/2018/01/01/openresty-2018-01-01-springcloud-jwt/</loc>
-    
-    <lastmod>2021-09-28</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://smalltechnologyjun.com/2018/01/01/openresty-2018-01-01-openresty-best-practice-5-httpclient/</loc>
     
     <lastmod>2021-09-28</lastmod>
@@ -528,13 +521,6 @@
   
   <url>
     <loc>https://smalltechnologyjun.com/2017/08/06/micorservice-2017-08-10-redlock-lock/</loc>
-    
-    <lastmod>2021-09-28</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/2017/08/11/micorservice-2017-08-11-jwt/</loc>
     
     <lastmod>2021-09-28</lastmod>
     
@@ -1145,13 +1131,6 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/tags/SpringCloud-jwt/</loc>
-    <lastmod>2022-11-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://smalltechnologyjun.com/tags/nginx-kong/</loc>
     <lastmod>2022-11-28</lastmod>
     <changefreq>daily</changefreq>
@@ -1181,13 +1160,6 @@
   
   <url>
     <loc>https://smalltechnologyjun.com/tags/Openresty-Nginx/</loc>
-    <lastmod>2022-11-28</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/tags/SpringCloud-JWT/</loc>
     <lastmod>2022-11-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
