@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://smalltechnologyjun.com/2017/06/02/springcloud-2017-06-02-sc02-rest-ribbon/</loc>
+    <lastmod>2022-11-29</lastmod>
+  </url>
+  <url>
+    <loc>https://smalltechnologyjun.com/2017/08/11/dive-into-sc-2017-08-11-Ribbon-resources/</loc>
+    <lastmod>2022-11-29</lastmod>
+  </url>
+  <url>
+    <loc>https://smalltechnologyjun.com/2017/06/05/springcloud-2017-06-05-sc05-zuul/</loc>
+    <lastmod>2022-11-29</lastmod>
+  </url>
+  <url>
     <loc>https://smalltechnologyjun.com/2017/08/11/dive-into-sc-2017-08-11-springcloud-zuul-resources/</loc>
     <lastmod>2022-11-29</lastmod>
   </url>
@@ -10,10 +22,6 @@
   </url>
   <url>
     <loc>https://smalltechnologyjun.com/2017/08/11/dive-into-sc-2017-08-11-eureka-resources/</loc>
-    <lastmod>2022-11-29</lastmod>
-  </url>
-  <url>
-    <loc>https://smalltechnologyjun.com/2017/08/11/dive-into-sc-2017-08-11-Ribbon-resources/</loc>
     <lastmod>2022-11-29</lastmod>
   </url>
   <url>
@@ -85,10 +93,6 @@
     <lastmod>2021-09-28</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2017/06/05/springcloud-2017-06-05-sc05-zuul/</loc>
-    <lastmod>2021-09-28</lastmod>
-  </url>
-  <url>
     <loc>https://smalltechnologyjun.com/2017/06/06/springcloud-2017-06-06-sc06-config/</loc>
     <lastmod>2021-09-28</lastmod>
   </url>
@@ -102,10 +106,6 @@
   </url>
   <url>
     <loc>https://smalltechnologyjun.com/2017/06/01/springcloud-2017-06-01-sc01-eureka/</loc>
-    <lastmod>2021-09-28</lastmod>
-  </url>
-  <url>
-    <loc>https://smalltechnologyjun.com/2017/06/02/springcloud-2017-06-02-sc02-rest-ribbon/</loc>
     <lastmod>2021-09-28</lastmod>
   </url>
   <url>
@@ -381,11 +381,11 @@
     <lastmod>2021-09-28</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/04/java-2015-05-04-common-auth/</loc>
+    <loc>https://smalltechnologyjun.com/2017/11/12/java-concurrent-2017-08-27-cjava-threadlocal/</loc>
     <lastmod>2021-09-28</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2017/11/12/java-concurrent-2017-08-27-cjava-threadlocal/</loc>
+    <loc>https://smalltechnologyjun.com/2015/05/04/java-2015-05-04-common-auth/</loc>
     <lastmod>2021-09-28</lastmod>
   </url>
   <url>
