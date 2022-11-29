@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://smalltechnologyjun.com/2017/06/01/springcloud-2017-06-10-sc-ha-eureka/</loc>
+    <lastmod>2022-11-29</lastmod>
+  </url>
+  <url>
+    <loc>https://smalltechnologyjun.com/2017/06/01/springcloud-2017-06-01-sc01-eureka/</loc>
+    <lastmod>2022-11-29</lastmod>
+  </url>
+  <url>
     <loc>https://smalltechnologyjun.com/2017/06/02/springcloud-2017-06-02-sc02-rest-ribbon/</loc>
     <lastmod>2022-11-29</lastmod>
   </url>
@@ -81,10 +89,6 @@
     <lastmod>2021-09-28</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2017/06/01/springcloud-2017-06-10-sc-ha-eureka/</loc>
-    <lastmod>2021-09-28</lastmod>
-  </url>
-  <url>
     <loc>https://smalltechnologyjun.com/2017/06/07/springcloud-2017-06-07-sc07-config/</loc>
     <lastmod>2021-09-28</lastmod>
   </url>
@@ -102,10 +106,6 @@
   </url>
   <url>
     <loc>https://smalltechnologyjun.com/2017/06/04/springcloud-2017-06-04-sc04-hystrix/</loc>
-    <lastmod>2021-09-28</lastmod>
-  </url>
-  <url>
-    <loc>https://smalltechnologyjun.com/2017/06/01/springcloud-2017-06-01-sc01-eureka/</loc>
     <lastmod>2021-09-28</lastmod>
   </url>
   <url>
@@ -365,11 +365,11 @@
     <lastmod>2021-09-28</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/java-2016-05-05-factory-mode/</loc>
+    <loc>https://smalltechnologyjun.com/2015/05/05/java-2016-05-05-java8-lambda/</loc>
     <lastmod>2021-09-28</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/05/java-2016-05-05-java8-lambda/</loc>
+    <loc>https://smalltechnologyjun.com/2015/05/05/java-2016-05-05-factory-mode/</loc>
     <lastmod>2021-09-28</lastmod>
   </url>
   <url>
@@ -381,11 +381,15 @@
     <lastmod>2021-09-28</lastmod>
   </url>
   <url>
+    <loc>https://smalltechnologyjun.com/2015/05/04/java-2015-05-04-common-auth/</loc>
+    <lastmod>2021-09-28</lastmod>
+  </url>
+  <url>
     <loc>https://smalltechnologyjun.com/2017/11/12/java-concurrent-2017-08-27-cjava-threadlocal/</loc>
     <lastmod>2021-09-28</lastmod>
   </url>
   <url>
-    <loc>https://smalltechnologyjun.com/2015/05/04/java-2015-05-04-common-auth/</loc>
+    <loc>https://smalltechnologyjun.com/2017/11/12/java-concurrent-2017-08-25-jmm-volatile/</loc>
     <lastmod>2021-09-28</lastmod>
   </url>
   <url>
@@ -394,10 +398,6 @@
   </url>
   <url>
     <loc>https://smalltechnologyjun.com/2016/11/12/j2ee-2016-05-05-web-listener/</loc>
-    <lastmod>2021-09-28</lastmod>
-  </url>
-  <url>
-    <loc>https://smalltechnologyjun.com/2017/11/12/java-concurrent-2017-08-25-jmm-volatile/</loc>
     <lastmod>2021-09-28</lastmod>
   </url>
   <url>
