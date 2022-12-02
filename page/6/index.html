@@ -71,7 +71,7 @@
 
 
 
-  <meta name="keywords" content="小技术君,chris,spring,算法，技术分享，设计模式，计算机网络，jvm" />
+  <meta name="keywords" content="小技术君,chris,spring,算法,技术分享,设计模式,计算机网络,jvm,vpn,翻墙" />
 
 
 
@@ -330,11 +330,168 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://smalltechnologyjun.com/2017/08/06/micorservice-2017-08-10-redlock-lock/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小技术君">
+      <meta itemprop="description" content="桃李不言 下自成蹊">
+      <meta itemprop="image" content="/uploads/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小技术君">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/06/micorservice-2017-08-10-redlock-lock/" itemprop="url">如何使用RedLock实现分布式锁</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-06T20:46:25+08:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringCloud/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringCloud</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/06/micorservice-2017-08-10-redlock-lock/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/06/micorservice-2017-08-10-redlock-lock/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>之前写过一篇文章<a target="_blank" rel="noopener" href="http://blog.csdn.net/forezp/article/details/68957681">《如何在springcloud分布式系统中实现分布式锁？》</a>，由于自己仅仅是阅读了相关的书籍，和查阅了相关的资料，就认为那样的是可行的。那篇文章实现的大概思路是用setNx命令和setEx配合使用。 setNx是一个耗时操作，因为它需要查询这个键是否存在，就算redis的百万的qps，在高并发的场景下，这种操作也是有问题的。关于redis实现分布式锁，redis官方推荐使用redlock。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/06/micorservice-2017-08-10-redlock-lock/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://smalltechnologyjun.com/2017/06/14/springcloud-2017-06-14-sc14-consul/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小技术君">
-      <meta itemprop="description" content="生命不息，奋斗不止">
+      <meta itemprop="description" content="桃李不言 下自成蹊">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
@@ -491,7 +648,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小技术君">
-      <meta itemprop="description" content="生命不息，奋斗不止">
+      <meta itemprop="description" content="桃李不言 下自成蹊">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
@@ -648,7 +805,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小技术君">
-      <meta itemprop="description" content="生命不息，奋斗不止">
+      <meta itemprop="description" content="桃李不言 下自成蹊">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
@@ -805,7 +962,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小技术君">
-      <meta itemprop="description" content="生命不息，奋斗不止">
+      <meta itemprop="description" content="桃李不言 下自成蹊">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
@@ -962,7 +1119,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小技术君">
-      <meta itemprop="description" content="生命不息，奋斗不止">
+      <meta itemprop="description" content="桃李不言 下自成蹊">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
@@ -1119,7 +1276,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小技术君">
-      <meta itemprop="description" content="生命不息，奋斗不止">
+      <meta itemprop="description" content="桃李不言 下自成蹊">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
@@ -1281,7 +1438,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小技术君">
-      <meta itemprop="description" content="生命不息，奋斗不止">
+      <meta itemprop="description" content="桃李不言 下自成蹊">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
@@ -1439,7 +1596,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小技术君">
-      <meta itemprop="description" content="生命不息，奋斗不止">
+      <meta itemprop="description" content="桃李不言 下自成蹊">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
@@ -1596,7 +1753,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小技术君">
-      <meta itemprop="description" content="生命不息，奋斗不止">
+      <meta itemprop="description" content="桃李不言 下自成蹊">
       <meta itemprop="image" content="/uploads/logo.png">
     </span>
 
@@ -1736,164 +1893,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://smalltechnologyjun.com/2017/06/04/springcloud-2017-06-04-sc04-hystrix/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小技术君">
-      <meta itemprop="description" content="生命不息，奋斗不止">
-      <meta itemprop="image" content="/uploads/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小技术君">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/04/springcloud-2017-06-04-sc04-hystrix/" itemprop="url">SpringCloud教程第4篇：Hystrix</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-04T20:46:25+08:00">
-                2017-06-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SpringCloud/" itemprop="url" rel="index">
-                    <span itemprop="name">SpringCloud</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/04/springcloud-2017-06-04-sc04-hystrix/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/04/springcloud-2017-06-04-sc04-hystrix/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
-<p>为了解决这个问题，业界提出了断路器模型。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/04/springcloud-2017-06-04-sc04-hystrix/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1938,7 +1937,7 @@
                 alt="小技术君" />
             
               <p class="site-author-name" itemprop="name">小技术君</p>
-              <p class="site-description motion-element" itemprop="description">生命不息，奋斗不止</p>
+              <p class="site-description motion-element" itemprop="description">桃李不言 下自成蹊</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -1946,7 +1945,7 @@
             
               <div class="site-state-item site-state-posts">
                 <a href="/archives">
-                  <span class="site-state-item-count">137</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
