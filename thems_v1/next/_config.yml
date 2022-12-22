@@ -35,7 +35,7 @@ favicon:
   #ms_browserconfig: /images/browserconfig.xml
 
 # Set default keywords (Use a comma to separate)
-keywords: "小技术君,chris,spring,算法，技术分享，设计模式，计算机网络，jvm"
+keywords: "小技术君,算法,技术分享,设计模式,计算机网络,jvm,vpn,shadowsocks,V2ray,翻墙"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
@@ -151,13 +151,14 @@ links_layout: inline
 #links_layout: inline
 links:
   Chris Blog: https://smalltechnologyjun.com
+  vpn: https://justmysocks3.net/members/aff.php?aff=17752
 
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
 # in site  directory(source/uploads): /uploads/avatar.gif
 avatar: /uploads/logo.png
 author: 小技术君
-signature: 生命不息，奋斗不止
+signature: 桃李不言 下自成蹊
 
 # Table Of Contents in the Sidebar
 toc:
@@ -262,7 +263,7 @@ post_copyright:
 # ---------------------------------------------------------------
 
 # Reduce padding / margin indents on devices with narrow width.
-mobile_layout_economy: false
+mobile_layout_economy: true
 
 # Android Chrome header panel color ($black-deep).
 android_chrome_color: "#222"
