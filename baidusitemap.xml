@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://smalltechnologyjun.com/2022/12/23/internet-tcp-e/</loc>
+    <lastmod>2022-12-23</lastmod>
+  </url>
+  <url>
+    <loc>https://smalltechnologyjun.com/2022/12/23/internet-tcp-f/</loc>
+    <lastmod>2022-12-23</lastmod>
+  </url>
+  <url>
+    <loc>https://smalltechnologyjun.com/2022/12/23/internet-nagle/</loc>
+    <lastmod>2022-12-23</lastmod>
+  </url>
+  <url>
     <loc>https://smalltechnologyjun.com/2022/11/28/operationSystem-%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/</loc>
     <lastmod>2022-12-22</lastmod>
   </url>
