@@ -6,15 +6,15 @@
 title: 小技术君
 subtitle: ''
 description: ''
-keywords:
-author: John Doe
+keywords: "小技术君,算法,技术分享,设计模式,计算机网络,jvm,vpn,shadowsocks,V2ray,翻墙"
+author: Chris
 language: en
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://smalltechnologyjun.com
-permalink: :year:month:day/:title/
+permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
