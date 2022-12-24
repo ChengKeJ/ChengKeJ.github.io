@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://smalltechnologyjun.com/2022/12/24/hexo-hexo-y/</loc>
+    
+    <lastmod>2022-12-24</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://smalltechnologyjun.com/2022/12/23/internet-tcp-e/</loc>
     
     <lastmod>2022-12-23</lastmod>
@@ -1347,6 +1354,13 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/hexo/</loc>
+    <lastmod>2022-12-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -1484,6 +1498,13 @@
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/vpn/</loc>
+    <lastmod>2022-12-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/categories/hexo/</loc>
     <lastmod>2022-12-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
