@@ -32,11 +32,7 @@ type: about
 
 * Gitee: [https://gitee.com/ckjcode/smallTechnology](https://gitee.com/ckjcode/smallTechnology)
 
-<img src="https://tva1.sinaimg.cn/large/0081Kckwgy1glqp0el2x7j31bq0mgn0g.jpg" width="82.5%" height="20%">
-<br>
-
-
-<img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gpj2xnq8bwj30zr0u04qq.jpg" width="82.5%" height="50%">
+<img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/F0903438-861F-46FB-BB11-7B085372B5CA/6E9BEFE5-1D27-4847-9910-962AFAD9F460_2/6bju2Kj7DYtZavcGkjMx7cJxnObhPLfKmSY4xEbqHmYz/Image.png" width="100%" height="40%">
 
 &nbsp;
 
