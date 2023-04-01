@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://smalltechnologyjun.com/2023/03/31/springboot-diagram/</loc>
+    <lastmod>2023-04-01</lastmod>
+  </url>
+  <url>
+    <loc>https://smalltechnologyjun.com/2023/04/01/grpc/</loc>
+    <lastmod>2023-04-01</lastmod>
+  </url>
+  <url>
+    <loc>https://smalltechnologyjun.com/2023/04/01/discord/</loc>
+    <lastmod>2023-04-01</lastmod>
+  </url>
+  <url>
     <loc>https://smalltechnologyjun.com/2023/03/09/gateway-API%E7%BD%91%E5%85%B3%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/</loc>
     <lastmod>2023-03-11</lastmod>
   </url>
