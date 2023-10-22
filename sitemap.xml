@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://smalltechnologyjun.com/2023/10/22/systemDesign-db-extend/</loc>
+    
+    <lastmod>2023-10-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/2023/10/22/systemDesign-replication/</loc>
+    
+    <lastmod>2023-10-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/2023/10/22/systemDesign-cdn/</loc>
+    
+    <lastmod>2023-10-22</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://smalltechnologyjun.com/2023/10/14/internet-tcp-h/</loc>
     
     <lastmod>2023-10-15</lastmod>
@@ -493,6 +514,27 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/CDN-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%89%A9%E5%B1%95-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86-%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
+    <lastmod>2023-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/</loc>
+    <lastmod>2023-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/CDN-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2023-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -602,6 +644,13 @@
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/vpn/</loc>
+    <lastmod>2023-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/categories/CDN-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2023-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
