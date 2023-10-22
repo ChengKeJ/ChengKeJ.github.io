@@ -253,40 +253,6 @@
       </tags>
   </entry>
   <entry>
-    <title>hexo 博客加载优化</title>
-    <url>/2022/12/24/hexo-hexo-y/</url>
-    <content><![CDATA[<h1 id="hexo-博客加载优化"><a href="#hexo-博客加载优化" class="headerlink" title="hexo 博客加载优化"></a>hexo 博客加载优化</h1><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近趁着周末折腾自己博客的时候,发现刷页面的时候会有点卡顿,感觉页面性能很低,所以开始了下面的优化,分析下来结果还不错比之前快了很多,那让我们开始吧!</p>
-<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/1050E4F2-AB1F-423B-8DE0-393C1A892684/3E8FC5EB-EEB0-4C2D-94EC-C948F99002CA_2/D2DBPCbNGLqxlHxMmGlIfcTaOf8xxt6pIZxuqnXNyMwz/Image.png" alt="Image.png"></p>
-<p>简单的来说主要以下几个部分的优化:</p>
-<ul>
-<li><strong>压缩静态资源,提高访问速度</strong></li>
-<li><strong>图片懒加载</strong></li>
-</ul>
-<span id="more"></span>
-<h3 id="压缩静态资源"><a href="#压缩静态资源" class="headerlink" title="压缩静态资源"></a>压缩静态资源</h3><p>安装插件：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-neat --save</span><br></pre></td></tr></table></figure>
-
-<p>然后我们需要在站点配置文件_config.yml 中添加以下代码：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 博文压缩</span><br><span class="line">neat_enable: true</span><br><span class="line"># 压缩html</span><br><span class="line">neat_html:</span><br><span class="line">  enable: true</span><br><span class="line">  exclude:</span><br><span class="line"># 压缩css</span><br><span class="line">neat_css:</span><br><span class="line">  enable: true</span><br><span class="line">  exclude:</span><br><span class="line">    - &#39;**&#x2F;*.min.css&#39;</span><br><span class="line"># 压缩js</span><br><span class="line">neat_js:</span><br><span class="line">  enable: true</span><br><span class="line">  mangle: true</span><br><span class="line">  output:</span><br><span class="line">  compress:</span><br><span class="line">  exclude:</span><br><span class="line">    - &#39;**&#x2F;*.min.js&#39;</span><br><span class="line">    - &#39;**&#x2F;jquery.fancybox.pack.js&#39;</span><br><span class="line">    - &#39;**&#x2F;index.js&#39;</span><br><span class="line">    - &#39;**&#x2F;fireworks.js&#39;</span><br></pre></td></tr></table></figure>
-
-<h3 id="图片懒加载"><a href="#图片懒加载" class="headerlink" title="图片懒加载"></a>图片懒加载</h3><p>安装插件:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-lazyload-image --save</span><br></pre></td></tr></table></figure>
-
-<p>_config.yml 中添加以下代码:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 图片懒加载</span><br><span class="line">lazyload:</span><br><span class="line">  enable: true</span><br><span class="line">  onlypost: false</span><br><span class="line">  loadingImg: &#x2F;images&#x2F;loading.gif</span><br></pre></td></tr></table></figure>
-
-
-
-
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用OpenAI的ChatGPT进行智能问答交互的实现</title>
     <url>/2023/03/11/gpt-%E4%BD%BF%E7%94%A8OpenAI%E7%9A%84ChatGPT%E8%BF%9B%E8%A1%8C%E6%99%BA%E8%83%BD%E9%97%AE%E7%AD%94%E4%BA%A4%E4%BA%92%E7%9A%84%E5%AE%9E%E7%8E%B0/</url>
     <content><![CDATA[<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/99C67034-A284-44CC-BA81-7A7B4D3DCA90/43D821FF-FDCD-4E5A-9C9F-BD794E1D6E9A_2/NhN9dKLPx9s5yKJFd9dGhJXkmymvbS4to6YKR3NFu5Az/Image.png" alt="Image.png"></p>
@@ -325,6 +291,40 @@
       </categories>
       <tags>
         <tag>ChatGPT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo 博客加载优化</title>
+    <url>/2022/12/24/hexo-hexo-y/</url>
+    <content><![CDATA[<h1 id="hexo-博客加载优化"><a href="#hexo-博客加载优化" class="headerlink" title="hexo 博客加载优化"></a>hexo 博客加载优化</h1><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近趁着周末折腾自己博客的时候,发现刷页面的时候会有点卡顿,感觉页面性能很低,所以开始了下面的优化,分析下来结果还不错比之前快了很多,那让我们开始吧!</p>
+<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/1050E4F2-AB1F-423B-8DE0-393C1A892684/3E8FC5EB-EEB0-4C2D-94EC-C948F99002CA_2/D2DBPCbNGLqxlHxMmGlIfcTaOf8xxt6pIZxuqnXNyMwz/Image.png" alt="Image.png"></p>
+<p>简单的来说主要以下几个部分的优化:</p>
+<ul>
+<li><strong>压缩静态资源,提高访问速度</strong></li>
+<li><strong>图片懒加载</strong></li>
+</ul>
+<span id="more"></span>
+<h3 id="压缩静态资源"><a href="#压缩静态资源" class="headerlink" title="压缩静态资源"></a>压缩静态资源</h3><p>安装插件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-neat --save</span><br></pre></td></tr></table></figure>
+
+<p>然后我们需要在站点配置文件_config.yml 中添加以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 博文压缩</span><br><span class="line">neat_enable: true</span><br><span class="line"># 压缩html</span><br><span class="line">neat_html:</span><br><span class="line">  enable: true</span><br><span class="line">  exclude:</span><br><span class="line"># 压缩css</span><br><span class="line">neat_css:</span><br><span class="line">  enable: true</span><br><span class="line">  exclude:</span><br><span class="line">    - &#39;**&#x2F;*.min.css&#39;</span><br><span class="line"># 压缩js</span><br><span class="line">neat_js:</span><br><span class="line">  enable: true</span><br><span class="line">  mangle: true</span><br><span class="line">  output:</span><br><span class="line">  compress:</span><br><span class="line">  exclude:</span><br><span class="line">    - &#39;**&#x2F;*.min.js&#39;</span><br><span class="line">    - &#39;**&#x2F;jquery.fancybox.pack.js&#39;</span><br><span class="line">    - &#39;**&#x2F;index.js&#39;</span><br><span class="line">    - &#39;**&#x2F;fireworks.js&#39;</span><br></pre></td></tr></table></figure>
+
+<h3 id="图片懒加载"><a href="#图片懒加载" class="headerlink" title="图片懒加载"></a>图片懒加载</h3><p>安装插件:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-lazyload-image --save</span><br></pre></td></tr></table></figure>
+
+<p>_config.yml 中添加以下代码:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 图片懒加载</span><br><span class="line">lazyload:</span><br><span class="line">  enable: true</span><br><span class="line">  onlypost: false</span><br><span class="line">  loadingImg: &#x2F;images&#x2F;loading.gif</span><br></pre></td></tr></table></figure>
+
+
+
+
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1058,6 +1058,51 @@
       </tags>
   </entry>
   <entry>
+    <title>深入了解kafka系列-生产者</title>
+    <url>/2020/07/01/kafka-2020-06-30-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3kafka%E7%B3%BB%E5%88%97-%E7%94%9F%E4%BA%A7%E8%80%85/</url>
+    <content><![CDATA[<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><blockquote>
+<p>整个Kafka体系结构中引入了以下3个术语。</p>
+</blockquote>
+<p> （1）Producer：生产者，也就是发送消息的一方。生产者负责创建消息，然后将其投递到Kafka中。</p>
+<p> （2）Consumer：消费者，也就是接收消息的一方。消费者连接到Kafka上并接收消息，进而进行相应的业务逻辑处理。</p>
+<span id="more"></span>
+<p> （3）Broker：服务代理节点。对于Kafka而言，Broker可以简单地看作一个独立的Kafka服务节点或Kafka服务实例。大多数情况下也可以将Broker看作一台Kafka服务器，前提是这台服务器上只部署了一个Kafka实例。一个或多个Broker组成了一个Kafka集群。一般而言，我们更习惯使用首字母小写的broker来表示服务代理节点。</p>
+<p>  在Kafka中还有两个特别重要的概念—主题（Topic）与分区（Partition）。Kafka中的消息以主题为单位进行归类，生产者负责将消息发送到特定的主题（发送到Kafka集群中的每一条消息都要指定一个主题），而消费者负责订阅主题并进行消费。</p>
+<p>  主题是一个逻辑上的概念，它还可以细分为多个分区，一个分区只属于单个主题，很多时候也会把分区称为主题分区（Topic-Partition）。同一主题下的不同分区包含的消息是不同的，分区在存储层面可以看作一个可追加的日志（Log）文件，消息在被追加到分区日志文件的时候都会分配一个特定的偏移量（offset）。offset是消息在分区中的唯一标识，Kafka通过它来保证消息在分区内的顺序性，不过offset并不跨越分区，也就是说，Kafka保证的是分区有序而不是主题有序。如图所示，主题中有 4 个分区，消息被顺序追加到每个分区日志文件的尾部。Kafka中的分区可以分布在不同的服务器（broker）上，也就是说，一个主题可以横跨多个broker，以此来提供比单个broker更强大的性能。</p>
+<p>  <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggao5l941cj30u00km0zz.jpg"></p>
+<h3 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h3><blockquote>
+<p>消息在真正发往Kafka之前，有可能需要经历拦截器（Interceptor）、序列化器（Serializer）和分区器（Partitioner）等一系列的作用，那么在此之后又会发生什么呢？下面我们来看一下生产者客户端的整体架构.</p>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggall9855yj30wk0qsh18.jpg"></p>
+<h4 id="producer-流程："><a href="#producer-流程：" class="headerlink" title="producer 流程："></a>producer 流程：</h4><p>  整个生产者客户端由两个线程协调运行，这两个线程分别为主线程和Sender线程（发送线程）。</p>
+<p>  在主线程中由KafkaProducer创建消息，然后通过可能的拦截器、序列化器和分区器的作用之后缓存到消息累加器（RecordAccumulator，也称为消息收集器）中。</p>
+<p>  Sender 线程负责从RecordAccumulator中获取消息并将其发送到Kafka中。</p>
+<h4 id="主线程"><a href="#主线程" class="headerlink" title="主线程"></a>主线程</h4><p>   <font color=#C7063  size=3>生产者拦截器</font> 可以用来在消息发送前做一些准备工作，比如按照某个规则过滤不符合要求的消息、修改消息的内容等，也可以用来在发送回调逻辑前做一些定制化的需求，比如统计类工作。生产者拦截器的使用也很方便，主要是自定义实现 org.apache.kafka.clients.producer.ProducerInterceptor接口。ProducerInterceptor接口中包含3个方法<br><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggaombbbfoj31bk0u0ncu.jpg"></p>
+<p>KafkaProducer() 在将消息序列化和计算分区之前会调用生产者拦截器的onSend（）方法来对消息进行相应的定制化操作。</p>
+<p>KafkaProducer() 在消息被应答（Acknowledgement）之前或消息发送失败时调用生产者拦截器的onAcknowledgement（）方法，优先于用户设定的 Callback 之前执行。</p>
+<p>close() 主要用于在关闭拦截器时执行一些资源的清理工作。在这 3 个方法中抛出的异常都会被捕获并记录到日志中，但并不会再向上传递。</p>
+<p>  <font color=#C7063  size=3>序列化器</font> 生产者需要用序列化器（Serializer) 把对象转换成字节数组才能通过网络发送给Kafka，消费者需要用反序列化器（Deserializer）把从 Kafka 中收到的字节数组转换成相应的对象,Serializer接口中包含3个方法</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggapcp91uuj31tq0qg113.jpg"></p>
+<p>configure() 方法用来配置当前类</p>
+<p>serialize() 方法用来执行序列化操作</p>
+<p>close() 方法用来关闭当前的序列化器，一般情况下 close（）是一个空方法，如果实现了此方法，则必须确保此方法的幂等性，因为这个方法很可能会被KafkaProducer调用多次。</p>
+<p><font color=#C7063  size=3>分区器</font> 分区器的作用就是为消息分配分区。序列化器是必需的。消息经过序列化之后就需要确定它发往的分区，如果消息ProducerRecord中指定了partition字段，那么就不需要分区器的作用，因为partition代表的就是所要发往的分区号。</p>
+<h4 id="消息累加器-RecordAccumulator"><a href="#消息累加器-RecordAccumulator" class="headerlink" title="消息累加器 RecordAccumulator"></a>消息累加器 RecordAccumulator</h4><p> RecordAccumulator 主要用来缓存消息以便 Sender 线程可以批量发送，进而减少网络传输的资源消耗以提升性能。RecordAccumulator 缓存的大小可以通过生产者客户端参数buffer.memory 配置，默认值为 32MB。<br>  如果生产者发送消息的速度超过发送到服务器的速度，则会导致生产者空间不足，这个时候KafkaProducer的send（）方法调用要么被阻塞，要么抛出异常，这个取决于参数max.block.ms的配置，此参数的默认值为60000，即60秒。</p>
+<p> 主线程中发送过来的消息都会被追加到RecordAccumulator的某个双端队列（Deque）中，在RecordAccumulator 的内部为每个分区都维护了一个双端队列，队列中的内容就是ProducerBatch，即 Deque＜ProducerBatch＞。消息写入缓存时，追加到双端队列的尾部；Sender读取消息时，从双端队列的头部读取。注意ProducerBatch不是ProducerRecord，ProducerBatch中可以包含一至多个 ProducerRecord。</p>
+<p> 通俗地说，ProducerRecord 是生产者中创建的消息，而ProducerBatch是指一个消息批次，ProducerRecord会被包含在ProducerBatch中，这样可以使字节的使用更加紧凑。与此同时，将较小的ProducerRecord拼凑成一个较大的ProducerBatch,也可以减少网络请求的次数以提升整体的吞吐量</p>
+<h4 id="sender-线程"><a href="#sender-线程" class="headerlink" title="sender 线程"></a>sender 线程</h4><p> Sender 从 RecordAccumulator 中获取缓存的消息之后，会进一步将原本＜分区，Deque＜ProducerBatch＞＞的保存形式转变成＜Node，List＜ ProducerBatch＞的形式，其中Node表示Kafka集群的broker节点,Sender 还会进一步封装成＜Node，Request＞的形式，这样就可以将Request请求发往各个Node了，这里的Request是指Kafka的各种协议请求,请求在从Sender线程发往Kafka之前还会保存到InFlightRequests中，InFlightRequests保存对象的具体形式为Map＜NodeId，Deque＜Request＞＞<br> 它的主要作用是缓存了已经发出去但还没有收到响应的请求（NodeId 是一个 String 类型，表示节点的 id 编号)。</p>
+<blockquote>
+<p>原创不易，如果觉得有点用的话，请毫不留情点个赞，转发一下，这将是我持续输出优质文章的最强动力。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>kafka</category>
+      </categories>
+      <tags>
+        <tag>kafka</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>深入了解kafka系列-消费者</title>
     <url>/2020/06/29/kafka-2020-06-31-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3kafka%E7%B3%BB%E5%88%97-%E6%B6%88%E8%B4%B9%E8%80%85/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
@@ -1150,39 +1195,83 @@
       </tags>
   </entry>
   <entry>
-    <title>深入了解kafka系列-生产者</title>
-    <url>/2020/07/01/kafka-2020-06-30-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3kafka%E7%B3%BB%E5%88%97-%E7%94%9F%E4%BA%A7%E8%80%85/</url>
-    <content><![CDATA[<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><blockquote>
-<p>整个Kafka体系结构中引入了以下3个术语。</p>
+    <title>深入了解kafka系列-主题</title>
+    <url>/2020/07/03/kafka-2020-07-03-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3kafka%E7%B3%BB%E5%88%97-%E4%B8%BB%E9%A2%98/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>主题和分区是Kafka 的两个核心概念，前面系列中讲述的生产者和消费者的设计理念所针对的都是主题和分区层面的操作。主题作为消息的归类，可以再细分为一个或多个分区，分区也可以看作对消息的二次归类。分区的划分不仅为Kafka提供了可伸缩性、水平扩展的功能，还通过多副本机制来为Kafka提供数据冗余以提高数据可靠性。</p>
 </blockquote>
-<p> （1）Producer：生产者，也就是发送消息的一方。生产者负责创建消息，然后将其投递到Kafka中。</p>
-<p> （2）Consumer：消费者，也就是接收消息的一方。消费者连接到Kafka上并接收消息，进而进行相应的业务逻辑处理。</p>
+<p>从Kafka的底层实现来说，主题和分区都是逻辑上的概念，分区可以有一至多个副本，每个副本对应一个日志文件，每个日志文件对应一至多个日志分段（LogSegment），每个日志分段还可以细分为索引文件、日志存储文件和快照文件等。不过对于使用Kafka进行消息收发的普通用户而言，了解到分区这一层面足以应对大部分的使用场景,这里暂时只说到主题和分区,更底层的内容会在后续这个系列持续讲解~</p>
 <span id="more"></span>
-<p> （3）Broker：服务代理节点。对于Kafka而言，Broker可以简单地看作一个独立的Kafka服务节点或Kafka服务实例。大多数情况下也可以将Broker看作一台Kafka服务器，前提是这台服务器上只部署了一个Kafka实例。一个或多个Broker组成了一个Kafka集群。一般而言，我们更习惯使用首字母小写的broker来表示服务代理节点。</p>
-<p>  在Kafka中还有两个特别重要的概念—主题（Topic）与分区（Partition）。Kafka中的消息以主题为单位进行归类，生产者负责将消息发送到特定的主题（发送到Kafka集群中的每一条消息都要指定一个主题），而消费者负责订阅主题并进行消费。</p>
-<p>  主题是一个逻辑上的概念，它还可以细分为多个分区，一个分区只属于单个主题，很多时候也会把分区称为主题分区（Topic-Partition）。同一主题下的不同分区包含的消息是不同的，分区在存储层面可以看作一个可追加的日志（Log）文件，消息在被追加到分区日志文件的时候都会分配一个特定的偏移量（offset）。offset是消息在分区中的唯一标识，Kafka通过它来保证消息在分区内的顺序性，不过offset并不跨越分区，也就是说，Kafka保证的是分区有序而不是主题有序。如图所示，主题中有 4 个分区，消息被顺序追加到每个分区日志文件的尾部。Kafka中的分区可以分布在不同的服务器（broker）上，也就是说，一个主题可以横跨多个broker，以此来提供比单个broker更强大的性能。</p>
-<p>  <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggao5l941cj30u00km0zz.jpg"></p>
-<h3 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h3><blockquote>
-<p>消息在真正发往Kafka之前，有可能需要经历拦截器（Interceptor）、序列化器（Serializer）和分区器（Partitioner）等一系列的作用，那么在此之后又会发生什么呢？下面我们来看一下生产者客户端的整体架构.</p>
-</blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggall9855yj30wk0qsh18.jpg"></p>
-<h4 id="producer-流程："><a href="#producer-流程：" class="headerlink" title="producer 流程："></a>producer 流程：</h4><p>  整个生产者客户端由两个线程协调运行，这两个线程分别为主线程和Sender线程（发送线程）。</p>
-<p>  在主线程中由KafkaProducer创建消息，然后通过可能的拦截器、序列化器和分区器的作用之后缓存到消息累加器（RecordAccumulator，也称为消息收集器）中。</p>
-<p>  Sender 线程负责从RecordAccumulator中获取消息并将其发送到Kafka中。</p>
-<h4 id="主线程"><a href="#主线程" class="headerlink" title="主线程"></a>主线程</h4><p>   <font color=#C7063  size=3>生产者拦截器</font> 可以用来在消息发送前做一些准备工作，比如按照某个规则过滤不符合要求的消息、修改消息的内容等，也可以用来在发送回调逻辑前做一些定制化的需求，比如统计类工作。生产者拦截器的使用也很方便，主要是自定义实现 org.apache.kafka.clients.producer.ProducerInterceptor接口。ProducerInterceptor接口中包含3个方法<br><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggaombbbfoj31bk0u0ncu.jpg"></p>
-<p>KafkaProducer() 在将消息序列化和计算分区之前会调用生产者拦截器的onSend（）方法来对消息进行相应的定制化操作。</p>
-<p>KafkaProducer() 在消息被应答（Acknowledgement）之前或消息发送失败时调用生产者拦截器的onAcknowledgement（）方法，优先于用户设定的 Callback 之前执行。</p>
-<p>close() 主要用于在关闭拦截器时执行一些资源的清理工作。在这 3 个方法中抛出的异常都会被捕获并记录到日志中，但并不会再向上传递。</p>
-<p>  <font color=#C7063  size=3>序列化器</font> 生产者需要用序列化器（Serializer) 把对象转换成字节数组才能通过网络发送给Kafka，消费者需要用反序列化器（Deserializer）把从 Kafka 中收到的字节数组转换成相应的对象,Serializer接口中包含3个方法</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggapcp91uuj31tq0qg113.jpg"></p>
-<p>configure() 方法用来配置当前类</p>
-<p>serialize() 方法用来执行序列化操作</p>
-<p>close() 方法用来关闭当前的序列化器，一般情况下 close（）是一个空方法，如果实现了此方法，则必须确保此方法的幂等性，因为这个方法很可能会被KafkaProducer调用多次。</p>
-<p><font color=#C7063  size=3>分区器</font> 分区器的作用就是为消息分配分区。序列化器是必需的。消息经过序列化之后就需要确定它发往的分区，如果消息ProducerRecord中指定了partition字段，那么就不需要分区器的作用，因为partition代表的就是所要发往的分区号。</p>
-<h4 id="消息累加器-RecordAccumulator"><a href="#消息累加器-RecordAccumulator" class="headerlink" title="消息累加器 RecordAccumulator"></a>消息累加器 RecordAccumulator</h4><p> RecordAccumulator 主要用来缓存消息以便 Sender 线程可以批量发送，进而减少网络传输的资源消耗以提升性能。RecordAccumulator 缓存的大小可以通过生产者客户端参数buffer.memory 配置，默认值为 32MB。<br>  如果生产者发送消息的速度超过发送到服务器的速度，则会导致生产者空间不足，这个时候KafkaProducer的send（）方法调用要么被阻塞，要么抛出异常，这个取决于参数max.block.ms的配置，此参数的默认值为60000，即60秒。</p>
-<p> 主线程中发送过来的消息都会被追加到RecordAccumulator的某个双端队列（Deque）中，在RecordAccumulator 的内部为每个分区都维护了一个双端队列，队列中的内容就是ProducerBatch，即 Deque＜ProducerBatch＞。消息写入缓存时，追加到双端队列的尾部；Sender读取消息时，从双端队列的头部读取。注意ProducerBatch不是ProducerRecord，ProducerBatch中可以包含一至多个 ProducerRecord。</p>
-<p> 通俗地说，ProducerRecord 是生产者中创建的消息，而ProducerBatch是指一个消息批次，ProducerRecord会被包含在ProducerBatch中，这样可以使字节的使用更加紧凑。与此同时，将较小的ProducerRecord拼凑成一个较大的ProducerBatch,也可以减少网络请求的次数以提升整体的吞吐量</p>
-<h4 id="sender-线程"><a href="#sender-线程" class="headerlink" title="sender 线程"></a>sender 线程</h4><p> Sender 从 RecordAccumulator 中获取缓存的消息之后，会进一步将原本＜分区，Deque＜ProducerBatch＞＞的保存形式转变成＜Node，List＜ ProducerBatch＞的形式，其中Node表示Kafka集群的broker节点,Sender 还会进一步封装成＜Node，Request＞的形式，这样就可以将Request请求发往各个Node了，这里的Request是指Kafka的各种协议请求,请求在从Sender线程发往Kafka之前还会保存到InFlightRequests中，InFlightRequests保存对象的具体形式为Map＜NodeId，Deque＜Request＞＞<br> 它的主要作用是缓存了已经发出去但还没有收到响应的请求（NodeId 是一个 String 类型，表示节点的 id 编号)。</p>
+
+
+<h3 id="主题的管理"><a href="#主题的管理" class="headerlink" title="主题的管理"></a>主题的管理</h3><p>主题的管理包括创建主题、查看主题信息、修改主题和删除主题等操作。可以通过 Kafka提供的 kafka-topics.sh脚本来执行这些操作，这个脚本位于$KAFKA_HOME/bin/目录下，其核心代码仅有一行，具体如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">exec $(dirname $0)&#x2F;kafka-run-class.sh kafka.admin.TopicCommand &quot;$@&quot;</span><br></pre></td></tr></table></figure>
+
+<p>当然主题的管理并非只有使用 kafka-topics.sh 脚本这一种方式，我们还可以通过KafkaAdminClient 的方式实现（这种方式实质上是通过发送 CreateTopicsRequest、DeleteTopicsRequest 等请求来实现的,甚至我们还可以通过直接操纵日志文件和ZooKeeper节点来实现,这个后续我会单独抽出来放在这个系列继续讲解~</p>
+<ul>
+<li>1 创建主题</li>
+</ul>
+<p> 如果broker端配置参数auto.create.topics.enable设置为true（默认值就是true），那么当生产者向一个尚未创建的主题发送消息时，会自动创建一个分区数为num.partitions （默认值为1）、副本因子为default.replication.factor（默认值为1）的主题。不建议这样操作,topic 未知难以维护,建议下面这种方式:</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --create --zookeeper localhost:2181&#x2F;kafka100 --topic topic-create --replication-factor 2 --partitions 4</span><br></pre></td></tr></table></figure>
+<p> 上面的示例中创建了一个分区数为 4、副本因子为 2 的主题.</p>
+<p> 三个broker节点一共创建了8个文件夹，这个数字8实质上是分区数4与副本因子2的乘积。每个副本（或者更确切地说应该是日志，副本与日志一一对应）才真正对应了一个命名形式如＜topic＞-＜partition＞的文件夹。主题、分区、副本和 Log（日志）的关系如图所示</p>
+<p> <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gghbnbj175j30wi082adz.jpg"></p>
+<p>同一个分区中的多个副本必须分布在不同的broker中，这样才能提供有效的数据冗余。对于示例中的分区数为4、副本因子为2、broker数为3的情况下，按照2、3、3的分区副本个数分配给各个broker是最优的选择。再比如在分区数为3、副本因子为3，并且broker数同样为3的情况下，分配3、3、3的分区副本个数给各个broker是最优的选择，也就是每个broker中都拥有所有分区的一个副本。</p>
+<ul>
+<li>2 分区副本的分配</li>
+</ul>
+<p>这里的分区分配是指为集群制定创建主题时的分区副本分配方案，即在哪个broker中创建哪些分区的副本<br>在创建主题时，如果使用了replica-assignment参数，那么就按照指定的方案来进行分区副本的创建；如果没有使用replica-assignment参数，那么就需要按照内部的逻辑来计算分配方案了。使用kafka-topics.sh脚本创建主题时的内部分配逻辑按照机架信息划分成两种策略：未指定机架信息和指定机架信息。如果集群中所有的 broker节点都没有配置broker.rack参数，或者使用disable-rack-aware参数来创建主题，那么采用的就是未指定机架信息的分配策略，否则采用的就是指定机架信息的分配策略</p>
+<ul>
+<li>3 查看主题</li>
+</ul>
+<p>kafka-topics.sh脚本有5种指令类型：create、list、describe、alter和delete。其中list和describe指令可以用来方便地查看主题信息,通过list指令可以查看当前所有可用的主题，示例如下:<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --zookeeper localhost:2181 --list</span><br></pre></td></tr></table></figure><br> 查看指定topic信息<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --zookeeper localhost:2181 --describe --topic topic-create</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>4 修改主题</li>
+</ul>
+<p>当一个主题被创建之后，依然允许我们对其做一定的修改，比如修改分区个数、修改配置等，这个修改的功能就是由kafka-topics.sh脚本中的alter指令提供的。我们首先来看如何增加主题的分区数。以前面的主题topic-config为例，当前分区数为1，修改为3，示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># bin&#x2F;kafka-topics.sh --zookeeper localhost:2181&#x2F;kafka --alter --topic topic-config --partitions 3</span><br><span class="line">WARNING: If partitions are increased for a topic that has a key, the partition logic or ordering of the messages will be affected</span><br><span class="line">Adding partitions succeeded!</span><br><span class="line"> </span><br><span class="line"># bin&#x2F;kafka-topics.sh --zookeeper localhost:2181&#x2F;kafka --describe --topic topic-create</span><br><span class="line">Topic:topic-config    PartitionCount:3  ReplicationFactor:1   Configs:</span><br><span class="line">Topic: topic-config    Partition: 0 Leader: 2    Replicas: 2  Isr: 2</span><br><span class="line">Topic: topic-config    Partition: 1 Leader: 0    Replicas: 0  Isr: 0</span><br><span class="line">Topic: topic-config    Partition: 2 Leader: 1    Replicas: 1  Isr: 1</span><br></pre></td></tr></table></figure>
+<p>当主题中的消息包含key时（即key不为null），根据key计算分区的行为就会受到影响,对于基于key计算的主题而言，建议在一开始就设置好分区数量，避免以后对其进行调整。目前Kafka只支持增加分区数而不支持减少分区数.</p>
+<ul>
+<li>5 删除主题</li>
+</ul>
+<p>如果确定不再使用一个主题，那么最好的方式是将其删除，这样可以释放一些资源，比如磁盘、文件句柄等。kafka-topics.sh脚本中的delete指令就可以用来删除主题，比如删除一个主题topic-delete.</p>
+<h3 id="初识KafkaAdminClient"><a href="#初识KafkaAdminClient" class="headerlink" title="初识KafkaAdminClient"></a>初识KafkaAdminClient</h3><p>一般情况下，我们都习惯使用kafka-topics.sh脚本来管理主题，但有时候我们希望将主题管理类的功能集成到公司内部的系统中，打造集管理、监控、运维、告警为一体的生态平台.</p>
+<p>KafkaAdminClient继承了org.apache.kafka.clients.admin.AdminClient抽象类，并提供了多种方法。篇幅限制，下面只列出与本章内容相关的一些方法。</p>
+<ul>
+<li> 创建主题：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CreateTopicsResult createTopics（Collection＜NewTopic＞newTopics）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li> 删除主题：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DeleteTopicsResult deleteTopics（Collection＜String＞topics）。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li> 列出所有可用的主题：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ListTopicsResult listTopics（）。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li> 查看主题的信息：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DescribeTopicsResult describeTopics（Collection＜String＞topicNames）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li> 查询配置信息：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DescribeConfigsResult describeConfigs（Collection＜ConfigResource＞resources）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改配置信息：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AlterConfigsResult alterConfigs（Map＜ConfigResource，Config＞configs）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>增加分区：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CreatePartitionsResult createPartitions（Map＜String，NewPartitions＞newPartitions）</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>原创不易，如果觉得有点用的话，请毫不留情点个赞，转发一下，这将是我持续输出优质文章的最强动力。</p>
 </blockquote>
@@ -1328,95 +1417,6 @@
       </categories>
       <tags>
         <tag>Spring</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>深入了解kafka系列-主题</title>
-    <url>/2020/07/03/kafka-2020-07-03-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3kafka%E7%B3%BB%E5%88%97-%E4%B8%BB%E9%A2%98/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>主题和分区是Kafka 的两个核心概念，前面系列中讲述的生产者和消费者的设计理念所针对的都是主题和分区层面的操作。主题作为消息的归类，可以再细分为一个或多个分区，分区也可以看作对消息的二次归类。分区的划分不仅为Kafka提供了可伸缩性、水平扩展的功能，还通过多副本机制来为Kafka提供数据冗余以提高数据可靠性。</p>
-</blockquote>
-<p>从Kafka的底层实现来说，主题和分区都是逻辑上的概念，分区可以有一至多个副本，每个副本对应一个日志文件，每个日志文件对应一至多个日志分段（LogSegment），每个日志分段还可以细分为索引文件、日志存储文件和快照文件等。不过对于使用Kafka进行消息收发的普通用户而言，了解到分区这一层面足以应对大部分的使用场景,这里暂时只说到主题和分区,更底层的内容会在后续这个系列持续讲解~</p>
-<span id="more"></span>
-
-
-<h3 id="主题的管理"><a href="#主题的管理" class="headerlink" title="主题的管理"></a>主题的管理</h3><p>主题的管理包括创建主题、查看主题信息、修改主题和删除主题等操作。可以通过 Kafka提供的 kafka-topics.sh脚本来执行这些操作，这个脚本位于$KAFKA_HOME/bin/目录下，其核心代码仅有一行，具体如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">exec $(dirname $0)&#x2F;kafka-run-class.sh kafka.admin.TopicCommand &quot;$@&quot;</span><br></pre></td></tr></table></figure>
-
-<p>当然主题的管理并非只有使用 kafka-topics.sh 脚本这一种方式，我们还可以通过KafkaAdminClient 的方式实现（这种方式实质上是通过发送 CreateTopicsRequest、DeleteTopicsRequest 等请求来实现的,甚至我们还可以通过直接操纵日志文件和ZooKeeper节点来实现,这个后续我会单独抽出来放在这个系列继续讲解~</p>
-<ul>
-<li>1 创建主题</li>
-</ul>
-<p> 如果broker端配置参数auto.create.topics.enable设置为true（默认值就是true），那么当生产者向一个尚未创建的主题发送消息时，会自动创建一个分区数为num.partitions （默认值为1）、副本因子为default.replication.factor（默认值为1）的主题。不建议这样操作,topic 未知难以维护,建议下面这种方式:</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --create --zookeeper localhost:2181&#x2F;kafka100 --topic topic-create --replication-factor 2 --partitions 4</span><br></pre></td></tr></table></figure>
-<p> 上面的示例中创建了一个分区数为 4、副本因子为 2 的主题.</p>
-<p> 三个broker节点一共创建了8个文件夹，这个数字8实质上是分区数4与副本因子2的乘积。每个副本（或者更确切地说应该是日志，副本与日志一一对应）才真正对应了一个命名形式如＜topic＞-＜partition＞的文件夹。主题、分区、副本和 Log（日志）的关系如图所示</p>
-<p> <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gghbnbj175j30wi082adz.jpg"></p>
-<p>同一个分区中的多个副本必须分布在不同的broker中，这样才能提供有效的数据冗余。对于示例中的分区数为4、副本因子为2、broker数为3的情况下，按照2、3、3的分区副本个数分配给各个broker是最优的选择。再比如在分区数为3、副本因子为3，并且broker数同样为3的情况下，分配3、3、3的分区副本个数给各个broker是最优的选择，也就是每个broker中都拥有所有分区的一个副本。</p>
-<ul>
-<li>2 分区副本的分配</li>
-</ul>
-<p>这里的分区分配是指为集群制定创建主题时的分区副本分配方案，即在哪个broker中创建哪些分区的副本<br>在创建主题时，如果使用了replica-assignment参数，那么就按照指定的方案来进行分区副本的创建；如果没有使用replica-assignment参数，那么就需要按照内部的逻辑来计算分配方案了。使用kafka-topics.sh脚本创建主题时的内部分配逻辑按照机架信息划分成两种策略：未指定机架信息和指定机架信息。如果集群中所有的 broker节点都没有配置broker.rack参数，或者使用disable-rack-aware参数来创建主题，那么采用的就是未指定机架信息的分配策略，否则采用的就是指定机架信息的分配策略</p>
-<ul>
-<li>3 查看主题</li>
-</ul>
-<p>kafka-topics.sh脚本有5种指令类型：create、list、describe、alter和delete。其中list和describe指令可以用来方便地查看主题信息,通过list指令可以查看当前所有可用的主题，示例如下:<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --zookeeper localhost:2181 --list</span><br></pre></td></tr></table></figure><br> 查看指定topic信息<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --zookeeper localhost:2181 --describe --topic topic-create</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>4 修改主题</li>
-</ul>
-<p>当一个主题被创建之后，依然允许我们对其做一定的修改，比如修改分区个数、修改配置等，这个修改的功能就是由kafka-topics.sh脚本中的alter指令提供的。我们首先来看如何增加主题的分区数。以前面的主题topic-config为例，当前分区数为1，修改为3，示例如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># bin&#x2F;kafka-topics.sh --zookeeper localhost:2181&#x2F;kafka --alter --topic topic-config --partitions 3</span><br><span class="line">WARNING: If partitions are increased for a topic that has a key, the partition logic or ordering of the messages will be affected</span><br><span class="line">Adding partitions succeeded!</span><br><span class="line"> </span><br><span class="line"># bin&#x2F;kafka-topics.sh --zookeeper localhost:2181&#x2F;kafka --describe --topic topic-create</span><br><span class="line">Topic:topic-config    PartitionCount:3  ReplicationFactor:1   Configs:</span><br><span class="line">Topic: topic-config    Partition: 0 Leader: 2    Replicas: 2  Isr: 2</span><br><span class="line">Topic: topic-config    Partition: 1 Leader: 0    Replicas: 0  Isr: 0</span><br><span class="line">Topic: topic-config    Partition: 2 Leader: 1    Replicas: 1  Isr: 1</span><br></pre></td></tr></table></figure>
-<p>当主题中的消息包含key时（即key不为null），根据key计算分区的行为就会受到影响,对于基于key计算的主题而言，建议在一开始就设置好分区数量，避免以后对其进行调整。目前Kafka只支持增加分区数而不支持减少分区数.</p>
-<ul>
-<li>5 删除主题</li>
-</ul>
-<p>如果确定不再使用一个主题，那么最好的方式是将其删除，这样可以释放一些资源，比如磁盘、文件句柄等。kafka-topics.sh脚本中的delete指令就可以用来删除主题，比如删除一个主题topic-delete.</p>
-<h3 id="初识KafkaAdminClient"><a href="#初识KafkaAdminClient" class="headerlink" title="初识KafkaAdminClient"></a>初识KafkaAdminClient</h3><p>一般情况下，我们都习惯使用kafka-topics.sh脚本来管理主题，但有时候我们希望将主题管理类的功能集成到公司内部的系统中，打造集管理、监控、运维、告警为一体的生态平台.</p>
-<p>KafkaAdminClient继承了org.apache.kafka.clients.admin.AdminClient抽象类，并提供了多种方法。篇幅限制，下面只列出与本章内容相关的一些方法。</p>
-<ul>
-<li> 创建主题：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CreateTopicsResult createTopics（Collection＜NewTopic＞newTopics）</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li> 删除主题：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DeleteTopicsResult deleteTopics（Collection＜String＞topics）。</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li> 列出所有可用的主题：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ListTopicsResult listTopics（）。</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li> 查看主题的信息：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DescribeTopicsResult describeTopics（Collection＜String＞topicNames）</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li> 查询配置信息：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DescribeConfigsResult describeConfigs（Collection＜ConfigResource＞resources）</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>修改配置信息：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AlterConfigsResult alterConfigs（Map＜ConfigResource，Config＞configs）</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>增加分区：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CreatePartitionsResult createPartitions（Map＜String，NewPartitions＞newPartitions）</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>原创不易，如果觉得有点用的话，请毫不留情点个赞，转发一下，这将是我持续输出优质文章的最强动力。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>kafka</category>
-      </categories>
-      <tags>
-        <tag>kafka</tag>
       </tags>
   </entry>
   <entry>
@@ -1574,6 +1574,68 @@
       </tags>
   </entry>
   <entry>
+    <title>SQL和NoSQL数据库的便捷速查表</title>
+    <url>/2023/10/14/mysql-sql/</url>
+    <content><![CDATA[<p><img src="https://res.craft.do/user/full/b313a1ab-3121-84d1-2506-d702b5c0ba9c/27149C4F-836E-4A35-8682-0B86BD695B46_2/Y6zIOTYcFX6SHA2sjkHGZkEzk3a90teEIhQXLJyduacz/ae256384-ff3f-4fe8-9456-f6be80132cc7_1780x1536.jpeg" alt="ae256384-ff3f-4fe8-9456-f6be80132cc7_1780x1536.jpeg"></p>
+<p>在项目成功的过程中选择合适的数据库非常重要。以下是关键要点的总结：</p>
+<ul>
+<li>SQL数据库提供结构化数据存储、SQL支持和关系能力。</li>
+<li>NoSQL数据库提供灵活性、可扩展性和分布式架构。</li>
+<li>专门的数据库，如列存储、图形数据库、空间数据库和时间序列数据库，满足特定需求。</li>
+<li>评估关键功能、优势和提供商，以做出明智的决策。</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="SQL数据库"><a href="#SQL数据库" class="headerlink" title="SQL数据库"></a>SQL数据库</h2><p>SQL（Structured Query Language）数据库使用表格结构来存储数据，并使用SQL语言进行查询和操作。以下是一些SQL数据库的主要特点：</p>
+<ul>
+<li>结构化数据存储：数据以表格的形式组织，每个表格有预定义的列和数据类型。</li>
+<li>关系能力：通过主键和外键，表格之间可以建立关系。</li>
+<li>SQL支持：使用SQL语言进行查询、插入、更新和删除数据。</li>
+<li>数据一致性和完整性：通过事务处理和约束条件来确保数据的一致性和完整性。</li>
+<li>可扩展性：支持垂直和水平扩展以处理大规模数据。</li>
+</ul>
+<p>常见的SQL数据库包括MySQL、PostgreSQL、Oracle和Microsoft SQL Server等。</p>
+<h2 id="NoSQL数据库"><a href="#NoSQL数据库" class="headerlink" title="NoSQL数据库"></a>NoSQL数据库</h2><p>NoSQL（Not Only SQL）数据库是一种非关系型数据库，不使用表格结构，而是使用键值对、文档、列族或图形等方式来存储数据。以下是一些NoSQL数据库的主要特点：</p>
+<ul>
+<li>灵活性：数据模型可以根据需求自由更改，无需事先定义表格结构。</li>
+<li>可扩展性：采用分布式架构，可以轻松扩展以处理大规模数据。</li>
+<li>高性能：通过优化数据访问模式和数据存储方式，实现高速读写操作。</li>
+<li>无固定模式：不需要遵循严格的模式，可以存储各种类型的数据，包括结构化、半结构化和非结构化数据。</li>
+</ul>
+<p>常见的NoSQL数据库包括MongoDB、Cassandra、Redis和Amazon DynamoDB等。</p>
+<h2 id="特殊数据库"><a href="#特殊数据库" class="headerlink" title="特殊数据库"></a>特殊数据库</h2><p>除了传统的SQL和NoSQL数据库之外，还有一些专门用于特定需求的数据库：</p>
+<ul>
+<li>列存储数据库：适用于大规模数据分析和查询，数据以列的方式存储。</li>
+<li>图形数据库：用于存储和处理具有复杂关系和</li>
+</ul>
+<p>连接的数据，如社交网络关系图。</p>
+<ul>
+<li>空间数据库：用于存储和查询地理空间数据，如地图数据和位置信息。</li>
+<li>时间序列数据库：专门用于存储和分析时间序列数据，如传感器数据和日志数据。</li>
+</ul>
+<p>根据项目的具体需求，可以选择适合的特殊数据库来优化数据存储和查询的性能。</p>
+<h2 id="如何选择数据库"><a href="#如何选择数据库" class="headerlink" title="如何选择数据库"></a>如何选择数据库</h2><p>在选择数据库时，需要考虑以下因素：</p>
+<ul>
+<li>功能需求：根据项目的功能需求，选择具备所需功能的数据库。</li>
+<li>性能要求：评估数据库的性能指标，包括读写速度、吞吐量和响应时间。</li>
+<li>可扩展性：考虑数据库的扩展性，以便在需要时能够处理增长的数据量和用户访问量。</li>
+<li>数据模型：根据数据的结构和关系，选择适合的数据模型（表格、文档、图形等）。</li>
+<li>成本效益：综合考虑数据库的许可费用、维护成本和云服务费用等方面的成本。</li>
+<li>社区支持和生态系统：选择具有活跃社区和完善生态系统的数据库，以便获取支持和扩展功能。</li>
+</ul>
+<p>通过综合评估以上因素，可以做出明智的决策，选择适合项目的数据库。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>选择合适的数据库对于项目的成功非常重要。SQL数据库提供结构化数据存储和关系能力，适用于需要严格数据模型和事务处理的场景。NoSQL数据库提供灵活性和可扩展性，适用于需要处理大规模数据和快速读写操作的场景。此外，还有一些特殊数据库可根据特定需求选择。</p>
+<p>在选择数据库时，需要考虑功能需求、性能要求、可扩展性、数据模型、成本效益以及社区支持和生态系统等因素。通过综合评估这些因素，可以做出明智的决策，为项目选择合适的数据库。</p>
+<p>希望本篇技术文章能够帮助您更好地理解SQL和NoSQL数据库，并在选择合适的数据库时提供一些指导</p>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>查询一行数据怎么很慢？</title>
     <url>/2021/11/02/mysql-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9F%A5%E8%AF%A2%E4%B8%80%E8%A1%8C%E6%95%B0%E6%8D%AE%E4%B9%9F%E5%BE%88%E6%85%A2/</url>
     <content><![CDATA[<h5 id="为什么查询一行数据也很慢"><a href="#为什么查询一行数据也很慢" class="headerlink" title="为什么查询一行数据也很慢?"></a>为什么查询一行数据也很慢?</h5><p>1.MySQL数据库本身被堵住了，比如：系统或网络资源不够</p>
@@ -1630,68 +1692,6 @@
 <p>读，因此会直接读到 1000001 这个结果，所以速度很快；而 select * from t where id=1 这个语句，是一致性</p>
 <p>读，因此需要从 1000001 开始，依次执行 undo log，执行了 100 万次以后 找到seesionA 一致性视图那个版本 </p>
 <p>才将 1 这个结果返回.</p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQL和NoSQL数据库的便捷速查表</title>
-    <url>/2023/10/14/mysql-sql/</url>
-    <content><![CDATA[<p><img src="https://res.craft.do/user/full/b313a1ab-3121-84d1-2506-d702b5c0ba9c/27149C4F-836E-4A35-8682-0B86BD695B46_2/Y6zIOTYcFX6SHA2sjkHGZkEzk3a90teEIhQXLJyduacz/ae256384-ff3f-4fe8-9456-f6be80132cc7_1780x1536.jpeg" alt="ae256384-ff3f-4fe8-9456-f6be80132cc7_1780x1536.jpeg"></p>
-<p>在项目成功的过程中选择合适的数据库非常重要。以下是关键要点的总结：</p>
-<ul>
-<li>SQL数据库提供结构化数据存储、SQL支持和关系能力。</li>
-<li>NoSQL数据库提供灵活性、可扩展性和分布式架构。</li>
-<li>专门的数据库，如列存储、图形数据库、空间数据库和时间序列数据库，满足特定需求。</li>
-<li>评估关键功能、优势和提供商，以做出明智的决策。</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="SQL数据库"><a href="#SQL数据库" class="headerlink" title="SQL数据库"></a>SQL数据库</h2><p>SQL（Structured Query Language）数据库使用表格结构来存储数据，并使用SQL语言进行查询和操作。以下是一些SQL数据库的主要特点：</p>
-<ul>
-<li>结构化数据存储：数据以表格的形式组织，每个表格有预定义的列和数据类型。</li>
-<li>关系能力：通过主键和外键，表格之间可以建立关系。</li>
-<li>SQL支持：使用SQL语言进行查询、插入、更新和删除数据。</li>
-<li>数据一致性和完整性：通过事务处理和约束条件来确保数据的一致性和完整性。</li>
-<li>可扩展性：支持垂直和水平扩展以处理大规模数据。</li>
-</ul>
-<p>常见的SQL数据库包括MySQL、PostgreSQL、Oracle和Microsoft SQL Server等。</p>
-<h2 id="NoSQL数据库"><a href="#NoSQL数据库" class="headerlink" title="NoSQL数据库"></a>NoSQL数据库</h2><p>NoSQL（Not Only SQL）数据库是一种非关系型数据库，不使用表格结构，而是使用键值对、文档、列族或图形等方式来存储数据。以下是一些NoSQL数据库的主要特点：</p>
-<ul>
-<li>灵活性：数据模型可以根据需求自由更改，无需事先定义表格结构。</li>
-<li>可扩展性：采用分布式架构，可以轻松扩展以处理大规模数据。</li>
-<li>高性能：通过优化数据访问模式和数据存储方式，实现高速读写操作。</li>
-<li>无固定模式：不需要遵循严格的模式，可以存储各种类型的数据，包括结构化、半结构化和非结构化数据。</li>
-</ul>
-<p>常见的NoSQL数据库包括MongoDB、Cassandra、Redis和Amazon DynamoDB等。</p>
-<h2 id="特殊数据库"><a href="#特殊数据库" class="headerlink" title="特殊数据库"></a>特殊数据库</h2><p>除了传统的SQL和NoSQL数据库之外，还有一些专门用于特定需求的数据库：</p>
-<ul>
-<li>列存储数据库：适用于大规模数据分析和查询，数据以列的方式存储。</li>
-<li>图形数据库：用于存储和处理具有复杂关系和</li>
-</ul>
-<p>连接的数据，如社交网络关系图。</p>
-<ul>
-<li>空间数据库：用于存储和查询地理空间数据，如地图数据和位置信息。</li>
-<li>时间序列数据库：专门用于存储和分析时间序列数据，如传感器数据和日志数据。</li>
-</ul>
-<p>根据项目的具体需求，可以选择适合的特殊数据库来优化数据存储和查询的性能。</p>
-<h2 id="如何选择数据库"><a href="#如何选择数据库" class="headerlink" title="如何选择数据库"></a>如何选择数据库</h2><p>在选择数据库时，需要考虑以下因素：</p>
-<ul>
-<li>功能需求：根据项目的功能需求，选择具备所需功能的数据库。</li>
-<li>性能要求：评估数据库的性能指标，包括读写速度、吞吐量和响应时间。</li>
-<li>可扩展性：考虑数据库的扩展性，以便在需要时能够处理增长的数据量和用户访问量。</li>
-<li>数据模型：根据数据的结构和关系，选择适合的数据模型（表格、文档、图形等）。</li>
-<li>成本效益：综合考虑数据库的许可费用、维护成本和云服务费用等方面的成本。</li>
-<li>社区支持和生态系统：选择具有活跃社区和完善生态系统的数据库，以便获取支持和扩展功能。</li>
-</ul>
-<p>通过综合评估以上因素，可以做出明智的决策，选择适合项目的数据库。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>选择合适的数据库对于项目的成功非常重要。SQL数据库提供结构化数据存储和关系能力，适用于需要严格数据模型和事务处理的场景。NoSQL数据库提供灵活性和可扩展性，适用于需要处理大规模数据和快速读写操作的场景。此外，还有一些特殊数据库可根据特定需求选择。</p>
-<p>在选择数据库时，需要考虑功能需求、性能要求、可扩展性、数据模型、成本效益以及社区支持和生态系统等因素。通过综合评估这些因素，可以做出明智的决策，为项目选择合适的数据库。</p>
-<p>希望本篇技术文章能够帮助您更好地理解SQL和NoSQL数据库，并在选择合适的数据库时提供一些指导</p>
 ]]></content>
       <categories>
         <category>mysql</category>
@@ -2081,157 +2081,6 @@
       </categories>
       <tags>
         <tag>OS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何做好监控微服务调⽤?</title>
-    <url>/2021/06/16/service-06-16-%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E7%9B%91%E6%8E%A7%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%B0%83%E2%BD%A4/</url>
-    <content><![CDATA[<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_17f35bc65eed401b374b1b5fcf552d44_83179.png" style="zoom:90%;" />
-
-<h6 id="监控对象"><a href="#监控对象" class="headerlink" title="监控对象"></a>监控对象</h6><ul>
-<li><p>⽤户端监控。通常是指业务直接对⽤户提供的功能的监控</p>
-</li>
-<li><p>接口监控。通常是指业务提供的功能所依赖的接口的监控</p>
-</li>
-</ul>
-<span id="more"></span>
-
-<ul>
-<li><p>资源监控。通常是指某个接⼝依赖的资源的监控。比如该接口使用的redis 缓存，对redis 的监控就是资源的</p>
-<p>监控</p>
-</li>
-<li><p>基础监控。通常是指对服务器本身的健康状况的监控。主要包括CPU利⽤率、内存使⽤量、I/O读写量、⽹卡</p>
-<p>带宽等</p>
-</li>
-</ul>
-<h6 id="监控指标"><a href="#监控指标" class="headerlink" title="监控指标"></a>监控指标</h6><ul>
-<li><p>请求量。请求量监控分为两个维度，⼀个是实时请求量QPS，⼀个是统计请求量PV。QPS（Queries Per</p>
-<p>Second） 即每秒查询次数来衡量，它反映了服务调⽤的实时变化情况。统计请求量⼀般⽤PV（Page View）</p>
-<p>即⼀段时间内⽤户的访 问量来衡量，⽐如⼀天的PV代表了服务⼀天的请求量，通常⽤来统计报表。</p>
-</li>
-<li><p>响应时间。⼤多数情况下，可以⽤⼀段时间内所有调⽤的平均耗时来反映请求的响应时间。可以把响应时间划</p>
-<p>分为多个区间，⽐如0～10ms、10ms～50ms、50ms～ 100ms、100ms～500ms、500ms以上这五个区</p>
-<p>间。除此之外，还可以从P90、P95、P99、P999⻆度来监控请求的响应时间，⽐如P99 = 500ms，意思是</p>
-<p>99%的请求响 应时间在500ms以内，它代表了请求的服务质量，即SLA。</p>
-</li>
-<li><p>错误率。错误率的监控通常⽤⼀段时间内调⽤失败的次数占调⽤总次数的⽐率来衡量，⽐如对于接⼝的错误率</p>
-<p>⼀般⽤接⼝ 返回错误码为503的⽐率来表示。</p>
-</li>
-</ul>
-<h6 id="监控维度"><a href="#监控维度" class="headerlink" title="监控维度"></a>监控维度</h6><ul>
-<li><p>全局维度。从整体⻆度监控对象的的请求量、平均耗时以及错误率，全局维度的监控⼀般是为了让你对监控对象的调⽤情 况有个整体了解。</p>
-</li>
-<li><p> 分机房维度。</p>
-</li>
-<li><p> 时间维度。同⼀个监控对象，在每天的同⼀时刻各种指标通常也不会⼀样</p>
-</li>
-<li><p>核⼼维度。业务上⼀般会依据重要性程度对监控对象进⾏分级，最简单的是分成核⼼业务和⾮核⼼业务。</p>
-<p>核⼼业务和⾮核⼼业务在部署上必须隔离，分开监控，这样才能对核⼼业务做重点保障。</p>
-</li>
-</ul>
-<h6 id="监控系统"><a href="#监控系统" class="headerlink" title="监控系统"></a>监控系统</h6><blockquote>
-<p>主要包括四个环节：数据采集、数据传输、数据处理和数据展示</p>
-</blockquote>
-<ul>
-<li><p>数据采集</p>
-<p>通常有两种数据收集⽅式：</p>
-<ul>
-<li><p><strong>服务主动上报</strong>，这种处理⽅式通过在业务代码或者服务框架⾥加⼊数据收集代码逻辑，在每⼀次服务</p>
-<p>调⽤完成后，主动上报服务的调⽤信息。</p>
-</li>
-<li><p><strong>代理收集</strong>，这种处理⽅式通过服务调⽤后把调⽤的详细信息记录到本地⽇志⽂件中，然后再通过代理去解</p>
-<p>析本地⽇志⽂ 件，然后再上报服务的调⽤信息。</p>
-</li>
-</ul>
-</li>
-<li><p>数据传输</p>
-<ul>
-<li><p><strong>UDP传输</strong>，这种处理⽅式是数据处理单元提供服务器的请求地址，数据采集后通过UDP协议与服务器建⽴</p>
-<p>连接，然后把数 据发送过去。</p>
-</li>
-<li><p><strong>Kafka传输</strong>，这种处理⽅式是数据采集后发送到指定的Topic，然后数据处理单元再订阅对应的Topic，就</p>
-<p>可以从Kafka消息队列中读取到对应的数据。</p>
-<img src="https://cdn.smalltechnologyjun.com//image-20210615200330740.png" alt="image-20210615200330740" style="zoom: 80%;" /></li>
-</ul>
-</li>
-<li><p>数据处理</p>
-<p>数据聚合两个维度：接口维度和机器维度</p>
-<p>聚合后的数据持久化： 索引数据库(es) 或者 时序数据库influxDB</p>
-</li>
-<li><p>数据展示</p>
-<p>数据展示有多种⽅式，⽐如曲线图、饼状图、格⼦图展示</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>微服务</category>
-      </categories>
-      <tags>
-        <tag>微服务治理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Optional 的使用会导致性能下降吗？</title>
-    <url>/2021/07/26/service-%E4%BD%A0%E9%9C%80%E8%A6%81%E6%8B%85%E5%BF%83Optional%E7%9B%B8%E5%85%B3%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%90%97/</url>
-    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_bb2845fd7f5a4c03fb9adb66715a5e02_14370.png" alt="图怪兽_bb2845fd7f5a4c03fb9adb66715a5e02_14370"></p>
-<p>几天前，我在论坛上发了一篇关于<code>Optional</code> 的文章。其中一条评论是一个非常好的问题:</p>
-<blockquote>
-<p>Optional 的使用会导致性能下降吗？</p>
-</blockquote>
-<p>答案是: 是的，它会的。但是你应该担心吗？</p>
-<span id="more"></span>
-
-<h2 id="使用Optional的好处"><a href="#使用Optional的好处" class="headerlink" title="使用Optional的好处"></a>使用Optional的好处</h2><p>Optional 类使我们这些开发人员的生活更轻松</p>
-<ul>
-<li>增加代码的可读性</li>
-<li>减少代码中的条件数</li>
-<li>更不容易出错</li>
-</ul>
-<p>让我们来看看 Optional 类的一些主要方法是如何实现的。</p>
-<!--more-->
-
-<h2 id="Optional-如何实现的？"><a href="#Optional-如何实现的？" class="headerlink" title="Optional 如何实现的？"></a>Optional 如何实现的？</h2><p>这里有一些 <code>Optional</code> 类的主要方法:</p>
-<p>基本上，它将值包装到一个新的 <code>Optional</code>对象中，并检查包装的值是否为<code>null</code>。</p>
-<p>即使没有使用 Optional，也必须检查值是否为 null。它可能比您做的检查多一些，但我认为您不必担心这一点。</p>
-<p>但是您必须知道，将值包装到新对象中将增加 GC 要收集的对象数量。这意味着堆使用量将增加得更快，CPU 使用量将更高(更多 GC 事件)。</p>
-<p>好吧，但是有多高呢？同样，这取决于您正在创建的可选对象的数量、堆的大小以及您的应用程序在不使用可选对象的情况下使用的 CPU 数量。</p>
-<p>例如，假设您对应用程序进行了基准测试，并得出结论，使用 Optional 将提高 CPU 使用率1个百分点。如果您的应用程序平均使用50% 的 CPU，那么使用51% 的可选 CPU 并不是一个很大的开销，对吧？</p>
-<p>但是，如果您的应用程序平均消耗5% 的 CPU，使用6% 意味着20% 的开销，这是相当重要的。</p>
-<h2 id="过早优化是万恶之源"><a href="#过早优化是万恶之源" class="headerlink" title="过早优化是万恶之源"></a>过早优化是万恶之源</h2><p>Joshua Bloch 在<a target="_blank" rel="noopener" href="https://www.amazon.com/gp/product/0134685997/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0134685997&linkCode=as2&tag=hbelmiro0f-20&linkId=213790c63c0d57baac2e45b3183a35b2">Effective Java</a> 一书中有整整一章(第67项: Optimize judiciously)谈到了优化。</p>
-<p>他在这一章的开头写道:</p>
-<blockquote>
-<p>关于最优化，有三个关注点是每个人都应该知道的:</p>
-<blockquote>
-<p>与其他任何单一原因(包括盲目的愚蠢)相比，更多的计算原罪是以效率的名义犯下的(不一定能实现)。</p>
-</blockquote>
-<p>William A. Wulf</p>
-<blockquote>
-<p>我们应该忘记小的副作用，比如说97% 的时间: 过早的优化是一切罪恶的根源。</p>
-</blockquote>
-<p>Donald E. Knuth</p>
-<blockquote>
-<p>在优化问题上，我们遵循两个规则:</p>
-<ul>
-<li>规则1. 不要这样做</li>
-<li>规则 2（仅适用于专家）。 暂时不要这样做——也就是说，除非你有一个非常清晰且未经优化的解决方案。</li>
-</ul>
-</blockquote>
-<p>M. A. Jackson</p>
-</blockquote>
-<p>因此，除非您需要一个快速的应用程序并且资源有限，否则不要过早担心性能问题。专注于编写好的代码，这样当你需要它的时候，它就很容易优化。此外，使用分析器查找对性能影响更大的位置。</p>
-<h2 id="谁会使用你的-API？"><a href="#谁会使用你的-API？" class="headerlink" title="谁会使用你的 API？"></a>谁会使用你的 API？</h2><p>这也是一个你需要问自己的好问题。如果您正在编写一个内部 API，您可以更自由地决定是否使用它。</p>
-<p>但是如果你正在编写一个公共 API，比如一个框架或者库，而你不知道什么样的应用程序在调用它，你可能需要更加灵活，给客户端选择是否使用可选的选项。</p>
-<p>您可以提供两个方法，一个返回  <code>Optional</code> ，另一个返回 <code>null</code>。但是，当创建一个可以返回 <code>null</code> 的方法时，尽量让它显式。使用注释  <code>javax.annotation.Nullable</code>。方法的可空性。 (<a target="_blank" rel="noopener" href="https://jcp.org/en/jsr/detail?id=305">JSR 305</a>)</p>
-<h2 id="最终，这取决于你"><a href="#最终，这取决于你" class="headerlink" title="最终，这取决于你"></a>最终，这取决于你</h2><p>你可以决定是否使用 Optional。没有一个简单的答案适用于所有情况。软件工程中的大多数事情都是这样的。这一切都是权衡取舍。</p>
-<p>所以，要意识到它是如何工作的，并评估替代方案。任何事情都有代价，你是那个可以决定是否承担的人。</p>
-<p>您认为为了提高性能而付出不可读且更容易出错的代码的代价是值得的吗？你知道这种进步有多重要吗？</p>
-<p>在大多数情况下，使用 <code>Optional</code>  并保持开心！<code>Optional</code>  是不错的!</p>
-]]></content>
-      <categories>
-        <category>微服务</category>
-      </categories>
-      <tags>
-        <tag>微服务治理</tag>
       </tags>
   </entry>
   <entry>
@@ -2745,131 +2594,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Google Drive 和 Dropbox 系统设计概述</title>
-    <url>/2023/08/25/systemDesign-gd/</url>
-    <content><![CDATA[<p>在现代信息世界中，我们有许多照片、文件、视频等需要存储。我相信几乎所有人都尝试过使用 Google Drive 或 Dropbox。</p>
-<h3 id="功能需求"><a href="#功能需求" class="headerlink" title="功能需求"></a>功能需求</h3><ol>
-<li>用户可以从任何设备上传和下载文件。</li>
-<li>用户可以通过替换相同的文件名来更新文件。</li>
-<li>用户可以通过电子邮件链接将文件和文件夹分享给其他人。</li>
-<li>用户可以随时从任何设备删除文件和文件夹。</li>
-<li>删除的文件和文件夹将在回收站中存储 15 天。</li>
-<li>系统应该支持离线编辑。用户可以在离线状态下添加/修改文件和文件夹名称，一旦网络恢复，更改将与远程服务器同步。</li>
-<li>用户可以进行文件版本管理，以恢复文件的先前版本。（系统可以支持多次更改的同一文件的多个版本，带宽和所需空间将显著增加）</li>
-<li>系统可以支持跨设备的文件和文件夹同步。</li>
-<li>系统允许每个用户免费上传高达 10 GB 的文件。</li>
-<li>系统将为不同存储大小提供不同的市场计划。</li>
-</ol>
-<span id="more"></span>
-
-<h3 id="非功能需求"><a href="#非功能需求" class="headerlink" title="非功能需求"></a>非功能需求</h3><ol>
-<li>系统必须高度可靠。任何上传的文件都不得丢失。用户可以恢复其重要文件。</li>
-<li>系统可以支持每周 7 天 24 小时。</li>
-<li>用户可以随时升级其计划，并立即使用系统。</li>
-<li>用户必须能够轻松地将其系统与其他应用程序集成。例如，系统支持通过其他应用程序共享文档。</li>
-<li>系统可以提供延迟或并发利用（这意味着以高效的方法从云中反复上传和下载完整文件）。</li>
-</ol>
-<h3 id="存储估算"><a href="#存储估算" class="headerlink" title="存储估算"></a>存储估算</h3><ol>
-<li>用户数量 = 5 亿</li>
-<li>活跃用户数量 = 1 亿</li>
-<li>用户平均存储的文件数量 = 300</li>
-<li>每个文件的平均大小 = 200 KB</li>
-<li>总文件数量 = 5 亿 * 300 = 1500 亿</li>
-<li>需要的总存储空间 = 1500 亿 * 200 KB = 30 PB</li>
-</ol>
-<h3 id="系统组件"><a href="#系统组件" class="headerlink" title="系统组件"></a>系统组件</h3><ol>
-<li><strong>客户端</strong>（安装在您的桌面或移动应用程序中，用于访问与存储相关的应用程序）<ul>
-<li>监视用户机器上的工作区文件夹，并通过与远程服务器同步文件来维护一致性。因此，它必须由 4 个基本组件组成，即<strong>监视器、分块器、索引器和内部数据库</strong>。</li>
-<li><strong>监视器</strong>将监视本地工作区文件夹，并通知索引器用户执行的任何操作（添加、删除、替换和更新文件或文件夹），并追踪来自其他设备的任何更改，这些更改由同步服务广播。</li>
-<li><strong>分块器</strong>将文件分成更小的块，并从这些块中重建文件，以便完整的文件可以在没有任何丢失块的情况下传输。分块算法将检测用户修改的文件部分，并仅将已修改的部分传输到云存储，从而节省带宽和同步时间。</li>
-<li><strong>索引器</strong>将处理来自监视器的事件，并更新内部元数据数据库。一旦成功从云存储下载或上传了块，索引器将与远程同步服务通信，广播更改给其他客户端，并更新远程元数据数据库。</li>
-<li><strong>内部元数据数据库</strong>将跟踪所有文件、块、任何已更新的版本以及其在文件系统中的位置。</li>
-<li>客户端应用程序将通过请求上传、下载和编辑 API 与后端云存储服务器进行通信。客户端还与远程同步服务进行交互，以处理任何文件元数据更新，例如文件名、大小、修改日期等。</li>
-</ul>
-</li>
-<li><strong>元数据数据库</strong><ul>
-<li>保持有关文件、块、用户、设备、工作区和存储位置的版本和元数据信息。</li>
-<li>元数据数据库可以是关系数据库，如 MySQL，也可以是 NoSQL 数据库服务，如 DynamoDB。</li>
-<li>同步服务在多个用户同时处理同一文件时，提供文件的一致视图。</li>
-<li>由于 NoSQL 数据存储不支持 ACID 属性，编程代码会将 ACID 属性与 NoSQL 数据库结合在一起，用于同步服务的逻辑。</li>
-</ul>
-</li>
-<li><strong>同步服务</strong><ul>
-<li>更新客户端创建的文件或文件夹。</li>
-<li>将客户端的本地数据库与存储在远程元数据数据库中的信息同步。</li>
-<li>使用 HTTP 长轮询从云存储获取响应，或在脱机一段时间后将文件和更新发送到云存储，一旦重新脱机，将向所有设备或用户发送通知。</li>
-<li>同步服务还尝试在客户端和云存储之间传输更少的数据，以实现更快的响应时间，因此使用差异化算法来减少需要同步的数据量。不再将整个文件从客户端传输到服务器，而是传输两个版本文件之间的差异。仅传输已更改的部分（块）。这减少了终端用户的带宽消耗和</li>
-</ul>
-</li>
-</ol>
-<p>云数据存储。服务器和客户端将计算哈希值，以查看是否更新修改的块。该过程称为数据去重。</p>
-<ol start="4">
-<li><strong>消息队列服务</strong><ul>
-<li>这是一个处理读写请求数量的消息中间件。</li>
-<li>一个可扩展的消息队列服务，支持客户端和同步服务之间的异步通信。</li>
-<li>可用性和可靠性必须被设计得最适合消息队列服务。</li>
-<li><strong>请求队列</strong>：此队列将在所有客户端之间共享。当客户端执行任何更新和请求时，此请求将发送到消息队列服务，然后由同步服务进一步处理，最后更新元数据数据库。</li>
-<li><strong>响应队列</strong>：每个客户端都有一个相关的响应队列，因为每个客户端都有一个单独的响应队列。</li>
-<li>一旦文件更新，同步服务将通知所有响应队列有关更改的信息，然后响应队列将通知每个客户端进行的更改。</li>
-</ul>
-</li>
-<li><strong>云/块存储</strong><ul>
-<li>存储文件的块</li>
-<li>使用 Amazon S3 服务</li>
-<li>客户端将使用 API 服务与云存储进行交互</li>
-</ul>
-</li>
-</ol>
-<p><img src="https://miro.medium.com/v2/resize:fit:1380/0*zJz9WxZ9MEEO3zmE.png" alt="0*zJz9WxZ9MEEO3zmE.png"></p>
-<ul>
-<li><p><strong>文件处理工作流程</strong>：客户端 A 将块上传到云存储，然后更新元数据并提交更改，然后获得确认。服务器将通知客户端 B 和 C 有关更改的信息。客户端 B 和 C 接收元数据更改并下载更新的块。</p>
-</li>
-<li><p><strong>数据去重</strong>：消除数据的重复副本。这还可以减少相同数据传输（发送的字节数）以提高传输速率。对于每个传入的块，都会打上一个哈希标签，然后计算并将该哈希与现有块的所有其他哈希进行比较。</p>
-<p>a) <strong>后处理去重</strong>：新块存储在存储设备上，并且将分析块以了解它们是否是重复的。优点是，客户端不需要等待哈希计算或查找完成，然后再存储数据，这会提高存储性能。缺点是短时间内会存储不必要的重复数据，并且会传输和消耗带宽。</p>
-<p>b) <strong>内联去重</strong>：去重哈希计算可以实时执行，以便系统可以识别重复块，然后仅存储不存在的块。优点是优化网络和存储使用。缺点是消耗用户的时间并降低存储性能。</p>
-</li>
-</ul>
-<ol start="6">
-<li><strong>缓存</strong><ul>
-<li>在 Google Drive / Dropbox 系统设计中有两种类型的缓存</li>
-<li>用于块存储的缓存</li>
-<li>使用像 Memcache 这样的现成解决方案的缓存，可以存储带有其相应 ID/哈希的整个块和块服务器</li>
-<li>可以采用最近最少使用（LRU）缓存策略。</li>
-</ul>
-</li>
-<li><strong>负载均衡器（LB）</strong><ul>
-<li>在客户端和块服务器之间</li>
-<li>在客户端和元数据服务器之间</li>
-<li>在后端服务器之间平均分配传入的请求</li>
-</ul>
-</li>
-<li><strong>安全性/权限和文件共享</strong><ul>
-<li>上传/下载的文件将与远程服务器同步</li>
-<li>不允许对单个文件进行多个操作（并发问题）</li>
-<li>如果在某个过程中出现了某些连接问题，客户端必须重新上传或下载整个文件，或者恢复下载或上传块。</li>
-</ul>
-</li>
-</ol>
-<p><strong>系统 API</strong></p>
-<ol>
-<li>Upload(string uploadToken, fileInfo file, userInfo user)</li>
-<li>Edit(string authToken, fileInfo file, userInfo user)</li>
-<li>Delete(string authToken, fileInfo file, userInfo user)</li>
-<li>Download(string authToken, fileInfo file, userInfo user)</li>
-<li>GenerateToken (string userName, string password)</li>
-</ol>
-<p><strong>高级系统架构</strong></p>
-<p><strong>详细系统架构</strong></p>
-<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*ujFLQbJIrcSd7LKu" alt="Image.png"></p>
-]]></content>
-      <categories>
-        <category>system design</category>
-      </categories>
-      <tags>
-        <tag>system design</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Redis — 不仅仅是缓存</title>
     <url>/2023/10/14/redis-redis/</url>
     <content><![CDATA[<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*qIy3PMmEWNcD9Czh_21C8g.png" alt="1*qIy3PMmEWNcD9Czh_21C8g.png"></p>
@@ -3031,6 +2755,375 @@
       </tags>
   </entry>
   <entry>
+    <title>如何做好监控微服务调⽤?</title>
+    <url>/2021/06/16/service-06-16-%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E7%9B%91%E6%8E%A7%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%B0%83%E2%BD%A4/</url>
+    <content><![CDATA[<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_17f35bc65eed401b374b1b5fcf552d44_83179.png" style="zoom:90%;" />
+
+<h6 id="监控对象"><a href="#监控对象" class="headerlink" title="监控对象"></a>监控对象</h6><ul>
+<li><p>⽤户端监控。通常是指业务直接对⽤户提供的功能的监控</p>
+</li>
+<li><p>接口监控。通常是指业务提供的功能所依赖的接口的监控</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<ul>
+<li><p>资源监控。通常是指某个接⼝依赖的资源的监控。比如该接口使用的redis 缓存，对redis 的监控就是资源的</p>
+<p>监控</p>
+</li>
+<li><p>基础监控。通常是指对服务器本身的健康状况的监控。主要包括CPU利⽤率、内存使⽤量、I/O读写量、⽹卡</p>
+<p>带宽等</p>
+</li>
+</ul>
+<h6 id="监控指标"><a href="#监控指标" class="headerlink" title="监控指标"></a>监控指标</h6><ul>
+<li><p>请求量。请求量监控分为两个维度，⼀个是实时请求量QPS，⼀个是统计请求量PV。QPS（Queries Per</p>
+<p>Second） 即每秒查询次数来衡量，它反映了服务调⽤的实时变化情况。统计请求量⼀般⽤PV（Page View）</p>
+<p>即⼀段时间内⽤户的访 问量来衡量，⽐如⼀天的PV代表了服务⼀天的请求量，通常⽤来统计报表。</p>
+</li>
+<li><p>响应时间。⼤多数情况下，可以⽤⼀段时间内所有调⽤的平均耗时来反映请求的响应时间。可以把响应时间划</p>
+<p>分为多个区间，⽐如0～10ms、10ms～50ms、50ms～ 100ms、100ms～500ms、500ms以上这五个区</p>
+<p>间。除此之外，还可以从P90、P95、P99、P999⻆度来监控请求的响应时间，⽐如P99 = 500ms，意思是</p>
+<p>99%的请求响 应时间在500ms以内，它代表了请求的服务质量，即SLA。</p>
+</li>
+<li><p>错误率。错误率的监控通常⽤⼀段时间内调⽤失败的次数占调⽤总次数的⽐率来衡量，⽐如对于接⼝的错误率</p>
+<p>⼀般⽤接⼝ 返回错误码为503的⽐率来表示。</p>
+</li>
+</ul>
+<h6 id="监控维度"><a href="#监控维度" class="headerlink" title="监控维度"></a>监控维度</h6><ul>
+<li><p>全局维度。从整体⻆度监控对象的的请求量、平均耗时以及错误率，全局维度的监控⼀般是为了让你对监控对象的调⽤情 况有个整体了解。</p>
+</li>
+<li><p> 分机房维度。</p>
+</li>
+<li><p> 时间维度。同⼀个监控对象，在每天的同⼀时刻各种指标通常也不会⼀样</p>
+</li>
+<li><p>核⼼维度。业务上⼀般会依据重要性程度对监控对象进⾏分级，最简单的是分成核⼼业务和⾮核⼼业务。</p>
+<p>核⼼业务和⾮核⼼业务在部署上必须隔离，分开监控，这样才能对核⼼业务做重点保障。</p>
+</li>
+</ul>
+<h6 id="监控系统"><a href="#监控系统" class="headerlink" title="监控系统"></a>监控系统</h6><blockquote>
+<p>主要包括四个环节：数据采集、数据传输、数据处理和数据展示</p>
+</blockquote>
+<ul>
+<li><p>数据采集</p>
+<p>通常有两种数据收集⽅式：</p>
+<ul>
+<li><p><strong>服务主动上报</strong>，这种处理⽅式通过在业务代码或者服务框架⾥加⼊数据收集代码逻辑，在每⼀次服务</p>
+<p>调⽤完成后，主动上报服务的调⽤信息。</p>
+</li>
+<li><p><strong>代理收集</strong>，这种处理⽅式通过服务调⽤后把调⽤的详细信息记录到本地⽇志⽂件中，然后再通过代理去解</p>
+<p>析本地⽇志⽂ 件，然后再上报服务的调⽤信息。</p>
+</li>
+</ul>
+</li>
+<li><p>数据传输</p>
+<ul>
+<li><p><strong>UDP传输</strong>，这种处理⽅式是数据处理单元提供服务器的请求地址，数据采集后通过UDP协议与服务器建⽴</p>
+<p>连接，然后把数 据发送过去。</p>
+</li>
+<li><p><strong>Kafka传输</strong>，这种处理⽅式是数据采集后发送到指定的Topic，然后数据处理单元再订阅对应的Topic，就</p>
+<p>可以从Kafka消息队列中读取到对应的数据。</p>
+<img src="https://cdn.smalltechnologyjun.com//image-20210615200330740.png" alt="image-20210615200330740" style="zoom: 80%;" /></li>
+</ul>
+</li>
+<li><p>数据处理</p>
+<p>数据聚合两个维度：接口维度和机器维度</p>
+<p>聚合后的数据持久化： 索引数据库(es) 或者 时序数据库influxDB</p>
+</li>
+<li><p>数据展示</p>
+<p>数据展示有多种⽅式，⽐如曲线图、饼状图、格⼦图展示</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>微服务</category>
+      </categories>
+      <tags>
+        <tag>微服务治理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Optional 的使用会导致性能下降吗？</title>
+    <url>/2021/07/26/service-%E4%BD%A0%E9%9C%80%E8%A6%81%E6%8B%85%E5%BF%83Optional%E7%9B%B8%E5%85%B3%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%90%97/</url>
+    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_bb2845fd7f5a4c03fb9adb66715a5e02_14370.png" alt="图怪兽_bb2845fd7f5a4c03fb9adb66715a5e02_14370"></p>
+<p>几天前，我在论坛上发了一篇关于<code>Optional</code> 的文章。其中一条评论是一个非常好的问题:</p>
+<blockquote>
+<p>Optional 的使用会导致性能下降吗？</p>
+</blockquote>
+<p>答案是: 是的，它会的。但是你应该担心吗？</p>
+<span id="more"></span>
+
+<h2 id="使用Optional的好处"><a href="#使用Optional的好处" class="headerlink" title="使用Optional的好处"></a>使用Optional的好处</h2><p>Optional 类使我们这些开发人员的生活更轻松</p>
+<ul>
+<li>增加代码的可读性</li>
+<li>减少代码中的条件数</li>
+<li>更不容易出错</li>
+</ul>
+<p>让我们来看看 Optional 类的一些主要方法是如何实现的。</p>
+<!--more-->
+
+<h2 id="Optional-如何实现的？"><a href="#Optional-如何实现的？" class="headerlink" title="Optional 如何实现的？"></a>Optional 如何实现的？</h2><p>这里有一些 <code>Optional</code> 类的主要方法:</p>
+<p>基本上，它将值包装到一个新的 <code>Optional</code>对象中，并检查包装的值是否为<code>null</code>。</p>
+<p>即使没有使用 Optional，也必须检查值是否为 null。它可能比您做的检查多一些，但我认为您不必担心这一点。</p>
+<p>但是您必须知道，将值包装到新对象中将增加 GC 要收集的对象数量。这意味着堆使用量将增加得更快，CPU 使用量将更高(更多 GC 事件)。</p>
+<p>好吧，但是有多高呢？同样，这取决于您正在创建的可选对象的数量、堆的大小以及您的应用程序在不使用可选对象的情况下使用的 CPU 数量。</p>
+<p>例如，假设您对应用程序进行了基准测试，并得出结论，使用 Optional 将提高 CPU 使用率1个百分点。如果您的应用程序平均使用50% 的 CPU，那么使用51% 的可选 CPU 并不是一个很大的开销，对吧？</p>
+<p>但是，如果您的应用程序平均消耗5% 的 CPU，使用6% 意味着20% 的开销，这是相当重要的。</p>
+<h2 id="过早优化是万恶之源"><a href="#过早优化是万恶之源" class="headerlink" title="过早优化是万恶之源"></a>过早优化是万恶之源</h2><p>Joshua Bloch 在<a target="_blank" rel="noopener" href="https://www.amazon.com/gp/product/0134685997/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0134685997&linkCode=as2&tag=hbelmiro0f-20&linkId=213790c63c0d57baac2e45b3183a35b2">Effective Java</a> 一书中有整整一章(第67项: Optimize judiciously)谈到了优化。</p>
+<p>他在这一章的开头写道:</p>
+<blockquote>
+<p>关于最优化，有三个关注点是每个人都应该知道的:</p>
+<blockquote>
+<p>与其他任何单一原因(包括盲目的愚蠢)相比，更多的计算原罪是以效率的名义犯下的(不一定能实现)。</p>
+</blockquote>
+<p>William A. Wulf</p>
+<blockquote>
+<p>我们应该忘记小的副作用，比如说97% 的时间: 过早的优化是一切罪恶的根源。</p>
+</blockquote>
+<p>Donald E. Knuth</p>
+<blockquote>
+<p>在优化问题上，我们遵循两个规则:</p>
+<ul>
+<li>规则1. 不要这样做</li>
+<li>规则 2（仅适用于专家）。 暂时不要这样做——也就是说，除非你有一个非常清晰且未经优化的解决方案。</li>
+</ul>
+</blockquote>
+<p>M. A. Jackson</p>
+</blockquote>
+<p>因此，除非您需要一个快速的应用程序并且资源有限，否则不要过早担心性能问题。专注于编写好的代码，这样当你需要它的时候，它就很容易优化。此外，使用分析器查找对性能影响更大的位置。</p>
+<h2 id="谁会使用你的-API？"><a href="#谁会使用你的-API？" class="headerlink" title="谁会使用你的 API？"></a>谁会使用你的 API？</h2><p>这也是一个你需要问自己的好问题。如果您正在编写一个内部 API，您可以更自由地决定是否使用它。</p>
+<p>但是如果你正在编写一个公共 API，比如一个框架或者库，而你不知道什么样的应用程序在调用它，你可能需要更加灵活，给客户端选择是否使用可选的选项。</p>
+<p>您可以提供两个方法，一个返回  <code>Optional</code> ，另一个返回 <code>null</code>。但是，当创建一个可以返回 <code>null</code> 的方法时，尽量让它显式。使用注释  <code>javax.annotation.Nullable</code>。方法的可空性。 (<a target="_blank" rel="noopener" href="https://jcp.org/en/jsr/detail?id=305">JSR 305</a>)</p>
+<h2 id="最终，这取决于你"><a href="#最终，这取决于你" class="headerlink" title="最终，这取决于你"></a>最终，这取决于你</h2><p>你可以决定是否使用 Optional。没有一个简单的答案适用于所有情况。软件工程中的大多数事情都是这样的。这一切都是权衡取舍。</p>
+<p>所以，要意识到它是如何工作的，并评估替代方案。任何事情都有代价，你是那个可以决定是否承担的人。</p>
+<p>您认为为了提高性能而付出不可读且更容易出错的代码的代价是值得的吗？你知道这种进步有多重要吗？</p>
+<p>在大多数情况下，使用 <code>Optional</code>  并保持开心！<code>Optional</code>  是不错的!</p>
+]]></content>
+      <categories>
+        <category>微服务</category>
+      </categories>
+      <tags>
+        <tag>微服务治理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CDN初学者指南：是什么以及如何工作</title>
+    <url>/2023/10/22/systemDesign-cdn/</url>
+    <content><![CDATA[<p>内容交付网络（Content Delivery Network，CDN）是一种分布式服务器系统，旨在根据用户的地理位置提供网络内容。CDN的目标是减少加载时间、提高网站和在线应用程序性能。</p>
+<p>当用户请求网页时，内容将通过距离最近的CDN服务器提供，而不是源服务器，即使源服务器可能位于用户数千英里之外。这样做可以显著加快加载时间，改善用户体验，并有助于提高搜索引擎排名，同时减少跳失率。此外，CDN还有助于减轻服务器过载风险，降低源服务器的负载。它通过在CDN服务器上缓存和存储经常访问的内容来实现。当源服务器面临高流量时，CDN服务器可提供缓存内容，防止源服务器超负荷和崩溃。此外，CDN还提供强化安全性，CDN提供商会提供DDoS防护和SSL加密，以保护内容交付过程并防止网络攻击对网站的威胁。</p>
+<p>CDN对搜索引擎优化（SEO）至关重要。因为CDN提高了网站性能，因此页面加载速度更快，而这是搜索引擎排名的重要因素。例如，谷歌在对搜索结果页面排名时会考虑网站速度。</p>
+<p><img src="https://res.craft.do/user/full/b313a1ab-3121-84d1-2506-d702b5c0ba9c/AD587214-47A6-4835-A618-4F5E56903CDD_2/7jJNHzE4eSyR3usN4yFyqRRsKhN7lnSVXezCvzVwVhUz/1rWNmcNuFktISaLlLw8EIWQ.png" alt="CDN图片"></p>
+<p><strong>CDN速查表</strong></p>
+<span id="more"></span>
+
+<p>CDN有几种类型，包括：</p>
+<h2 id="传统CDN"><a href="#传统CDN" class="headerlink" title="传统CDN"></a>传统CDN</h2><p>传统CDN是最常见的CDN类型，它基于全球范围内的服务器网络来缓存和传递内容。以下是传统CDN的工作原理：</p>
+<ol>
+<li>用户请求网站内容。</li>
+<li>请求被重定向到最近的DNS服务器，该服务器将域名映射到IP地址并将请求重定向到最近的边缘服务器。</li>
+<li>边缘服务器检查其缓存是否有所请求内容的副本。如果有可用内容，边缘服务器将其传递给用户。</li>
+<li>如果缓存中没有所请求的内容，边缘服务器将请求源服务器检索内容。</li>
+<li>源服务器将内容传递给边缘服务器，并在将来的请求中缓存内容的副本。</li>
+<li>边缘服务器将内容传递给用户。</li>
+<li>下次用户请求相同内容时，请求将被重定向到最近的边缘服务器，该服务器可以直接从其缓存中传递内容，提高性能并减少延迟。</li>
+</ol>
+<h2 id="推送CDN"><a href="#推送CDN" class="headerlink" title="推送CDN"></a>推送CDN</h2><p>推送CDN通过在用户请求之前主动将内容推送到边缘服务器上工作。它通常用于分发软件、大型媒体文件和实时数据（例如股票实时价格）。</p>
+<h2 id="视频CDN"><a href="#视频CDN" class="headerlink" title="视频CDN"></a>视频CDN</h2><p>视频CDN专为传递视频内容而设计，它提供了自适应流媒体和实时转码等功能，对于改善流媒体视频、实时事件、广告插入和视频点播体验非常有用。</p>
+<h2 id="私有CDN"><a href="#私有CDN" class="headerlink" title="私有CDN"></a>私有CDN</h2><p>私有CDN专为满足单个组织的特定需求而设计。与传统CDN不同，私有CDN通常由组织自己拥有和管理，而不是由第三方供应商提供。私有CDN在内容交付安全性、性能优化以及合规性与治理方面非常有用。</p>
+<h1 id="面临的挑战"><a href="#面临的挑战" class="headerlink" title="面临的挑战"></a>面临的挑战</h1><p>尽管CDN具有许多优点，但其实施和使用也面临一些挑战。其中一些挑战包括：</p>
+<ol>
+<li><strong>成本</strong>：CDN服务可能很昂贵，特别对于大型网站或业务，特别是那些流量庞大的网站来说。</li>
+<li><strong>集成</strong>：将CDN与现有网站或应用程序集成可能相当复杂，需要专业技术知识。</li>
+<li><strong>配置</strong>：为特定的网站或应用程序优化CDN的配置需要精心规划和管理。</li>
+<li><strong>内容一致性</strong>：确保在多个CDN节点上的缓存内容保持一致可能具有挑战性。</li>
+<li><strong>安全性</strong>：CDN提供商负责保护其交付的内容，但如果管理不当，它们也可能引入新的安全漏洞。</li>
+</ol>
+<h1 id="边缘计算"><a href="#边缘计算" class="headerlink" title="边缘计算"></a>边缘计算</h1><p>边缘计算，也称为在CDN上计算（Compute on CDN），是一个相对较新的功能，由一些供应商提供。它允许开发人员在CDN的边缘服务器上直接运行无服务器代码。这可以通过减少用户和源服务器之间的往返时间来显著提高Web应用程序的性能和响应能力。</p>
+<p>通过在CDN的边缘服务器上运行代码，开发人员可以在无服务器环境中编写代码，并将其部署以在边缘服务器上运行。该代码可以执行各种任务，例如动态内容生成、API调用和数据处理，而无需将请求发送回源服务器。</p>
+<p>边缘计算对需要实时数据处理或需要从全球各地访问数据的Web应用程序特别有用。它还可以帮助提高Web应用程序的安全性，因为敏感数据可以在边缘服务器上直接处理，而无需发送回源服务器。</p>
+<p>虽然边缘计算是一个强大的功能，但它需要仔细规划和管理，以确保有效使用。开发人员必须了解在边缘服务器上运行代码的限制和挑战，如资源限制和安全风险。通过正确的方法，边缘计算可以显著提高Web应用程序的性能和功能。</p>
+<h1 id="云游戏"><a href="#云游戏" class="headerlink" title="云游戏"></a>云游戏</h1><p>边缘游戏，也称为云游戏，是CDN技术的一个相对较新应用，它允许用户在任何设备上玩游戏，而无需高端游戏硬件或下载。通过边缘游戏，运行现代视频游戏所需的大量处理工作被转移到靠近终端用户的云服务器上。</p>
+<p>使用边缘服务器进行游戏，用户可以在任何有互联网连接的设备上玩高端游戏，而无需在本地设备上安装或更新游戏。游戏在云服务器上运行并实时流式传输到用户设备上。这种方法可以显著提高视频游戏的可访问性和可负担性，消除了需要昂贵的硬件升级和游戏分发成本。</p>
+<p>边缘游戏还有助于游戏开发人员，因为它减少了为不同硬件配置优化游戏的需求。开发人员可以通过在云服务器上运行游戏，确保在其他设备和平台上获得一致和高质量的游戏体验。</p>
+<p>然而，边缘游戏也面临一些挑战和限制。最大的挑战之一是延迟，因为即使是用户输入和游戏响应之间的微小延迟也会对游戏体验产生负面影响。CDN提供商必须仔细管理网络和服务器基础设施，以最小化延迟，确保流畅的游戏体验。</p>
+<p>另一个挑战是带宽，因为流式传输高质量的视频和音频内容需要大量带宽。互联网连接较慢的用户可能会遇到较低质量或中断的游戏体验。CDN提供商正在开发新的技术来优化流式传输质量并减少带宽需求，以解决这个挑战。</p>
+<p>根据其技术、基础设施和功能的不同，不同的云游戏服务可能对延迟和带宽有额外的要求和建议。例如，Nvidia GeForce Now要求最低25 Mbps的带宽以1080p分辨率和60 FPS的速度进行流式传输，并且延迟低于80毫秒。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>CDN是现代互联网应用程序的关键组成部分，对于提供高性能、安全和可访问性的用户体验至关重要。通过减少加载时间、提高性能和提高安全性，CDN将内容更靠近用户，提高了用户体验。</p>
+<p>它的扩展应用，如边缘计算和云游戏，进一步提高了CDN技术的潜力。边缘计算使开发人员能够在CDN的边缘服务器上运行无服务器代码，从而提高应用程序的性能。云游戏将游戏的重要部分移动到云端，使用户能够在任何设备上畅玩高质量的游戏。</p>
+<p>然而，CDN的实施和使用也面临一些挑战，包括成本、集成、配置、内容一致性和安全性等方面。对于边缘计算和云游戏，延迟和带宽是关键挑战，需要仔细的规划和管理。</p>
+<p>综上所述，CDN是一种关键的网络技术，为Web应用程序和内容提供了更快、更可靠和更安全的交付方式，从而提供更好的用户体验。</p>
+]]></content>
+      <categories>
+        <category>CDN,系统设计,网络技术</category>
+      </categories>
+      <tags>
+        <tag>CDN,系统设计,网络技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何有效地扩展数据库服务器以满足日益增长的工作量 - 数据库扩展策略</title>
+    <url>/2023/10/22/systemDesign-db-extend/</url>
+    <content><![CDATA[<p>在当今以数据为驱动的世界中，企业面临着一个挑战，即在保证应用程序的最佳性能的同时，管理迅速增长的数据量。扩展数据库服务器在满足这些需求方面起着至关重要的作用。本篇博客将探讨各种策略，以有效地扩展数据库服务器，以处理不断增加的工作量，提升性能并确保数据可用性。</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*D4j_xNB63zw0nTvo.png" alt="0*D4j_xNB63zw0nTvo.png"></p>
+<h2 id="什么是数据库服务器扩展？"><a href="#什么是数据库服务器扩展？" class="headerlink" title="什么是数据库服务器扩展？"></a>什么是数据库服务器扩展？</h2><p>数据库服务器扩展是增加数据库服务器的容量和性能，以处理不断增长的数据量、用户请求和系统负载的过程。通过升级硬件组件，如 CPU、内存或存储，可以实现垂直扩展，这允许数据库服务器利用升级后硬件的改进能力来处理更大的工作量。垂直扩展通常受限于单个服务器的最大容量。</p>
+<h2 id="数据库服务器扩展的技术"><a href="#数据库服务器扩展的技术" class="headerlink" title="数据库服务器扩展的技术"></a>数据库服务器扩展的技术</h2><p>有多种方法可用于扩展数据库。它们是：</p>
+<h3 id="1-垂直扩展"><a href="#1-垂直扩展" class="headerlink" title="1. 垂直扩展"></a>1. 垂直扩展</h3><p>在垂直扩展，也称为升级或降级，通过升级硬件组件，如 CPU、内存或存储，来增加服务器的资源。 这种方法允许数据库服务器通过利用升级后硬件的改进能力来处理更大的工作量。垂直扩展通常受限于单个服务器的最大容量。</p>
+<span id="more"></span>
+<h3 id="2-水平扩展"><a href="#2-水平扩展" class="headerlink" title="2. 水平扩展"></a>2. 水平扩展</h3><p>水平扩展关注的是向基础架构中添加更多数据库服务器。这种方法允许将工作负载分布在多个服务器上，减轻单个节点的负担。水平扩展也称为添加节点（扩展）或减少节点（收缩）。</p>
+<p>根据实现方式的不同，水平扩展还可以提高数据库的整体可靠性。它消除了单点故障，因为您增加了在故障转移情况下可以使用的节点数。然而，水平扩展也增加了时间、精力（因此成本）方面的开销，因为您需要更多的节点（因此有更多的故障点）来保持数据库功能正常。</p>
+<p>水平扩展比垂直扩展更困难，也更昂贵。</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*NW_SqA8U_aHsVBzc.png" alt="0*NW_SqA8U_aHsVBzc.png"></p>
+<p><strong>数据库集群和分片是实现水平扩展的常见技术。</strong></p>
+<h3 id="3-数据库复制"><a href="#3-数据库复制" class="headerlink" title="3. 数据库复制"></a>3. 数据库复制</h3><p>数据库复制涉及创建多个数据库的副本，并将工作负载分布在它们之间。 它通过将读请求定向到副本来提高读取性能，同时保留主服务器用于写入操作。</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*bGkBdGeJf2fl01Ti" alt="Image.jpeg"></p>
+<p>因此，在这里，数据库的副本帮助我们分发请求，从而降低了对单个数据库的负载。</p>
+<p>数据库复制涉及频繁地将数据从一个数据库或服务器复制或流式传输到另一个数据库，以便所有用户都可以访问同步的数据，而不管他们用来访问数据的是哪个系统。如果有数据更改，数据复制工具也会确保将更改应用于目标数据库。其结果是分布式数据存储网络，任何人都可以轻松地访问重要和相关的数据，并增加了不同位置之间的可用性。</p>
+<h3 id="4-缓存"><a href="#4-缓存" class="headerlink" title="4. 缓存"></a>4. 缓存</h3><p>缓存是将数据存储并从缓存中访问的过程。但请等等，什么是缓存？缓存是一个旨在存储数据的软件或硬件组件，以便未来对相同数据的请求可以更快地得到服务。</p>
+<p>缓存涉及将频繁访问的数据存储在内存中，以减少重复数据库查询的需求。</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*BeX3xuG9mI7IWlGv.png" alt="0*BeX3xuG9mI7IWlGv.png"></p>
+<p>每当有新的请求到达时，首先会在缓存中搜索所请求的数据。当所请求的数据能够在缓存中找到时，称为“缓存命中”。相反，当无法在缓存中找到数据时，称为“缓存未命中”。显然，从缓存中读取所需数据被认为比重新计算结果或从原始数据存储中读取它更快。因此，从缓存中可以服务更多的请求，系统就越快。</p>
+<p>通过实施内存缓存层，比如 Redis 或 Memcached，组织可以显著提升数据库性能。缓存通过直接从内存中提供数据来卸载数据库服务器，从而降低响应时间并提高可扩展性。</p>
+<h3 id="5-分片"><a href="#5-分片" class="headerlink" title="5. 分片"></a>5. 分片</h3><p>分片是一种数据库分区的类型，其中将大型数据库分成较小的数据和不同节点。 分片涉及将数据分成较小的子集，并将其分布在多个服务器上。每个服务器处理特定的分区或分片，从而实现并行处理和改进性能。</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*MyvaKu2G7KVdg0Z9.png" alt="image"></p>
+<p>分片有两种类型：</p>
+<ol>
+<li>水平分片：在这种类型的分片中，数据库根据行进行分区。</li>
+<li>垂直分片：在这种类型的分片中，数据库根据列进行分区。</li>
+</ol>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>扩展数据库服务器是维持应用程序性能和适应不断增长的数据量的关键方面。通过采用垂直和水平扩展、复制、缓存和分区等策略，组织可以有效应对可扩展性挑战，并确保高效的数据库操作。然而，选择合适的扩展策略需要全面了解系统要求、工作负载模式和技术考虑因素。实施经过深思熟虑的扩展方法将使企业能够交付高性能的应用程序，同时有效地管理数据增长。</p>
+]]></content>
+      <categories>
+        <category>CDN,系统设计,网络技术</category>
+      </categories>
+      <tags>
+        <tag>CDN,系统设计,数据库扩展,数据处理,网络性能优化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Google Drive 和 Dropbox 系统设计概述</title>
+    <url>/2023/08/25/systemDesign-gd/</url>
+    <content><![CDATA[<p>在现代信息世界中，我们有许多照片、文件、视频等需要存储。我相信几乎所有人都尝试过使用 Google Drive 或 Dropbox。</p>
+<h3 id="功能需求"><a href="#功能需求" class="headerlink" title="功能需求"></a>功能需求</h3><ol>
+<li>用户可以从任何设备上传和下载文件。</li>
+<li>用户可以通过替换相同的文件名来更新文件。</li>
+<li>用户可以通过电子邮件链接将文件和文件夹分享给其他人。</li>
+<li>用户可以随时从任何设备删除文件和文件夹。</li>
+<li>删除的文件和文件夹将在回收站中存储 15 天。</li>
+<li>系统应该支持离线编辑。用户可以在离线状态下添加/修改文件和文件夹名称，一旦网络恢复，更改将与远程服务器同步。</li>
+<li>用户可以进行文件版本管理，以恢复文件的先前版本。（系统可以支持多次更改的同一文件的多个版本，带宽和所需空间将显著增加）</li>
+<li>系统可以支持跨设备的文件和文件夹同步。</li>
+<li>系统允许每个用户免费上传高达 10 GB 的文件。</li>
+<li>系统将为不同存储大小提供不同的市场计划。</li>
+</ol>
+<span id="more"></span>
+
+<h3 id="非功能需求"><a href="#非功能需求" class="headerlink" title="非功能需求"></a>非功能需求</h3><ol>
+<li>系统必须高度可靠。任何上传的文件都不得丢失。用户可以恢复其重要文件。</li>
+<li>系统可以支持每周 7 天 24 小时。</li>
+<li>用户可以随时升级其计划，并立即使用系统。</li>
+<li>用户必须能够轻松地将其系统与其他应用程序集成。例如，系统支持通过其他应用程序共享文档。</li>
+<li>系统可以提供延迟或并发利用（这意味着以高效的方法从云中反复上传和下载完整文件）。</li>
+</ol>
+<h3 id="存储估算"><a href="#存储估算" class="headerlink" title="存储估算"></a>存储估算</h3><ol>
+<li>用户数量 = 5 亿</li>
+<li>活跃用户数量 = 1 亿</li>
+<li>用户平均存储的文件数量 = 300</li>
+<li>每个文件的平均大小 = 200 KB</li>
+<li>总文件数量 = 5 亿 * 300 = 1500 亿</li>
+<li>需要的总存储空间 = 1500 亿 * 200 KB = 30 PB</li>
+</ol>
+<h3 id="系统组件"><a href="#系统组件" class="headerlink" title="系统组件"></a>系统组件</h3><ol>
+<li><strong>客户端</strong>（安装在您的桌面或移动应用程序中，用于访问与存储相关的应用程序）<ul>
+<li>监视用户机器上的工作区文件夹，并通过与远程服务器同步文件来维护一致性。因此，它必须由 4 个基本组件组成，即<strong>监视器、分块器、索引器和内部数据库</strong>。</li>
+<li><strong>监视器</strong>将监视本地工作区文件夹，并通知索引器用户执行的任何操作（添加、删除、替换和更新文件或文件夹），并追踪来自其他设备的任何更改，这些更改由同步服务广播。</li>
+<li><strong>分块器</strong>将文件分成更小的块，并从这些块中重建文件，以便完整的文件可以在没有任何丢失块的情况下传输。分块算法将检测用户修改的文件部分，并仅将已修改的部分传输到云存储，从而节省带宽和同步时间。</li>
+<li><strong>索引器</strong>将处理来自监视器的事件，并更新内部元数据数据库。一旦成功从云存储下载或上传了块，索引器将与远程同步服务通信，广播更改给其他客户端，并更新远程元数据数据库。</li>
+<li><strong>内部元数据数据库</strong>将跟踪所有文件、块、任何已更新的版本以及其在文件系统中的位置。</li>
+<li>客户端应用程序将通过请求上传、下载和编辑 API 与后端云存储服务器进行通信。客户端还与远程同步服务进行交互，以处理任何文件元数据更新，例如文件名、大小、修改日期等。</li>
+</ul>
+</li>
+<li><strong>元数据数据库</strong><ul>
+<li>保持有关文件、块、用户、设备、工作区和存储位置的版本和元数据信息。</li>
+<li>元数据数据库可以是关系数据库，如 MySQL，也可以是 NoSQL 数据库服务，如 DynamoDB。</li>
+<li>同步服务在多个用户同时处理同一文件时，提供文件的一致视图。</li>
+<li>由于 NoSQL 数据存储不支持 ACID 属性，编程代码会将 ACID 属性与 NoSQL 数据库结合在一起，用于同步服务的逻辑。</li>
+</ul>
+</li>
+<li><strong>同步服务</strong><ul>
+<li>更新客户端创建的文件或文件夹。</li>
+<li>将客户端的本地数据库与存储在远程元数据数据库中的信息同步。</li>
+<li>使用 HTTP 长轮询从云存储获取响应，或在脱机一段时间后将文件和更新发送到云存储，一旦重新脱机，将向所有设备或用户发送通知。</li>
+<li>同步服务还尝试在客户端和云存储之间传输更少的数据，以实现更快的响应时间，因此使用差异化算法来减少需要同步的数据量。不再将整个文件从客户端传输到服务器，而是传输两个版本文件之间的差异。仅传输已更改的部分（块）。这减少了终端用户的带宽消耗和</li>
+</ul>
+</li>
+</ol>
+<p>云数据存储。服务器和客户端将计算哈希值，以查看是否更新修改的块。该过程称为数据去重。</p>
+<ol start="4">
+<li><strong>消息队列服务</strong><ul>
+<li>这是一个处理读写请求数量的消息中间件。</li>
+<li>一个可扩展的消息队列服务，支持客户端和同步服务之间的异步通信。</li>
+<li>可用性和可靠性必须被设计得最适合消息队列服务。</li>
+<li><strong>请求队列</strong>：此队列将在所有客户端之间共享。当客户端执行任何更新和请求时，此请求将发送到消息队列服务，然后由同步服务进一步处理，最后更新元数据数据库。</li>
+<li><strong>响应队列</strong>：每个客户端都有一个相关的响应队列，因为每个客户端都有一个单独的响应队列。</li>
+<li>一旦文件更新，同步服务将通知所有响应队列有关更改的信息，然后响应队列将通知每个客户端进行的更改。</li>
+</ul>
+</li>
+<li><strong>云/块存储</strong><ul>
+<li>存储文件的块</li>
+<li>使用 Amazon S3 服务</li>
+<li>客户端将使用 API 服务与云存储进行交互</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://miro.medium.com/v2/resize:fit:1380/0*zJz9WxZ9MEEO3zmE.png" alt="0*zJz9WxZ9MEEO3zmE.png"></p>
+<ul>
+<li><p><strong>文件处理工作流程</strong>：客户端 A 将块上传到云存储，然后更新元数据并提交更改，然后获得确认。服务器将通知客户端 B 和 C 有关更改的信息。客户端 B 和 C 接收元数据更改并下载更新的块。</p>
+</li>
+<li><p><strong>数据去重</strong>：消除数据的重复副本。这还可以减少相同数据传输（发送的字节数）以提高传输速率。对于每个传入的块，都会打上一个哈希标签，然后计算并将该哈希与现有块的所有其他哈希进行比较。</p>
+<p>a) <strong>后处理去重</strong>：新块存储在存储设备上，并且将分析块以了解它们是否是重复的。优点是，客户端不需要等待哈希计算或查找完成，然后再存储数据，这会提高存储性能。缺点是短时间内会存储不必要的重复数据，并且会传输和消耗带宽。</p>
+<p>b) <strong>内联去重</strong>：去重哈希计算可以实时执行，以便系统可以识别重复块，然后仅存储不存在的块。优点是优化网络和存储使用。缺点是消耗用户的时间并降低存储性能。</p>
+</li>
+</ul>
+<ol start="6">
+<li><strong>缓存</strong><ul>
+<li>在 Google Drive / Dropbox 系统设计中有两种类型的缓存</li>
+<li>用于块存储的缓存</li>
+<li>使用像 Memcache 这样的现成解决方案的缓存，可以存储带有其相应 ID/哈希的整个块和块服务器</li>
+<li>可以采用最近最少使用（LRU）缓存策略。</li>
+</ul>
+</li>
+<li><strong>负载均衡器（LB）</strong><ul>
+<li>在客户端和块服务器之间</li>
+<li>在客户端和元数据服务器之间</li>
+<li>在后端服务器之间平均分配传入的请求</li>
+</ul>
+</li>
+<li><strong>安全性/权限和文件共享</strong><ul>
+<li>上传/下载的文件将与远程服务器同步</li>
+<li>不允许对单个文件进行多个操作（并发问题）</li>
+<li>如果在某个过程中出现了某些连接问题，客户端必须重新上传或下载整个文件，或者恢复下载或上传块。</li>
+</ul>
+</li>
+</ol>
+<p><strong>系统 API</strong></p>
+<ol>
+<li>Upload(string uploadToken, fileInfo file, userInfo user)</li>
+<li>Edit(string authToken, fileInfo file, userInfo user)</li>
+<li>Delete(string authToken, fileInfo file, userInfo user)</li>
+<li>Download(string authToken, fileInfo file, userInfo user)</li>
+<li>GenerateToken (string userName, string password)</li>
+</ol>
+<p><strong>高级系统架构</strong></p>
+<p><strong>详细系统架构</strong></p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*ujFLQbJIrcSd7LKu" alt="Image.png"></p>
+]]></content>
+      <categories>
+        <category>system design</category>
+      </categories>
+      <tags>
+        <tag>system design</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>通知系统设计：如何将其集成到我们的基础架构中</title>
     <url>/2023/08/12/systemDesign-msg/</url>
     <content><![CDATA[<h2 id="什么是面向企业的通知？"><a href="#什么是面向企业的通知？" class="headerlink" title="什么是面向企业的通知？"></a>什么是面向企业的通知？</h2><p>毫无疑问，没有任何数字化企业可以在没有通知的情况下生存。通过通过电子邮件、短信或推送通知等各种渠道发送及时通知，企业可以提高客户参与度和留存率，促使重复购买。通知还为企业提供了一个机会，可以收集客户反馈和见解，这可以用于改善其产品或服务。</p>
@@ -3135,6 +3228,92 @@
       </categories>
       <tags>
         <tag>system design</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>主从复制 (Master-Slave Replication) 在系统设计与网络技术中的应用</title>
+    <url>/2023/10/22/systemDesign-replication/</url>
+    <content><![CDATA[<p>在数据库复制中，我们创建相同数据库的副本，并将其分布在多个节点（副本）上。然而，在拥有多个副本的情况下，一个问题出现了：如何确保每次写操作后所有数据都传播到所有副本？最常见的解决方案是主从复制，也称为<strong>主动/被动</strong>或<strong>单主复制</strong>。</p>
+<h2 id="什么是主从复制？"><a href="#什么是主从复制？" class="headerlink" title="什么是主从复制？"></a>什么是主从复制？</h2><p>主从复制中有两种类型的节点：主节点和从节点。单个<strong>主节点（Leader）</strong>作为主数据库，而一个或多个<strong>从节点（Follower）</strong>维护主节点数据的副本。</p>
+<ul>
+<li>主节点负责处理写查询，而从节点负责处理读查询。注意：如果需要，主节点也可以执行读查询。</li>
+<li>每当主节点上进行写操作时，它将复制所有数据更改到所有从节点，以保持整个系统中数据的一致性。</li>
+</ul>
+<p>整个主从复制的思想如下：</p>
+<ul>
+<li>当客户端要执行写查询时，它们将请求发送到主节点，主节点首先将新数据写入其本地存储。</li>
+<li>当主节点将新数据写入其本地存储时，它还会将数据更改作为复制日志发送给所有从节点。每个从节点通过从主节点接收日志并按照与主节点上处理它们相同的顺序更新其本地副本。</li>
+<li>如果只有一个从数据库可用且它处于脱机状态，则读操作将暂时定向到主数据库，并且一个新的从数据库将取代旧的从数据库。</li>
+<li>如果有多个从数据库可用，则读操作将重定向到其他健康的从数据库，并且新的数据库服务器将取代旧的从数据库。</li>
+<li>如果主数据库处于脱机状态，一个从数据库将被提升为新的主数据库。现在，所有写操作将在新的主数据库上执行，并且一个新的从数据库将立即取代旧的从数据库进行数据复制。<strong>注意：</strong>提升新的主数据库更加复杂，因为从数据库中的数据可能不是最新的。如何更新缺失的数据？我们将在本文后面的部分讨论这个想法。</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="主从复制的应用场景"><a href="#主从复制的应用场景" class="headerlink" title="主从复制的应用场景"></a>主从复制的应用场景</h2><p>主从复制适用于读负载较重的情况下，并且需要将读请求分布在多个节点以提高系统性能。由于从节点可以处理读请求，因此它们可以从主节点卸载读流量，并允许主节点专注于处理写请求。</p>
+<ul>
+<li>此体系结构提供容错性，并且即使主节点失败，系统也可以继续运行。</li>
+<li>主从复制在关系型数据库（如MySQL、PostgreSQL和Oracle）以及NoSQL数据库（如MongoDB、Cassandra、RethinkDB、Espresso等）中使用。</li>
+<li>基于领导者的复制不仅局限于数据库。分布式消息代理（如Kafka和RabbitMQ）也使用它来提供高可用的队列。</li>
+</ul>
+<h2 id="同步复制与异步复制配置"><a href="#同步复制与异步复制配置" class="headerlink" title="同步复制与异步复制配置"></a>同步复制与异步复制配置</h2><p>在主从复制中，一个重要的方面是复制是否同步进行或异步进行。为了理解这一点，让我们考虑一个用户在社交媒体网站上更新个人图片的情况：客户端向Leader发送更新请求。一旦Leader收到请求，它会将数据更改转发给Follower。现在，关键问题是：从节点如何更新其数据？</p>
+<p>在同步复制中，客户端在从节点确认更新在所有从节点都已经应用之前会等待Leader的确认。相反，在异步复制中，客户端在所有从节点都已经更新之前就会收到响应。</p>
+<h2 id="同步复制和异步复制的优缺点"><a href="#同步复制和异步复制的优缺点" class="headerlink" title="同步复制和异步复制的优缺点"></a>同步复制和异步复制的优缺点</h2><p><strong>同步复制的缺点：</strong> 如果从节点没有响应（由于崩溃、网络故障或任何其他原因），则写操作无法被处理。</p>
+<p><strong>同步复制的优点：</strong> 从节点保证具有与Leader一致的最新数据副本。如果Leader突然失败，我们可以确保从节点上仍然可用的数据。</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*_px5himI2Z4S0beR" alt="主从复制图示"></p>
+<h2 id="异步复制的优点和缺点"><a href="#异步复制的优点和缺点" class="headerlink" title="异步复制的优点和缺点"></a>异步复制的优点和缺点</h2><p><strong>异步复制的缺点：</strong> 如果主节点失败且无法恢复，则尚未复制到从节点的所有写操作都将丢失。这意味着尽管已经向客户端确认，但写操作不保证持久。</p>
+<p><strong>异步复制的优点：</strong> 即使所有从节点都已滞后，Leader仍可以继续处理写入。弱化持久性可能听起来像是一个坏的权衡，但异步复制仍然广泛使用，特别是如果有许多从节点或者它们分布在地理位置上。</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*OZULLkSGNZCw3RAk" alt="主从复制图示"></p>
+<p>总体而言，选择同步复制或异步复制取决于<strong>一致性和性能之间的权衡</strong>。同步复制提供更强的一致性保证，但也可能导致较长的响应时间。另一方面，异步复制提供更快的响应时间</p>
+<p>，但可能会牺牲一致性。</p>
+<h2 id="异步复制中的关键问题"><a href="#异步复制中的关键问题" class="headerlink" title="异步复制中的关键问题"></a>异步复制中的关键问题</h2><ol>
+<li>在异步复制中，如果Leader在失败之前尚未收到所有来自旧Leader的写入，可能会出现问题。当前Leader在新Leader产生后重新加入集群时，可能会出现冲突的写入。关键问题是：这些写</li>
+</ol>
+<p>入应该怎么处理？思考和探索！</p>
+<ol start="2">
+<li>当用户进行写入时，新数据可能不会立即传达到所有从节点。如果用户在进行写入后立即尝试读取相同数据，从节点可能无法获得该数据，从而导致用户认为他们的数据丢失了。</li>
+</ol>
+<p>为了处理上述情况，一种解决方案是在读取用户可能已修改的某些内容时从Leader读取。否则，从Follower读取。例如，在社交媒体平台上，通常只有用户自己的配置文件是可编辑的。因此，最好总是从Leader读取用户自己的配置文件，从Follower读取其他用户的配置文件。</p>
+<h1 id="一个共同点：半同步复制"><a href="#一个共同点：半同步复制" class="headerlink" title="一个共同点：半同步复制"></a>一个共同点：半同步复制</h1><p>在大多数情况下，复制是非常快速的，对Leader数据库所做的更改会快速传播到Follower。但在某些情况下，复制可能会延迟。例如，如果Follower正在从故障中恢复、系统正在以最大容量运行或节点之间存在网络问题。</p>
+<p>另一方面，同步复制要求Leader数据库在Follower确认接收和存储数据之前阻止所有写操作。如果所有的副本都是同步的，这可能导致显著的延迟和性能问题。如果一个副本脱机，整个系统将受到影响。</p>
+<p>一个很好的解决方案是使用<strong>半同步复制</strong>。在这种设置中，一个Follower被指定为同步，而其他Follower是异步的。这样，同步Follower将实时更新所有数据更改，而所有异步Follower将在后台逐渐更新数据。如果同步Follower出现问题或减慢，可以将异步Follower之一提升为替代。</p>
+<p>这种配置确保至少两个节点（Leader和一个同步Follower）始终拥有最新的数据副本。让我们通过一个示例来理解：假设用户在网站上更新了他们的个人图片，并且有一个Leader和两个Follower。这里同步复制到Follower 1，异步复制到Follower 2。</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*huGCMin7iW-gbLK4" alt="主从复制图示"></p>
+<ul>
+<li><strong>对于Follower 1：</strong> Leader等待直到Follower 1确认收到写入，然后向客户端报告成功，并在其他客户端上使写入可见。</li>
+<li><strong>对于Follower 2：</strong> Leader发送消息但不等待来自Follower 2的响应。图示显示Follower 2处理消息之前有显着的延迟。</li>
+</ul>
+<h1 id="在主从复制中设置新的Follower"><a href="#在主从复制中设置新的Follower" class="headerlink" title="在主从复制中设置新的Follower"></a>在主从复制中设置新的Follower</h1><p>假设我们希望增加从节点的数量或替换故障的从节点。我们该如何做呢？如何确保新的从节点拥有主节点准确的数据副本？简单地将数据从主节点复制到新的从节点是不够的，因为客户端正在不断写入数据库。换句话说，标准的数据复制将在不同时间点看到数据库的不同部分。</p>
+<p>一个解决方案是锁定Leader或主数据库以确保在复制过程中的一致性。然而，这种方法将不支持高可用性的目标，因为在复制过程中将使Leader数据库不可用于写入。</p>
+<p>幸运的是，有一种方法可以在没有任何停机的情况下设置新的从节点。以下是步骤：</p>
+<ol>
+<li>在特定时间点对Leader数据库进行<strong>一致性快照</strong>。大多数数据库都有此功能，它允许在不锁定整个数据库的情况下进行一致性快照。</li>
+<li>将快照复制到新的从节点。这样确保新的从节点在快照被拍摄时具有完整且准确的主节点数据副本。</li>
+<li>将从节点连接到Leader，并请求从快照拍摄时起发生的所有数据更改。新的从节点必须将快照与主节点的<strong>复制日志</strong>中的特定位置相关联，以请求从那个点以后的所有数据更改。这个位置在不同的数据库中有不同的名称，例如PostgreSQL中的日志序列号（log sequence number）和MySQL中的binlog coordinates。</li>
+<li>最后，新的从节点将处理自快照以来发生的更改。此过程在新的从节点赶上Leader并能够继续实时处理数据更改时完成。</li>
+</ol>
+<p>设置从节点的实际步骤可能因数据库管理系统（DBMS）的不同而大不相同。在某些系统中，该过程是完全自动化的，而在其他系统中，它可能需要管理员手动执行的多步工作流。</p>
+<h1 id="处理节点故障和宕机"><a href="#处理节点故障和宕机" class="headerlink" title="处理节点故障和宕机"></a>处理节点故障和宕机</h1><p>由于故障或错误，系统中的任何节点都可能宕机。因此，我们的目标是保持系统在个别节点故障时继续运行，并尽量减少节点故障的影响。以下是处理基于Leader的复制中的节点故障的情况的讨论。</p>
+<h2 id="处理从节点故障"><a href="#处理从节点故障" class="headerlink" title="处理从节点故障"></a>处理从节点故障</h2><p>每个从节点都维护其从Leader接收到的数据更改的日志。这个日志帮</p>
+<p>助从节点在故障发生之前识别最后一个处理的事务。</p>
+<p>因此，如果从节点发生故障（如崩溃、重新启动或暂时的网络中断），它可以连接到Leader并请求在它断开连接时发生的所有数据更改。一旦它应用这些更改，它将赶上Leader，并可以像以</p>
+<p>前一样继续接收数据更改流。</p>
+<h2 id="处理Leader故障"><a href="#处理Leader故障" class="headerlink" title="处理Leader故障"></a>处理Leader故障</h2><p>处理Leader故障有点复杂，并需要三个关键步骤：1）检测Leader节点故障 2）将一个从节点提升为新Leader 3）配置客户端将其写入发送给新Leader，并将其他从节点开始消费新Leader的数据更改。这个过程也被称为<strong>故障切换（failover）</strong>。</p>
+<p><strong>步骤1：检测Leader故障：</strong> Leader故障可能由各种原因（崩溃、停电、网络问题等）引起。由于没有绝对可靠的方法来检测故障的原因，因此通常使用超时来假设Leader节点在一段时间内未响应时宕机，通常不超过30秒或1分钟。</p>
+<p><strong>步骤2：选择新Leader：</strong> 这可以通过选举过程来实现，新Leader由大多数剩余副本选择。为了最小化数据丢失，通常选择具有最新数据更改的副本作为新Leader。但要使所有节点都同意一个新的Leader是一个共识问题。<strong>注意：</strong>我们将在单独的博客中讨论共识问题的想法。</p>
+<p><strong>步骤3：重新配置系统使用新Leader：</strong> 客户端需要将其写入请求发送给新Leader。如果旧Leader恢复上线，它可能仍然认为自己是Leader，并不知道已被新Leader替换。因此，系统需要确保旧Leader成为从节点并识别新Leader。</p>
+<p><strong>注意：</strong> 在半同步复制的情况下，我们将同步的从节点设为新的主节点，因为我们知道它是最新的，并且不会丢失数据。</p>
+<h2 id="处理Leader故障时的一些关键挑战！"><a href="#处理Leader故障时的一些关键挑战！" class="headerlink" title="处理Leader故障时的一些关键挑战！"></a>处理Leader故障时的一些关键挑战！</h2><ul>
+<li>在异步复制中，可能出现新Leader在故障之前尚未收到所有来自旧Leader的写入的情况。当前Leader重新加入集群后，可能会出现写入冲突的可能性。关键问题是：对这些写入应该采取什么措施？思考和探索！</li>
+<li>在某些情况下，分布式系统中的两个节点可能认为自己是Leader，这被称为<strong>脑裂（split-brain）情况</strong>。这种情况可能非常棘手，因为两个Leader可能都会接受写入而没有解决冲突的过程，这可能导致数据丢失或损坏。如何预防或处理这种脑裂情况？</li>
+<li>在声明Leader故障之前，什么是正确的超时时间？超时时间越长，在Leader故障时的恢复时间就越长。然而，如果超时时间太短，可能会出现不必要的故障切换。例如，临时增加负载可能会使节点响应时间超过超时时间，或者网络故障可能导致延迟的数据包。如果系统已经在处理高负载或网络问题，则不必要的故障切换可能会使情况变得更糟。</li>
+</ul>
+<p>这篇文章讨论了主从复制（Master-Slave Replication）的概念、应用场景以及相关的同步和异步复制策略，以及处理节点故障和故障切换的方法。主从复制是一种常用的数据库复制技术，用于提高系统性能、容错性和高可用性。了解这些复制策略和处理故障的方法对于设计和维护分布式系统非常重要。</p>
+]]></content>
+      <categories>
+        <category>系统设计</category>
+      </categories>
+      <tags>
+        <tag>主从复制,系统设计</tag>
       </tags>
   </entry>
   <entry>
@@ -3362,185 +3541,6 @@ Just My Socks 官网：<a rel="nofollow noopener" target="_blank" href="https://
       </categories>
       <tags>
         <tag>vpn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何有效地扩展数据库服务器以满足日益增长的工作量 - 数据库扩展策略</title>
-    <url>/2023/10/22/systemDesign-db-extend/</url>
-    <content><![CDATA[<p>在当今以数据为驱动的世界中，企业面临着一个挑战，即在保证应用程序的最佳性能的同时，管理迅速增长的数据量。扩展数据库服务器在满足这些需求方面起着至关重要的作用。本篇博客将探讨各种策略，以有效地扩展数据库服务器，以处理不断增加的工作量，提升性能并确保数据可用性。</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*D4j_xNB63zw0nTvo.png" alt="0*D4j_xNB63zw0nTvo.png"></p>
-<h2 id="什么是数据库服务器扩展？"><a href="#什么是数据库服务器扩展？" class="headerlink" title="什么是数据库服务器扩展？"></a>什么是数据库服务器扩展？</h2><p>数据库服务器扩展是增加数据库服务器的容量和性能，以处理不断增长的数据量、用户请求和系统负载的过程。通过升级硬件组件，如 CPU、内存或存储，可以实现垂直扩展，这允许数据库服务器利用升级后硬件的改进能力来处理更大的工作量。垂直扩展通常受限于单个服务器的最大容量。</p>
-<h2 id="数据库服务器扩展的技术"><a href="#数据库服务器扩展的技术" class="headerlink" title="数据库服务器扩展的技术"></a>数据库服务器扩展的技术</h2><p>有多种方法可用于扩展数据库。它们是：</p>
-<h3 id="1-垂直扩展"><a href="#1-垂直扩展" class="headerlink" title="1. 垂直扩展"></a>1. 垂直扩展</h3><p>在垂直扩展，也称为升级或降级，通过升级硬件组件，如 CPU、内存或存储，来增加服务器的资源。 这种方法允许数据库服务器通过利用升级后硬件的改进能力来处理更大的工作量。垂直扩展通常受限于单个服务器的最大容量。</p>
-<span id="more"></span>
-<h3 id="2-水平扩展"><a href="#2-水平扩展" class="headerlink" title="2. 水平扩展"></a>2. 水平扩展</h3><p>水平扩展关注的是向基础架构中添加更多数据库服务器。这种方法允许将工作负载分布在多个服务器上，减轻单个节点的负担。水平扩展也称为添加节点（扩展）或减少节点（收缩）。</p>
-<p>根据实现方式的不同，水平扩展还可以提高数据库的整体可靠性。它消除了单点故障，因为您增加了在故障转移情况下可以使用的节点数。然而，水平扩展也增加了时间、精力（因此成本）方面的开销，因为您需要更多的节点（因此有更多的故障点）来保持数据库功能正常。</p>
-<p>水平扩展比垂直扩展更困难，也更昂贵。</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*NW_SqA8U_aHsVBzc.png" alt="0*NW_SqA8U_aHsVBzc.png"></p>
-<p><strong>数据库集群和分片是实现水平扩展的常见技术。</strong></p>
-<h3 id="3-数据库复制"><a href="#3-数据库复制" class="headerlink" title="3. 数据库复制"></a>3. 数据库复制</h3><p>数据库复制涉及创建多个数据库的副本，并将工作负载分布在它们之间。 它通过将读请求定向到副本来提高读取性能，同时保留主服务器用于写入操作。</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*bGkBdGeJf2fl01Ti" alt="Image.jpeg"></p>
-<p>因此，在这里，数据库的副本帮助我们分发请求，从而降低了对单个数据库的负载。</p>
-<p>数据库复制涉及频繁地将数据从一个数据库或服务器复制或流式传输到另一个数据库，以便所有用户都可以访问同步的数据，而不管他们用来访问数据的是哪个系统。如果有数据更改，数据复制工具也会确保将更改应用于目标数据库。其结果是分布式数据存储网络，任何人都可以轻松地访问重要和相关的数据，并增加了不同位置之间的可用性。</p>
-<h3 id="4-缓存"><a href="#4-缓存" class="headerlink" title="4. 缓存"></a>4. 缓存</h3><p>缓存是将数据存储并从缓存中访问的过程。但请等等，什么是缓存？缓存是一个旨在存储数据的软件或硬件组件，以便未来对相同数据的请求可以更快地得到服务。</p>
-<p>缓存涉及将频繁访问的数据存储在内存中，以减少重复数据库查询的需求。</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*BeX3xuG9mI7IWlGv.png" alt="0*BeX3xuG9mI7IWlGv.png"></p>
-<p>每当有新的请求到达时，首先会在缓存中搜索所请求的数据。当所请求的数据能够在缓存中找到时，称为“缓存命中”。相反，当无法在缓存中找到数据时，称为“缓存未命中”。显然，从缓存中读取所需数据被认为比重新计算结果或从原始数据存储中读取它更快。因此，从缓存中可以服务更多的请求，系统就越快。</p>
-<p>通过实施内存缓存层，比如 Redis 或 Memcached，组织可以显著提升数据库性能。缓存通过直接从内存中提供数据来卸载数据库服务器，从而降低响应时间并提高可扩展性。</p>
-<h3 id="5-分片"><a href="#5-分片" class="headerlink" title="5. 分片"></a>5. 分片</h3><p>分片是一种数据库分区的类型，其中将大型数据库分成较小的数据和不同节点。 分片涉及将数据分成较小的子集，并将其分布在多个服务器上。每个服务器处理特定的分区或分片，从而实现并行处理和改进性能。</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*MyvaKu2G7KVdg0Z9.png" alt="image"></p>
-<p>分片有两种类型：</p>
-<ol>
-<li>水平分片：在这种类型的分片中，数据库根据行进行分区。</li>
-<li>垂直分片：在这种类型的分片中，数据库根据列进行分区。</li>
-</ol>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>扩展数据库服务器是维持应用程序性能和适应不断增长的数据量的关键方面。通过采用垂直和水平扩展、复制、缓存和分区等策略，组织可以有效应对可扩展性挑战，并确保高效的数据库操作。然而，选择合适的扩展策略需要全面了解系统要求、工作负载模式和技术考虑因素。实施经过深思熟虑的扩展方法将使企业能够交付高性能的应用程序，同时有效地管理数据增长。</p>
-]]></content>
-      <categories>
-        <category>CDN,系统设计,网络技术</category>
-      </categories>
-      <tags>
-        <tag>CDN,系统设计,数据库扩展,数据处理,网络性能优化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>主从复制 (Master-Slave Replication) 在系统设计与网络技术中的应用</title>
-    <url>/2023/10/22/systemDesign-replication/</url>
-    <content><![CDATA[<p>在数据库复制中，我们创建相同数据库的副本，并将其分布在多个节点（副本）上。然而，在拥有多个副本的情况下，一个问题出现了：如何确保每次写操作后所有数据都传播到所有副本？最常见的解决方案是主从复制，也称为<strong>主动/被动</strong>或<strong>单主复制</strong>。</p>
-<h2 id="什么是主从复制？"><a href="#什么是主从复制？" class="headerlink" title="什么是主从复制？"></a>什么是主从复制？</h2><p>主从复制中有两种类型的节点：主节点和从节点。单个<strong>主节点（Leader）</strong>作为主数据库，而一个或多个<strong>从节点（Follower）</strong>维护主节点数据的副本。</p>
-<ul>
-<li>主节点负责处理写查询，而从节点负责处理读查询。注意：如果需要，主节点也可以执行读查询。</li>
-<li>每当主节点上进行写操作时，它将复制所有数据更改到所有从节点，以保持整个系统中数据的一致性。</li>
-</ul>
-<p>整个主从复制的思想如下：</p>
-<ul>
-<li>当客户端要执行写查询时，它们将请求发送到主节点，主节点首先将新数据写入其本地存储。</li>
-<li>当主节点将新数据写入其本地存储时，它还会将数据更改作为复制日志发送给所有从节点。每个从节点通过从主节点接收日志并按照与主节点上处理它们相同的顺序更新其本地副本。</li>
-<li>如果只有一个从数据库可用且它处于脱机状态，则读操作将暂时定向到主数据库，并且一个新的从数据库将取代旧的从数据库。</li>
-<li>如果有多个从数据库可用，则读操作将重定向到其他健康的从数据库，并且新的数据库服务器将取代旧的从数据库。</li>
-<li>如果主数据库处于脱机状态，一个从数据库将被提升为新的主数据库。现在，所有写操作将在新的主数据库上执行，并且一个新的从数据库将立即取代旧的从数据库进行数据复制。<strong>注意：</strong>提升新的主数据库更加复杂，因为从数据库中的数据可能不是最新的。如何更新缺失的数据？我们将在本文后面的部分讨论这个想法。</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="主从复制的应用场景"><a href="#主从复制的应用场景" class="headerlink" title="主从复制的应用场景"></a>主从复制的应用场景</h2><p>主从复制适用于读负载较重的情况下，并且需要将读请求分布在多个节点以提高系统性能。由于从节点可以处理读请求，因此它们可以从主节点卸载读流量，并允许主节点专注于处理写请求。</p>
-<ul>
-<li>此体系结构提供容错性，并且即使主节点失败，系统也可以继续运行。</li>
-<li>主从复制在关系型数据库（如MySQL、PostgreSQL和Oracle）以及NoSQL数据库（如MongoDB、Cassandra、RethinkDB、Espresso等）中使用。</li>
-<li>基于领导者的复制不仅局限于数据库。分布式消息代理（如Kafka和RabbitMQ）也使用它来提供高可用的队列。</li>
-</ul>
-<h2 id="同步复制与异步复制配置"><a href="#同步复制与异步复制配置" class="headerlink" title="同步复制与异步复制配置"></a>同步复制与异步复制配置</h2><p>在主从复制中，一个重要的方面是复制是否同步进行或异步进行。为了理解这一点，让我们考虑一个用户在社交媒体网站上更新个人图片的情况：客户端向Leader发送更新请求。一旦Leader收到请求，它会将数据更改转发给Follower。现在，关键问题是：从节点如何更新其数据？</p>
-<p>在同步复制中，客户端在从节点确认更新在所有从节点都已经应用之前会等待Leader的确认。相反，在异步复制中，客户端在所有从节点都已经更新之前就会收到响应。</p>
-<h2 id="同步复制和异步复制的优缺点"><a href="#同步复制和异步复制的优缺点" class="headerlink" title="同步复制和异步复制的优缺点"></a>同步复制和异步复制的优缺点</h2><p><strong>同步复制的缺点：</strong> 如果从节点没有响应（由于崩溃、网络故障或任何其他原因），则写操作无法被处理。</p>
-<p><strong>同步复制的优点：</strong> 从节点保证具有与Leader一致的最新数据副本。如果Leader突然失败，我们可以确保从节点上仍然可用的数据。</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*_px5himI2Z4S0beR" alt="主从复制图示"></p>
-<h2 id="异步复制的优点和缺点"><a href="#异步复制的优点和缺点" class="headerlink" title="异步复制的优点和缺点"></a>异步复制的优点和缺点</h2><p><strong>异步复制的缺点：</strong> 如果主节点失败且无法恢复，则尚未复制到从节点的所有写操作都将丢失。这意味着尽管已经向客户端确认，但写操作不保证持久。</p>
-<p><strong>异步复制的优点：</strong> 即使所有从节点都已滞后，Leader仍可以继续处理写入。弱化持久性可能听起来像是一个坏的权衡，但异步复制仍然广泛使用，特别是如果有许多从节点或者它们分布在地理位置上。</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*OZULLkSGNZCw3RAk" alt="主从复制图示"></p>
-<p>总体而言，选择同步复制或异步复制取决于<strong>一致性和性能之间的权衡</strong>。同步复制提供更强的一致性保证，但也可能导致较长的响应时间。另一方面，异步复制提供更快的响应时间</p>
-<p>，但可能会牺牲一致性。</p>
-<h2 id="异步复制中的关键问题"><a href="#异步复制中的关键问题" class="headerlink" title="异步复制中的关键问题"></a>异步复制中的关键问题</h2><ol>
-<li>在异步复制中，如果Leader在失败之前尚未收到所有来自旧Leader的写入，可能会出现问题。当前Leader在新Leader产生后重新加入集群时，可能会出现冲突的写入。关键问题是：这些写</li>
-</ol>
-<p>入应该怎么处理？思考和探索！</p>
-<ol start="2">
-<li>当用户进行写入时，新数据可能不会立即传达到所有从节点。如果用户在进行写入后立即尝试读取相同数据，从节点可能无法获得该数据，从而导致用户认为他们的数据丢失了。</li>
-</ol>
-<p>为了处理上述情况，一种解决方案是在读取用户可能已修改的某些内容时从Leader读取。否则，从Follower读取。例如，在社交媒体平台上，通常只有用户自己的配置文件是可编辑的。因此，最好总是从Leader读取用户自己的配置文件，从Follower读取其他用户的配置文件。</p>
-<h1 id="一个共同点：半同步复制"><a href="#一个共同点：半同步复制" class="headerlink" title="一个共同点：半同步复制"></a>一个共同点：半同步复制</h1><p>在大多数情况下，复制是非常快速的，对Leader数据库所做的更改会快速传播到Follower。但在某些情况下，复制可能会延迟。例如，如果Follower正在从故障中恢复、系统正在以最大容量运行或节点之间存在网络问题。</p>
-<p>另一方面，同步复制要求Leader数据库在Follower确认接收和存储数据之前阻止所有写操作。如果所有的副本都是同步的，这可能导致显著的延迟和性能问题。如果一个副本脱机，整个系统将受到影响。</p>
-<p>一个很好的解决方案是使用<strong>半同步复制</strong>。在这种设置中，一个Follower被指定为同步，而其他Follower是异步的。这样，同步Follower将实时更新所有数据更改，而所有异步Follower将在后台逐渐更新数据。如果同步Follower出现问题或减慢，可以将异步Follower之一提升为替代。</p>
-<p>这种配置确保至少两个节点（Leader和一个同步Follower）始终拥有最新的数据副本。让我们通过一个示例来理解：假设用户在网站上更新了他们的个人图片，并且有一个Leader和两个Follower。这里同步复制到Follower 1，异步复制到Follower 2。</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:1400/0*huGCMin7iW-gbLK4" alt="主从复制图示"></p>
-<ul>
-<li><strong>对于Follower 1：</strong> Leader等待直到Follower 1确认收到写入，然后向客户端报告成功，并在其他客户端上使写入可见。</li>
-<li><strong>对于Follower 2：</strong> Leader发送消息但不等待来自Follower 2的响应。图示显示Follower 2处理消息之前有显着的延迟。</li>
-</ul>
-<h1 id="在主从复制中设置新的Follower"><a href="#在主从复制中设置新的Follower" class="headerlink" title="在主从复制中设置新的Follower"></a>在主从复制中设置新的Follower</h1><p>假设我们希望增加从节点的数量或替换故障的从节点。我们该如何做呢？如何确保新的从节点拥有主节点准确的数据副本？简单地将数据从主节点复制到新的从节点是不够的，因为客户端正在不断写入数据库。换句话说，标准的数据复制将在不同时间点看到数据库的不同部分。</p>
-<p>一个解决方案是锁定Leader或主数据库以确保在复制过程中的一致性。然而，这种方法将不支持高可用性的目标，因为在复制过程中将使Leader数据库不可用于写入。</p>
-<p>幸运的是，有一种方法可以在没有任何停机的情况下设置新的从节点。以下是步骤：</p>
-<ol>
-<li>在特定时间点对Leader数据库进行<strong>一致性快照</strong>。大多数数据库都有此功能，它允许在不锁定整个数据库的情况下进行一致性快照。</li>
-<li>将快照复制到新的从节点。这样确保新的从节点在快照被拍摄时具有完整且准确的主节点数据副本。</li>
-<li>将从节点连接到Leader，并请求从快照拍摄时起发生的所有数据更改。新的从节点必须将快照与主节点的<strong>复制日志</strong>中的特定位置相关联，以请求从那个点以后的所有数据更改。这个位置在不同的数据库中有不同的名称，例如PostgreSQL中的日志序列号（log sequence number）和MySQL中的binlog coordinates。</li>
-<li>最后，新的从节点将处理自快照以来发生的更改。此过程在新的从节点赶上Leader并能够继续实时处理数据更改时完成。</li>
-</ol>
-<p>设置从节点的实际步骤可能因数据库管理系统（DBMS）的不同而大不相同。在某些系统中，该过程是完全自动化的，而在其他系统中，它可能需要管理员手动执行的多步工作流。</p>
-<h1 id="处理节点故障和宕机"><a href="#处理节点故障和宕机" class="headerlink" title="处理节点故障和宕机"></a>处理节点故障和宕机</h1><p>由于故障或错误，系统中的任何节点都可能宕机。因此，我们的目标是保持系统在个别节点故障时继续运行，并尽量减少节点故障的影响。以下是处理基于Leader的复制中的节点故障的情况的讨论。</p>
-<h2 id="处理从节点故障"><a href="#处理从节点故障" class="headerlink" title="处理从节点故障"></a>处理从节点故障</h2><p>每个从节点都维护其从Leader接收到的数据更改的日志。这个日志帮</p>
-<p>助从节点在故障发生之前识别最后一个处理的事务。</p>
-<p>因此，如果从节点发生故障（如崩溃、重新启动或暂时的网络中断），它可以连接到Leader并请求在它断开连接时发生的所有数据更改。一旦它应用这些更改，它将赶上Leader，并可以像以</p>
-<p>前一样继续接收数据更改流。</p>
-<h2 id="处理Leader故障"><a href="#处理Leader故障" class="headerlink" title="处理Leader故障"></a>处理Leader故障</h2><p>处理Leader故障有点复杂，并需要三个关键步骤：1）检测Leader节点故障 2）将一个从节点提升为新Leader 3）配置客户端将其写入发送给新Leader，并将其他从节点开始消费新Leader的数据更改。这个过程也被称为<strong>故障切换（failover）</strong>。</p>
-<p><strong>步骤1：检测Leader故障：</strong> Leader故障可能由各种原因（崩溃、停电、网络问题等）引起。由于没有绝对可靠的方法来检测故障的原因，因此通常使用超时来假设Leader节点在一段时间内未响应时宕机，通常不超过30秒或1分钟。</p>
-<p><strong>步骤2：选择新Leader：</strong> 这可以通过选举过程来实现，新Leader由大多数剩余副本选择。为了最小化数据丢失，通常选择具有最新数据更改的副本作为新Leader。但要使所有节点都同意一个新的Leader是一个共识问题。<strong>注意：</strong>我们将在单独的博客中讨论共识问题的想法。</p>
-<p><strong>步骤3：重新配置系统使用新Leader：</strong> 客户端需要将其写入请求发送给新Leader。如果旧Leader恢复上线，它可能仍然认为自己是Leader，并不知道已被新Leader替换。因此，系统需要确保旧Leader成为从节点并识别新Leader。</p>
-<p><strong>注意：</strong> 在半同步复制的情况下，我们将同步的从节点设为新的主节点，因为我们知道它是最新的，并且不会丢失数据。</p>
-<h2 id="处理Leader故障时的一些关键挑战！"><a href="#处理Leader故障时的一些关键挑战！" class="headerlink" title="处理Leader故障时的一些关键挑战！"></a>处理Leader故障时的一些关键挑战！</h2><ul>
-<li>在异步复制中，可能出现新Leader在故障之前尚未收到所有来自旧Leader的写入的情况。当前Leader重新加入集群后，可能会出现写入冲突的可能性。关键问题是：对这些写入应该采取什么措施？思考和探索！</li>
-<li>在某些情况下，分布式系统中的两个节点可能认为自己是Leader，这被称为<strong>脑裂（split-brain）情况</strong>。这种情况可能非常棘手，因为两个Leader可能都会接受写入而没有解决冲突的过程，这可能导致数据丢失或损坏。如何预防或处理这种脑裂情况？</li>
-<li>在声明Leader故障之前，什么是正确的超时时间？超时时间越长，在Leader故障时的恢复时间就越长。然而，如果超时时间太短，可能会出现不必要的故障切换。例如，临时增加负载可能会使节点响应时间超过超时时间，或者网络故障可能导致延迟的数据包。如果系统已经在处理高负载或网络问题，则不必要的故障切换可能会使情况变得更糟。</li>
-</ul>
-<p>这篇文章讨论了主从复制（Master-Slave Replication）的概念、应用场景以及相关的同步和异步复制策略，以及处理节点故障和故障切换的方法。主从复制是一种常用的数据库复制技术，用于提高系统性能、容错性和高可用性。了解这些复制策略和处理故障的方法对于设计和维护分布式系统非常重要。</p>
-]]></content>
-      <categories>
-        <category>系统设计</category>
-      </categories>
-      <tags>
-        <tag>主从复制,系统设计</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CDN初学者指南：是什么以及如何工作</title>
-    <url>/2023/10/22/systemDesign-cdn/</url>
-    <content><![CDATA[<p>内容交付网络（Content Delivery Network，CDN）是一种分布式服务器系统，旨在根据用户的地理位置提供网络内容。CDN的目标是减少加载时间、提高网站和在线应用程序性能。</p>
-<p>当用户请求网页时，内容将通过距离最近的CDN服务器提供，而不是源服务器，即使源服务器可能位于用户数千英里之外。这样做可以显著加快加载时间，改善用户体验，并有助于提高搜索引擎排名，同时减少跳失率。此外，CDN还有助于减轻服务器过载风险，降低源服务器的负载。它通过在CDN服务器上缓存和存储经常访问的内容来实现。当源服务器面临高流量时，CDN服务器可提供缓存内容，防止源服务器超负荷和崩溃。此外，CDN还提供强化安全性，CDN提供商会提供DDoS防护和SSL加密，以保护内容交付过程并防止网络攻击对网站的威胁。</p>
-<p>CDN对搜索引擎优化（SEO）至关重要。因为CDN提高了网站性能，因此页面加载速度更快，而这是搜索引擎排名的重要因素。例如，谷歌在对搜索结果页面排名时会考虑网站速度。</p>
-<p><img src="https://res.craft.do/user/full/b313a1ab-3121-84d1-2506-d702b5c0ba9c/AD587214-47A6-4835-A618-4F5E56903CDD_2/7jJNHzE4eSyR3usN4yFyqRRsKhN7lnSVXezCvzVwVhUz/1rWNmcNuFktISaLlLw8EIWQ.png" alt="CDN图片"></p>
-<p><strong>CDN速查表</strong></p>
-<span id="more"></span>
-
-<p>CDN有几种类型，包括：</p>
-<h2 id="传统CDN"><a href="#传统CDN" class="headerlink" title="传统CDN"></a>传统CDN</h2><p>传统CDN是最常见的CDN类型，它基于全球范围内的服务器网络来缓存和传递内容。以下是传统CDN的工作原理：</p>
-<ol>
-<li>用户请求网站内容。</li>
-<li>请求被重定向到最近的DNS服务器，该服务器将域名映射到IP地址并将请求重定向到最近的边缘服务器。</li>
-<li>边缘服务器检查其缓存是否有所请求内容的副本。如果有可用内容，边缘服务器将其传递给用户。</li>
-<li>如果缓存中没有所请求的内容，边缘服务器将请求源服务器检索内容。</li>
-<li>源服务器将内容传递给边缘服务器，并在将来的请求中缓存内容的副本。</li>
-<li>边缘服务器将内容传递给用户。</li>
-<li>下次用户请求相同内容时，请求将被重定向到最近的边缘服务器，该服务器可以直接从其缓存中传递内容，提高性能并减少延迟。</li>
-</ol>
-<h2 id="推送CDN"><a href="#推送CDN" class="headerlink" title="推送CDN"></a>推送CDN</h2><p>推送CDN通过在用户请求之前主动将内容推送到边缘服务器上工作。它通常用于分发软件、大型媒体文件和实时数据（例如股票实时价格）。</p>
-<h2 id="视频CDN"><a href="#视频CDN" class="headerlink" title="视频CDN"></a>视频CDN</h2><p>视频CDN专为传递视频内容而设计，它提供了自适应流媒体和实时转码等功能，对于改善流媒体视频、实时事件、广告插入和视频点播体验非常有用。</p>
-<h2 id="私有CDN"><a href="#私有CDN" class="headerlink" title="私有CDN"></a>私有CDN</h2><p>私有CDN专为满足单个组织的特定需求而设计。与传统CDN不同，私有CDN通常由组织自己拥有和管理，而不是由第三方供应商提供。私有CDN在内容交付安全性、性能优化以及合规性与治理方面非常有用。</p>
-<h1 id="面临的挑战"><a href="#面临的挑战" class="headerlink" title="面临的挑战"></a>面临的挑战</h1><p>尽管CDN具有许多优点，但其实施和使用也面临一些挑战。其中一些挑战包括：</p>
-<ol>
-<li><strong>成本</strong>：CDN服务可能很昂贵，特别对于大型网站或业务，特别是那些流量庞大的网站来说。</li>
-<li><strong>集成</strong>：将CDN与现有网站或应用程序集成可能相当复杂，需要专业技术知识。</li>
-<li><strong>配置</strong>：为特定的网站或应用程序优化CDN的配置需要精心规划和管理。</li>
-<li><strong>内容一致性</strong>：确保在多个CDN节点上的缓存内容保持一致可能具有挑战性。</li>
-<li><strong>安全性</strong>：CDN提供商负责保护其交付的内容，但如果管理不当，它们也可能引入新的安全漏洞。</li>
-</ol>
-<h1 id="边缘计算"><a href="#边缘计算" class="headerlink" title="边缘计算"></a>边缘计算</h1><p>边缘计算，也称为在CDN上计算（Compute on CDN），是一个相对较新的功能，由一些供应商提供。它允许开发人员在CDN的边缘服务器上直接运行无服务器代码。这可以通过减少用户和源服务器之间的往返时间来显著提高Web应用程序的性能和响应能力。</p>
-<p>通过在CDN的边缘服务器上运行代码，开发人员可以在无服务器环境中编写代码，并将其部署以在边缘服务器上运行。该代码可以执行各种任务，例如动态内容生成、API调用和数据处理，而无需将请求发送回源服务器。</p>
-<p>边缘计算对需要实时数据处理或需要从全球各地访问数据的Web应用程序特别有用。它还可以帮助提高Web应用程序的安全性，因为敏感数据可以在边缘服务器上直接处理，而无需发送回源服务器。</p>
-<p>虽然边缘计算是一个强大的功能，但它需要仔细规划和管理，以确保有效使用。开发人员必须了解在边缘服务器上运行代码的限制和挑战，如资源限制和安全风险。通过正确的方法，边缘计算可以显著提高Web应用程序的性能和功能。</p>
-<h1 id="云游戏"><a href="#云游戏" class="headerlink" title="云游戏"></a>云游戏</h1><p>边缘游戏，也称为云游戏，是CDN技术的一个相对较新应用，它允许用户在任何设备上玩游戏，而无需高端游戏硬件或下载。通过边缘游戏，运行现代视频游戏所需的大量处理工作被转移到靠近终端用户的云服务器上。</p>
-<p>使用边缘服务器进行游戏，用户可以在任何有互联网连接的设备上玩高端游戏，而无需在本地设备上安装或更新游戏。游戏在云服务器上运行并实时流式传输到用户设备上。这种方法可以显著提高视频游戏的可访问性和可负担性，消除了需要昂贵的硬件升级和游戏分发成本。</p>
-<p>边缘游戏还有助于游戏开发人员，因为它减少了为不同硬件配置优化游戏的需求。开发人员可以通过在云服务器上运行游戏，确保在其他设备和平台上获得一致和高质量的游戏体验。</p>
-<p>然而，边缘游戏也面临一些挑战和限制。最大的挑战之一是延迟，因为即使是用户输入和游戏响应之间的微小延迟也会对游戏体验产生负面影响。CDN提供商必须仔细管理网络和服务器基础设施，以最小化延迟，确保流畅的游戏体验。</p>
-<p>另一个挑战是带宽，因为流式传输高质量的视频和音频内容需要大量带宽。互联网连接较慢的用户可能会遇到较低质量或中断的游戏体验。CDN提供商正在开发新的技术来优化流式传输质量并减少带宽需求，以解决这个挑战。</p>
-<p>根据其技术、基础设施和功能的不同，不同的云游戏服务可能对延迟和带宽有额外的要求和建议。例如，Nvidia GeForce Now要求最低25 Mbps的带宽以1080p分辨率和60 FPS的速度进行流式传输，并且延迟低于80毫秒。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>CDN是现代互联网应用程序的关键组成部分，对于提供高性能、安全和可访问性的用户体验至关重要。通过减少加载时间、提高性能和提高安全性，CDN将内容更靠近用户，提高了用户体验。</p>
-<p>它的扩展应用，如边缘计算和云游戏，进一步提高了CDN技术的潜力。边缘计算使开发人员能够在CDN的边缘服务器上运行无服务器代码，从而提高应用程序的性能。云游戏将游戏的重要部分移动到云端，使用户能够在任何设备上畅玩高质量的游戏。</p>
-<p>然而，CDN的实施和使用也面临一些挑战，包括成本、集成、配置、内容一致性和安全性等方面。对于边缘计算和云游戏，延迟和带宽是关键挑战，需要仔细的规划和管理。</p>
-<p>综上所述，CDN是一种关键的网络技术，为Web应用程序和内容提供了更快、更可靠和更安全的交付方式，从而提供更好的用户体验。</p>
-]]></content>
-      <categories>
-        <category>CDN,系统设计,网络技术</category>
-      </categories>
-      <tags>
-        <tag>CDN,系统设计,网络技术</tag>
       </tags>
   </entry>
 </search>
