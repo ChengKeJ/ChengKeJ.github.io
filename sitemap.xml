@@ -375,13 +375,6 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/tags/gateway/</loc>
-    <lastmod>2023-10-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://smalltechnologyjun.com/tags/ChatGPT/</loc>
     <lastmod>2023-10-22</lastmod>
     <changefreq>daily</changefreq>
@@ -417,7 +410,7 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/tags/jvm/</loc>
+    <loc>https://smalltechnologyjun.com/tags/kafka/</loc>
     <lastmod>2023-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -431,7 +424,7 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/tags/kafka/</loc>
+    <loc>https://smalltechnologyjun.com/tags/jvm/</loc>
     <lastmod>2023-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -494,13 +487,6 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/</loc>
-    <lastmod>2023-10-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://smalltechnologyjun.com/tags/CDN-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2023-10-22</lastmod>
     <changefreq>daily</changefreq>
@@ -529,7 +515,21 @@
   </url>
   
   <url>
+    <loc>https://smalltechnologyjun.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86/</loc>
+    <lastmod>2023-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://smalltechnologyjun.com/tags/vpn/</loc>
+    <lastmod>2023-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/gateway/</loc>
     <lastmod>2023-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -546,13 +546,6 @@
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2023-10-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://smalltechnologyjun.com/categories/gateway/</loc>
     <lastmod>2023-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -587,14 +580,14 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/categories/java/</loc>
+    <loc>https://smalltechnologyjun.com/categories/kafka/</loc>
     <lastmod>2023-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/categories/kafka/</loc>
+    <loc>https://smalltechnologyjun.com/categories/java/</loc>
     <lastmod>2023-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -629,13 +622,6 @@
   </url>
   
   <url>
-    <loc>https://smalltechnologyjun.com/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
-    <lastmod>2023-10-22</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://smalltechnologyjun.com/categories/CDN-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1-%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2023-10-22</lastmod>
     <changefreq>daily</changefreq>
@@ -650,7 +636,21 @@
   </url>
   
   <url>
+    <loc>https://smalltechnologyjun.com/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
+    <lastmod>2023-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://smalltechnologyjun.com/categories/vpn/</loc>
+    <lastmod>2023-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/categories/gateway/</loc>
     <lastmod>2023-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
