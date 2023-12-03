@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>计算机的层次化架构</title>
+      <link href="2023/12/03/systemDesign-cpu/"/>
+      <url>2023/12/03/systemDesign-cpu/</url>
+      
+        <content type="html"><![CDATA[<p>计算机在多层次系统中运行。每个层次都经过优化，以执行特定的任务，确保整个机器的高效运行。</p><p><img src="/uploads/1*1CjGIK6LMua2woczwH1r6A.png" alt="1*1CjGIK6LMua2woczwH1r6A.png"></p><h2 id="从比特到大字节：理解计算机内存单元"><a href="#从比特到大字节：理解计算机内存单元" class="headerlink" title="从比特到大字节：理解计算机内存单元"></a>从比特到大字节：理解计算机内存单元</h2><p>在最基本的层面上，计算机使用二进制运行，只包含 0 和 1，被称为<strong>比特</strong>。以下是一个细分：</p><p><strong>1 比特：</strong> 这是计算机中的基本数据单元，表示为 0 或 1。</p><p><strong>1 字节：</strong> 包含 8 个比特，字节用于表示单个字符（例如，“A”）或数字（例如，1）。</p><span id="more"></span><p><img src="/uploads/1*jwxOxDwjT18FwRsqsVztCg.png" alt="1*jwxOxDwjT18FwRsqsVztCg.png"></p><p>进一步扩展：</p><ul><li>千字节（KB）：大约 1,024 字节。</li><li>兆字节（MB）：大约 1,024 KB。</li><li>吉字节（GB）：大约 1,024 MB。</li><li>太字节（TB）：大约 1,024 GB。</li></ul><h2 id="硬盘存储：数据的中央存储库"><a href="#硬盘存储：数据的中央存储库" class="headerlink" title="硬盘存储：数据的中央存储库"></a>硬盘存储：数据的中央存储库</h2><p>计算机的主要数据存储在硬盘存储设备中。</p><p>示例：这包括固态驱动器（SSD）和硬盘驱动器（HDD）。</p><p><img src="/uploads/1*jlQhFPO24uzLfAoGV_rETw.png" alt="1*jlQhFPO24uzLfAoGV_rETw.png"></p><p>显著特点：</p><ul><li><strong>非易失性：</strong> 即使关闭电源或重新启动计算机，数据仍然保持完好。</li><li><strong>存储空间：</strong> 硬盘存储设备的容量通常在 100 GB 到几 TB 之间。</li><li><strong>速度差异：</strong> 尽管价格较高，但相较于 HDD，SSD 的数据检索速度显著更快。例如，SSD 的读取速度可能在 500 MB/s 到 3,500 MB/s 之间（取决于类型和质量），而 HDD 可能提供 80 MB/s 到 160 MB/s。</li></ul><h2 id="RAM：数据处理的前沿"><a href="#RAM：数据处理的前沿" class="headerlink" title="RAM：数据处理的前沿"></a>RAM：数据处理的前沿</h2><p>随机访问存储器（RAM）充当正在使用或正在处理的数据的主要持有者。当启动程序时，由于其快速的读写能力，程序的数据 — 从变量到运行时堆栈 — 存储在这里。</p><p>示例：常见的 RAM 类型包括 DDR4 和 LPDDR5。</p><p><img src="/uploads/1*HgYTk5q2B9dkeYlpg_T6WA.png" alt="1*HgYTk5q2B9dkeYlpg_T6WA.png"></p><p>关键点：</p><ul><li><strong>易失性内存：</strong> 断电时 RAM 的内容会丢失。</li><li><strong>速度：</strong> RAM 比硬盘存储快得多，通常超过 5,000 MB/s。</li><li><strong>存储范围：</strong> 对于典型的消费者设备，RAM 的范围可以从几 GB（8 GB、16 GB、32 GB）到高端服务器可以拥有数百 GB（128 GB 或更多）。</li></ul><h2 id="缓存存储：速度大师"><a href="#缓存存储：速度大师" class="headerlink" title="缓存存储：速度大师"></a>缓存存储：速度大师</h2><p>即使迅速的 RAM 不足以满足需求时，还有缓存存储。</p><p><img src="/uploads/1*W25HWBrg7ku2qh9qoptveQ.png" alt="1*W25HWBrg7ku2qh9qoptveQ.png"></p><p>特征：</p><ul><li><strong>尺寸：</strong> 缓存比 RAM 小但比 RAM 更快，通常以兆字节为单位。</li><li><strong>速度：</strong> 它的访问时间超过 RAM，使其成为存储频繁使用的数据以实现最佳 CPU 性能的理想选择。</li></ul><h2 id="CPU：每台计算机的心跳"><a href="#CPU：每台计算机的心跳" class="headerlink" title="CPU：每台计算机的心跳"></a>CPU：每台计算机的心跳</h2><p>中央处理单元（CPU）通常被称为计算机的“大脑”。它在提取、解码和执行指令方面发挥着关键作用。</p><p><img src="/uploads/1*Gs4u9u7X6rV4LUi92YC7TQ.png" alt="1*Gs4u9u7X6rV4LUi92YC7TQ.png"></p><p>特征：</p><ul><li><strong>执行：</strong> CPU 解释和处理来自我们代码的操作。</li><li><strong>代码翻译：</strong> 高级编程语言需要被翻译成机器代码 — 一系列 0 和 1 — 以便 CPU 理解和运行它们。这种转换是由编译器执行的。</li></ul><p><img src="/uploads/1*IpOltycnP34DNe_3Uz8T8A.png" alt="1*IpOltycnP34DNe_3Uz8T8A.png"></p><h2 id="主板：组"><a href="#主板：组" class="headerlink" title="主板：组"></a>主板：组</h2><p>件的统一者</p><p>最后但并非最不重要，主板（或主板）充当中央枢纽，连接上述所有组件。从托管 CPU 和 RAM 插槽到为数据流提供路径，主板确保所有计算机组件的无缝集成和功能。</p><p><img src="/uploads/1*MJaF3KQr2bDU_wfsE9vNCg.png" alt="1*MJaF3KQr2bDU_wfsE9vNCg.png"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过对这些基本概念的理解，您更好地准备深入探讨系统设计的领域。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 系统设计 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 系统设计,计算机层次结构,硬件优化 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>分片并不意味着分布式</title>
       <link href="2023/12/03/systemDesign-shard/"/>
       <url>2023/12/03/systemDesign-shard/</url>
