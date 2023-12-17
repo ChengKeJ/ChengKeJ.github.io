@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://smalltechnologyjun.com/2023/12/17/algo-binary-search/</loc>
+    
+    <lastmod>2023-12-17</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://smalltechnologyjun.com/2023/12/17/redis-system-redis/</loc>
     
     <lastmod>2023-12-17</lastmod>
@@ -612,6 +619,13 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://smalltechnologyjun.com/tags/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2023-12-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -756,6 +770,13 @@
   
   <url>
     <loc>https://smalltechnologyjun.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%86%E7%89%87/</loc>
+    <lastmod>2023-12-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://smalltechnologyjun.com/categories/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2023-12-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
