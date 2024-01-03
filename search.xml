@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>最好使用的 v2rayNG 完整介绍与入门</title>
+      <link href="2024/01/03/vpn-v2ray/"/>
+      <url>2024/01/03/vpn-v2ray/</url>
+      
+        <content type="html"><![CDATA[<h3 id="一-v2rayNG介绍"><a href="#一-v2rayNG介绍" class="headerlink" title="一.v2rayNG介绍"></a>一.v2rayNG介绍</h3><p>v2rayNG 提供了一个简洁而直观的用户界面，使用户可以轻松配置和管理 V2Ray 的各种功能。它支持多种传输协议和代理方式，包括 Shadowsocks、VMess、Socks 等。用户可以根据自己的需求选择合适的协议和代理方式来进行网络代理。</p><p>作为市场上排名第一的vpn，v2rayNG可以做到vpn能做的一切，链接到最快的服务器，保护用户的互联网链接，互联网服务提供商和黑客的窥探，保护用户的整个网络。</p><h3 id="二-v2rayNG优点"><a href="#二-v2rayNG优点" class="headerlink" title="二.v2rayNG优点"></a>二.v2rayNG优点</h3><ul><li>1.拥有全球3000多个节点</li><li>2.闪电网速，无限流量</li><li>3.观看tiktok、youtube 4K原画无卡顿</li><li>4.节点任意切换，实现翻墙自由</li><li>5.适配windows.安卓.ios.mac</li><li>6.提供退款保障，人工售后稳定</li></ul><h3 id="三-v2rayNG-价格"><a href="#三-v2rayNG-价格" class="headerlink" title="三.v2rayNG 价格"></a>三.v2rayNG 价格</h3><table><thead><tr><th>方案名称</th><th>价格</th><th>流量</th><th>设备限制</th></tr></thead><tbody><tr><td>Vip包月</td><td>29.8</td><td>无限流量</td><td>5个节点同时在线</td></tr><tr><td>Vip包季</td><td>79.8</td><td>无限流量</td><td>10个节点同时在线</td></tr><tr><td>Vip包年</td><td>268</td><td>无限流量</td><td>15个节点同时在线</td></tr><tr><td>个人定制化</td><td>999</td><td>无限流量</td><td>100个节点同时在线</td></tr></tbody></table><span id="more"></span><h3 id="四-购买地址-amp-人工客服"><a href="#四-购买地址-amp-人工客服" class="headerlink" title="四. 购买地址&amp;人工客服"></a>四. 购买地址&amp;人工客服</h3><ul><li>快速购买<ul><li><a target="_blank" rel="noopener" href="https://86faka.cc/">https://86faka.cc</a></li></ul></li><li>人工售后服务<ul><li>微信号：vipcc868686 QQ号：3682083251 电报号：@vipcc868686</li></ul></li></ul><p><img src="/uploads/a.png" alt="Image.png"></p><h3 id="五-V2rayN（Windows）使用教程"><a href="#五-V2rayN（Windows）使用教程" class="headerlink" title="五. V2rayN（Windows）使用教程"></a>五. V2rayN（Windows）使用教程</h3><ul><li>1.复制以下官网链接到Google.com（谷歌浏览器）下载 <a target="_blank" rel="noopener" href="https://github.com/2dust/v2rayN/releases/tag/6.31">https://github.com/2dust/v2rayN/releases/tag/6.31</a></li></ul><p><img src="/uploads/b.png" alt="Image.png"></p><ul><li>2.根据自己电脑配置选择v2rayN版本下载。</li><li>3.下载后在图标点击鼠标右键以管理员身份运行打开。</li></ul><p><img src="/uploads/c.png" alt="Image.png"></p><ul><li>4.如果运行报错，点击安装解压出来的windowsdesktop-runtime-6.0.24-win-x64.exe后再运行v2rayN。</li></ul><p><img src="/uploads/d.png" alt="Image.png"></p><ul><li>5.打开V2rayN软件后，复制卡密内容。找到服务器，点击从剪贴板导入批量URL，系统代理设置为“自动配置系统代理”，路由设置为“全局模式”。</li></ul><p><img src="/uploads/e.png" alt="Image.png"></p><h3 id="六-Clash-for-windows（windows、mac系统）使用教程"><a href="#六-Clash-for-windows（windows、mac系统）使用教程" class="headerlink" title="六. Clash for windows（windows、mac系统）使用教程"></a>六. Clash for windows（windows、mac系统）使用教程</h3><ul><li>1.下载clash软件：<a target="_blank" rel="noopener" href="https://github.com/Z-Siqi/Clash-for-Windows_Chinese/releases/tag/CFW-V0.20.39_CN">https://github.com/Z-Siqi/Clash-for-Windows_Chinese/releases/tag/CFW-V0.20.39_CN</a></li><li>2.因卡密内容为vmess协议，需要转换成clash，转换地址：<a target="_blank" rel="noopener" href="https://v1.v2rayse.com/v2ray-clash/%EF%BC%8C%E5%B0%86%E5%8D%A1%E5%AF%86%E5%A4%8D%E5%88%B6%E5%88%B0%E8%BD%AC%E6%8D%A2%E5%8C%BA%E5%9F%9F%E5%86%85%EF%BC%8C%E7%BD%91%E7%AB%99%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90clash">https://v1.v2rayse.com/v2ray-clash/，将卡密复制到转换区域内，网站自动生成clash</a></li></ul><p><img src="/uploads/f.png" alt="Image.png"></p><p>3.点击预览clash，在新窗口点击左下方订阅。</p><p><img src="/uploads/g.png" alt="Image.png"></p><p><img src="/uploads/h.png" alt="Image.png"></p><ul><li>4.打开clash软件，在配置中粘贴订阅地址到url中，点击download下载。</li><li>5.打开代理，选择上网节点，在回到主页打开系统代理就能正常上网了。</li></ul><p><img src="/uploads/j.png" alt="Image.png"></p><p><img src="/uploads/k.png" alt="Image.png"></p><h3 id="七-V2rayNG-Angdroid-安卓手机-使用教程"><a href="#七-V2rayNG-Angdroid-安卓手机-使用教程" class="headerlink" title="七. V2rayNG Angdroid(安卓手机)使用教程"></a>七. V2rayNG Angdroid(安卓手机)使用教程</h3><ul><li>1.把以下链接复制到浏览器（建议使用百度、UC、谷歌）下载。</li></ul><p><a target="_blank" rel="noopener" href="https://ssrvps.org/wp-content/uploads/2020/09/v2rayNG_1.3.3.apk">https://ssrvps.org/wp-content/uploads/2020/09/v2rayNG_1.3.3.apk</a></p><ul><li>2.下载后在界面上打开v2rayNG。</li></ul><ul><li>3.点击软件主界面右上角的 ➕ 号按钮，复制微信发的节点，点击从剪贴板导入配置文件即可。</li><li>4.点击软件主界面右小角的 V 字图标启动代理，点击确定启动。</li></ul><p><img src="/uploads/l.png" alt="Image.png"></p><h3 id="八-V2rayNG-ios（苹果手机）使用教程"><a href="#八-V2rayNG-ios（苹果手机）使用教程" class="headerlink" title="八.V2rayNG ios（苹果手机）使用教程"></a>八.V2rayNG ios（苹果手机）使用教程</h3><p>1.苹果手机需要一个国外Apple ID（建议在淘宝商城购买）。</p><p>2.国外ID登录后去app stose去下载v2Box或者Shadowrocket</p><p>（注意：Shadowrocket需要美国Apple ID曾经下载过的才能免费下载，建议新手小白下载v2box即可。）</p><p><img src="/uploads/m.png" alt="Image.png"></p><p>3.复制卡密内容，点击右上角“+”号，点击第一个，v2box自动添加节点。</p><p>4.添加后打开home主界面，滑动图标变为绿色，<a target="_blank" rel="noopener" href="http://访问google.com/">访问google.com</a>，如果不能正常访问，可切换节点再次访问。</p><p><img src="/uploads/q.png" alt="Image.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> vpn </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vpn </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>在3分钟内学习二分查找</title>
       <link href="2023/12/17/algo-binary-search/"/>
       <url>2023/12/17/algo-binary-search/</url>
