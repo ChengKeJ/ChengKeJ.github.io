@@ -138,64 +138,6 @@
       </tags>
   </entry>
   <entry>
-    <title>设计模式-代理模式</title>
-    <url>/2020/10/30/designPattern-2020-10-30-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<p>在有些情况下，一个客户不能或者不想直接访问另一个对象，这时需要找一个中介帮忙完成某项任务，这个中介就是代理对象。例如，购买火车票不一定要去火车站买，可以通过 12306 网站或者去火车票代售点买。又如找女朋友、找保姆、找工作等都可以通过找中介完成。</p>
-<p>在软件设计中，使用代理模式的例子也很多，例如，要访问的远程对象比较大（如视频或大图像等），其下载要花很多时间。还有因为安全原因需要屏蔽客户端直接访问真实对象，如某单位的内部数据库等。</p>
-<span id="more"></span>
-
-<h3 id="代理模式的定义与特点"><a href="#代理模式的定义与特点" class="headerlink" title="代理模式的定义与特点"></a>代理模式的定义与特点</h3><p>代理模式的定义：由于某些原因需要给某对象提供一个代理以控制对该对象的访问。这时，访问对象不适合或者不能直接引用目标对象，代理对象作为访问对象和目标对象之间的中介。</p>
-<h3 id="代理模式的主要优点有："><a href="#代理模式的主要优点有：" class="headerlink" title="代理模式的主要优点有："></a>代理模式的主要优点有：</h3><ul>
-<li>代理模式在客户端与目标对象之间起到一个中介作用和保护目标对象的作用；</li>
-<li>代理对象可以扩展目标对象的功能；</li>
-<li>代理模式能将客户端与目标对象分离，在一定程度上降低了系统的耦合度，增加了程序的可扩展性</li>
-</ul>
-<h3 id="其主要缺点是："><a href="#其主要缺点是：" class="headerlink" title="其主要缺点是："></a>其主要缺点是：</h3><ul>
-<li>代理模式会造成系统设计中类的数量增加</li>
-<li>在客户端和目标对象之间增加一个代理对象，会造成请求处理速度变慢；</li>
-<li>增加了系统的复杂度；</li>
-<li>那么如何解决以上提到的缺点呢？答案是可以使用动态代理方式</li>
-</ul>
-<h3 id="代理模式的结构与实现"><a href="#代理模式的结构与实现" class="headerlink" title="代理模式的结构与实现"></a>代理模式的结构与实现</h3><p>代理模式的结构比较简单，主要是通过定义一个继承抽象主题的代理来包含真实主题，从而实现对真实主题的访问，下面来分析其基本结构和实现方法。</p>
-<h4 id="1-模式的结构"><a href="#1-模式的结构" class="headerlink" title="1. 模式的结构"></a>1. 模式的结构</h4><p>代理模式的主要角色如下。</p>
-<ul>
-<li>抽象主题（Subject）类：通过接口或抽象类声明真实主题和代理对象实现的业务方法。</li>
-<li>真实主题（Real Subject）类：实现了抽象主题中的具体业务，是代理对象所代表的真实对象，是最终要引用的对象。</li>
-<li>代理（Proxy）类：提供了与真实主题相同的接口，其内部含有对真实主题的引用，它可以访问、控制或扩展真实主题的功能。</li>
-</ul>
-<p>其结构图如图 1 所示<br><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7fvl8ky9g30i209mmxh.gif"></p>
-<p>在代码中，一般代理会被理解为代码增强，实际上就是在原代码逻辑前后增加一些代码逻辑，而使调用者无感知。</p>
-<p>根据代理的创建时期，代理模式分为静态代理和动态代理。</p>
-<ul>
-<li>静态：由程序员创建代理类或特定工具自动生成源代码再对其编译，在程序运行前代理类的 .class 文件就已经存在了。</li>
-<li>动态：在程序运行时，运用反射机制动态创建而成</li>
-</ul>
-<h4 id="2-模式的实现"><a href="#2-模式的实现" class="headerlink" title="2. 模式的实现"></a>2. 模式的实现</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1.三个抽象主题</span><br><span class="line">&#x2F;**</span><br><span class="line"> * process check gamer ticket</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface CheckProcess &#123;</span><br><span class="line">    void check();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public interface DietProcess &#123;</span><br><span class="line">    void diet();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * process game</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface GameProcess &#123;</span><br><span class="line">    void play();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">2. 三个真实主题</span><br><span class="line">public class BigGamePayer extends GamePayer &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void play() &#123;</span><br><span class="line">        log.info(&quot;&#x3D;&#x3D;&#x3D; big player start play ...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class BigChecker implements CheckProcess &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void check() &#123;</span><br><span class="line">        log.info(&quot;&#x3D;&#x3D;&#x3D; start check ticket&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Dieter implements DietProcess &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void diet() &#123;</span><br><span class="line">      log.info(&quot;&#x3D;&#x3D; start make diet : ice &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">3. 代理类</span><br><span class="line">public class ProxyProcess implements GameProcess, CheckProcess, DietProcess &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 代理检票</span><br><span class="line">    private CheckProcess checkProcess;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 代理游戏</span><br><span class="line">    private GameProcess  gameProcess;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 代理饮食</span><br><span class="line">    private DietProcess  dietProcess;</span><br><span class="line"></span><br><span class="line">    public &lt;T&gt; ProxyProcess(T t) &#123;</span><br><span class="line">        if (t instanceof GameProcess) &#123;</span><br><span class="line">            this.gameProcess &#x3D; (GameProcess) t;</span><br><span class="line">        &#125; else if (t instanceof CheckProcess) &#123;</span><br><span class="line">            this.checkProcess &#x3D; (CheckProcess) t;</span><br><span class="line">        &#125; else if (t instanceof DietProcess) &#123;</span><br><span class="line">            this.dietProcess &#x3D; (DietProcess) t;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void play() &#123;</span><br><span class="line">        before();</span><br><span class="line">        this.gameProcess.play();</span><br><span class="line">        after();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void check() &#123;</span><br><span class="line">        this.checkProcess.check();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void diet() &#123;</span><br><span class="line">        this.dietProcess.diet();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public void before() &#123;</span><br><span class="line">        log.info(&quot;&#x3D;&#x3D;&#x3D; proxy: start before play game&quot;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void after() &#123;</span><br><span class="line">        log.info(&quot;&#x3D;&#x3D;&#x3D; proxy:  start after play game&quot;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>游戏屋:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class GameHome &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        proxyCheck();</span><br><span class="line">        proxyPlay();</span><br><span class="line">        proxyDiete();</span><br><span class="line">    &#125;</span><br><span class="line">    public static void proxyPlay() &#123;</span><br><span class="line">        &#x2F;&#x2F; 代理玩游戏</span><br><span class="line">        BigGamePayer bigGamePayer &#x3D; new BigGamePayer();</span><br><span class="line">        ProxyProcess proxyPayer &#x3D; new ProxyProcess(bigGamePayer);</span><br><span class="line">        proxyPayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">    public static void proxyCheck() &#123;</span><br><span class="line">        &#x2F;&#x2F; 代理检票</span><br><span class="line">        BigChecker bigChecker &#x3D; new BigChecker();</span><br><span class="line">        ProxyProcess proxyProcess &#x3D; new ProxyProcess(bigChecker);</span><br><span class="line">        proxyProcess.check();</span><br><span class="line">    &#125;</span><br><span class="line">    public static void proxyDiete() &#123;</span><br><span class="line">        &#x2F;&#x2F; 代理美食</span><br><span class="line">        Dieter dieter &#x3D; new Dieter();</span><br><span class="line">        ProxyProcess proxyProcess &#x3D; new ProxyProcess(dieter);</span><br><span class="line">        proxyProcess.diet();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行结果:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">16:29:18.572 [main] INFO com.ckj.base.designPatternes.proxy.extend.BigChecker - &#x3D;&#x3D;&#x3D; start check ticket</span><br><span class="line">16:29:18.575 [main] INFO com.ckj.base.designPatternes.proxy.proxy.ProxyProcess - &#x3D;&#x3D;&#x3D; proxy: start before play game</span><br><span class="line">16:29:18.575 [main] INFO com.ckj.base.designPatternes.proxy.extend.BigGamePayer - &#x3D;&#x3D;&#x3D; big player start play ...</span><br><span class="line">16:29:18.575 [main] INFO com.ckj.base.designPatternes.proxy.proxy.ProxyProcess - &#x3D;&#x3D;&#x3D; proxy:  start after play game</span><br><span class="line">16:29:18.576 [main] INFO com.ckj.base.designPatternes.proxy.extend.Dieter - &#x3D;&#x3D; start make diet : ice </span><br></pre></td></tr></table></figure>
-
-<h4 id="3-动态代理"><a href="#3-动态代理" class="headerlink" title="3. 动态代理"></a>3. 动态代理</h4><p>在前面介绍的代理模式中，代理类中包含了对真实主题的引用，这种方式存在两个缺点。</p>
-<ul>
-<li>真实主题与代理主题一一对应，增加真实主题也要增加代理。</li>
-<li>设计代理以前真实主题必须事先存在，不太灵活。采用动态代理模式可以解决以上问题，如 SpringAOP，其结构图如图 4 所示。</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7jnux1oeg30hi0g6js3.gif"></p>
-<p>改造如下:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; dynamic proxy</span><br><span class="line">    GameProcess proxy &#x3D; (GameProcess) Proxy.newProxyInstance(GameProcess.class.getClassLoader(), new Class[]&#123;GameProcess.class&#125;,</span><br><span class="line">            new InvocationHandler() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">            log.info(&quot;start dynamic process...&quot;);</span><br><span class="line">            return method.invoke(new BigGamePayer(), args);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    proxy.play();</span><br></pre></td></tr></table></figure>
-<p>运行结果:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">18:17:11.681 [main] INFO com.ckj.base.designPatternes.proxy.GameHome - start dynamic process...</span><br><span class="line">18:17:11.681 [main] INFO com.ckj.base.designPatternes.proxy.extend.BigGamePayer - &#x3D;&#x3D;&#x3D; big player start play ...</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>API网关的工作原理与实战案例</title>
     <url>/2023/03/09/gateway-API%E7%BD%91%E5%85%B3%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/</url>
     <content><![CDATA[<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/52741EAB-FA8B-4F0B-995B-7E0073E6BFE4/6E9D2C7C-B75E-4CBF-BCFD-493C7BB284B3_2/22KDf95eaVwEmpeHBkKPvRBS0Enubdr8y5tBMQpxPgcz/Image.png" alt="Image.png"></p>
@@ -369,6 +311,64 @@
       </tags>
   </entry>
   <entry>
+    <title>设计模式-代理模式</title>
+    <url>/2020/10/30/designPattern-2020-10-30-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p>在有些情况下，一个客户不能或者不想直接访问另一个对象，这时需要找一个中介帮忙完成某项任务，这个中介就是代理对象。例如，购买火车票不一定要去火车站买，可以通过 12306 网站或者去火车票代售点买。又如找女朋友、找保姆、找工作等都可以通过找中介完成。</p>
+<p>在软件设计中，使用代理模式的例子也很多，例如，要访问的远程对象比较大（如视频或大图像等），其下载要花很多时间。还有因为安全原因需要屏蔽客户端直接访问真实对象，如某单位的内部数据库等。</p>
+<span id="more"></span>
+
+<h3 id="代理模式的定义与特点"><a href="#代理模式的定义与特点" class="headerlink" title="代理模式的定义与特点"></a>代理模式的定义与特点</h3><p>代理模式的定义：由于某些原因需要给某对象提供一个代理以控制对该对象的访问。这时，访问对象不适合或者不能直接引用目标对象，代理对象作为访问对象和目标对象之间的中介。</p>
+<h3 id="代理模式的主要优点有："><a href="#代理模式的主要优点有：" class="headerlink" title="代理模式的主要优点有："></a>代理模式的主要优点有：</h3><ul>
+<li>代理模式在客户端与目标对象之间起到一个中介作用和保护目标对象的作用；</li>
+<li>代理对象可以扩展目标对象的功能；</li>
+<li>代理模式能将客户端与目标对象分离，在一定程度上降低了系统的耦合度，增加了程序的可扩展性</li>
+</ul>
+<h3 id="其主要缺点是："><a href="#其主要缺点是：" class="headerlink" title="其主要缺点是："></a>其主要缺点是：</h3><ul>
+<li>代理模式会造成系统设计中类的数量增加</li>
+<li>在客户端和目标对象之间增加一个代理对象，会造成请求处理速度变慢；</li>
+<li>增加了系统的复杂度；</li>
+<li>那么如何解决以上提到的缺点呢？答案是可以使用动态代理方式</li>
+</ul>
+<h3 id="代理模式的结构与实现"><a href="#代理模式的结构与实现" class="headerlink" title="代理模式的结构与实现"></a>代理模式的结构与实现</h3><p>代理模式的结构比较简单，主要是通过定义一个继承抽象主题的代理来包含真实主题，从而实现对真实主题的访问，下面来分析其基本结构和实现方法。</p>
+<h4 id="1-模式的结构"><a href="#1-模式的结构" class="headerlink" title="1. 模式的结构"></a>1. 模式的结构</h4><p>代理模式的主要角色如下。</p>
+<ul>
+<li>抽象主题（Subject）类：通过接口或抽象类声明真实主题和代理对象实现的业务方法。</li>
+<li>真实主题（Real Subject）类：实现了抽象主题中的具体业务，是代理对象所代表的真实对象，是最终要引用的对象。</li>
+<li>代理（Proxy）类：提供了与真实主题相同的接口，其内部含有对真实主题的引用，它可以访问、控制或扩展真实主题的功能。</li>
+</ul>
+<p>其结构图如图 1 所示<br><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7fvl8ky9g30i209mmxh.gif"></p>
+<p>在代码中，一般代理会被理解为代码增强，实际上就是在原代码逻辑前后增加一些代码逻辑，而使调用者无感知。</p>
+<p>根据代理的创建时期，代理模式分为静态代理和动态代理。</p>
+<ul>
+<li>静态：由程序员创建代理类或特定工具自动生成源代码再对其编译，在程序运行前代理类的 .class 文件就已经存在了。</li>
+<li>动态：在程序运行时，运用反射机制动态创建而成</li>
+</ul>
+<h4 id="2-模式的实现"><a href="#2-模式的实现" class="headerlink" title="2. 模式的实现"></a>2. 模式的实现</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1.三个抽象主题</span><br><span class="line">&#x2F;**</span><br><span class="line"> * process check gamer ticket</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface CheckProcess &#123;</span><br><span class="line">    void check();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public interface DietProcess &#123;</span><br><span class="line">    void diet();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * process game</span><br><span class="line"> *&#x2F;</span><br><span class="line">public interface GameProcess &#123;</span><br><span class="line">    void play();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">2. 三个真实主题</span><br><span class="line">public class BigGamePayer extends GamePayer &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void play() &#123;</span><br><span class="line">        log.info(&quot;&#x3D;&#x3D;&#x3D; big player start play ...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class BigChecker implements CheckProcess &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void check() &#123;</span><br><span class="line">        log.info(&quot;&#x3D;&#x3D;&#x3D; start check ticket&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Dieter implements DietProcess &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void diet() &#123;</span><br><span class="line">      log.info(&quot;&#x3D;&#x3D; start make diet : ice &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">3. 代理类</span><br><span class="line">public class ProxyProcess implements GameProcess, CheckProcess, DietProcess &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 代理检票</span><br><span class="line">    private CheckProcess checkProcess;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 代理游戏</span><br><span class="line">    private GameProcess  gameProcess;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 代理饮食</span><br><span class="line">    private DietProcess  dietProcess;</span><br><span class="line"></span><br><span class="line">    public &lt;T&gt; ProxyProcess(T t) &#123;</span><br><span class="line">        if (t instanceof GameProcess) &#123;</span><br><span class="line">            this.gameProcess &#x3D; (GameProcess) t;</span><br><span class="line">        &#125; else if (t instanceof CheckProcess) &#123;</span><br><span class="line">            this.checkProcess &#x3D; (CheckProcess) t;</span><br><span class="line">        &#125; else if (t instanceof DietProcess) &#123;</span><br><span class="line">            this.dietProcess &#x3D; (DietProcess) t;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void play() &#123;</span><br><span class="line">        before();</span><br><span class="line">        this.gameProcess.play();</span><br><span class="line">        after();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void check() &#123;</span><br><span class="line">        this.checkProcess.check();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void diet() &#123;</span><br><span class="line">        this.dietProcess.diet();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public void before() &#123;</span><br><span class="line">        log.info(&quot;&#x3D;&#x3D;&#x3D; proxy: start before play game&quot;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void after() &#123;</span><br><span class="line">        log.info(&quot;&#x3D;&#x3D;&#x3D; proxy:  start after play game&quot;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>游戏屋:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class GameHome &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        proxyCheck();</span><br><span class="line">        proxyPlay();</span><br><span class="line">        proxyDiete();</span><br><span class="line">    &#125;</span><br><span class="line">    public static void proxyPlay() &#123;</span><br><span class="line">        &#x2F;&#x2F; 代理玩游戏</span><br><span class="line">        BigGamePayer bigGamePayer &#x3D; new BigGamePayer();</span><br><span class="line">        ProxyProcess proxyPayer &#x3D; new ProxyProcess(bigGamePayer);</span><br><span class="line">        proxyPayer.play();</span><br><span class="line">    &#125;</span><br><span class="line">    public static void proxyCheck() &#123;</span><br><span class="line">        &#x2F;&#x2F; 代理检票</span><br><span class="line">        BigChecker bigChecker &#x3D; new BigChecker();</span><br><span class="line">        ProxyProcess proxyProcess &#x3D; new ProxyProcess(bigChecker);</span><br><span class="line">        proxyProcess.check();</span><br><span class="line">    &#125;</span><br><span class="line">    public static void proxyDiete() &#123;</span><br><span class="line">        &#x2F;&#x2F; 代理美食</span><br><span class="line">        Dieter dieter &#x3D; new Dieter();</span><br><span class="line">        ProxyProcess proxyProcess &#x3D; new ProxyProcess(dieter);</span><br><span class="line">        proxyProcess.diet();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">16:29:18.572 [main] INFO com.ckj.base.designPatternes.proxy.extend.BigChecker - &#x3D;&#x3D;&#x3D; start check ticket</span><br><span class="line">16:29:18.575 [main] INFO com.ckj.base.designPatternes.proxy.proxy.ProxyProcess - &#x3D;&#x3D;&#x3D; proxy: start before play game</span><br><span class="line">16:29:18.575 [main] INFO com.ckj.base.designPatternes.proxy.extend.BigGamePayer - &#x3D;&#x3D;&#x3D; big player start play ...</span><br><span class="line">16:29:18.575 [main] INFO com.ckj.base.designPatternes.proxy.proxy.ProxyProcess - &#x3D;&#x3D;&#x3D; proxy:  start after play game</span><br><span class="line">16:29:18.576 [main] INFO com.ckj.base.designPatternes.proxy.extend.Dieter - &#x3D;&#x3D; start make diet : ice </span><br></pre></td></tr></table></figure>
+
+<h4 id="3-动态代理"><a href="#3-动态代理" class="headerlink" title="3. 动态代理"></a>3. 动态代理</h4><p>在前面介绍的代理模式中，代理类中包含了对真实主题的引用，这种方式存在两个缺点。</p>
+<ul>
+<li>真实主题与代理主题一一对应，增加真实主题也要增加代理。</li>
+<li>设计代理以前真实主题必须事先存在，不太灵活。采用动态代理模式可以解决以上问题，如 SpringAOP，其结构图如图 4 所示。</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk7jnux1oeg30hi0g6js3.gif"></p>
+<p>改造如下:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; dynamic proxy</span><br><span class="line">    GameProcess proxy &#x3D; (GameProcess) Proxy.newProxyInstance(GameProcess.class.getClassLoader(), new Class[]&#123;GameProcess.class&#125;,</span><br><span class="line">            new InvocationHandler() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span><br><span class="line">            log.info(&quot;start dynamic process...&quot;);</span><br><span class="line">            return method.invoke(new BigGamePayer(), args);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    proxy.play();</span><br></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">18:17:11.681 [main] INFO com.ckj.base.designPatternes.proxy.GameHome - start dynamic process...</span><br><span class="line">18:17:11.681 [main] INFO com.ckj.base.designPatternes.proxy.extend.BigGamePayer - &#x3D;&#x3D;&#x3D; big player start play ...</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>网络基本概念</title>
     <url>/2020/11/12/internet-2020-11-12-%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</url>
     <content><![CDATA[<p>本篇文章简单梳理网络通信的基础概念</p>
@@ -502,6 +502,115 @@
 <p>当然网上也有类型的分享，感兴趣的可以看看</p>
 <p><a target="_blank" rel="noopener" href="https://www.diglog.com/story/1036249.html">https://www.diglog.com/story/1036249.html</a></p>
 <p><a target="_blank" rel="noopener" href="http://www.stuartcheshire.org/papers/nagledelayedack/">http://www.stuartcheshire.org/papers/nagledelayedack/</a></p>
+]]></content>
+      <categories>
+        <category>network</category>
+      </categories>
+      <tags>
+        <tag>tcp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TCP 的那些事儿（上）</title>
+    <url>/2022/12/23/internet-tcp-f/</url>
+    <content><![CDATA[<h1 id="TCP-的那些事儿（上）"><a href="#TCP-的那些事儿（上）" class="headerlink" title="TCP 的那些事儿（上）"></a>TCP 的那些事儿（上）</h1><p>TCP是一个巨复杂的协议，因为他要解决很多问题，而这些问题又带出了很多子问题和阴暗面。所以学习TCP本身是个比较痛苦的过程，但对于学习的过程却能让人有很多收获。关于TCP这个协议的细节，我还是推荐你去看<a target="_blank" rel="noopener" href="http://www.kohala.com/start/">W.Richard Stevens</a>的《<a target="_blank" rel="noopener" href="https://book.douban.com/subject/1088054/">TCP/IP 详解 卷1：协议</a>》（当然，你也可以去读一下<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc793">RFC793</a>以及后面N多的RFC）。另外，本文我会使用英文术语，这样方便你通过这些英文关键词来查找相关的技术文档。</p>
+<p>之所以想写这篇文章，目的有三个，</p>
+<ul>
+<li>一个是想锻炼一下自己是否可以用简单的篇幅把这么复杂的TCP协议描清楚的能力。</li>
+<li>另一个是觉得现在的好多程序员基本上不会认认真真地读本书，喜欢快餐文化，所以，希望这篇快餐文章可以让你对TCP这个古典技术有所了解，并能体会到软件设计中的种种难处。并且你可以从中有一些软件设计上的收获。</li>
+<li>最重要的希望这些基础知识可以让你搞清很多以前一些似是而非的东西，并且你能意识到基础的重要。</li>
+</ul>
+<p>所以，本文不会面面俱到，只是对TCP协议、算法和原理的科普。</p>
+<p>我本来只想写一个篇幅的文章的，但是TCP真TMD的复杂，比C++复杂多了，这30多年来，各种优化变种争论和修改。所以，写着写着就发现只有砍成两篇。</p>
+<ul>
+<li>上篇中，主要向你介绍TCP协议的定义和丢包时的重传机制。</li>
+<li>下篇中，重点介绍TCP的流迭、拥塞处理。<span id="more"></span></li>
+</ul>
+<p>废话少说，首先，我们需要知道TCP在网络OSI的七层模型中的第四层——Transport层，IP在第三层——Network层，ARP在第二层——Data Link层，在第二层上的数据，我们叫Frame，在第三层上的数据叫Packet，第四层的数据叫Segment。</p>
+<p>首先，我们需要知道，我们程序的数据首先会打到TCP的Segment中，然后TCP的Segment会打到IP的Packet中，然后再打到以太网Ethernet的Frame中，传到对端后，各个层解析自己的协议，然后把数据交给更高层的协议处理。</p>
+<h4 id="TCP头格式"><a href="#TCP头格式" class="headerlink" title="TCP头格式"></a>TCP头格式</h4><p>接下来，我们来看一下TCP头的格式</p>
+<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/2ECDCA0E-B498-44FF-BCDA-BCD7B5F57F4F/6CD6A221-6635-4B50-AAB1-32A6F6E49C46_2/Ct8xWuyXZ9y4x5P0TrsThRmIJdJmvj6m7LrfbYRgcnAz/Image.png" alt="Image.png"></p>
+<p>TCP头格式（<a target="_blank" rel="noopener" href="https://nmap.org/book/tcpip-ref.html">图片来源</a>）</p>
+<p>你需要注意这么几点：</p>
+<ul>
+<li>TCP的包是没有IP地址的，那是IP层上的事。但是有源端口和目标端口。</li>
+<li>一个TCP连接需要四个元组来表示是同一个连接（src_ip, src_port, dst_ip, dst_port）准确说是五元组，还有一个是协议。但因为这里只是说TCP协议，所以，这里我只说四元组。</li>
+<li>注意上图中的四个非常重要的东西：<ul>
+<li><strong>Sequence Number</strong>是包的序号，<strong>用来解决网络包乱序（reordering）问题。</strong></li>
+<li><strong>Acknowledgement Number</strong>就是ACK——用于确认收到，<strong>用来解决不丢包的问题</strong>。</li>
+<li><strong>Window又叫Advertised-Window</strong>，也就是著名的滑动窗口（Sliding Window），<strong>用于解决流控的</strong>。</li>
+<li><strong>TCP Flag</strong> ，也就是包的类型，<strong>主要是用于操控TCP的状态机的</strong>。</li>
+</ul>
+</li>
+</ul>
+<p>关于其它的东西，可以参看下面的图示</p>
+<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/2ECDCA0E-B498-44FF-BCDA-BCD7B5F57F4F/5A4C4434-8C01-4534-9A71-15D1DB9BE5CC_2/gjlf6ENqyHdLXjljUy3YAoMpHgHUhFur1Cz9oyc4bRwz/Image.png" alt="Image.png"></p>
+<p>（<a target="_blank" rel="noopener" href="https://nmap.org/book/tcpip-ref.html">图片来源</a>）</p>
+<h4 id="TCP的状态机"><a href="#TCP的状态机" class="headerlink" title="TCP的状态机"></a>TCP的状态机</h4><p>其实，<strong>网络上的传输是没有连接的，包括TCP也是一样的</strong>。而TCP所谓的“连接”，其实只不过是在通讯的双方维护一个“连接状态”，让它看上去好像有连接一样。所以，TCP的状态变换是非常重要的。</p>
+<p>下面是：“<strong>TCP协议的状态机</strong>”（<a target="_blank" rel="noopener" href="http://www.tcpipguide.com/free/t_TCPOperationalOverviewandtheTCPFiniteStateMachineF-2.htm">图片来源</a>） 和 “<strong>TCP建链接</strong>”、“<strong>TCP断链接</strong>”、“<strong>传数据</strong>” 的对照图，我把两个图并排放在一起，这样方便在你对照着看。另外，下面这两个图非常非常的重要，你一定要记牢。（吐个槽：看到这样复杂的状态机，就知道这个协议有多复杂，复杂的东西总是有很多坑爹的事情，所以TCP协议其实也挺坑爹的）</p>
+<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/2ECDCA0E-B498-44FF-BCDA-BCD7B5F57F4F/A9DB566E-D742-4649-8F98-EF1F0638EFAD_2/okDKlq2bCx5iKaFbc7dTMnZ0XGTM5xgUFfnlU15yf7Ez/Image.png" alt="Image.png"></p>
+<p>很多人会问，为什么建链接要3次握手，断链接需要4次挥手？</p>
+<ul>
+<li><strong>对于建链接的3次握手，</strong>主要是要初始化Sequence Number 的初始值。通信的双方要互相通知对方自己的初始化的Sequence Number（缩写为ISN：Inital Sequence Number）——所以叫SYN，全称Synchronize Sequence Numbers。也就上图中的 x 和 y。这个号要作为以后的数据通信的序号，以保证应用层接收到的数据不会因为网络上的传输的问题而乱序（TCP会用这个序号来拼接数据）。</li>
+<li><strong>对于4次挥手，</strong>其实你仔细看是2次，因为TCP是全双工的，所以，发送方和接收方都需要Fin和Ack。只不过，有一方是被动的，所以看上去就成了所谓的4次挥手。如果两边同时断连接，那就会就进入到CLOSING状态，然后到达TIME_WAIT状态。下图是双方同时断连接的示意图（你同样可以对照着TCP状态机看）：</li>
+</ul>
+<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/2ECDCA0E-B498-44FF-BCDA-BCD7B5F57F4F/1323753C-5F53-42ED-B8DD-F2D1104838AB_2/LyUEbQkolv6VHG7lkI2QiEWTSAoSErfQsBmLmRrWDboz/Image.png" alt="Image.png"></p>
+<p>两端同时断连接（<a target="_blank" rel="noopener" href="http://www.tcpipguide.com/free/t_TCPConnectionTermination-4.htm">图片来源</a>）</p>
+<p>另外，有几个事情需要注意一下：</p>
+<ul>
+<li><strong>关于建连接时SYN超时</strong>。试想一下，如果server端接到了clien发的SYN后回了SYN-ACK后client掉线了，server端没有收到client回来的ACK，那么，这个连接处于一个中间状态，即没成功，也没失败。于是，server端如果在一定时间内没有收到的TCP会重发SYN-ACK。在Linux下，默认重试次数为5次，重试的间隔时间从1s开始每次都翻售，5次的重试时间间隔为1s, 2s, 4s, 8s, 16s，总共31s，第5次发出后还要等32s都知道第5次也超时了，所以，总共需要 1s + 2s + 4s+ 8s+ 16s + 32s = 2^6 -1 = 63s，TCP才会把断开这个连接。</li>
+<li><strong>关于SYN Flood攻击</strong>。一些恶意的人就为此制造了SYN Flood攻击——给服务器发了一个SYN后，就下线了，于是服务器需要默认等63s才会断开连接，这样，攻击者就可以把服务器的syn连接的队列耗尽，让正常的连接请求不能处理。于是，Linux下给了一个叫<strong>tcp_syncookies</strong>的参数来应对这个事——当SYN队列满了后，TCP会通过源地址端口、目标地址端口和时间戳打造出一个特别的Sequence Number发回去（又叫cookie），如果是攻击者则不会有响应，如果是正常连接，则会把这个 SYN Cookie发回来，然后服务端可以通过cookie建连接（即使你不在SYN队列中）。请注意，<strong>请先千万别用tcp_syncookies来处理正常的大负载的连接的情况</strong>。因为，synccookies是妥协版的TCP协议，并不严谨。对于正常的请求，你应该调整三个TCP参数可供你选择，第一个是：tcp_synack_retries 可以用他来减少重试次数；第二个是：tcp_max_syn_backlog，可以增大SYN连接数；第三个是：tcp_abort_on_overflow 处理不过来干脆就直接拒绝连接了。</li>
+<li><strong>关于ISN的初始化</strong>。ISN是不能hard code的，不然会出问题的——比如：如果连接建好后始终用1来做ISN，如果client发了30个segment过去，但是网络断了，于是 client重连，又用了1做ISN，但是之前连接的那些包到了，于是就被当成了新连接的包，此时，client的Sequence Number 可能是3，而Server端认为client端的这个号是30了。全乱了。<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc793">RFC793</a>中说，ISN会和一个假的时钟绑在一起，这个时钟会在每4微秒对ISN做加一操作，直到超过2^32，又从0开始。这样，一个ISN的周期大约是4.55个小时。因为，我们假设我们的TCP Segment在网络上的存活时间不会超过Maximum Segment Lifetime（缩写为MSL – <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Maximum_Segment_Lifetime">Wikipedia语条</a>），所以，只要MSL的值小于4.55小时，那么，我们就不会重用到ISN。</li>
+<li><strong>关于 MSL 和 TIME_WAIT</strong>。通过上面的ISN的描述，相信你也知道MSL是怎么来的了。我们注意到，在TCP的状态图中，从TIME_WAIT状态到CLOSED状态，有一个超时设置，这个超时设置是 2*MSL（<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc793">RFC793</a>定义了MSL为2分钟，Linux设置成了30s）为什么要这有TIME_WAIT？为什么不直接给转成CLOSED状态呢？主要有两个原因：1）TIME_WAIT确保有足够的时间让对端收到了ACK，如果被动关闭的那方没有收到Ack，就会触发被动端重发Fin，一来一去正好2个MSL，2）有足够的时间让这个连接不会跟后面的连接混在一起（你要知道，有些自做主张的路由器会缓存IP数据包，如果连接被重用了，那么这些延迟收到的包就有可能会跟新连接混在一起）。你可以看看这篇文章《<a target="_blank" rel="noopener" href="http://www.serverframework.com/asynchronousevents/2011/01/time-wait-and-its-design-implications-for-protocols-and-scalable-servers.html">TIME_WAIT and its design implications for protocols and scalable client server systems</a>》</li>
+<li><strong>关于TIME_WAIT数量太多</strong>。从上面的描述我们可以知道，TIME_WAIT是个很重要的状态，但是如果在大并发的短链接下，TIME_WAIT 就会太多，这也会消耗很多系统资源。只要搜一下，你就会发现，十有八九的处理方式都是教你设置两个参数，一个叫<strong>tcp_tw_reuse</strong>，另一个叫<strong>tcp_tw_recycle</strong>的参数，这两个参数默认值都是被关闭的，后者recyle比前者resue更为激进，resue要温柔一些。另外，如果使用tcp_tw_reuse，必需设置tcp_timestamps=1，否则无效。这里，你一定要注意，<strong>打开这两个参数会有比较大的坑——可能会让TCP连接出一些诡异的问题</strong>（因为如上述一样，如果不等待超时重用连接的话，新的连接可能会建不上。正如<a target="_blank" rel="noopener" href="https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt">官方文档</a>上说的一样“<strong>It should not be changed without advice/request of technical experts</strong>”）。</li>
+<li><strong>关于tcp_tw_reuse</strong>。官方文档上说tcp_tw_reuse 加上tcp_timestamps（又叫PAWS, for Protection Against Wrapped Sequence Numbers）可以保证协议的角度上的安全，但是你需要tcp_timestamps在两边都被打开（你可以读一下<a target="_blank" rel="noopener" href="http://lxr.free-electrons.com/ident?i=tcp_twsk_unique">tcp_twsk_unique</a>的源码 ）。我个人估计还是有一些场景会有问题。</li>
+<li><strong>关于tcp_tw_recycle</strong>。如果是tcp_tw_recycle被打开了话，会假设对端开启了tcp_timestamps，然后会去比较时间戳，如果时间戳变大了，就可以重用。但是，如果对端是一个NAT网络的话（如：一个公司只用一个IP出公网）或是对端的IP被另一台重用了，这个事就复杂了。建链接的SYN可能就被直接丢掉了（你可能会看到connection time out的错误）（如果你想观摩一下Linux的内核代码，请参看源码 <a target="_blank" rel="noopener" href="http://lxr.free-electrons.com/ident?i=tcp_timewait_state_process">tcp_timewait_state_process</a>）。</li>
+<li><strong>关于tcp_max_tw_buckets</strong>。这个是控制并发的TIME_WAIT的数量，默认值是180000，如果超限，那么，系统会把多的给destory掉，然后在日志里打一个警告（如：time wait bucket table overflow），官网文档说这个参数是用来对抗DDoS攻击的。也说的默认值180000并不小。这个还是需要根据实际情况考虑。</li>
+</ul>
+<p><strong>Again，使用tcp_tw_reuse和tcp_tw_recycle来解决TIME_WAIT的问题是非常非常危险的，因为这两个参数违反了TCP协议（</strong><a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc1122"><strong>RFC 1122</strong></a><strong>）</strong></p>
+<p>其实，TIME_WAIT表示的是你主动断连接，所以，这就是所谓的“不作死不会死”。试想，如果让对端断连接，那么这个破问题就是对方的了，呵呵。另外，如果你的服务器是于HTTP服务器，那么设置一个<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/HTTP_persistent_connection">HTTP的KeepAlive</a>有多重要（浏览器会重用一个TCP连接来处理多个HTTP请求），然后让客户端去断链接（你要小心，浏览器可能会非常贪婪，他们不到万不得已不会主动断连接）。</p>
+<h4 id="数据传输中的Sequence-Number"><a href="#数据传输中的Sequence-Number" class="headerlink" title="数据传输中的Sequence Number"></a>数据传输中的Sequence Number</h4><p>下图是我从Wireshark中截了个我在访问coolshell.cn时的有数据传输的图给你看一下，SeqNum是怎么变的。（使用Wireshark菜单中的Statistics -&gt;Flow Graph… ）</p>
+<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/2ECDCA0E-B498-44FF-BCDA-BCD7B5F57F4F/56C26480-DFD5-41C3-AC17-2346FBC74DC7_2/yifLL4pbPm5hx5M1q6RU7iUOsSmn76ZsytyDQyCZfnwz/Image.png" alt="Image.png"></p>
+<p>你可以看到，<strong>SeqNum的增加是和传输的字节数相关的</strong>。上图中，三次握手后，来了两个Len:1440的包，而第二个包的SeqNum就成了1441。然后第一个ACK回的是1441，表示第一个1440收到了。</p>
+<p><strong>注意</strong>：如果你用Wireshark抓包程序看3次握手，你会发现SeqNum总是为0，不是这样的，Wireshark为了显示更友好，使用了Relative SeqNum——相对序号，你只要在右键菜单中的protocol preference 中取消掉就可以看到“Absolute SeqNum”了</p>
+<h4 id="TCP重传机制"><a href="#TCP重传机制" class="headerlink" title="TCP重传机制"></a>TCP重传机制</h4><p>TCP要保证所有的数据包都可以到达，所以，必需要有重传机制。</p>
+<p>注意，接收端给发送端的Ack确认只会确认最后一个连续的包，比如，发送端发了1,2,3,4,5一共五份数据，接收端收到了1，2，于是回ack 3，然后收到了4（注意此时3没收到），此时的TCP会怎么办？我们要知道，因为正如前面所说的，<strong>SeqNum和Ack是以字节数为单位，所以ack的时候，不能跳着确认，只能确认最大的连续收到的包</strong>，不然，发送端就以为之前的都收到了。</p>
+<h4 id="超时重传机制"><a href="#超时重传机制" class="headerlink" title="超时重传机制"></a>超时重传机制</h4><p>一种是不回ack，死等3，当发送方发现收不到3的ack超时后，会重传3。一旦接收方收到3后，会ack 回 4——意味着3和4都收到了。</p>
+<p>但是，这种方式会有比较严重的问题，那就是因为要死等3，所以会导致4和5即便已经收到了，而发送方也完全不知道发生了什么事，因为没有收到Ack，所以，发送方可能会悲观地认为也丢了，所以有可能也会导致4和5的重传。</p>
+<p>对此有两种选择：</p>
+<ul>
+<li>一种是仅重传timeout的包。也就是第3份数据。</li>
+<li>另一种是重传timeout后所有的数据，也就是第3，4，5这三份数据。</li>
+</ul>
+<p>这两种方式有好也有不好。第一种会节省带宽，但是慢，第二种会快一点，但是会浪费带宽，也可能会有无用功。但总体来说都不好。因为都在等timeout，timeout可能会很长（在下篇会说TCP是怎么动态地计算出timeout的）</p>
+<h4 id="快速重传机制"><a href="#快速重传机制" class="headerlink" title="快速重传机制"></a>快速重传机制</h4><p>于是，TCP引入了一种叫<strong>Fast Retransmit</strong> 的算法，<strong>不以时间驱动，而以数据驱动重传</strong>。也就是说，如果，包没有连续到达，就ack最后那个可能被丢了的包，如果发送方连续收到3次相同的ack，就重传。Fast Retransmit的好处是不用等timeout了再重传。</p>
+<p>比如：如果发送方发出了1，2，3，4，5份数据，第一份先到送了，于是就ack回2，结果2因为某些原因没收到，3到达了，于是还是ack回2，后面的4和5都到了，但是还是ack回2，因为2还是没有收到，于是发送端收到了三个ack=2的确认，知道了2还没有到，于是就马上重转2。然后，接收端收到了2，此时因为3，4，5都收到了，于是ack回6。示意图如下：</p>
+<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/2ECDCA0E-B498-44FF-BCDA-BCD7B5F57F4F/34913B5D-8199-4D3F-857A-A86A28D43531_2/SiiJn9GdvPrJV5INMogwqxyYenjGXSXRrWFzWrk5OBEz/Image.png" alt="Image.png"></p>
+<p>Fast Retransmit只解决了一个问题，就是timeout的问题，它依然面临一个艰难的选择，就是，是重传之前的一个还是重传所有的问题。对于上面的示例来说，是重传#2呢还是重传#2，#3，#4，#5呢？因为发送端并不清楚这连续的3个ack(2)是谁传回来的？也许发送端发了20份数据，是#6，#10，#20传来的呢。这样，发送端很有可能要重传从2到20的这堆数据（这就是某些TCP的实际的实现）。可见，这是一把双刃剑。</p>
+<h4 id="SACK-方法"><a href="#SACK-方法" class="headerlink" title="SACK 方法"></a>SACK 方法</h4><p>另外一种更好的方式叫：**Selective Acknowledgment (SACK)**（参看<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc2018">RFC 2018</a>），这种方式需要在TCP头里加一个SACK的东西，ACK还是Fast Retransmit的ACK，SACK则是汇报收到的数据碎版。参看下图：</p>
+<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/2ECDCA0E-B498-44FF-BCDA-BCD7B5F57F4F/17FD241A-881B-4A2C-87F2-B8A50AB1DBA4_2/GyVy6qMvLWzDF09THr7gQATC4TYKtIMiMa3PMm4MMmUz/Image.png" alt="Image.png"></p>
+<p>这样，在发送端就可以根据回传的SACK来知道哪些数据到了，哪些没有到。于是就优化了Fast Retransmit的算法。当然，这个协议需要两边都支持。在 Linux下，可以通过<strong>tcp_sack</strong>参数打开这个功能（Linux 2.4后默认打开）。</p>
+<p>这里还需要注意一个问题——<strong>接收方Reneging，所谓Reneging的意思就是接收方有权把已经报给发送端SACK里的数据给丢了</strong>。这样干是不被鼓励的，因为这个事会把问题复杂化了，但是，接收方这么做可能会有些极端情况，比如要把内存给别的更重要的东西。<strong>所以，发送方也不能完全依赖SACK，还是要依赖ACK，并维护Time-Out，如果后续的ACK没有增长，那么还是要把SACK的东西重传，另外，接收端这边永远不能把SACK的包标记为Ack。</strong></p>
+<p>注意：SACK会消费发送方的资源，试想，如果一个攻击者给数据发送方发一堆SACK的选项，这会导致发送方开始要重传甚至遍历已经发出的数据，这会消耗很多发送端的资源。详细的东西请参看《<a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/linux/l-tcp-sack/">TCP SACK的性能权衡</a>》</p>
+<h4 id="Duplicate-SACK-–-重复收到数据的问题"><a href="#Duplicate-SACK-–-重复收到数据的问题" class="headerlink" title="Duplicate SACK – 重复收到数据的问题"></a>Duplicate SACK – 重复收到数据的问题</h4><p>Duplicate SACK又称D-SACK，<strong>其主要使用了SACK来告诉发送方有哪些数据被重复接收了</strong>。<a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc2883.txt">RFC-2883</a> 里有详细描述和示例。下面举几个例子（来源于<a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc2883.txt">RFC-2883</a>）</p>
+<p>D-SACK使用了SACK的第一个段来做标志，</p>
+<ul>
+<li>如果SACK的第一个段的范围被ACK所覆盖，那么就是D-SACK</li>
+<li>如果SACK的第一个段的范围被SACK的第二个段覆盖，那么就是D-SACK</li>
+</ul>
+<p><strong>示例一：ACK丢包</strong></p>
+<p>下面的示例中，丢了两个ACK，所以，发送端重传了第一个数据包（3000-3499），于是接收端发现重复收到，于是回了一个SACK=3000-3500，因为ACK都到了4000意味着收到了4000之前的所有数据，所以这个SACK就是D-SACK——旨在告诉发送端我收到了重复的数据，而且我们的发送端还知道，数据包没有丢，丢的是ACK包。</p>
+<p><strong>示例二，网络延误</strong></p>
+<p>下面的示例中，网络包（1000-1499）被网络给延误了，导致发送方没有收到ACK，而后面到达的三个包触发了“Fast Retransmit算法”，所以重传，但重传时，被延误的包又到了，所以，回了一个SACK=1000-1500，因为ACK已到了3000，所以，这个SACK是D-SACK——标识收到了重复的包。</p>
+<p>这个案例下，发送端知道之前因为“Fast Retransmit算法”触发的重传不是因为发出去的包丢了，也不是因为回应的ACK包丢了，而是因为网络延时了。</p>
+<p>可见，引入了D-SACK，有这么几个好处：</p>
+<p>1）可以让发送方知道，是发出去的包丢了，还是回来的ACK包丢了。</p>
+<p>2）是不是自己的timeout太小了，导致重传。</p>
+<p>3）网络上出现了先发的包后到的情况（又称reordering）</p>
+<p>4）网络上是不是把我的数据包给复制了。</p>
+<p><strong>知道这些东西可以很好得帮助TCP了解网络情况，从而可以更好的做网络上的流控</strong>。</p>
+<p>Linux下的tcp_dsack参数用于开启这个功能（Linux 2.4后默认打开）</p>
+<p>好了，上篇就到这里结束了。如果你觉得我写得还比较浅显易懂，那么，欢迎移步看下篇</p>
 ]]></content>
       <categories>
         <category>network</category>
@@ -688,115 +797,6 @@
       </tags>
   </entry>
   <entry>
-    <title>TCP 的那些事儿（上）</title>
-    <url>/2022/12/23/internet-tcp-f/</url>
-    <content><![CDATA[<h1 id="TCP-的那些事儿（上）"><a href="#TCP-的那些事儿（上）" class="headerlink" title="TCP 的那些事儿（上）"></a>TCP 的那些事儿（上）</h1><p>TCP是一个巨复杂的协议，因为他要解决很多问题，而这些问题又带出了很多子问题和阴暗面。所以学习TCP本身是个比较痛苦的过程，但对于学习的过程却能让人有很多收获。关于TCP这个协议的细节，我还是推荐你去看<a target="_blank" rel="noopener" href="http://www.kohala.com/start/">W.Richard Stevens</a>的《<a target="_blank" rel="noopener" href="https://book.douban.com/subject/1088054/">TCP/IP 详解 卷1：协议</a>》（当然，你也可以去读一下<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc793">RFC793</a>以及后面N多的RFC）。另外，本文我会使用英文术语，这样方便你通过这些英文关键词来查找相关的技术文档。</p>
-<p>之所以想写这篇文章，目的有三个，</p>
-<ul>
-<li>一个是想锻炼一下自己是否可以用简单的篇幅把这么复杂的TCP协议描清楚的能力。</li>
-<li>另一个是觉得现在的好多程序员基本上不会认认真真地读本书，喜欢快餐文化，所以，希望这篇快餐文章可以让你对TCP这个古典技术有所了解，并能体会到软件设计中的种种难处。并且你可以从中有一些软件设计上的收获。</li>
-<li>最重要的希望这些基础知识可以让你搞清很多以前一些似是而非的东西，并且你能意识到基础的重要。</li>
-</ul>
-<p>所以，本文不会面面俱到，只是对TCP协议、算法和原理的科普。</p>
-<p>我本来只想写一个篇幅的文章的，但是TCP真TMD的复杂，比C++复杂多了，这30多年来，各种优化变种争论和修改。所以，写着写着就发现只有砍成两篇。</p>
-<ul>
-<li>上篇中，主要向你介绍TCP协议的定义和丢包时的重传机制。</li>
-<li>下篇中，重点介绍TCP的流迭、拥塞处理。<span id="more"></span></li>
-</ul>
-<p>废话少说，首先，我们需要知道TCP在网络OSI的七层模型中的第四层——Transport层，IP在第三层——Network层，ARP在第二层——Data Link层，在第二层上的数据，我们叫Frame，在第三层上的数据叫Packet，第四层的数据叫Segment。</p>
-<p>首先，我们需要知道，我们程序的数据首先会打到TCP的Segment中，然后TCP的Segment会打到IP的Packet中，然后再打到以太网Ethernet的Frame中，传到对端后，各个层解析自己的协议，然后把数据交给更高层的协议处理。</p>
-<h4 id="TCP头格式"><a href="#TCP头格式" class="headerlink" title="TCP头格式"></a>TCP头格式</h4><p>接下来，我们来看一下TCP头的格式</p>
-<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/2ECDCA0E-B498-44FF-BCDA-BCD7B5F57F4F/6CD6A221-6635-4B50-AAB1-32A6F6E49C46_2/Ct8xWuyXZ9y4x5P0TrsThRmIJdJmvj6m7LrfbYRgcnAz/Image.png" alt="Image.png"></p>
-<p>TCP头格式（<a target="_blank" rel="noopener" href="https://nmap.org/book/tcpip-ref.html">图片来源</a>）</p>
-<p>你需要注意这么几点：</p>
-<ul>
-<li>TCP的包是没有IP地址的，那是IP层上的事。但是有源端口和目标端口。</li>
-<li>一个TCP连接需要四个元组来表示是同一个连接（src_ip, src_port, dst_ip, dst_port）准确说是五元组，还有一个是协议。但因为这里只是说TCP协议，所以，这里我只说四元组。</li>
-<li>注意上图中的四个非常重要的东西：<ul>
-<li><strong>Sequence Number</strong>是包的序号，<strong>用来解决网络包乱序（reordering）问题。</strong></li>
-<li><strong>Acknowledgement Number</strong>就是ACK——用于确认收到，<strong>用来解决不丢包的问题</strong>。</li>
-<li><strong>Window又叫Advertised-Window</strong>，也就是著名的滑动窗口（Sliding Window），<strong>用于解决流控的</strong>。</li>
-<li><strong>TCP Flag</strong> ，也就是包的类型，<strong>主要是用于操控TCP的状态机的</strong>。</li>
-</ul>
-</li>
-</ul>
-<p>关于其它的东西，可以参看下面的图示</p>
-<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/2ECDCA0E-B498-44FF-BCDA-BCD7B5F57F4F/5A4C4434-8C01-4534-9A71-15D1DB9BE5CC_2/gjlf6ENqyHdLXjljUy3YAoMpHgHUhFur1Cz9oyc4bRwz/Image.png" alt="Image.png"></p>
-<p>（<a target="_blank" rel="noopener" href="https://nmap.org/book/tcpip-ref.html">图片来源</a>）</p>
-<h4 id="TCP的状态机"><a href="#TCP的状态机" class="headerlink" title="TCP的状态机"></a>TCP的状态机</h4><p>其实，<strong>网络上的传输是没有连接的，包括TCP也是一样的</strong>。而TCP所谓的“连接”，其实只不过是在通讯的双方维护一个“连接状态”，让它看上去好像有连接一样。所以，TCP的状态变换是非常重要的。</p>
-<p>下面是：“<strong>TCP协议的状态机</strong>”（<a target="_blank" rel="noopener" href="http://www.tcpipguide.com/free/t_TCPOperationalOverviewandtheTCPFiniteStateMachineF-2.htm">图片来源</a>） 和 “<strong>TCP建链接</strong>”、“<strong>TCP断链接</strong>”、“<strong>传数据</strong>” 的对照图，我把两个图并排放在一起，这样方便在你对照着看。另外，下面这两个图非常非常的重要，你一定要记牢。（吐个槽：看到这样复杂的状态机，就知道这个协议有多复杂，复杂的东西总是有很多坑爹的事情，所以TCP协议其实也挺坑爹的）</p>
-<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/2ECDCA0E-B498-44FF-BCDA-BCD7B5F57F4F/A9DB566E-D742-4649-8F98-EF1F0638EFAD_2/okDKlq2bCx5iKaFbc7dTMnZ0XGTM5xgUFfnlU15yf7Ez/Image.png" alt="Image.png"></p>
-<p>很多人会问，为什么建链接要3次握手，断链接需要4次挥手？</p>
-<ul>
-<li><strong>对于建链接的3次握手，</strong>主要是要初始化Sequence Number 的初始值。通信的双方要互相通知对方自己的初始化的Sequence Number（缩写为ISN：Inital Sequence Number）——所以叫SYN，全称Synchronize Sequence Numbers。也就上图中的 x 和 y。这个号要作为以后的数据通信的序号，以保证应用层接收到的数据不会因为网络上的传输的问题而乱序（TCP会用这个序号来拼接数据）。</li>
-<li><strong>对于4次挥手，</strong>其实你仔细看是2次，因为TCP是全双工的，所以，发送方和接收方都需要Fin和Ack。只不过，有一方是被动的，所以看上去就成了所谓的4次挥手。如果两边同时断连接，那就会就进入到CLOSING状态，然后到达TIME_WAIT状态。下图是双方同时断连接的示意图（你同样可以对照着TCP状态机看）：</li>
-</ul>
-<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/2ECDCA0E-B498-44FF-BCDA-BCD7B5F57F4F/1323753C-5F53-42ED-B8DD-F2D1104838AB_2/LyUEbQkolv6VHG7lkI2QiEWTSAoSErfQsBmLmRrWDboz/Image.png" alt="Image.png"></p>
-<p>两端同时断连接（<a target="_blank" rel="noopener" href="http://www.tcpipguide.com/free/t_TCPConnectionTermination-4.htm">图片来源</a>）</p>
-<p>另外，有几个事情需要注意一下：</p>
-<ul>
-<li><strong>关于建连接时SYN超时</strong>。试想一下，如果server端接到了clien发的SYN后回了SYN-ACK后client掉线了，server端没有收到client回来的ACK，那么，这个连接处于一个中间状态，即没成功，也没失败。于是，server端如果在一定时间内没有收到的TCP会重发SYN-ACK。在Linux下，默认重试次数为5次，重试的间隔时间从1s开始每次都翻售，5次的重试时间间隔为1s, 2s, 4s, 8s, 16s，总共31s，第5次发出后还要等32s都知道第5次也超时了，所以，总共需要 1s + 2s + 4s+ 8s+ 16s + 32s = 2^6 -1 = 63s，TCP才会把断开这个连接。</li>
-<li><strong>关于SYN Flood攻击</strong>。一些恶意的人就为此制造了SYN Flood攻击——给服务器发了一个SYN后，就下线了，于是服务器需要默认等63s才会断开连接，这样，攻击者就可以把服务器的syn连接的队列耗尽，让正常的连接请求不能处理。于是，Linux下给了一个叫<strong>tcp_syncookies</strong>的参数来应对这个事——当SYN队列满了后，TCP会通过源地址端口、目标地址端口和时间戳打造出一个特别的Sequence Number发回去（又叫cookie），如果是攻击者则不会有响应，如果是正常连接，则会把这个 SYN Cookie发回来，然后服务端可以通过cookie建连接（即使你不在SYN队列中）。请注意，<strong>请先千万别用tcp_syncookies来处理正常的大负载的连接的情况</strong>。因为，synccookies是妥协版的TCP协议，并不严谨。对于正常的请求，你应该调整三个TCP参数可供你选择，第一个是：tcp_synack_retries 可以用他来减少重试次数；第二个是：tcp_max_syn_backlog，可以增大SYN连接数；第三个是：tcp_abort_on_overflow 处理不过来干脆就直接拒绝连接了。</li>
-<li><strong>关于ISN的初始化</strong>。ISN是不能hard code的，不然会出问题的——比如：如果连接建好后始终用1来做ISN，如果client发了30个segment过去，但是网络断了，于是 client重连，又用了1做ISN，但是之前连接的那些包到了，于是就被当成了新连接的包，此时，client的Sequence Number 可能是3，而Server端认为client端的这个号是30了。全乱了。<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc793">RFC793</a>中说，ISN会和一个假的时钟绑在一起，这个时钟会在每4微秒对ISN做加一操作，直到超过2^32，又从0开始。这样，一个ISN的周期大约是4.55个小时。因为，我们假设我们的TCP Segment在网络上的存活时间不会超过Maximum Segment Lifetime（缩写为MSL – <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Maximum_Segment_Lifetime">Wikipedia语条</a>），所以，只要MSL的值小于4.55小时，那么，我们就不会重用到ISN。</li>
-<li><strong>关于 MSL 和 TIME_WAIT</strong>。通过上面的ISN的描述，相信你也知道MSL是怎么来的了。我们注意到，在TCP的状态图中，从TIME_WAIT状态到CLOSED状态，有一个超时设置，这个超时设置是 2*MSL（<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc793">RFC793</a>定义了MSL为2分钟，Linux设置成了30s）为什么要这有TIME_WAIT？为什么不直接给转成CLOSED状态呢？主要有两个原因：1）TIME_WAIT确保有足够的时间让对端收到了ACK，如果被动关闭的那方没有收到Ack，就会触发被动端重发Fin，一来一去正好2个MSL，2）有足够的时间让这个连接不会跟后面的连接混在一起（你要知道，有些自做主张的路由器会缓存IP数据包，如果连接被重用了，那么这些延迟收到的包就有可能会跟新连接混在一起）。你可以看看这篇文章《<a target="_blank" rel="noopener" href="http://www.serverframework.com/asynchronousevents/2011/01/time-wait-and-its-design-implications-for-protocols-and-scalable-servers.html">TIME_WAIT and its design implications for protocols and scalable client server systems</a>》</li>
-<li><strong>关于TIME_WAIT数量太多</strong>。从上面的描述我们可以知道，TIME_WAIT是个很重要的状态，但是如果在大并发的短链接下，TIME_WAIT 就会太多，这也会消耗很多系统资源。只要搜一下，你就会发现，十有八九的处理方式都是教你设置两个参数，一个叫<strong>tcp_tw_reuse</strong>，另一个叫<strong>tcp_tw_recycle</strong>的参数，这两个参数默认值都是被关闭的，后者recyle比前者resue更为激进，resue要温柔一些。另外，如果使用tcp_tw_reuse，必需设置tcp_timestamps=1，否则无效。这里，你一定要注意，<strong>打开这两个参数会有比较大的坑——可能会让TCP连接出一些诡异的问题</strong>（因为如上述一样，如果不等待超时重用连接的话，新的连接可能会建不上。正如<a target="_blank" rel="noopener" href="https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt">官方文档</a>上说的一样“<strong>It should not be changed without advice/request of technical experts</strong>”）。</li>
-<li><strong>关于tcp_tw_reuse</strong>。官方文档上说tcp_tw_reuse 加上tcp_timestamps（又叫PAWS, for Protection Against Wrapped Sequence Numbers）可以保证协议的角度上的安全，但是你需要tcp_timestamps在两边都被打开（你可以读一下<a target="_blank" rel="noopener" href="http://lxr.free-electrons.com/ident?i=tcp_twsk_unique">tcp_twsk_unique</a>的源码 ）。我个人估计还是有一些场景会有问题。</li>
-<li><strong>关于tcp_tw_recycle</strong>。如果是tcp_tw_recycle被打开了话，会假设对端开启了tcp_timestamps，然后会去比较时间戳，如果时间戳变大了，就可以重用。但是，如果对端是一个NAT网络的话（如：一个公司只用一个IP出公网）或是对端的IP被另一台重用了，这个事就复杂了。建链接的SYN可能就被直接丢掉了（你可能会看到connection time out的错误）（如果你想观摩一下Linux的内核代码，请参看源码 <a target="_blank" rel="noopener" href="http://lxr.free-electrons.com/ident?i=tcp_timewait_state_process">tcp_timewait_state_process</a>）。</li>
-<li><strong>关于tcp_max_tw_buckets</strong>。这个是控制并发的TIME_WAIT的数量，默认值是180000，如果超限，那么，系统会把多的给destory掉，然后在日志里打一个警告（如：time wait bucket table overflow），官网文档说这个参数是用来对抗DDoS攻击的。也说的默认值180000并不小。这个还是需要根据实际情况考虑。</li>
-</ul>
-<p><strong>Again，使用tcp_tw_reuse和tcp_tw_recycle来解决TIME_WAIT的问题是非常非常危险的，因为这两个参数违反了TCP协议（</strong><a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc1122"><strong>RFC 1122</strong></a><strong>）</strong></p>
-<p>其实，TIME_WAIT表示的是你主动断连接，所以，这就是所谓的“不作死不会死”。试想，如果让对端断连接，那么这个破问题就是对方的了，呵呵。另外，如果你的服务器是于HTTP服务器，那么设置一个<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/HTTP_persistent_connection">HTTP的KeepAlive</a>有多重要（浏览器会重用一个TCP连接来处理多个HTTP请求），然后让客户端去断链接（你要小心，浏览器可能会非常贪婪，他们不到万不得已不会主动断连接）。</p>
-<h4 id="数据传输中的Sequence-Number"><a href="#数据传输中的Sequence-Number" class="headerlink" title="数据传输中的Sequence Number"></a>数据传输中的Sequence Number</h4><p>下图是我从Wireshark中截了个我在访问coolshell.cn时的有数据传输的图给你看一下，SeqNum是怎么变的。（使用Wireshark菜单中的Statistics -&gt;Flow Graph… ）</p>
-<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/2ECDCA0E-B498-44FF-BCDA-BCD7B5F57F4F/56C26480-DFD5-41C3-AC17-2346FBC74DC7_2/yifLL4pbPm5hx5M1q6RU7iUOsSmn76ZsytyDQyCZfnwz/Image.png" alt="Image.png"></p>
-<p>你可以看到，<strong>SeqNum的增加是和传输的字节数相关的</strong>。上图中，三次握手后，来了两个Len:1440的包，而第二个包的SeqNum就成了1441。然后第一个ACK回的是1441，表示第一个1440收到了。</p>
-<p><strong>注意</strong>：如果你用Wireshark抓包程序看3次握手，你会发现SeqNum总是为0，不是这样的，Wireshark为了显示更友好，使用了Relative SeqNum——相对序号，你只要在右键菜单中的protocol preference 中取消掉就可以看到“Absolute SeqNum”了</p>
-<h4 id="TCP重传机制"><a href="#TCP重传机制" class="headerlink" title="TCP重传机制"></a>TCP重传机制</h4><p>TCP要保证所有的数据包都可以到达，所以，必需要有重传机制。</p>
-<p>注意，接收端给发送端的Ack确认只会确认最后一个连续的包，比如，发送端发了1,2,3,4,5一共五份数据，接收端收到了1，2，于是回ack 3，然后收到了4（注意此时3没收到），此时的TCP会怎么办？我们要知道，因为正如前面所说的，<strong>SeqNum和Ack是以字节数为单位，所以ack的时候，不能跳着确认，只能确认最大的连续收到的包</strong>，不然，发送端就以为之前的都收到了。</p>
-<h4 id="超时重传机制"><a href="#超时重传机制" class="headerlink" title="超时重传机制"></a>超时重传机制</h4><p>一种是不回ack，死等3，当发送方发现收不到3的ack超时后，会重传3。一旦接收方收到3后，会ack 回 4——意味着3和4都收到了。</p>
-<p>但是，这种方式会有比较严重的问题，那就是因为要死等3，所以会导致4和5即便已经收到了，而发送方也完全不知道发生了什么事，因为没有收到Ack，所以，发送方可能会悲观地认为也丢了，所以有可能也会导致4和5的重传。</p>
-<p>对此有两种选择：</p>
-<ul>
-<li>一种是仅重传timeout的包。也就是第3份数据。</li>
-<li>另一种是重传timeout后所有的数据，也就是第3，4，5这三份数据。</li>
-</ul>
-<p>这两种方式有好也有不好。第一种会节省带宽，但是慢，第二种会快一点，但是会浪费带宽，也可能会有无用功。但总体来说都不好。因为都在等timeout，timeout可能会很长（在下篇会说TCP是怎么动态地计算出timeout的）</p>
-<h4 id="快速重传机制"><a href="#快速重传机制" class="headerlink" title="快速重传机制"></a>快速重传机制</h4><p>于是，TCP引入了一种叫<strong>Fast Retransmit</strong> 的算法，<strong>不以时间驱动，而以数据驱动重传</strong>。也就是说，如果，包没有连续到达，就ack最后那个可能被丢了的包，如果发送方连续收到3次相同的ack，就重传。Fast Retransmit的好处是不用等timeout了再重传。</p>
-<p>比如：如果发送方发出了1，2，3，4，5份数据，第一份先到送了，于是就ack回2，结果2因为某些原因没收到，3到达了，于是还是ack回2，后面的4和5都到了，但是还是ack回2，因为2还是没有收到，于是发送端收到了三个ack=2的确认，知道了2还没有到，于是就马上重转2。然后，接收端收到了2，此时因为3，4，5都收到了，于是ack回6。示意图如下：</p>
-<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/2ECDCA0E-B498-44FF-BCDA-BCD7B5F57F4F/34913B5D-8199-4D3F-857A-A86A28D43531_2/SiiJn9GdvPrJV5INMogwqxyYenjGXSXRrWFzWrk5OBEz/Image.png" alt="Image.png"></p>
-<p>Fast Retransmit只解决了一个问题，就是timeout的问题，它依然面临一个艰难的选择，就是，是重传之前的一个还是重传所有的问题。对于上面的示例来说，是重传#2呢还是重传#2，#3，#4，#5呢？因为发送端并不清楚这连续的3个ack(2)是谁传回来的？也许发送端发了20份数据，是#6，#10，#20传来的呢。这样，发送端很有可能要重传从2到20的这堆数据（这就是某些TCP的实际的实现）。可见，这是一把双刃剑。</p>
-<h4 id="SACK-方法"><a href="#SACK-方法" class="headerlink" title="SACK 方法"></a>SACK 方法</h4><p>另外一种更好的方式叫：**Selective Acknowledgment (SACK)**（参看<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc2018">RFC 2018</a>），这种方式需要在TCP头里加一个SACK的东西，ACK还是Fast Retransmit的ACK，SACK则是汇报收到的数据碎版。参看下图：</p>
-<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/2ECDCA0E-B498-44FF-BCDA-BCD7B5F57F4F/17FD241A-881B-4A2C-87F2-B8A50AB1DBA4_2/GyVy6qMvLWzDF09THr7gQATC4TYKtIMiMa3PMm4MMmUz/Image.png" alt="Image.png"></p>
-<p>这样，在发送端就可以根据回传的SACK来知道哪些数据到了，哪些没有到。于是就优化了Fast Retransmit的算法。当然，这个协议需要两边都支持。在 Linux下，可以通过<strong>tcp_sack</strong>参数打开这个功能（Linux 2.4后默认打开）。</p>
-<p>这里还需要注意一个问题——<strong>接收方Reneging，所谓Reneging的意思就是接收方有权把已经报给发送端SACK里的数据给丢了</strong>。这样干是不被鼓励的，因为这个事会把问题复杂化了，但是，接收方这么做可能会有些极端情况，比如要把内存给别的更重要的东西。<strong>所以，发送方也不能完全依赖SACK，还是要依赖ACK，并维护Time-Out，如果后续的ACK没有增长，那么还是要把SACK的东西重传，另外，接收端这边永远不能把SACK的包标记为Ack。</strong></p>
-<p>注意：SACK会消费发送方的资源，试想，如果一个攻击者给数据发送方发一堆SACK的选项，这会导致发送方开始要重传甚至遍历已经发出的数据，这会消耗很多发送端的资源。详细的东西请参看《<a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/linux/l-tcp-sack/">TCP SACK的性能权衡</a>》</p>
-<h4 id="Duplicate-SACK-–-重复收到数据的问题"><a href="#Duplicate-SACK-–-重复收到数据的问题" class="headerlink" title="Duplicate SACK – 重复收到数据的问题"></a>Duplicate SACK – 重复收到数据的问题</h4><p>Duplicate SACK又称D-SACK，<strong>其主要使用了SACK来告诉发送方有哪些数据被重复接收了</strong>。<a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc2883.txt">RFC-2883</a> 里有详细描述和示例。下面举几个例子（来源于<a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc2883.txt">RFC-2883</a>）</p>
-<p>D-SACK使用了SACK的第一个段来做标志，</p>
-<ul>
-<li>如果SACK的第一个段的范围被ACK所覆盖，那么就是D-SACK</li>
-<li>如果SACK的第一个段的范围被SACK的第二个段覆盖，那么就是D-SACK</li>
-</ul>
-<p><strong>示例一：ACK丢包</strong></p>
-<p>下面的示例中，丢了两个ACK，所以，发送端重传了第一个数据包（3000-3499），于是接收端发现重复收到，于是回了一个SACK=3000-3500，因为ACK都到了4000意味着收到了4000之前的所有数据，所以这个SACK就是D-SACK——旨在告诉发送端我收到了重复的数据，而且我们的发送端还知道，数据包没有丢，丢的是ACK包。</p>
-<p><strong>示例二，网络延误</strong></p>
-<p>下面的示例中，网络包（1000-1499）被网络给延误了，导致发送方没有收到ACK，而后面到达的三个包触发了“Fast Retransmit算法”，所以重传，但重传时，被延误的包又到了，所以，回了一个SACK=1000-1500，因为ACK已到了3000，所以，这个SACK是D-SACK——标识收到了重复的包。</p>
-<p>这个案例下，发送端知道之前因为“Fast Retransmit算法”触发的重传不是因为发出去的包丢了，也不是因为回应的ACK包丢了，而是因为网络延时了。</p>
-<p>可见，引入了D-SACK，有这么几个好处：</p>
-<p>1）可以让发送方知道，是发出去的包丢了，还是回来的ACK包丢了。</p>
-<p>2）是不是自己的timeout太小了，导致重传。</p>
-<p>3）网络上出现了先发的包后到的情况（又称reordering）</p>
-<p>4）网络上是不是把我的数据包给复制了。</p>
-<p><strong>知道这些东西可以很好得帮助TCP了解网络情况，从而可以更好的做网络上的流控</strong>。</p>
-<p>Linux下的tcp_dsack参数用于开启这个功能（Linux 2.4后默认打开）</p>
-<p>好了，上篇就到这里结束了。如果你觉得我写得还比较浅显易懂，那么，欢迎移步看下篇</p>
-]]></content>
-      <categories>
-        <category>network</category>
-      </categories>
-      <tags>
-        <tag>tcp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于TCP的所有你想知道的</title>
     <url>/2023/10/14/internet-tcp-g/</url>
     <content><![CDATA[<h2 id="连接导向、可靠和比特流导向"><a href="#连接导向、可靠和比特流导向" class="headerlink" title="连接导向、可靠和比特流导向"></a>连接导向、可靠和比特流导向</h2><p>在网络层的IP协议是不可靠的。它负责将数据包从一个IP地址传递到另一个IP地址，但不对传递的数据包的交付、顺序或完整性做任何保证。这就是TCP发挥作用的地方，它确保数据传输的可靠性。</p>
@@ -919,49 +919,6 @@
       </categories>
       <tags>
         <tag>tcp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>设计自定义线程池</title>
-    <url>/2023/10/14/java-threadpool/</url>
-    <content><![CDATA[<h2 id="什么是线程池？"><a href="#什么是线程池？" class="headerlink" title="什么是线程池？"></a>什么是线程池？</h2><p>线程池是一组预初始化的工作线程，由线程池管理器进行管理。线程池管理器负责将任务分发给工作线程并管理任务的执行。</p>
-<p>线程池不是为每个任务创建一个新线程，这样做可能效率低下并导致资源争用。线程池允许一组线程被创建一次，然后用于多个任务。这可以提高应用程序的性能和可伸缩性。</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*pOec-wF1ytIlwMIxQkQM3A.png" alt="1*pOec-wF1ytIlwMIxQkQM3A.png"></p>
-<span id="more"></span>
-<h2 id="设计线程池："><a href="#设计线程池：" class="headerlink" title="设计线程池："></a>设计线程池：</h2><p>要设计一个线程池，我们需要以下实体：</p>
-<ol>
-<li>线程池：将任务加入阻塞队列。</li>
-<li>阻塞队列：存储任务。</li>
-<li>任务执行器：执行任务。</li>
-</ol>
-<p><img src="https://miro.medium.com/v2/resize:fit:782/1*iOx_kUIuKsO2RLjtAdQHuA.png" alt="1*iOx_kUIuKsO2RLjtAdQHuA.png"></p>
-<h2 id="线程池："><a href="#线程池：" class="headerlink" title="线程池："></a>线程池：</h2><ol>
-<li>线程池类通过构造函数初始化阻塞队列的大小和线程池中可用的线程数。</li>
-<li>在构造函数中，我们创建给定数量的线程，并将任务执行器（实现了Runnable接口）的引用传递给线程并启动它们。</li>
-<li>线程池类具有submit(Runnable runnable)方法，用于将任务加入阻塞队列。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.BlockingQueue;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.LinkedBlockingDeque;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPool</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> BlockingQueue&lt;Runnable&gt; blockingQueue;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义队列的大小和线程数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThreadPool</span><span class="params">(<span class="keyword">int</span> queueSize, <span class="keyword">int</span> noOfThreads)</span> </span>&#123;</span><br><span class="line">        blockingQueue = <span class="keyword">new</span> LinkedBlockingDeque&lt;&gt;(queueSize);</span><br><span class="line">        TaskExecutor taskExecutor = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; noOfThreads; i++) &#123;</span><br><span class="line">            taskExecutor = <span class="keyword">new</span> TaskExecutor(blockingQueue);</span><br><span class="line">            Thread thread = <span class="keyword">new</span> Thread(taskExecutor);</span><br><span class="line">            thread.start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">submit</span><span class="params">(Runnable runnable)</span> </span>&#123;</span><br><span class="line">        blockingQueue.add(runnable);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="任务执行器："><a href="#任务执行器：" class="headerlink" title="任务执行器："></a>任务执行器：</h2><ol>
-<li>任务执行器是一个实现了Runnable接口的类，负责从阻塞队列中获取任务并执行它们。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TaskExecutor</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> BlockingQueue&lt;Runnable&gt; blockingQueue;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TaskExecutor</span><span class="params">(BlockingQueue&lt;Runnable&gt; blockingQueue)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.blockingQueue = blockingQueue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 从队列中取出任务并执行</span></span><br><span class="line">                Runnable runnable = blockingQueue.take();</span><br><span class="line">                runnable.run();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>现在，我们来测试一下我们的线程池：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThreadPool</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ThreadPool threadPool = <span class="keyword">new</span> ThreadPool(<span class="number">3</span>, <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> taskNumber = <span class="number">1</span>; taskNumber &lt;= <span class="number">7</span>; taskNumber++) &#123;</span><br><span class="line">            TestTask testTask1 = <span class="keyword">new</span> TestTask(<span class="string">&quot;abcd_&quot;</span> + taskNumber);</span><br><span class="line">            threadPool.submit(testTask1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>我想补充一点，为什么我们使用阻塞队列来保存任务？</p>
-</blockquote>
-<blockquote>
-<p>答案很简单，<code>BlockingQueue</code>允许线程在队列为空时等待新任务，并且只在有空间可用时才接受新任务，防止系统一次性处理过多任务导致超载。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>系统设计</category>
-      </categories>
-      <tags>
-        <tag>线程池</tag>
       </tags>
   </entry>
   <entry>
@@ -1521,670 +1478,6 @@
       </categories>
       <tags>
         <tag>kafka,系统设计,网络技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何创建高性能索引</title>
-    <url>/2021/10/29/mysql-mysql-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E9%AB%98%E6%80%A7%E8%83%BD%E7%B4%A2%E5%BC%95/</url>
-    <content><![CDATA[<h5 id="为什么需要索引"><a href="#为什么需要索引" class="headerlink" title="为什么需要索引?"></a><strong>为什么需要索引?</strong></h5><p><strong>避免去扫全表,存储引擎先走索引找到对应值,然后根据索引记录找到对应的数据行.</strong></p>
-<p><strong>优点的话,因为索引使用B+树结构 使得查询数据不再是随机IO,且避免去扫描全表</strong></p>
-<p><strong>索引的策略(使用)</strong></p>
-<h5 id="单列"><a href="#单列" class="headerlink" title="单列"></a><strong>单列</strong></h5><p><strong>不要在where 后面针对索引列计算,因为无法自动解析计算,所以需要避免索引列的一些计算</strong></p>
-<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211013193141024.png" alt="image-20211013193141024"></strong></p>
-<span id="more"></span>
-
-<h5 id="前缀索引"><a href="#前缀索引" class="headerlink" title="前缀索引"></a><strong>前缀索引</strong></h5><p><strong>使列的前缀区分度趋近于这个列的完整列的区分度,这个时候可以考虑使用前缀索引,避免了索引过大,但同时区分度</strong></p>
-<p><strong>差不多的情况.</strong></p>
-<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211013193656198.png" alt="image-20211013193656198" style="zoom:60%;" /></strong></p>
-<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211013193530306.png" alt="image-20211013193530306"></strong></p>
-<h5 id="索引合并的优化"><a href="#索引合并的优化" class="headerlink" title="索引合并的优化?"></a><strong>索引合并的优化?</strong></h5><p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211013194453445.png" alt="image-20211013194453445"></strong></p>
-<p><strong>当服务器对多个索引进行联合操作时候,通常会消耗大量的CPU,内存等,有的时候or的索引列区分度不高,查询优</strong></p>
-<p><strong>化器评估可能还不如扫全表来的成本低,可能就会放弃走索引. 所以遇到extra using union 合并索引优化的时候</strong> </p>
-<p><strong>需要看看自己的索引建立的是否合理?</strong></p>
-<h5 id="如何选择合适的索引顺序"><a href="#如何选择合适的索引顺序" class="headerlink" title="如何选择合适的索引顺序?"></a><strong>如何选择合适的索引顺序?</strong></h5><p><strong>如果没有排序或者分组的情况下,将区分度最高的列放在最前面是合理的,但如果涉及排序或者分组的时候,还是应该像前缀索引那样针对查询的结果集的区分度来做判断</strong></p>
-<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211013200842505.png" alt="image-20211013200842505" style="zoom:50%;" /></strong></p>
-<h5 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a><strong>聚簇索引</strong></h5><p><strong>索引和数据行聚合在一起的,通常数据行不可能放在两个地方,所以聚簇索引的索引一般都是主键</strong></p>
-<p><strong>聚簇索引默认是主键，如果表中没有定义主键，InnoDB 会选择一个唯一的非空索引代替</strong></p>
-<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211014153327555.png" alt="image-20211014153327555" style="zoom:50%;" /></strong></p>
-<ul>
-<li><p><strong>缺点:  当主键发生变化的时候,要插入一个已经满的数据行内时,会发生“页分裂”的问题, 导致数据行不连续,导致</strong></p>
-<p><strong>全表扫描变慢,其次产生的”页分裂“ 也会占有额外的内存.</strong></p>
-</li>
-<li><p><strong>优点: 在B+树中查询会更快些,且使用覆盖索引扫描的查询可以直接用叶子结点上的主键</strong></p>
-</li>
-</ul>
-<h5 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a><strong>覆盖索引</strong></h5><p><strong>索引包含了要查询的列,那么就没有必要回表查询(数据行).</strong></p>
-<p><strong>优点: 如果走覆盖索引,返回的行数明显会少很多, 对服务器的缓存 IO 负载也会好很多</strong></p>
-<h5 id="什么是“延迟关联“？"><a href="#什么是“延迟关联“？" class="headerlink" title="什么是“延迟关联“？"></a><strong>什么是“延迟关联“？</strong></h5><h5 id="超多分页的问题"><a href="#超多分页的问题" class="headerlink" title="超多分页的问题"></a><strong>超多分页的问题</strong></h5><p><strong>随着偏移量 <code>offset</code> 的增加，MySQL 需要花费大量的时间来扫描需要丢弃的数据。本质上就是 <code>offset</code> 过大导致</strong></p>
-<p><strong>的大量回表 I/O 查询。</strong></p>
-<p><strong>通过使用覆盖索引查询返回需要的主键，再根据主键关联原表获得需要的数据。</strong> </p>
-<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211014162823668.png" alt="image-20211014162823668"></strong></p>
-<h5 id="使用索引来排序"><a href="#使用索引来排序" class="headerlink" title="使用索引来排序"></a><strong>使用索引来排序</strong></h5><p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211014165259909.png" alt="image-20211014165259909"></strong></p>
-<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211014165042661.png" alt="image-20211014165042661"></strong></p>
-<p><strong>当第一列是范围查询的时候也不能使用索引作排序查询</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">....</span><br><span class="line">where retal_date&gt;&quot;2005-05-25&quot; order by inventory_id,customer_id</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意避免 冗余 &amp; 重复&amp;  未使用索引</strong></p>
-<h5 id="索引和锁"><a href="#索引和锁" class="headerlink" title="索引和锁"></a><strong>索引和锁</strong></h5><p><strong>在返回给服务器之前的,能够通过索引过滤无效行的形式去避免无效行的锁,返回到服务器数据可以通过where 过滤</strong></p>
-<p><strong>之后释放锁.</strong></p>
-<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211016095647397.png" alt="image-20211016095647397"></strong></p>
-<p><strong><code>use index</code> 索引返回过滤 1-5 行的数据 , <code>use where</code> 索引返回行给服务器,应用 <code>where</code> 过滤</strong></p>
-<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211016100036309.png" alt="image-20211016100036309" style="zoom:50%;" /></strong></p>
-<p><strong>虽然查询只返回了2<del>4行的数据,但实际获取的是1</del>4行之间的排他锁,InnoDB 会锁住第一行,因为<code>查询优化器</code> 选择</strong></p>
-<p><strong>的执行计划是<code>索引范围扫描</code></strong></p>
-<h5 id="索引案例学习"><a href="#索引案例学习" class="headerlink" title="索引案例学习"></a>索引案例学习</h5><p><code>IN</code> or <code>&gt;</code> ?  </p>
-<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211016103048834.png" alt="image-20211016103048834" style="zoom:50%;" />
-
-<p>explain 结果来看无法区分 这二者的区别,但是 可以从值的范围和多个等于条件来得出不同,第二个就是等值查询</p>
-<p>那二者在查询效率上有什么区别吗?</p>
-<p>简单的来说第二种等值查询后续列可以继续使用索引,但是第一种范围查询后续列不可以使用索引,因为查询只能使</p>
-<p>用索引的最左匹配.所以应该尽可能将范围查询放在索引列的后面.以便优化器可以使用尽可能多的索引列.</p>
-<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
-<li><p>服务器从存储中读取的块尽可能多的包含所需要的行</p>
-</li>
-<li><p>顺序IO 比随机IO快,特别是对机械硬盘,如果服务器能够顺序获取数据,那服务器则无需额外的排序</p>
-</li>
-<li><p>覆盖索引是很快的,如果索引列能返回所有的查询数据,则存储引擎无需回表查询数据行</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何优化查询</title>
-    <url>/2021/10/30/mysql-mysql-%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<p><strong>查询优化</strong></p>
-<p><strong>why?</strong></p>
-<h4 id="优化的思路"><a href="#优化的思路" class="headerlink" title="优化的思路"></a><strong>优化的思路</strong></h4><p><strong>客户端到服务器 其中包括 检验连接 查询缓存 解析 以及存储引擎涉及的调用 都会带来 cpu 内存 io等开销我们要</strong></p>
-<p><strong>做的就是减少这些…</strong></p>
-<h5 id="措施"><a href="#措施" class="headerlink" title="措施"></a><strong>措施</strong></h5><p>​    <strong>一个是检查是不是返回了 程序不需要的大量数据,大量数据会带来大量cpu以及io等损耗…</strong></p>
-<p>​    <strong>一个是检查是不是扫了额外的行记录最简单的衡量查询开销的三个指标：1.响应时间2.扫描的行数3.返回的行</strong></p>
-<p><strong>数, 关注数据的访问类型全表扫描 索引扫描 范围扫描 唯一索引扫描等…</strong></p>
-<span id="more"></span>
-
-<h5 id="using-where？"><a href="#using-where？" class="headerlink" title="using where？"></a><strong>using where？</strong></h5><h5 id="扫描大量数据-返回却很少数的行"><a href="#扫描大量数据-返回却很少数的行" class="headerlink" title=" 扫描大量数据, 返回却很少数的行?"></a><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/cFNOQmbetv8RBaxL6EWXV0kf1_JS53PbHcNtpCbod-FXk3T8PPqnkWpoYjCyjP-yQeMb16IXJHEI683HYXjO9nFNeO3vA7YvVuB_1wT1oEWKXfRSy9YIPovUvkAWArlW1jSLrNbH=s0.png" alt="img"></strong> 扫描大量数据, 返回却很少数的行?</h5><h5 id=""><a href="#" class="headerlink" title=""></a><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/CloQyJONtRGw9ovj3Qx3on2_pEMMq2rs7ShENqfQDO-G0SY6lAcQ6l7mBZCDr9_7HmkeFN5J1aqR0I3uAxIcze75RRYvNfLsXIL0ffBtpm26tMbgbzDIybE3xkYabP7IpnQo4feY=s0.png" alt="img"></strong></h5><h4 id="why-这样优化"><a href="#why-这样优化" class="headerlink" title="why 这样优化 ?"></a><strong>why 这样优化 ?</strong></h4><h5 id="查询执行基础"><a href="#查询执行基础" class="headerlink" title="查询执行基础"></a><strong>查询执行基础</strong></h5><p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211013132735291.png" alt="image-20211013132735291"></strong></p>
-<h6 id="Mysql-客户端-服务器的通信协议"><a href="#Mysql-客户端-服务器的通信协议" class="headerlink" title="Mysql 客户端/服务器的通信协议"></a><strong>Mysql 客户端/服务器的通信协议</strong></h6><p><strong>”半双工“协议,单方面一方进行推送,服务器推送数据给客户端,客户端推送查询给服务器,两个动作不能同时发生.</strong></p>
-<p><strong>虽然这种通信比较简单快速,但是有一个缺点就是一方必须接收完全部信息才能响应. 这就是为什么客户端进行查询</strong></p>
-<p><strong>数据包传送的时候需要进行大小限制“max_allowed_package”  以及这也是为什么在查询返回时加”limit“ 限制.</strong></p>
-<h6 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a><strong>查询缓存</strong></h6><p><strong>查询会和缓存中的查询进行匹配(一个区分大小写的Hash查找实现),如果完全匹配且权限没有问题则会直接返回数</strong></p>
-<p><strong>据,反之如果有一个字节不匹配则不会命中缓存</strong></p>
-<h6 id="查询优化以及处理-查询优化器"><a href="#查询优化以及处理-查询优化器" class="headerlink" title="查询优化以及处理(查询优化器)"></a><strong>查询优化以及处理</strong>(查询优化器)</h6><p><strong>这个阶段主要将 sql  (转换成 ) —&gt; 执行计划 -&gt; mysql 依据这个执行计划去和存储引擎进行交互.</strong></p>
-<p><strong>转换执行计划过程包括 解析sql, 预处理,优化sql 执行计划</strong></p>
-<p><strong>查询优化包括静态优化以及动态优化,静态优化主要则是将where 层面的条件以代数的形式去比较选择,通常只做一</strong></p>
-<p><strong>次,但是动态优化则是每次都会评估. 常见的mysql能够处理的优化类型:</strong></p>
-<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211013155103802.png" alt="image-20211013155103802"></strong></p>
-<h6 id="查询执行引擎"><a href="#查询执行引擎" class="headerlink" title="查询执行引擎"></a><strong>查询执行引擎</strong></h6><p><strong>Mysql 根据优化后的执行计划调用存储引擎的”handler API“,在解析运行时就为每张表生成handler</strong> </p>
-<p><strong>实列.</strong></p>
-<h6 id="查询结果返回"><a href="#查询结果返回" class="headerlink" title="查询结果返回"></a><strong>查询结果返回</strong></h6><p><strong>服务器会将返回的结果集的每行数据以客户端/服务器通信协议进行封包处理,通过TCP协议进行传输,传输过程可能</strong></p>
-<p><strong>会将封包数据进行缓存,进行批量传输.</strong></p>
-<p><strong>其次如果查询是可以缓存,那么mysql 也会在这个阶段缓存对应的结果集</strong></p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>删除是不是只能跑路？</title>
-    <url>/2021/11/01/mysql-redolog-binlog/</url>
-    <content><![CDATA[<h5 id="数据恢复过程"><a href="#数据恢复过程" class="headerlink" title="数据恢复过程"></a>数据恢复过程</h5><p>1.最近的一次全量备份 -&gt; 2. 从备份的时间点开始,将备份的binlog 依次取出来重放到误删表之前的那个时刻</p>
-<p>这样你的临时库就跟误删之前的线上库一样了,按需要恢复到线上库去。</p>
-<h5 id="日志模块"><a href="#日志模块" class="headerlink" title="日志模块"></a>日志模块</h5><p>与查询流程不一样的是，更新流程还涉及两个重要的日志模块</p>
-<p>redo log 是 InnoDB 引擎特有的日志，而 Server 层也有自己的日志，称为 binlog（归档日志）</p>
-<span id="more"></span>
-
-<h6 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h6><p>WAL 的全称是 Write-Ahead Logging，它的关键点就是先写日志，再写磁盘，也就是先写粉板，等不忙的时候再</p>
-<p>写账本。</p>
-<p>具体来说，当有一条记录需要更新的时候，InnoDB 引擎就会先把记录写到 redo log（粉板）里面，并更新内存，</p>
-<p>这个时候更新就算完成了。同时，InnoDB 引擎会在适当的时候，将这个操作记录更新到磁盘里面，而这个更新往</p>
-<p>往是在系统比较空闲的时候做，这就像打烊以后掌柜做的事</p>
-<p>有了 redo log，InnoDB 就可以保证即使数据库发生异常重启，之前提交的记录都不会丢失，这个能力称为 crash-safe。</p>
-<h6 id="binlog"><a href="#binlog" class="headerlink" title="binlog"></a>binlog</h6><p>redo log 是 InnoDB 引擎特有的日志，而 Server 层也有自己的日志，称为 binlog（归档日志）</p>
-<h6 id="redo-log-vs-binlog"><a href="#redo-log-vs-binlog" class="headerlink" title="redo log vs binlog"></a>redo log vs binlog</h6><ul>
-<li><p>redolog 是InnoDB特有,binlog 是mysql server 层独有</p>
-</li>
-<li><p>redo log 是物理日志，记录的是“在某个数据页上做了什么修改”；binlog 是逻辑日志，记录的是这个语句的原</p>
-<p>始逻辑，比如“给 ID=2 这一行的 c 字段加 1 ”。</p>
-</li>
-<li><p>redo log 是循环写的，空间固定会用完；binlog 是可以追加写入的。“追加写”是指 binlog 文件写到一定大小</p>
-<p>后会切换到下一个，并不会覆盖以前的日志</p>
-</li>
-</ul>
-<h5 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h5><p>什么是”两阶段提交“?</p>
-<p>先看数据update的mysql执行过程如图, 浅色 InnoDB 内部执行的，深色 执行器中执行的</p>
-<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/2e5bff4910ec189fe1ee6e2ecc7b4bbe.png" alt="img" style="zoom:50%;" />
-
-<p>Innodb更新完内存然后写入redo log -&gt; prepare状态 -&gt; 告知执行器执行完成了，随时可以提交事务。执行器生成</p>
-<p>这个操作的 binlog，并把 binlog 写入磁盘 -&gt;更新redo log状态为commit的</p>
-<p>为什么必须有“两阶段提交”呢？</p>
-<p>这是为了让两份日志之间的逻辑一致.</p>
-<p>比如在更新的时候, 如果redo log 完好,意味中数据库重启 crash了 当时数据库数据可以恢复正常,但是归档的数据</p>
-<p>会少一条更新的语句.如果后续误删数据利用备份库+binlog进行数据恢复的时候,会少一条更新语句.</p>
-<p>反之亦然,binlog完好,但是redo log异常,恢复之后的数据认识更新前的值,后续binlog 恢复出来的值与原值不同.</p>
-<p>redo log 和 binlog 都可以用于表示事务的提交状态，而两阶段提交就是让这两个状态保持逻辑上的一致.</p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SQL和NoSQL数据库的便捷速查表</title>
-    <url>/2023/10/14/mysql-sql/</url>
-    <content><![CDATA[<p><img src="https://res.craft.do/user/full/b313a1ab-3121-84d1-2506-d702b5c0ba9c/27149C4F-836E-4A35-8682-0B86BD695B46_2/Y6zIOTYcFX6SHA2sjkHGZkEzk3a90teEIhQXLJyduacz/ae256384-ff3f-4fe8-9456-f6be80132cc7_1780x1536.jpeg" alt="ae256384-ff3f-4fe8-9456-f6be80132cc7_1780x1536.jpeg"></p>
-<p>在项目成功的过程中选择合适的数据库非常重要。以下是关键要点的总结：</p>
-<ul>
-<li>SQL数据库提供结构化数据存储、SQL支持和关系能力。</li>
-<li>NoSQL数据库提供灵活性、可扩展性和分布式架构。</li>
-<li>专门的数据库，如列存储、图形数据库、空间数据库和时间序列数据库，满足特定需求。</li>
-<li>评估关键功能、优势和提供商，以做出明智的决策。</li>
-</ul>
-<span id="more"></span>
-
-<h2 id="SQL数据库"><a href="#SQL数据库" class="headerlink" title="SQL数据库"></a>SQL数据库</h2><p>SQL（Structured Query Language）数据库使用表格结构来存储数据，并使用SQL语言进行查询和操作。以下是一些SQL数据库的主要特点：</p>
-<ul>
-<li>结构化数据存储：数据以表格的形式组织，每个表格有预定义的列和数据类型。</li>
-<li>关系能力：通过主键和外键，表格之间可以建立关系。</li>
-<li>SQL支持：使用SQL语言进行查询、插入、更新和删除数据。</li>
-<li>数据一致性和完整性：通过事务处理和约束条件来确保数据的一致性和完整性。</li>
-<li>可扩展性：支持垂直和水平扩展以处理大规模数据。</li>
-</ul>
-<p>常见的SQL数据库包括MySQL、PostgreSQL、Oracle和Microsoft SQL Server等。</p>
-<h2 id="NoSQL数据库"><a href="#NoSQL数据库" class="headerlink" title="NoSQL数据库"></a>NoSQL数据库</h2><p>NoSQL（Not Only SQL）数据库是一种非关系型数据库，不使用表格结构，而是使用键值对、文档、列族或图形等方式来存储数据。以下是一些NoSQL数据库的主要特点：</p>
-<ul>
-<li>灵活性：数据模型可以根据需求自由更改，无需事先定义表格结构。</li>
-<li>可扩展性：采用分布式架构，可以轻松扩展以处理大规模数据。</li>
-<li>高性能：通过优化数据访问模式和数据存储方式，实现高速读写操作。</li>
-<li>无固定模式：不需要遵循严格的模式，可以存储各种类型的数据，包括结构化、半结构化和非结构化数据。</li>
-</ul>
-<p>常见的NoSQL数据库包括MongoDB、Cassandra、Redis和Amazon DynamoDB等。</p>
-<h2 id="特殊数据库"><a href="#特殊数据库" class="headerlink" title="特殊数据库"></a>特殊数据库</h2><p>除了传统的SQL和NoSQL数据库之外，还有一些专门用于特定需求的数据库：</p>
-<ul>
-<li>列存储数据库：适用于大规模数据分析和查询，数据以列的方式存储。</li>
-<li>图形数据库：用于存储和处理具有复杂关系和</li>
-</ul>
-<p>连接的数据，如社交网络关系图。</p>
-<ul>
-<li>空间数据库：用于存储和查询地理空间数据，如地图数据和位置信息。</li>
-<li>时间序列数据库：专门用于存储和分析时间序列数据，如传感器数据和日志数据。</li>
-</ul>
-<p>根据项目的具体需求，可以选择适合的特殊数据库来优化数据存储和查询的性能。</p>
-<h2 id="如何选择数据库"><a href="#如何选择数据库" class="headerlink" title="如何选择数据库"></a>如何选择数据库</h2><p>在选择数据库时，需要考虑以下因素：</p>
-<ul>
-<li>功能需求：根据项目的功能需求，选择具备所需功能的数据库。</li>
-<li>性能要求：评估数据库的性能指标，包括读写速度、吞吐量和响应时间。</li>
-<li>可扩展性：考虑数据库的扩展性，以便在需要时能够处理增长的数据量和用户访问量。</li>
-<li>数据模型：根据数据的结构和关系，选择适合的数据模型（表格、文档、图形等）。</li>
-<li>成本效益：综合考虑数据库的许可费用、维护成本和云服务费用等方面的成本。</li>
-<li>社区支持和生态系统：选择具有活跃社区和完善生态系统的数据库，以便获取支持和扩展功能。</li>
-</ul>
-<p>通过综合评估以上因素，可以做出明智的决策，选择适合项目的数据库。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>选择合适的数据库对于项目的成功非常重要。SQL数据库提供结构化数据存储和关系能力，适用于需要严格数据模型和事务处理的场景。NoSQL数据库提供灵活性和可扩展性，适用于需要处理大规模数据和快速读写操作的场景。此外，还有一些特殊数据库可根据特定需求选择。</p>
-<p>在选择数据库时，需要考虑功能需求、性能要求、可扩展性、数据模型、成本效益以及社区支持和生态系统等因素。通过综合评估这些因素，可以做出明智的决策，为项目选择合适的数据库。</p>
-<p>希望本篇技术文章能够帮助您更好地理解SQL和NoSQL数据库，并在选择合适的数据库时提供一些指导</p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>查询一行数据怎么很慢？</title>
-    <url>/2021/11/02/mysql-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9F%A5%E8%AF%A2%E4%B8%80%E8%A1%8C%E6%95%B0%E6%8D%AE%E4%B9%9F%E5%BE%88%E6%85%A2/</url>
-    <content><![CDATA[<h5 id="为什么查询一行数据也很慢"><a href="#为什么查询一行数据也很慢" class="headerlink" title="为什么查询一行数据也很慢?"></a>为什么查询一行数据也很慢?</h5><p>1.MySQL数据库本身被堵住了，比如：系统或网络资源不够</p>
-<p>2.SQL语句被堵住了，比如：表锁，行锁等，导致存储引擎不执行对应的SQL语句</p>
-<p>3.确实是索引使用不当，没有走索引</p>
-<p>4.表中数据的特点导致的，走了索引，但回表次数庞大</p>
-<p>SQL语句被堵住的原因</p>
-<ul>
-<li>表锁</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; select * from t where id&#x3D;1;</span><br></pre></td></tr></table></figure>
-
-<p>长时间不返回,一般碰到这种情况的话，大概率是表 t 被锁住了。接下来分析原因的时候，一般都是首先执行一下 </p>
-<p>show processlist 命令，看看当前语句处于什么状态。然后我们再针对每种状态，去分析它们产生的原因、如何复</p>
-<p>现，以及如何处理。</p>
-<span id="more"></span>
-
-<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211022091452158.png" alt="image-20211022091452158"></p>
-<p>(performance_schema=on，相比于设置为 off 会有 10% 左右的性能损失)通过查sys.schema_table_lock_waits </p>
-<p>这张表，我们就可以直接找出造成阻塞的 process id，把这个连接用 kill 命令断开即可。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211022093053390.png" alt="image-20211022093053390"></p>
-<p> <strong>Waiting for table flush</strong></p>
-<p>另外一种查询堵住的情况是: 表t 等待被flush,正常flush是很快的</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">flush tables t with read lock;</span><br><span class="line"></span><br><span class="line">flush tables with read lock;</span><br></pre></td></tr></table></figure>
-
-<p>Waiting for table flush 状态的可能情况是：有一个 flush tables 命令被别的语句堵住了，然后它又堵住了我们的 </p>
-<p>select 语句。</p>
-<p><strong>等行锁</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211022094227519.png" alt="image-20211022094227519"></p>
-<p>session A 启动了事务，占有写锁，还不提交，是导致 session B 被堵住的原因</p>
-<p>查出是谁占着这个写锁?</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">mysql&gt; select * from t sys.innodb_lock_waits where locked_table&#x3D;&#39;&#96;test&#96;.&#96;t&#96;&#39;\G</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211022094422669.png" alt="image-20211022094422669"></p>
-<p><strong>undo log</strong></p>
-<p>mysql在事物开始操作数据之前，会先将原始数据备份到一个undo log的地方，这样做的目的有两个。第一是为了</p>
-<p>保证事物的原子性，如果事物在执行的过程中出现了某些错误，或者是用户执行了rollback的操作，mysql可以利</p>
-<p>用undo log中的备份将数据恢复到事物开始之前的状态。第二是为了实现多版本的并发控制，事物在提交之前，</p>
-<p>undo log中保存了未提交之前的数据版本，undo log可以作为旧版数据的快照供其他并发访问的事物实现快照</p>
-<p>读。</p>
-<p><strong>快照读</strong>:SQL读取的数据是快照版本，也就是历史版本，普通的select查询的就是快照。innodb存储引擎的快照</p>
-<p>读，读取的数据将由cache(原始数据)+undo(事物修改过的数据)两部分组成。</p>
-<p><strong>当前读</strong>:SQL读取的数据是最新版本，可以通过锁的机制来保证读取的数据无法被其它的事物修改。update，</p>
-<p>delete，insert，select … lock in share mode，select … for update都是当前读。</p>
-<p>除了undo log，Mysql数据库还有一个<strong>redo log</strong>的概念，mysql在事物开始之后，事物中操作的任何数据，会将最</p>
-<p>新的数据备份到一个地方（redo log）,就是在事物执行的过程中，开始将数据写入redo buffer中，最后写入redo </p>
-<p>log中，具体的落盘策略可以自行配置。这样做的目的是:为了实现事物的持久性，防止在发生故障的时间点，尚有</p>
-<p>脏页未写入磁盘，在mysql重启的时候，根据redo log重做，从而使事物未入磁盘的数据达到持久化这一特定。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211022100827871.png" alt="image-20211022100827871"></p>
-<p>session A 先用 start transaction with consistent snapshot 命令启动了一个事务，之后 session B 才开始执行 </p>
-<p>update 语句。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211022100857409.png" alt="image-20211022100857409"></p>
-<p>session B 更新完 100 万次，生成了 100 万个回滚日志 (undo log)。带 lock in share mode 的 SQL 语句，是当前</p>
-<p>读，因此会直接读到 1000001 这个结果，所以速度很快；而 select * from t where id=1 这个语句，是一致性</p>
-<p>读，因此需要从 1000001 开始，依次执行 undo log，执行了 100 万次以后 找到seesionA 一致性视图那个版本 </p>
-<p>才将 1 这个结果返回.</p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>操作系统里的内存管理</title>
-    <url>/2021/09/28/os-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_f2433484b95076e61f00e5b8b98a68f0_68721.jpg" alt="图怪兽_f2433484b95076e61f00e5b8b98a68f0_68721"></p>
-<h5 id="存储器结构"><a href="#存储器结构" class="headerlink" title="存储器结构"></a>存储器结构</h5><p>cpu -&gt; 寄存器 -&gt; 高速缓存 -&gt; 主存 -&gt; 磁盘</p>
-<h5 id="一种存储器抽象：地址空间"><a href="#一种存储器抽象：地址空间" class="headerlink" title="一种存储器抽象：地址空间"></a>一种存储器抽象：地址空间</h5><p>定义: 存储位置列表,存放可执行程序,程序的数据以及堆栈</p>
-<p>地址空间是进程可以用来寻址内存的地址集。每个进程都有它自己的地址空间，独立于其他进程的地址空间，但是</p>
-<p>某些进程会希望可以共享地址空间 </p>
-<span id="more"></span>
-
-
-<h5 id="映射内存-基址寄存器和变址寄存器"><a href="#映射内存-基址寄存器和变址寄存器" class="headerlink" title="映射内存? 基址寄存器和变址寄存器"></a>映射内存? 基址寄存器和变址寄存器</h5><p>每个 CPU 配置两个特殊硬件寄存器，通常叫做<code>基址寄存器(basic register)</code>和<code>变址寄存器(limit register)</code>。当</p>
-<p>使用基址寄存器和变址寄存器时，程序会装载到内存中的连续位置并且在装载期间无需重定位。当一个进程运行</p>
-<p>时，程序的起始物理地址装载到基址寄存器中，程序的长度则装载到变址寄存器中.</p>
-<ul>
-<li>基址寄存器：存储数据内存的起始位置</li>
-<li>变址寄存器：存储应用程序的长度</li>
-</ul>
-<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210928135552448.png" alt="image-20210927200421691" style="zoom:50%;" />
-
-
-<h5 id="程序运行所需内存超过物理内存"><a href="#程序运行所需内存超过物理内存" class="headerlink" title="程序运行所需内存超过物理内存?"></a>程序运行所需内存超过物理内存?</h5><p>最简单的一种方式就是<code>交换(swapping)</code>技术，即把一个进程完整的调入内存，然后再内存中运行一段时间，再把</p>
-<p>它放回磁盘。空闲进程会存储在磁盘中，所以这些进程在没有运行时不会占用太多内存。另外一种策略叫做<code>虚拟</code></p>
-<p><code>内存(virtual memory)</code>，虚拟内存技术能够允许应用程序部分的运行在内存中.</p>
-<ul>
-<li><p><strong>交换</strong></p>
-<p>交换在内存创建了多个 <code>空闲区(hole)</code>，内存会把所有的空闲区尽可能向下移动合并成为一个大的空闲区。这</p>
-<p>项技术称为<code>内存紧缩(memory compaction)</code>,但这项技术会消耗很多CPU的时间,通常不使用</p>
-</li>
-<li><p><strong>虚拟内存</strong></p>
-<p>虚拟内存的基本思想是, <strong>每个程序都有自己的地址空间，这个地址空间被划分为多个称为<code>页面(page)</code>的块</strong>。</p>
-<p>每一页都是连续的地址范围。这些页被映射到物理内存，但并不是所有的页都必须在内存中才能运行程序。当</p>
-<p>程序引用到一部分在物理内存中的地址空间时，硬件会立刻执行必要的映射。当程序引用到一部分不在物理内</p>
-<p>存中的地址空间时，由操作系统负责将缺失的部分装入物理内存并重新执行失败的指令.</p>
-</li>
-</ul>
-<h5 id="虚拟内存中的分页"><a href="#虚拟内存中的分页" class="headerlink" title="虚拟内存中的分页"></a>虚拟内存中的分页</h5><p>在使用虚拟内存时，虚拟地址不会直接发送到内存总线上。相反，会使用 <code>MMU(Memory Management Unit)</code> 内存</p>
-<p>管理单元把虚拟地址映射为物理内存地址</p>
-<p>  <img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210928152422814.png" alt="image-20210928152422814"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210928152951607.png" alt="image-20210928152951607"></p>
-<h5 id="大体流程"><a href="#大体流程" class="headerlink" title="大体流程"></a>大体流程</h5><p>CPU -&gt; 虚拟内存地址空间(被分成<code>页面</code>块) -&gt; MMU (内存单元管理) -&gt; 物理内存-&gt; 总线 -&gt; 操作设备</p>
-<h5 id="虚拟地址到物理地址的映射"><a href="#虚拟地址到物理地址的映射" class="headerlink" title="虚拟地址到物理地址的映射?"></a>虚拟地址到物理地址的映射?</h5><ul>
-<li><p>转换检测缓冲区 TLB (硬件层面)</p>
-<p>从硬件方面来解决这个问题，为计算机设置一个小型的硬件设备，能够将虚拟地址直接映射到物理地址，而不</p>
-<p>必再访问页表。这种设备被称为<code>转换检测缓冲区(Translation Lookaside Buffer, TLB)</code></p>
-</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210928154218704.png" alt="image-20210928154218704"></p>
-<h5 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h5><table>
-<thead>
-<tr>
-<th align="left">算法</th>
-<th align="left">注释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">最优算法</td>
-<td align="left">不可实现，但可以用作基准</td>
-</tr>
-<tr>
-<td align="left">NRU(最近未使用) 算法</td>
-<td align="left">和 LRU 算法很相似</td>
-</tr>
-<tr>
-<td align="left">FIFO(先进先出) 算法</td>
-<td align="left">有可能会抛弃重要的页面</td>
-</tr>
-<tr>
-<td align="left">第二次机会算法</td>
-<td align="left">比 FIFO 有较大的改善</td>
-</tr>
-<tr>
-<td align="left">时钟算法</td>
-<td align="left">实际使用</td>
-</tr>
-<tr>
-<td align="left">LRU(最近最少)算法</td>
-<td align="left">比较优秀，但是很难实现</td>
-</tr>
-<tr>
-<td align="left">NFU(最不经常食用)算法</td>
-<td align="left">和 LRU 很类似</td>
-</tr>
-<tr>
-<td align="left">老化算法</td>
-<td align="left">近似 LRU 的高效算法</td>
-</tr>
-<tr>
-<td align="left">工作集算法</td>
-<td align="left">实施起来开销很大</td>
-</tr>
-<tr>
-<td align="left">工作集时钟算法</td>
-<td align="left">比较有效的算法</td>
-</tr>
-</tbody></table>
-<h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210927200421691.png" alt="image-20210927200421691" style="zoom:50%;" />
-]]></content>
-      <categories>
-        <category>OS</category>
-      </categories>
-      <tags>
-        <tag>OS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>操作系统-下</title>
-    <url>/2022/11/29/os-%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86-%E4%B8%8B/</url>
-    <content><![CDATA[<h3 id="Linux操作系统概览"><a href="#Linux操作系统概览" class="headerlink" title="Linux操作系统概览"></a>Linux操作系统概览</h3><h3 id="物理内存"><a href="#物理内存" class="headerlink" title="物理内存"></a>物理内存</h3><ul>
-<li>物理内存分 NUMA 节点，分别进行管理；</li>
-<li>每个 NUMA 节点分成多个内存区域；</li>
-<li>每个内存区域分成多个物理页面；</li>
-<li>伙伴系统将多个连续的页面作为一个大的内存块分配给上层；</li>
-<li>kswapd 负责物理页面的换入换出；</li>
-<li>Slub Allocator 将从伙伴系统申请的大内存块切成小块，分配给其他系统</li>
-</ul>
-<span id="more"></span>
-
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/54F862A0-8386-49BF-8B3F-DEE9C8A646AE_2/gyolywXXfXQonISDGUYFDIkKa9pLydFhUuO59MXYMccz/Image.png" alt="Image.png"></p>
-<h3 id="用户态的内存映射机制"><a href="#用户态的内存映射机制" class="headerlink" title="用户态的内存映射机制"></a>用户态的内存映射机制</h3><ul>
-<li>用户态内存映射函数 mmap，包括用它来做匿名映射和文件映射。</li>
-<li>用户态的页表结构，存储位置在 mm_struct 中。</li>
-<li>在用户态访问没有映射的内存会引发缺页异常，分配物理页表、补齐页表。如果是匿名映射则分配物理内存；如果是 swap，则将 swap 文件读入；如果是文件映射，则将文件读入。</li>
-</ul>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/C4FFEB6E-626D-4F7C-A07C-B7909051941F_2/YRRQqzrK4RPGRwz3EvB7e76eBrpiJvDfVMEnBe1ePmgz/Image.png" alt="Image.png"></p>
-<h3 id="内存管理体系"><a href="#内存管理体系" class="headerlink" title="内存管理体系"></a>内存管理体系</h3><p>物理内存根据 NUMA 架构分节点。每个节点里面再分区域。每个区域里面再分页。</p>
-<p>物理页面通过伙伴系统进行分配。分配的物理页面要变成虚拟地址让上层可以访问，kswapd 可以根据物理页面的使用情况对页面进行换入换出。</p>
-<p>对于内存的分配需求，可能来自内核态，也可能来自用户态。</p>
-<p>对于内核态，kmalloc 在分配大内存的时候，以及 vmalloc 分配不连续物理页的时候，直接使用伙伴系统，分配后转换为虚拟地址，访问的时候需要通过内核页表进行映射。</p>
-<p>对于 kmem_cache 以及 kmalloc 分配小内存，则使用 slub 分配器，将伙伴系统分配出来的大块内存切成一小块一小块进行分配。</p>
-<p>kmem_cache 和 kmalloc 的部分不会被换出，因为用这两个函数分配的内存多用于保持内核关键的数据结构。内核态中 vmalloc 分配的部分会被换出，因而当访问的时候，发现不在，就会调用 do_page_fault。</p>
-<p>对于用户态的内存分配，或者直接调用 mmap 系统调用分配，或者调用 malloc。调用 malloc 的时候，如果分配小的内存，就用 sys_brk 系统调用；如果分配大的内存，还是用 sys_mmap 系统调用。正常情况下，用户态的内存都是可以换出的，因而一旦发现内存中不存在，就会调用 do_page_fault。</p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/AAC4B331-77B6-490B-AD71-D52671D0CD4B_2/ReuYEXAMBNYZdkWFnsIweuNA5bWuXjakI3cOoF17P24z/Image.png" alt="Image.png"></p>
-<h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3><p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/3635231F-E1A2-4D50-9AA1-F6180AEE5E32_2/iBnsEdRlLYuPwGGHc7FP7JeimBUgBFKMfQsc8JBJlj8z/Image.png" alt="Image.png"></p>
-<h3 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h3><p>进程间通信的各种模式</p>
-<ul>
-<li>类似瀑布开发模式的管道</li>
-<li>类似邮件模式的消息队列</li>
-<li>类似会议室联合开发的共享内存加信号量</li>
-<li>类似应急预案的信号</li>
-</ul>
-<p>当你自己使用的时候，可以根据不同的通信需要，选择不同的模式。</p>
-<ul>
-<li>管道，请你记住这是命令行中常用的模式，面试问到的话，不要忘了。</li>
-<li>消息队列其实很少使用，因为有太多的用户级别的消息队列，功能更强大。</li>
-<li>共享内存加信号量是常用的模式。这个需要牢记，常见到一些知名的以 C 语言开发的开源软件都会用到它。</li>
-<li>信号更加常用，机制也比较复杂。  我们后面会有单独的一节来解析。</li>
-</ul>
-<h3 id="信号处理机制"><a href="#信号处理机制" class="headerlink" title="信号处理机制"></a>信号处理机制</h3><ul>
-<li>在用户程序里面，有两个函数可以调用，一个是 signal，一个是 sigaction，推荐使用 sigaction。</li>
-<li>用户程序调用的是 Glibc 里面的函数，signal 调用的是 __sysv_signal，里面默认设置了一些参数，使得 signal 的功能受到了限制，sigaction 调用的是 __sigaction，参数用户可以任意设定。</li>
-<li>无论是 __sysv_signal 还是 __sigaction，调用的都是统一的一个系统调用 rt_sigaction。</li>
-<li>在内核中，rt_sigaction 调用的是 do_sigaction 设置信号处理函数。在每一个进程的 task_struct 里面，都有一个 sighand 指向 struct sighand_struct，里面是一个数组，下标是信号，里面的内容是信号处理函数</li>
-</ul>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/2BFFB341-CBA5-415D-B622-4660FA7E21F4_2/KaQpKUuNBQZOs0H0AjSyb429l4rWcPVzPDcRBlRp5e4z/Image.png" alt="Image.png"></p>
-<h3 id="socket"><a href="#socket" class="headerlink" title="socket"></a>socket</h3><p>两种网络协议模型</p>
-<p>TCP/UDP-&gt;IPv4-&gt;ARP</p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/C4628019-6678-4EB3-A3B8-4D5690D4B98C_2/r2y0FpjvrnqkwP1Wc4DbyzQcpqT9yLX4yEM3FvHk6kMz/Image.png" alt="Image.png"></p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/6E92901F-753E-4B8E-91C3-877D3363C0D5_2/Sf7zAu9vqNfmrx1LSVt31uqOEbz4tc89owaFvFZijPIz/Image.png" alt="Image.png"></p>
-<h3 id="socket-使用"><a href="#socket-使用" class="headerlink" title="socket 使用"></a>socket 使用</h3><p>在传输层有两个主流的协议 TCP 和 UDP，所以我们的 socket 程序设计也是主要操作这两个协议</p>
-<p>当然，无论是用 socket 操作 TCP，还是 UDP，我们首先都要调用 socket 函数。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int socket(int domain, int type, int protocol);</span><br></pre></td></tr></table></figure>
-
-<p>socket 函数用于创建一个 socket 的文件描述符，唯一标识一个 socket。我们把它叫作文件描述符，因为在内核中，我们会创建类似文件系统的数据结构，并且后续的操作都有用到它。</p>
-<p>socket 函数有三个参数。</p>
-<ul>
-<li>domain：表示使用什么 IP 层协议。AF_INET 表示 IPv4，AF_INET6 表示 IPv6。</li>
-<li>type：表示 socket 类型。SOCK_STREAM，顾名思义就是 TCP 面向流的，SOCK_DGRAM 就是 UDP 面向数据报的，SOCK_RAW 可以直接操作 IP 层，或者非 TCP 和 UDP 的协议。例如 ICMP。</li>
-<li>protocol 表示的协议，包括 IPPROTO_TCP、IPPTOTO_UDP。</li>
-</ul>
-<p>通信结束后，我们还要像关闭文件一样，关闭 socket。</p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/97946327-C21F-4382-9662-C41528A79BAB_2/EAvPXq6hczBRBQIMLCTnxysVegNqp1yLDhGljpld8ycz/Image.png" alt="Image.png"></p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/F64B2722-8919-4559-93F6-0B6CC46A32F5_2/rha3Ow2oy8QOMKG1yDMfRAXHwC1bVsS8a0j0ovvcx5gz/Image.png" alt="Image.png"></p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/D6E491A5-7013-421B-8098-F07A09F6D26D_2/UgVyZJPW4RQwvKEdsW0y4syUJUY0R8XEpVfXTyjbG5Mz/Image.png" alt="Image.png"></p>
-<p>TCP 协议的 socket 调用的过程</p>
-<ul>
-<li>服务端和客户端都调用 socket，得到文件描述符；</li>
-<li>服务端调用 listen，进行监听；</li>
-<li>服务端调用 accept，等待客户端连接；</li>
-<li>客户端调用 connect，连接服务端；</li>
-<li>服务端 accept 返回用于传输的 socket 的文件描述符；</li>
-<li>客户端调用 write 写入数据；</li>
-<li>服务端调用 read 读取数据。</li>
-</ul>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/A19CFA41-22C4-44E4-8658-26EA7A6DAF34_2/2sfEA0VpYPWw3jrxDzNbHuahg9gzndSpiJCtQV0Zp0wz/Image.png" alt="Image.png"></p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/4BB3A853-9927-404F-AA28-CF4D698D83EE_2/nx9zzzwm2GMnxBjnX60KCYFeRxDKUIYjXxNkL9OQVxcz/Image.png" alt="Image.png"></p>
-<h3 id="发送网络包"><a href="#发送网络包" class="headerlink" title="发送网络包"></a>发送网络包</h3><ul>
-<li>VFS 层：write 系统调用找到 struct file，根据里面的 file_operations 的定义，调用 sock_write_iter 函数。sock_write_iter 函数调用 sock_sendmsg 函数。</li>
-<li>Socket 层：从 struct file 里面的 private_data 得到 struct socket，根据里面 ops 的定义，调用 inet_sendmsg 函数。</li>
-<li>Sock 层：从 struct socket 里面的 sk 得到 struct sock，根据里面 sk_prot 的定义，调用 tcp_sendmsg 函数。</li>
-<li>TCP 层：tcp_sendmsg 函数会调用 tcp_write_xmit 函数，tcp_write_xmit 函数会调用 tcp_transmit_skb，在这里实现了 TCP 层面向连接的逻辑。</li>
-<li>IP 层：扩展 struct sock，得到 struct inet_connection_sock，根据里面 icsk_af_ops 的定义，调用 ip_queue_xmit 函数。</li>
-<li>IP 层：ip_route_output_ports 函数里面会调用 fib_lookup 查找路由表。FIB 全称是 Forwarding Information Base，转发信息表，也就是路由表。</li>
-<li>在 IP 层里面要做的另一个事情是填写 IP 层的头。</li>
-<li>在 IP 层还要做的一件事情就是通过 iptables 规则。</li>
-<li>MAC 层：IP 层调用 ip_finish_output 进行 MAC 层。</li>
-<li>MAC 层需要 ARP 获得 MAC 地址，因而要调用 ___neigh_lookup_noref 查找属于同一个网段的邻居，他会调用 neigh_probe 发送 ARP。</li>
-<li>有了 MAC 地址，就可以调用 dev_queue_xmit 发送二层网络包了，它会调用 __dev_xmit_skb 会将请求放入队列。</li>
-<li>设备层：网络包的发送回触发一个软中断 NET_TX_SOFTIRQ 来处理队列中的数据。这个软中断的处理函数是 net_tx_action。</li>
-<li>在软中断处理函数中，会将网络包从队列上拿下来，调用网络设备的传输函数 ixgb_xmit_frame，将网络包发的设备的队列上去。</li>
-</ul>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/270716AA-E236-465E-80A1-292DCF65B298_2/HMTyLROXlkM3o1cfy02cIdPByVX09deaLD45R7cKI98z/Image.png" alt="Image.png"></p>
-<h3 id="接收网络包"><a href="#接收网络包" class="headerlink" title="接收网络包"></a>接收网络包</h3><ul>
-<li>硬件网卡接收到网络包之后，通过 DMA 技术，将网络包放入 Ring Buffer；</li>
-<li>硬件网卡通过中断通知 CPU 新的网络包的到来；</li>
-<li>网卡驱动程序会注册中断处理函数 ixgb_intr；</li>
-<li>中断处理函数处理完需要暂时屏蔽中断的核心流程之后，通过软中断 NET_RX_SOFTIRQ 触发接下来的处理过程；</li>
-<li>NET_RX_SOFTIRQ 软中断处理函数 net_rx_action，net_rx_action 会调用 napi_poll，进而调用 ixgb_clean_rx_irq，从 Ring Buffer 中读取数据到内核 struct sk_buff；</li>
-<li>调用 netif_receive_skb 进入内核网络协议栈，进行一些关于 VLAN 的二层逻辑处理后，调用 ip_rcv 进入三层 IP 层；</li>
-<li>在 IP 层，会处理 iptables 规则，然后调用 ip_local_deliver 交给更上层 TCP 层；</li>
-<li>在 TCP 层调用 tcp_v4_rcv，这里面有三个队列需要处理，如果当前的 Socket 不是正在被读；取，则放入 backlog 队列，如果正在被读取，不需要很实时的话，则放入 prequeue 队列，其他情况调用 tcp_v4_do_rcv；</li>
-<li>在 tcp_v4_do_rcv 中，如果是处于 TCP_ESTABLISHED 状态，调用 tcp_rcv_established，其他的状态，调用 tcp_rcv_state_process；</li>
-<li>在 tcp_rcv_established 中，调用 tcp_data_queue，如果序列号能够接的上，则放入 sk_receive_queue 队列；如果序列号接不上，则暂时放入 out_of_order_queue 队列，等序列号能够接上的时候，再放入 sk_receive_queue 队列。</li>
-</ul>
-<p>至此内核接收网络包的过程到此结束，接下来就是用户态读取网络包的过程，这个过程分成几个层次。</p>
-<ul>
-<li>VFS 层：read 系统调用找到 struct file，根据里面的 file_operations 的定义，调用 sock_read_iter 函数。sock_read_iter 函数调用 sock_recvmsg 函数。</li>
-<li>Socket 层：从 struct file 里面的 private_data 得到 struct socket，根据里面 ops 的定义，调用 inet_recvmsg 函数。</li>
-<li>Sock 层：从 struct socket 里面的 sk 得到 struct sock，根据里面 sk_prot 的定义，调用 tcp_recvmsg 函数。</li>
-<li>TCP 层：tcp_recvmsg 函数会依次读取 receive_queue 队列、prequeue 队列和 backlog 队列。</li>
-</ul>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/0C89A4BD-8DAA-4F0B-B89D-53F0E8CA786B_2/bvnNjlSpIY0yAwtpnKqgzZqPyypszsw79x3ii9IXPa0z/Image.png" alt="Image.png"></p>
-]]></content>
-      <categories>
-        <category>OS</category>
-      </categories>
-      <tags>
-        <tag>OS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>操作系统-上</title>
-    <url>/2022/11/28/os-%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/</url>
-    <content><![CDATA[<h3 id="Linux操作系统概览"><a href="#Linux操作系统概览" class="headerlink" title="Linux操作系统概览"></a>Linux操作系统概览</h3><h3 id="内核初始化"><a href="#内核初始化" class="headerlink" title="内核初始化"></a>内核初始化</h3><p>用户态 - 系统调用 - 保存寄存器 - 内核态执行系统调用 - 恢复寄存器 - 返回用户态</p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/6C97FED1-4457-463A-BB9F-129E0522EFC1_2/w6pwUQCiKUXyUFfECuUj53pGxyxlHwBMM0mT6ky8jmQz/Image.png" alt="Image.png"></p>
-<span id="more"></span>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/392EA7C3-802C-4D65-A9CC-8FEB117635BC_2/ifMx6XfepiWStQxnATEWxjaF2EH1t0DRLPTQmuNgoBkz/Image.png" alt="Image.png"></p>
-<h3 id="内核初始化-1"><a href="#内核初始化-1" class="headerlink" title="内核初始化"></a>内核初始化</h3><p>用户态 - 系统调用 - 保存寄存器 - 内核态执行系统调用 - 恢复寄存器 - 返回用户态</p>
-<p>do_execve-&gt;do_execveat_common-&gt;exec_binprm-&gt;search_binary_handler</p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/8C0B8233-7698-4735-983B-DCA5476B4827_2/ntxnj3T9WNpUiswKlq0hzHi6KeBvKpLyygeYM53KBRcz/Image.png" alt="Image.png"></p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/721E1E53-41CE-4DA9-BACA-0A68E2ADBF17_2/qNlEQyxFiV5as40yQuGord3RZPkmiB1hrv7SPj0cAsMz/Image.png" alt="Image.png"></p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/5A829BA1-FA33-4101-B84F-E8069AD1EFAB_2/19f0pAliUCw9ft44zNHvz7IFw5lINP573slQmyC6Iw8z/Image.png" alt="Image.png"></p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/2B6A58A2-8FEC-4FDA-B0C4-5D4CA8A971A3_2/j7yivE32hoQX2EubcOy6a2l2CTs74B4HPuDL72feOyYz/Image.png" alt="Image.png"></p>
-<h3 id="系统调用的过程"><a href="#系统调用的过程" class="headerlink" title="系统调用的过程"></a>系统调用的过程</h3><p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/0DDD62AD-0D19-43BF-AD55-A235DD08F56E_2/r4HVzwJt9D9PxiCCPNsbDHxzykazwdhg6mvKRU0GFi0z/Image.png" alt="Image.png"></p>
-<h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>进程从代码到二进制到运行时的过程</p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/83C26296-53BB-4CF2-9CCC-E0B32AD17B4E_2/dTncQCCyjMofAX3mvYPcVytn3yYMcF6FaDrUr1stS8Ez/Image.png" alt="Image.png"></p>
-<p><strong>进程相当于一个项目，而线程就是为了完成项目需求，而建立的一个个开发任务</strong></p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/AE54E495-E4F5-4B9C-8E03-6E2404114B09_2/0st7LYGrhqK203dy0pF42f9hwcypDhRmpVUnBixYn5Az/Image.png" alt="Image.png"></p>
-<p>在程序执行过程中，一旦调用到系统调用，就需要进入内核继续执行。那如何将用户态的执行和内核态的执行串起来呢？</p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/864FAF36-4E49-4C6C-BBC8-71989BA8C622_2/dlxgGJ42HolHy9XVGfST1BVW84jwGjAf3sQkd8FNJ6Iz/Image.png" alt="Image.png"></p>
-<h3 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h3><p>一个 CPU 上有一个队列，CFS 的队列是一棵红黑树，树的每一个节点都是一个 sched_entity，每个 sched_entity 都属于一个 task_struct，task_struct 里面有指针指向这个进程属于哪个调度类, 在调度的时候，依次调用调度类的函数，从 CPU 的队列中取出下一个进程</p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/E10D30AB-2AC7-40DA-AE9B-6917192F7560_2/tzkiy5maOcJ81T3exx6kisPDro8km6F8USEqMqUyMs0z/Image.png" alt="Image.png"></p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/5A746A48-918A-4C3C-A2ED-29DD2B01842C_2/EOgwSuwPTg7nN1yB0OJps1dTdOYJ0ZcKo2hilJvzBesz/Image.png" alt="Image.png"></p>
-<h3 id="主动调度"><a href="#主动调度" class="headerlink" title="主动调度"></a>主动调度</h3><p>主动调度的过程，也即一个运行中的进程主动调用 __schedule 让出 CPU。在 __schedule 里面会做两件事情，第一是选取下一个进程，第二是进行上下文切换。而上下文切换又分用户态进程空间的切换和内核态的切换</p>
-<h3 id="抢占式调度"><a href="#抢占式调度" class="headerlink" title="抢占式调度"></a>抢占式调度</h3><p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/C7BAE4F0-C716-45D2-A357-144B01BEEC0A_2/HuO73nvDo8bhM0YHq6u93dezjxnnrAvTqnCqEjUF7sYz/Image.png" alt="Image.png"></p>
-<h3 id="进程Fork创建的过程"><a href="#进程Fork创建的过程" class="headerlink" title="进程Fork创建的过程"></a>进程Fork创建的过程</h3><p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/FB7EC04C-FB5E-41BE-81CB-773F97093A7C_2/KElztMcWw4pPlSUkLP6CLeRjsnLZxj4eiD5J8WdB9Aoz/download.jpeg" alt="download.jpeg"></p>
-<h3 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h3><p>创建进程的话，调用的系统调用是 fork，在 copy_process 函数里面，会将五大结构 files_struct、fs_struct、sighand_struct、signal_struct、mm_struct 都复制一遍，从此父进程和子进程各用各的数据结构。而创建线程的话，调用的是系统调用 clone，在 copy_process 函数里面， 五大结构仅仅是引用计数加一，也即线程共享进程的数据结构。</p>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/66A8A068-5535-43C4-A2AE-78AE022856F7_2/6XpCOaTI7wC0oF3OpcpYjyCRxpsabAaeIHH2AwT5pZoz/Image.png" alt="Image.png"></p>
-<h3 id="一个进程运行需要的内存结构"><a href="#一个进程运行需要的内存结构" class="headerlink" title="一个进程运行需要的内存结构"></a>一个进程运行需要的内存结构</h3><p>用户态：</p>
-<ul>
-<li>代码段、全局变量、BSS</li>
-<li>函数栈</li>
-<li>堆</li>
-<li>内存映射区</li>
-</ul>
-<p>内核态：</p>
-<ul>
-<li>内核的代码、全局变量、BSS</li>
-<li>内核数据结构例如 task_struct</li>
-<li>内核栈</li>
-<li>内核中动态分配的内存</li>
-</ul>
-<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/7966A56D-2424-4582-B71A-030F9507492F_2/CAI6OWeaBX0A0rZNg7ghsdMKmxbQxrbGlBy9kphqZU0z/Image.png" alt="Image.png"></p>
-]]></content>
-      <categories>
-        <category>OS</category>
-      </categories>
-      <tags>
-        <tag>OS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>操作系统里的进程和线程</title>
-    <url>/2021/09/28/os-%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
-    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_81f15acdf27c9e27dd3e2e54d3360863_79599.png" alt="图怪兽_81f15acdf27c9e27dd3e2e54d3360863_79599"></p>
-<h5 id="什么是进程"><a href="#什么是进程" class="headerlink" title="什么是进程?"></a>什么是进程?</h5><p>一个进程就是一个正在执行的程序的实例，进程也包括程序计数器、寄存器和变量的当前值。从概念上来说，每个</p>
-<p>进程都有各自的虚拟 CPU，但是实际情况是 CPU 会在各个进程之间进行来回切换。</p>
-<h5 id="进程模型"><a href="#进程模型" class="headerlink" title="进程模型?"></a>进程模型?</h5><p>一个进程就是一个正在执行的程序的实例，进程也包括<code>程序计数器</code>、<code>寄存器</code>和<code>变量的当前值</code>。从概念上来说，每个</p>
-<p>进程都有各自的<code>虚拟 CPU</code>，但是实际情况是 CPU 会在各个进程之间进行来回切换。</p>
-<span id="more"></span>
-
-
-
-<p><strong>举例</strong></p>
-<p>4 道程序被抽象为 4 个拥有各自控制流程（即每个自己的程序计数器）的进程，并且每个程序都独立的运行。当</p>
-<p>然，实际上只有一个物理程序计数器，每个程序要运行时，其逻辑程序计数器会装载到物理程序计数器中。当程序</p>
-<p>运行结束后，其物理程序计数器就会是真正的程序计数器，然后再把它放回进程的逻辑计数器中。</p>
-<p><strong>概述</strong></p>
-<p>进程是某一类特定活动的总和，它有程序、输入输出以及状态。单个处理器可以被若干进程共享，它使用某</p>
-<p>种调度算法决定何时停止一个进程的工作，并转而为另外一个进程提供服务</p>
-<h5 id="进程状态"><a href="#进程状态" class="headerlink" title="进程状态"></a>进程状态</h5><p>每个进程是一个独立的实体，有其自己的程序计数器和内部状态，但是，进程之间存在关联关系</p>
-<ol>
-<li><code>运行态</code>，运行态指的就是进程实际占用 CPU 时间片运行时 (获得CPU 时间片)</li>
-<li><code>就绪态</code>，就绪态指的是可运行，但因为其他进程正在运行而处于就绪状态 (还没有获得CPU 时间片)</li>
-<li><code>阻塞态</code>，除非某种外部事件发生，否则进程不能运行</li>
-</ol>
-<p><strong>程序调度</strong> 指的是，决定哪个进程优先被运行和运行多久</p>
-<p><strong>操作系统最底层的就是调度程序</strong>，在它上面有许多进程。所有关于中断处理、启动进程和停止进程的具体细节都隐</p>
-<p>藏在调度程序中。事实上，调度程序只是一段非常小的程序</p>
-<h5 id="进程的实现"><a href="#进程的实现" class="headerlink" title="进程的实现"></a>进程的实现</h5><p>操作系统为了执行进程间的切换，会维护着一张表格，这张表就是 <code>进程表(process table)</code>。每个进程占用一个</p>
-<p>进程表项。该表项包含了进程状态的重要信息，包括程序计数器、堆栈指针、内存分配状况、所打开文件的状态、</p>
-<p>账号和调度信息，以及其他在进程由运行态转换到就绪态或阻塞态时所必须保存的信息，从而保证该进程随后能再</p>
-<p>次启动，就像从未被中断过一样。</p>
-<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210927135216802.png" alt="image-20210927135216802" style="zoom:50%;" />
-
-<h5 id="为什么要用线程"><a href="#为什么要用线程" class="headerlink" title="为什么要用线程?"></a>为什么要用线程?</h5><ul>
-<li>多线程之间会共享同一块地址空间和所有可用数据的能力，这是进程所不具备的</li>
-<li>线程要比进程<code>更轻量级</code>，由于线程更轻，所以它比进程更容易创建，也更容易撤销。在许多系统中，创建一个线程要比创建一个进程快 10 - 100 倍。</li>
-<li>第三个原因可能是性能方面的探讨，如果多个线程都是 CPU 密集型的，那么并不能获得性能上的增强，但是如果存在着大量的计算和大量的 I/O 处理，拥有多个线程能在这些活动中彼此重叠进行，从而会加快应用程序的执行速度</li>
-</ul>
-<h5 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型?"></a>线程模型?</h5><p>进程中拥有一个执行的线程，通常简写为 <code>线程(thread)</code>。线程会有程序计数器，用来记录接着要执行哪一条指</p>
-<p>令；线程还拥有寄存器，用来保存线程当前正在使用的变量；线程还会有堆栈，用来记录程序的执行路径。尽管线</p>
-<p>程必须在某个进程中执行，但是进程和线程完完全全是两个不同的概念，并且他们可以分开处理。进程用于把资源</p>
-<p>集中在一起，而<strong>线程则是 CPU 上调度执行的实体</strong>。</p>
-<p>在多个线程中，各个线程共享同一地址空间和其他资源。在多个进程中，进程共享物理内存、磁盘、打印机和其他</p>
-<p>资源。</p>
-<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210927141721690.png" alt="image-20210927141721690" style="zoom:50%;" />
-
-<h5 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h5><p>和进程一样，线程可以处于下面这几种状态：<strong>运行中、阻塞、就绪和终止</strong></p>
-<h5 id="线程的实现"><a href="#线程的实现" class="headerlink" title="线程的实现"></a>线程的实现</h5><ul>
-<li>在用户空间中实现线程</li>
-<li>在内核空间中实现线程</li>
-<li>在用户和内核空间中混合实现线程</li>
-</ul>
-<p>用户态VS内核态线程</p>
-<ol>
-<li><p>当一个线程阻塞时，内核可以进行选择，是运行在同一个进程中的另一个线程（如果有就绪线程的话）还是运</p>
-<p>行一个另一个进程中的线程。但是在用户实现中，运行时系统始终运行自己的线程，直到内核剥夺它的 CPU </p>
-<p>时间片（或者没有可运行的线程存在了）为止。</p>
-</li>
-<li><p>在内核中创建或者销毁线程的开销比较大</p>
-</li>
-<li><p>用户级线程和内核级线程之间的主要差别在于<code>性能</code>。用户级线程的切换需要少量的机器指令（想象一下Java程</p>
-<p>序的线程切换），而内核线程需要完整的上下文切换，修改内存映像，使高速缓存失效，这会导致了若干数量</p>
-<p>级的延迟。另一方面，在使用内核级线程时，一旦线程阻塞在 I/O 上就不需要在用户级线程中那样将整个进程</p>
-<p>挂起</p>
-</li>
-</ol>
-<h5 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h5><ul>
-<li><code>竞态条件</code>  <code>临界区</code> <code>忙等互斥</code> <code> 睡眠与唤醒</code> <code>信号量</code> <code>互斥量</code>  <code>管程</code> <code> 消息传递</code> <code>屏障</code> <code>避免锁</code></li>
-</ul>
-<h5 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h5><p>如果只有一个 CPU 可用，那么必须选择接下来哪个进程/线程可以运行。操作系统中有一个叫做 <code>调度程序</code></p>
-<p><code>(scheduler)</code> 的角色存在，它就是做这件事儿的，该程序使用的算法叫做 <code>调度算法(scheduling algorithm)</code></p>
-<ul>
-<li><p><strong>批处理系统中的调度:</strong> <code>先来先服务</code>, <code>最短作业优先</code>, <code>最短剩余优先</code></p>
-</li>
-<li><p><strong>实时系统中的调度:</strong> </p>
-<p>实时系统可以分为两类，<code>硬实时(hard real time)</code> 和 <code>软实时(soft real time)</code> 系统，前者意味着必须要满</p>
-<p>足绝对的截止时间；后者的含义是虽然不希望偶尔错失截止时间，但是可以容忍。</p>
-</li>
-<li><p><strong>交互式系统中的调度:</strong> </p>
-<p><code>轮询调度</code> 一种最古老、最简单、最公平并且最广泛使用的算法就是 <code>轮询算法(round-robin)</code>。每个进程都会被</p>
-<p>分配一个时间段，称为<code>时间片(quantum)</code>，在这个时间片内允许进程运行</p>
-<p><code>优先级调度</code>轮询调度假设了所有的进程是同等重要的。但事实情况可能不是这样。例如，在一所大学中的等</p>
-<p>级制度，首先是院长，然后是教授、秘书、后勤人员，最后是学生。这种将外部情况考虑在内就实现了<code>优先</code></p>
-<p><code>级调度(priority scheduling)</code></p>
-</li>
-</ul>
-<h5 id="概览图"><a href="#概览图" class="headerlink" title="概览图"></a>概览图</h5><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210927092731492.png" alt="image-20210927092731492" style="zoom:80%;" />
-
-<h4 id="文章参考："><a href="#文章参考：" class="headerlink" title="文章参考："></a>文章参考：</h4><p>《现代操作系统》第四版</p>
-<p>《Modern Operation System》fourth</p>
-<p> <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/SATA%E7%A1%AC%E7%9B%98/3947233?fr=aladdin">https://baike.baidu.com/item/SATA硬盘/3947233?fr=aladdin</a></p>
-<p> <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80/1329947?fr=aladdin">https://baike.baidu.com/item/虚拟地址/1329947?fr=aladdin</a></p>
-<p> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/cxuanBlog/p/12448298.html">https://www.cnblogs.com/cxuanBlog/p/12448298.html</a></p>
-]]></content>
-      <categories>
-        <category>OS</category>
-      </categories>
-      <tags>
-        <tag>OS</tag>
       </tags>
   </entry>
   <entry>
@@ -2918,6 +2211,713 @@
       </tags>
   </entry>
   <entry>
+    <title>如何创建高性能索引</title>
+    <url>/2021/10/29/mysql-mysql-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E9%AB%98%E6%80%A7%E8%83%BD%E7%B4%A2%E5%BC%95/</url>
+    <content><![CDATA[<h5 id="为什么需要索引"><a href="#为什么需要索引" class="headerlink" title="为什么需要索引?"></a><strong>为什么需要索引?</strong></h5><p><strong>避免去扫全表,存储引擎先走索引找到对应值,然后根据索引记录找到对应的数据行.</strong></p>
+<p><strong>优点的话,因为索引使用B+树结构 使得查询数据不再是随机IO,且避免去扫描全表</strong></p>
+<p><strong>索引的策略(使用)</strong></p>
+<h5 id="单列"><a href="#单列" class="headerlink" title="单列"></a><strong>单列</strong></h5><p><strong>不要在where 后面针对索引列计算,因为无法自动解析计算,所以需要避免索引列的一些计算</strong></p>
+<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211013193141024.png" alt="image-20211013193141024"></strong></p>
+<span id="more"></span>
+
+<h5 id="前缀索引"><a href="#前缀索引" class="headerlink" title="前缀索引"></a><strong>前缀索引</strong></h5><p><strong>使列的前缀区分度趋近于这个列的完整列的区分度,这个时候可以考虑使用前缀索引,避免了索引过大,但同时区分度</strong></p>
+<p><strong>差不多的情况.</strong></p>
+<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211013193656198.png" alt="image-20211013193656198" style="zoom:60%;" /></strong></p>
+<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211013193530306.png" alt="image-20211013193530306"></strong></p>
+<h5 id="索引合并的优化"><a href="#索引合并的优化" class="headerlink" title="索引合并的优化?"></a><strong>索引合并的优化?</strong></h5><p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211013194453445.png" alt="image-20211013194453445"></strong></p>
+<p><strong>当服务器对多个索引进行联合操作时候,通常会消耗大量的CPU,内存等,有的时候or的索引列区分度不高,查询优</strong></p>
+<p><strong>化器评估可能还不如扫全表来的成本低,可能就会放弃走索引. 所以遇到extra using union 合并索引优化的时候</strong> </p>
+<p><strong>需要看看自己的索引建立的是否合理?</strong></p>
+<h5 id="如何选择合适的索引顺序"><a href="#如何选择合适的索引顺序" class="headerlink" title="如何选择合适的索引顺序?"></a><strong>如何选择合适的索引顺序?</strong></h5><p><strong>如果没有排序或者分组的情况下,将区分度最高的列放在最前面是合理的,但如果涉及排序或者分组的时候,还是应该像前缀索引那样针对查询的结果集的区分度来做判断</strong></p>
+<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211013200842505.png" alt="image-20211013200842505" style="zoom:50%;" /></strong></p>
+<h5 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a><strong>聚簇索引</strong></h5><p><strong>索引和数据行聚合在一起的,通常数据行不可能放在两个地方,所以聚簇索引的索引一般都是主键</strong></p>
+<p><strong>聚簇索引默认是主键，如果表中没有定义主键，InnoDB 会选择一个唯一的非空索引代替</strong></p>
+<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211014153327555.png" alt="image-20211014153327555" style="zoom:50%;" /></strong></p>
+<ul>
+<li><p><strong>缺点:  当主键发生变化的时候,要插入一个已经满的数据行内时,会发生“页分裂”的问题, 导致数据行不连续,导致</strong></p>
+<p><strong>全表扫描变慢,其次产生的”页分裂“ 也会占有额外的内存.</strong></p>
+</li>
+<li><p><strong>优点: 在B+树中查询会更快些,且使用覆盖索引扫描的查询可以直接用叶子结点上的主键</strong></p>
+</li>
+</ul>
+<h5 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a><strong>覆盖索引</strong></h5><p><strong>索引包含了要查询的列,那么就没有必要回表查询(数据行).</strong></p>
+<p><strong>优点: 如果走覆盖索引,返回的行数明显会少很多, 对服务器的缓存 IO 负载也会好很多</strong></p>
+<h5 id="什么是“延迟关联“？"><a href="#什么是“延迟关联“？" class="headerlink" title="什么是“延迟关联“？"></a><strong>什么是“延迟关联“？</strong></h5><h5 id="超多分页的问题"><a href="#超多分页的问题" class="headerlink" title="超多分页的问题"></a><strong>超多分页的问题</strong></h5><p><strong>随着偏移量 <code>offset</code> 的增加，MySQL 需要花费大量的时间来扫描需要丢弃的数据。本质上就是 <code>offset</code> 过大导致</strong></p>
+<p><strong>的大量回表 I/O 查询。</strong></p>
+<p><strong>通过使用覆盖索引查询返回需要的主键，再根据主键关联原表获得需要的数据。</strong> </p>
+<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211014162823668.png" alt="image-20211014162823668"></strong></p>
+<h5 id="使用索引来排序"><a href="#使用索引来排序" class="headerlink" title="使用索引来排序"></a><strong>使用索引来排序</strong></h5><p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211014165259909.png" alt="image-20211014165259909"></strong></p>
+<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211014165042661.png" alt="image-20211014165042661"></strong></p>
+<p><strong>当第一列是范围查询的时候也不能使用索引作排序查询</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">....</span><br><span class="line">where retal_date&gt;&quot;2005-05-25&quot; order by inventory_id,customer_id</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意避免 冗余 &amp; 重复&amp;  未使用索引</strong></p>
+<h5 id="索引和锁"><a href="#索引和锁" class="headerlink" title="索引和锁"></a><strong>索引和锁</strong></h5><p><strong>在返回给服务器之前的,能够通过索引过滤无效行的形式去避免无效行的锁,返回到服务器数据可以通过where 过滤</strong></p>
+<p><strong>之后释放锁.</strong></p>
+<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211016095647397.png" alt="image-20211016095647397"></strong></p>
+<p><strong><code>use index</code> 索引返回过滤 1-5 行的数据 , <code>use where</code> 索引返回行给服务器,应用 <code>where</code> 过滤</strong></p>
+<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211016100036309.png" alt="image-20211016100036309" style="zoom:50%;" /></strong></p>
+<p><strong>虽然查询只返回了2<del>4行的数据,但实际获取的是1</del>4行之间的排他锁,InnoDB 会锁住第一行,因为<code>查询优化器</code> 选择</strong></p>
+<p><strong>的执行计划是<code>索引范围扫描</code></strong></p>
+<h5 id="索引案例学习"><a href="#索引案例学习" class="headerlink" title="索引案例学习"></a>索引案例学习</h5><p><code>IN</code> or <code>&gt;</code> ?  </p>
+<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211016103048834.png" alt="image-20211016103048834" style="zoom:50%;" />
+
+<p>explain 结果来看无法区分 这二者的区别,但是 可以从值的范围和多个等于条件来得出不同,第二个就是等值查询</p>
+<p>那二者在查询效率上有什么区别吗?</p>
+<p>简单的来说第二种等值查询后续列可以继续使用索引,但是第一种范围查询后续列不可以使用索引,因为查询只能使</p>
+<p>用索引的最左匹配.所以应该尽可能将范围查询放在索引列的后面.以便优化器可以使用尽可能多的索引列.</p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
+<li><p>服务器从存储中读取的块尽可能多的包含所需要的行</p>
+</li>
+<li><p>顺序IO 比随机IO快,特别是对机械硬盘,如果服务器能够顺序获取数据,那服务器则无需额外的排序</p>
+</li>
+<li><p>覆盖索引是很快的,如果索引列能返回所有的查询数据,则存储引擎无需回表查询数据行</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何优化查询</title>
+    <url>/2021/10/30/mysql-mysql-%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<p><strong>查询优化</strong></p>
+<p><strong>why?</strong></p>
+<h4 id="优化的思路"><a href="#优化的思路" class="headerlink" title="优化的思路"></a><strong>优化的思路</strong></h4><p><strong>客户端到服务器 其中包括 检验连接 查询缓存 解析 以及存储引擎涉及的调用 都会带来 cpu 内存 io等开销我们要</strong></p>
+<p><strong>做的就是减少这些…</strong></p>
+<h5 id="措施"><a href="#措施" class="headerlink" title="措施"></a><strong>措施</strong></h5><p>​    <strong>一个是检查是不是返回了 程序不需要的大量数据,大量数据会带来大量cpu以及io等损耗…</strong></p>
+<p>​    <strong>一个是检查是不是扫了额外的行记录最简单的衡量查询开销的三个指标：1.响应时间2.扫描的行数3.返回的行</strong></p>
+<p><strong>数, 关注数据的访问类型全表扫描 索引扫描 范围扫描 唯一索引扫描等…</strong></p>
+<span id="more"></span>
+
+<h5 id="using-where？"><a href="#using-where？" class="headerlink" title="using where？"></a><strong>using where？</strong></h5><h5 id="扫描大量数据-返回却很少数的行"><a href="#扫描大量数据-返回却很少数的行" class="headerlink" title=" 扫描大量数据, 返回却很少数的行?"></a><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/cFNOQmbetv8RBaxL6EWXV0kf1_JS53PbHcNtpCbod-FXk3T8PPqnkWpoYjCyjP-yQeMb16IXJHEI683HYXjO9nFNeO3vA7YvVuB_1wT1oEWKXfRSy9YIPovUvkAWArlW1jSLrNbH=s0.png" alt="img"></strong> 扫描大量数据, 返回却很少数的行?</h5><h5 id=""><a href="#" class="headerlink" title=""></a><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/CloQyJONtRGw9ovj3Qx3on2_pEMMq2rs7ShENqfQDO-G0SY6lAcQ6l7mBZCDr9_7HmkeFN5J1aqR0I3uAxIcze75RRYvNfLsXIL0ffBtpm26tMbgbzDIybE3xkYabP7IpnQo4feY=s0.png" alt="img"></strong></h5><h4 id="why-这样优化"><a href="#why-这样优化" class="headerlink" title="why 这样优化 ?"></a><strong>why 这样优化 ?</strong></h4><h5 id="查询执行基础"><a href="#查询执行基础" class="headerlink" title="查询执行基础"></a><strong>查询执行基础</strong></h5><p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211013132735291.png" alt="image-20211013132735291"></strong></p>
+<h6 id="Mysql-客户端-服务器的通信协议"><a href="#Mysql-客户端-服务器的通信协议" class="headerlink" title="Mysql 客户端/服务器的通信协议"></a><strong>Mysql 客户端/服务器的通信协议</strong></h6><p><strong>”半双工“协议,单方面一方进行推送,服务器推送数据给客户端,客户端推送查询给服务器,两个动作不能同时发生.</strong></p>
+<p><strong>虽然这种通信比较简单快速,但是有一个缺点就是一方必须接收完全部信息才能响应. 这就是为什么客户端进行查询</strong></p>
+<p><strong>数据包传送的时候需要进行大小限制“max_allowed_package”  以及这也是为什么在查询返回时加”limit“ 限制.</strong></p>
+<h6 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a><strong>查询缓存</strong></h6><p><strong>查询会和缓存中的查询进行匹配(一个区分大小写的Hash查找实现),如果完全匹配且权限没有问题则会直接返回数</strong></p>
+<p><strong>据,反之如果有一个字节不匹配则不会命中缓存</strong></p>
+<h6 id="查询优化以及处理-查询优化器"><a href="#查询优化以及处理-查询优化器" class="headerlink" title="查询优化以及处理(查询优化器)"></a><strong>查询优化以及处理</strong>(查询优化器)</h6><p><strong>这个阶段主要将 sql  (转换成 ) —&gt; 执行计划 -&gt; mysql 依据这个执行计划去和存储引擎进行交互.</strong></p>
+<p><strong>转换执行计划过程包括 解析sql, 预处理,优化sql 执行计划</strong></p>
+<p><strong>查询优化包括静态优化以及动态优化,静态优化主要则是将where 层面的条件以代数的形式去比较选择,通常只做一</strong></p>
+<p><strong>次,但是动态优化则是每次都会评估. 常见的mysql能够处理的优化类型:</strong></p>
+<p><strong><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211013155103802.png" alt="image-20211013155103802"></strong></p>
+<h6 id="查询执行引擎"><a href="#查询执行引擎" class="headerlink" title="查询执行引擎"></a><strong>查询执行引擎</strong></h6><p><strong>Mysql 根据优化后的执行计划调用存储引擎的”handler API“,在解析运行时就为每张表生成handler</strong> </p>
+<p><strong>实列.</strong></p>
+<h6 id="查询结果返回"><a href="#查询结果返回" class="headerlink" title="查询结果返回"></a><strong>查询结果返回</strong></h6><p><strong>服务器会将返回的结果集的每行数据以客户端/服务器通信协议进行封包处理,通过TCP协议进行传输,传输过程可能</strong></p>
+<p><strong>会将封包数据进行缓存,进行批量传输.</strong></p>
+<p><strong>其次如果查询是可以缓存,那么mysql 也会在这个阶段缓存对应的结果集</strong></p>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>删除是不是只能跑路？</title>
+    <url>/2021/11/01/mysql-redolog-binlog/</url>
+    <content><![CDATA[<h5 id="数据恢复过程"><a href="#数据恢复过程" class="headerlink" title="数据恢复过程"></a>数据恢复过程</h5><p>1.最近的一次全量备份 -&gt; 2. 从备份的时间点开始,将备份的binlog 依次取出来重放到误删表之前的那个时刻</p>
+<p>这样你的临时库就跟误删之前的线上库一样了,按需要恢复到线上库去。</p>
+<h5 id="日志模块"><a href="#日志模块" class="headerlink" title="日志模块"></a>日志模块</h5><p>与查询流程不一样的是，更新流程还涉及两个重要的日志模块</p>
+<p>redo log 是 InnoDB 引擎特有的日志，而 Server 层也有自己的日志，称为 binlog（归档日志）</p>
+<span id="more"></span>
+
+<h6 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h6><p>WAL 的全称是 Write-Ahead Logging，它的关键点就是先写日志，再写磁盘，也就是先写粉板，等不忙的时候再</p>
+<p>写账本。</p>
+<p>具体来说，当有一条记录需要更新的时候，InnoDB 引擎就会先把记录写到 redo log（粉板）里面，并更新内存，</p>
+<p>这个时候更新就算完成了。同时，InnoDB 引擎会在适当的时候，将这个操作记录更新到磁盘里面，而这个更新往</p>
+<p>往是在系统比较空闲的时候做，这就像打烊以后掌柜做的事</p>
+<p>有了 redo log，InnoDB 就可以保证即使数据库发生异常重启，之前提交的记录都不会丢失，这个能力称为 crash-safe。</p>
+<h6 id="binlog"><a href="#binlog" class="headerlink" title="binlog"></a>binlog</h6><p>redo log 是 InnoDB 引擎特有的日志，而 Server 层也有自己的日志，称为 binlog（归档日志）</p>
+<h6 id="redo-log-vs-binlog"><a href="#redo-log-vs-binlog" class="headerlink" title="redo log vs binlog"></a>redo log vs binlog</h6><ul>
+<li><p>redolog 是InnoDB特有,binlog 是mysql server 层独有</p>
+</li>
+<li><p>redo log 是物理日志，记录的是“在某个数据页上做了什么修改”；binlog 是逻辑日志，记录的是这个语句的原</p>
+<p>始逻辑，比如“给 ID=2 这一行的 c 字段加 1 ”。</p>
+</li>
+<li><p>redo log 是循环写的，空间固定会用完；binlog 是可以追加写入的。“追加写”是指 binlog 文件写到一定大小</p>
+<p>后会切换到下一个，并不会覆盖以前的日志</p>
+</li>
+</ul>
+<h5 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h5><p>什么是”两阶段提交“?</p>
+<p>先看数据update的mysql执行过程如图, 浅色 InnoDB 内部执行的，深色 执行器中执行的</p>
+<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/2e5bff4910ec189fe1ee6e2ecc7b4bbe.png" alt="img" style="zoom:50%;" />
+
+<p>Innodb更新完内存然后写入redo log -&gt; prepare状态 -&gt; 告知执行器执行完成了，随时可以提交事务。执行器生成</p>
+<p>这个操作的 binlog，并把 binlog 写入磁盘 -&gt;更新redo log状态为commit的</p>
+<p>为什么必须有“两阶段提交”呢？</p>
+<p>这是为了让两份日志之间的逻辑一致.</p>
+<p>比如在更新的时候, 如果redo log 完好,意味中数据库重启 crash了 当时数据库数据可以恢复正常,但是归档的数据</p>
+<p>会少一条更新的语句.如果后续误删数据利用备份库+binlog进行数据恢复的时候,会少一条更新语句.</p>
+<p>反之亦然,binlog完好,但是redo log异常,恢复之后的数据认识更新前的值,后续binlog 恢复出来的值与原值不同.</p>
+<p>redo log 和 binlog 都可以用于表示事务的提交状态，而两阶段提交就是让这两个状态保持逻辑上的一致.</p>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQL和NoSQL数据库的便捷速查表</title>
+    <url>/2023/10/14/mysql-sql/</url>
+    <content><![CDATA[<p><img src="https://res.craft.do/user/full/b313a1ab-3121-84d1-2506-d702b5c0ba9c/27149C4F-836E-4A35-8682-0B86BD695B46_2/Y6zIOTYcFX6SHA2sjkHGZkEzk3a90teEIhQXLJyduacz/ae256384-ff3f-4fe8-9456-f6be80132cc7_1780x1536.jpeg" alt="ae256384-ff3f-4fe8-9456-f6be80132cc7_1780x1536.jpeg"></p>
+<p>在项目成功的过程中选择合适的数据库非常重要。以下是关键要点的总结：</p>
+<ul>
+<li>SQL数据库提供结构化数据存储、SQL支持和关系能力。</li>
+<li>NoSQL数据库提供灵活性、可扩展性和分布式架构。</li>
+<li>专门的数据库，如列存储、图形数据库、空间数据库和时间序列数据库，满足特定需求。</li>
+<li>评估关键功能、优势和提供商，以做出明智的决策。</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="SQL数据库"><a href="#SQL数据库" class="headerlink" title="SQL数据库"></a>SQL数据库</h2><p>SQL（Structured Query Language）数据库使用表格结构来存储数据，并使用SQL语言进行查询和操作。以下是一些SQL数据库的主要特点：</p>
+<ul>
+<li>结构化数据存储：数据以表格的形式组织，每个表格有预定义的列和数据类型。</li>
+<li>关系能力：通过主键和外键，表格之间可以建立关系。</li>
+<li>SQL支持：使用SQL语言进行查询、插入、更新和删除数据。</li>
+<li>数据一致性和完整性：通过事务处理和约束条件来确保数据的一致性和完整性。</li>
+<li>可扩展性：支持垂直和水平扩展以处理大规模数据。</li>
+</ul>
+<p>常见的SQL数据库包括MySQL、PostgreSQL、Oracle和Microsoft SQL Server等。</p>
+<h2 id="NoSQL数据库"><a href="#NoSQL数据库" class="headerlink" title="NoSQL数据库"></a>NoSQL数据库</h2><p>NoSQL（Not Only SQL）数据库是一种非关系型数据库，不使用表格结构，而是使用键值对、文档、列族或图形等方式来存储数据。以下是一些NoSQL数据库的主要特点：</p>
+<ul>
+<li>灵活性：数据模型可以根据需求自由更改，无需事先定义表格结构。</li>
+<li>可扩展性：采用分布式架构，可以轻松扩展以处理大规模数据。</li>
+<li>高性能：通过优化数据访问模式和数据存储方式，实现高速读写操作。</li>
+<li>无固定模式：不需要遵循严格的模式，可以存储各种类型的数据，包括结构化、半结构化和非结构化数据。</li>
+</ul>
+<p>常见的NoSQL数据库包括MongoDB、Cassandra、Redis和Amazon DynamoDB等。</p>
+<h2 id="特殊数据库"><a href="#特殊数据库" class="headerlink" title="特殊数据库"></a>特殊数据库</h2><p>除了传统的SQL和NoSQL数据库之外，还有一些专门用于特定需求的数据库：</p>
+<ul>
+<li>列存储数据库：适用于大规模数据分析和查询，数据以列的方式存储。</li>
+<li>图形数据库：用于存储和处理具有复杂关系和</li>
+</ul>
+<p>连接的数据，如社交网络关系图。</p>
+<ul>
+<li>空间数据库：用于存储和查询地理空间数据，如地图数据和位置信息。</li>
+<li>时间序列数据库：专门用于存储和分析时间序列数据，如传感器数据和日志数据。</li>
+</ul>
+<p>根据项目的具体需求，可以选择适合的特殊数据库来优化数据存储和查询的性能。</p>
+<h2 id="如何选择数据库"><a href="#如何选择数据库" class="headerlink" title="如何选择数据库"></a>如何选择数据库</h2><p>在选择数据库时，需要考虑以下因素：</p>
+<ul>
+<li>功能需求：根据项目的功能需求，选择具备所需功能的数据库。</li>
+<li>性能要求：评估数据库的性能指标，包括读写速度、吞吐量和响应时间。</li>
+<li>可扩展性：考虑数据库的扩展性，以便在需要时能够处理增长的数据量和用户访问量。</li>
+<li>数据模型：根据数据的结构和关系，选择适合的数据模型（表格、文档、图形等）。</li>
+<li>成本效益：综合考虑数据库的许可费用、维护成本和云服务费用等方面的成本。</li>
+<li>社区支持和生态系统：选择具有活跃社区和完善生态系统的数据库，以便获取支持和扩展功能。</li>
+</ul>
+<p>通过综合评估以上因素，可以做出明智的决策，选择适合项目的数据库。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>选择合适的数据库对于项目的成功非常重要。SQL数据库提供结构化数据存储和关系能力，适用于需要严格数据模型和事务处理的场景。NoSQL数据库提供灵活性和可扩展性，适用于需要处理大规模数据和快速读写操作的场景。此外，还有一些特殊数据库可根据特定需求选择。</p>
+<p>在选择数据库时，需要考虑功能需求、性能要求、可扩展性、数据模型、成本效益以及社区支持和生态系统等因素。通过综合评估这些因素，可以做出明智的决策，为项目选择合适的数据库。</p>
+<p>希望本篇技术文章能够帮助您更好地理解SQL和NoSQL数据库，并在选择合适的数据库时提供一些指导</p>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>查询一行数据怎么很慢？</title>
+    <url>/2021/11/02/mysql-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9F%A5%E8%AF%A2%E4%B8%80%E8%A1%8C%E6%95%B0%E6%8D%AE%E4%B9%9F%E5%BE%88%E6%85%A2/</url>
+    <content><![CDATA[<h5 id="为什么查询一行数据也很慢"><a href="#为什么查询一行数据也很慢" class="headerlink" title="为什么查询一行数据也很慢?"></a>为什么查询一行数据也很慢?</h5><p>1.MySQL数据库本身被堵住了，比如：系统或网络资源不够</p>
+<p>2.SQL语句被堵住了，比如：表锁，行锁等，导致存储引擎不执行对应的SQL语句</p>
+<p>3.确实是索引使用不当，没有走索引</p>
+<p>4.表中数据的特点导致的，走了索引，但回表次数庞大</p>
+<p>SQL语句被堵住的原因</p>
+<ul>
+<li>表锁</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; select * from t where id&#x3D;1;</span><br></pre></td></tr></table></figure>
+
+<p>长时间不返回,一般碰到这种情况的话，大概率是表 t 被锁住了。接下来分析原因的时候，一般都是首先执行一下 </p>
+<p>show processlist 命令，看看当前语句处于什么状态。然后我们再针对每种状态，去分析它们产生的原因、如何复</p>
+<p>现，以及如何处理。</p>
+<span id="more"></span>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211022091452158.png" alt="image-20211022091452158"></p>
+<p>(performance_schema=on，相比于设置为 off 会有 10% 左右的性能损失)通过查sys.schema_table_lock_waits </p>
+<p>这张表，我们就可以直接找出造成阻塞的 process id，把这个连接用 kill 命令断开即可。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211022093053390.png" alt="image-20211022093053390"></p>
+<p> <strong>Waiting for table flush</strong></p>
+<p>另外一种查询堵住的情况是: 表t 等待被flush,正常flush是很快的</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">flush tables t with read lock;</span><br><span class="line"></span><br><span class="line">flush tables with read lock;</span><br></pre></td></tr></table></figure>
+
+<p>Waiting for table flush 状态的可能情况是：有一个 flush tables 命令被别的语句堵住了，然后它又堵住了我们的 </p>
+<p>select 语句。</p>
+<p><strong>等行锁</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211022094227519.png" alt="image-20211022094227519"></p>
+<p>session A 启动了事务，占有写锁，还不提交，是导致 session B 被堵住的原因</p>
+<p>查出是谁占着这个写锁?</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">mysql&gt; select * from t sys.innodb_lock_waits where locked_table&#x3D;&#39;&#96;test&#96;.&#96;t&#96;&#39;\G</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211022094422669.png" alt="image-20211022094422669"></p>
+<p><strong>undo log</strong></p>
+<p>mysql在事物开始操作数据之前，会先将原始数据备份到一个undo log的地方，这样做的目的有两个。第一是为了</p>
+<p>保证事物的原子性，如果事物在执行的过程中出现了某些错误，或者是用户执行了rollback的操作，mysql可以利</p>
+<p>用undo log中的备份将数据恢复到事物开始之前的状态。第二是为了实现多版本的并发控制，事物在提交之前，</p>
+<p>undo log中保存了未提交之前的数据版本，undo log可以作为旧版数据的快照供其他并发访问的事物实现快照</p>
+<p>读。</p>
+<p><strong>快照读</strong>:SQL读取的数据是快照版本，也就是历史版本，普通的select查询的就是快照。innodb存储引擎的快照</p>
+<p>读，读取的数据将由cache(原始数据)+undo(事物修改过的数据)两部分组成。</p>
+<p><strong>当前读</strong>:SQL读取的数据是最新版本，可以通过锁的机制来保证读取的数据无法被其它的事物修改。update，</p>
+<p>delete，insert，select … lock in share mode，select … for update都是当前读。</p>
+<p>除了undo log，Mysql数据库还有一个<strong>redo log</strong>的概念，mysql在事物开始之后，事物中操作的任何数据，会将最</p>
+<p>新的数据备份到一个地方（redo log）,就是在事物执行的过程中，开始将数据写入redo buffer中，最后写入redo </p>
+<p>log中，具体的落盘策略可以自行配置。这样做的目的是:为了实现事物的持久性，防止在发生故障的时间点，尚有</p>
+<p>脏页未写入磁盘，在mysql重启的时候，根据redo log重做，从而使事物未入磁盘的数据达到持久化这一特定。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211022100827871.png" alt="image-20211022100827871"></p>
+<p>session A 先用 start transaction with consistent snapshot 命令启动了一个事务，之后 session B 才开始执行 </p>
+<p>update 语句。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20211022100857409.png" alt="image-20211022100857409"></p>
+<p>session B 更新完 100 万次，生成了 100 万个回滚日志 (undo log)。带 lock in share mode 的 SQL 语句，是当前</p>
+<p>读，因此会直接读到 1000001 这个结果，所以速度很快；而 select * from t where id=1 这个语句，是一致性</p>
+<p>读，因此需要从 1000001 开始，依次执行 undo log，执行了 100 万次以后 找到seesionA 一致性视图那个版本 </p>
+<p>才将 1 这个结果返回.</p>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>操作系统-下</title>
+    <url>/2022/11/29/os-%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86-%E4%B8%8B/</url>
+    <content><![CDATA[<h3 id="Linux操作系统概览"><a href="#Linux操作系统概览" class="headerlink" title="Linux操作系统概览"></a>Linux操作系统概览</h3><h3 id="物理内存"><a href="#物理内存" class="headerlink" title="物理内存"></a>物理内存</h3><ul>
+<li>物理内存分 NUMA 节点，分别进行管理；</li>
+<li>每个 NUMA 节点分成多个内存区域；</li>
+<li>每个内存区域分成多个物理页面；</li>
+<li>伙伴系统将多个连续的页面作为一个大的内存块分配给上层；</li>
+<li>kswapd 负责物理页面的换入换出；</li>
+<li>Slub Allocator 将从伙伴系统申请的大内存块切成小块，分配给其他系统</li>
+</ul>
+<span id="more"></span>
+
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/54F862A0-8386-49BF-8B3F-DEE9C8A646AE_2/gyolywXXfXQonISDGUYFDIkKa9pLydFhUuO59MXYMccz/Image.png" alt="Image.png"></p>
+<h3 id="用户态的内存映射机制"><a href="#用户态的内存映射机制" class="headerlink" title="用户态的内存映射机制"></a>用户态的内存映射机制</h3><ul>
+<li>用户态内存映射函数 mmap，包括用它来做匿名映射和文件映射。</li>
+<li>用户态的页表结构，存储位置在 mm_struct 中。</li>
+<li>在用户态访问没有映射的内存会引发缺页异常，分配物理页表、补齐页表。如果是匿名映射则分配物理内存；如果是 swap，则将 swap 文件读入；如果是文件映射，则将文件读入。</li>
+</ul>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/C4FFEB6E-626D-4F7C-A07C-B7909051941F_2/YRRQqzrK4RPGRwz3EvB7e76eBrpiJvDfVMEnBe1ePmgz/Image.png" alt="Image.png"></p>
+<h3 id="内存管理体系"><a href="#内存管理体系" class="headerlink" title="内存管理体系"></a>内存管理体系</h3><p>物理内存根据 NUMA 架构分节点。每个节点里面再分区域。每个区域里面再分页。</p>
+<p>物理页面通过伙伴系统进行分配。分配的物理页面要变成虚拟地址让上层可以访问，kswapd 可以根据物理页面的使用情况对页面进行换入换出。</p>
+<p>对于内存的分配需求，可能来自内核态，也可能来自用户态。</p>
+<p>对于内核态，kmalloc 在分配大内存的时候，以及 vmalloc 分配不连续物理页的时候，直接使用伙伴系统，分配后转换为虚拟地址，访问的时候需要通过内核页表进行映射。</p>
+<p>对于 kmem_cache 以及 kmalloc 分配小内存，则使用 slub 分配器，将伙伴系统分配出来的大块内存切成一小块一小块进行分配。</p>
+<p>kmem_cache 和 kmalloc 的部分不会被换出，因为用这两个函数分配的内存多用于保持内核关键的数据结构。内核态中 vmalloc 分配的部分会被换出，因而当访问的时候，发现不在，就会调用 do_page_fault。</p>
+<p>对于用户态的内存分配，或者直接调用 mmap 系统调用分配，或者调用 malloc。调用 malloc 的时候，如果分配小的内存，就用 sys_brk 系统调用；如果分配大的内存，还是用 sys_mmap 系统调用。正常情况下，用户态的内存都是可以换出的，因而一旦发现内存中不存在，就会调用 do_page_fault。</p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/AAC4B331-77B6-490B-AD71-D52671D0CD4B_2/ReuYEXAMBNYZdkWFnsIweuNA5bWuXjakI3cOoF17P24z/Image.png" alt="Image.png"></p>
+<h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3><p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/3635231F-E1A2-4D50-9AA1-F6180AEE5E32_2/iBnsEdRlLYuPwGGHc7FP7JeimBUgBFKMfQsc8JBJlj8z/Image.png" alt="Image.png"></p>
+<h3 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h3><p>进程间通信的各种模式</p>
+<ul>
+<li>类似瀑布开发模式的管道</li>
+<li>类似邮件模式的消息队列</li>
+<li>类似会议室联合开发的共享内存加信号量</li>
+<li>类似应急预案的信号</li>
+</ul>
+<p>当你自己使用的时候，可以根据不同的通信需要，选择不同的模式。</p>
+<ul>
+<li>管道，请你记住这是命令行中常用的模式，面试问到的话，不要忘了。</li>
+<li>消息队列其实很少使用，因为有太多的用户级别的消息队列，功能更强大。</li>
+<li>共享内存加信号量是常用的模式。这个需要牢记，常见到一些知名的以 C 语言开发的开源软件都会用到它。</li>
+<li>信号更加常用，机制也比较复杂。  我们后面会有单独的一节来解析。</li>
+</ul>
+<h3 id="信号处理机制"><a href="#信号处理机制" class="headerlink" title="信号处理机制"></a>信号处理机制</h3><ul>
+<li>在用户程序里面，有两个函数可以调用，一个是 signal，一个是 sigaction，推荐使用 sigaction。</li>
+<li>用户程序调用的是 Glibc 里面的函数，signal 调用的是 __sysv_signal，里面默认设置了一些参数，使得 signal 的功能受到了限制，sigaction 调用的是 __sigaction，参数用户可以任意设定。</li>
+<li>无论是 __sysv_signal 还是 __sigaction，调用的都是统一的一个系统调用 rt_sigaction。</li>
+<li>在内核中，rt_sigaction 调用的是 do_sigaction 设置信号处理函数。在每一个进程的 task_struct 里面，都有一个 sighand 指向 struct sighand_struct，里面是一个数组，下标是信号，里面的内容是信号处理函数</li>
+</ul>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/2BFFB341-CBA5-415D-B622-4660FA7E21F4_2/KaQpKUuNBQZOs0H0AjSyb429l4rWcPVzPDcRBlRp5e4z/Image.png" alt="Image.png"></p>
+<h3 id="socket"><a href="#socket" class="headerlink" title="socket"></a>socket</h3><p>两种网络协议模型</p>
+<p>TCP/UDP-&gt;IPv4-&gt;ARP</p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/C4628019-6678-4EB3-A3B8-4D5690D4B98C_2/r2y0FpjvrnqkwP1Wc4DbyzQcpqT9yLX4yEM3FvHk6kMz/Image.png" alt="Image.png"></p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/6E92901F-753E-4B8E-91C3-877D3363C0D5_2/Sf7zAu9vqNfmrx1LSVt31uqOEbz4tc89owaFvFZijPIz/Image.png" alt="Image.png"></p>
+<h3 id="socket-使用"><a href="#socket-使用" class="headerlink" title="socket 使用"></a>socket 使用</h3><p>在传输层有两个主流的协议 TCP 和 UDP，所以我们的 socket 程序设计也是主要操作这两个协议</p>
+<p>当然，无论是用 socket 操作 TCP，还是 UDP，我们首先都要调用 socket 函数。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">int socket(int domain, int type, int protocol);</span><br></pre></td></tr></table></figure>
+
+<p>socket 函数用于创建一个 socket 的文件描述符，唯一标识一个 socket。我们把它叫作文件描述符，因为在内核中，我们会创建类似文件系统的数据结构，并且后续的操作都有用到它。</p>
+<p>socket 函数有三个参数。</p>
+<ul>
+<li>domain：表示使用什么 IP 层协议。AF_INET 表示 IPv4，AF_INET6 表示 IPv6。</li>
+<li>type：表示 socket 类型。SOCK_STREAM，顾名思义就是 TCP 面向流的，SOCK_DGRAM 就是 UDP 面向数据报的，SOCK_RAW 可以直接操作 IP 层，或者非 TCP 和 UDP 的协议。例如 ICMP。</li>
+<li>protocol 表示的协议，包括 IPPROTO_TCP、IPPTOTO_UDP。</li>
+</ul>
+<p>通信结束后，我们还要像关闭文件一样，关闭 socket。</p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/97946327-C21F-4382-9662-C41528A79BAB_2/EAvPXq6hczBRBQIMLCTnxysVegNqp1yLDhGljpld8ycz/Image.png" alt="Image.png"></p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/F64B2722-8919-4559-93F6-0B6CC46A32F5_2/rha3Ow2oy8QOMKG1yDMfRAXHwC1bVsS8a0j0ovvcx5gz/Image.png" alt="Image.png"></p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/D6E491A5-7013-421B-8098-F07A09F6D26D_2/UgVyZJPW4RQwvKEdsW0y4syUJUY0R8XEpVfXTyjbG5Mz/Image.png" alt="Image.png"></p>
+<p>TCP 协议的 socket 调用的过程</p>
+<ul>
+<li>服务端和客户端都调用 socket，得到文件描述符；</li>
+<li>服务端调用 listen，进行监听；</li>
+<li>服务端调用 accept，等待客户端连接；</li>
+<li>客户端调用 connect，连接服务端；</li>
+<li>服务端 accept 返回用于传输的 socket 的文件描述符；</li>
+<li>客户端调用 write 写入数据；</li>
+<li>服务端调用 read 读取数据。</li>
+</ul>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/A19CFA41-22C4-44E4-8658-26EA7A6DAF34_2/2sfEA0VpYPWw3jrxDzNbHuahg9gzndSpiJCtQV0Zp0wz/Image.png" alt="Image.png"></p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/4BB3A853-9927-404F-AA28-CF4D698D83EE_2/nx9zzzwm2GMnxBjnX60KCYFeRxDKUIYjXxNkL9OQVxcz/Image.png" alt="Image.png"></p>
+<h3 id="发送网络包"><a href="#发送网络包" class="headerlink" title="发送网络包"></a>发送网络包</h3><ul>
+<li>VFS 层：write 系统调用找到 struct file，根据里面的 file_operations 的定义，调用 sock_write_iter 函数。sock_write_iter 函数调用 sock_sendmsg 函数。</li>
+<li>Socket 层：从 struct file 里面的 private_data 得到 struct socket，根据里面 ops 的定义，调用 inet_sendmsg 函数。</li>
+<li>Sock 层：从 struct socket 里面的 sk 得到 struct sock，根据里面 sk_prot 的定义，调用 tcp_sendmsg 函数。</li>
+<li>TCP 层：tcp_sendmsg 函数会调用 tcp_write_xmit 函数，tcp_write_xmit 函数会调用 tcp_transmit_skb，在这里实现了 TCP 层面向连接的逻辑。</li>
+<li>IP 层：扩展 struct sock，得到 struct inet_connection_sock，根据里面 icsk_af_ops 的定义，调用 ip_queue_xmit 函数。</li>
+<li>IP 层：ip_route_output_ports 函数里面会调用 fib_lookup 查找路由表。FIB 全称是 Forwarding Information Base，转发信息表，也就是路由表。</li>
+<li>在 IP 层里面要做的另一个事情是填写 IP 层的头。</li>
+<li>在 IP 层还要做的一件事情就是通过 iptables 规则。</li>
+<li>MAC 层：IP 层调用 ip_finish_output 进行 MAC 层。</li>
+<li>MAC 层需要 ARP 获得 MAC 地址，因而要调用 ___neigh_lookup_noref 查找属于同一个网段的邻居，他会调用 neigh_probe 发送 ARP。</li>
+<li>有了 MAC 地址，就可以调用 dev_queue_xmit 发送二层网络包了，它会调用 __dev_xmit_skb 会将请求放入队列。</li>
+<li>设备层：网络包的发送回触发一个软中断 NET_TX_SOFTIRQ 来处理队列中的数据。这个软中断的处理函数是 net_tx_action。</li>
+<li>在软中断处理函数中，会将网络包从队列上拿下来，调用网络设备的传输函数 ixgb_xmit_frame，将网络包发的设备的队列上去。</li>
+</ul>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/270716AA-E236-465E-80A1-292DCF65B298_2/HMTyLROXlkM3o1cfy02cIdPByVX09deaLD45R7cKI98z/Image.png" alt="Image.png"></p>
+<h3 id="接收网络包"><a href="#接收网络包" class="headerlink" title="接收网络包"></a>接收网络包</h3><ul>
+<li>硬件网卡接收到网络包之后，通过 DMA 技术，将网络包放入 Ring Buffer；</li>
+<li>硬件网卡通过中断通知 CPU 新的网络包的到来；</li>
+<li>网卡驱动程序会注册中断处理函数 ixgb_intr；</li>
+<li>中断处理函数处理完需要暂时屏蔽中断的核心流程之后，通过软中断 NET_RX_SOFTIRQ 触发接下来的处理过程；</li>
+<li>NET_RX_SOFTIRQ 软中断处理函数 net_rx_action，net_rx_action 会调用 napi_poll，进而调用 ixgb_clean_rx_irq，从 Ring Buffer 中读取数据到内核 struct sk_buff；</li>
+<li>调用 netif_receive_skb 进入内核网络协议栈，进行一些关于 VLAN 的二层逻辑处理后，调用 ip_rcv 进入三层 IP 层；</li>
+<li>在 IP 层，会处理 iptables 规则，然后调用 ip_local_deliver 交给更上层 TCP 层；</li>
+<li>在 TCP 层调用 tcp_v4_rcv，这里面有三个队列需要处理，如果当前的 Socket 不是正在被读；取，则放入 backlog 队列，如果正在被读取，不需要很实时的话，则放入 prequeue 队列，其他情况调用 tcp_v4_do_rcv；</li>
+<li>在 tcp_v4_do_rcv 中，如果是处于 TCP_ESTABLISHED 状态，调用 tcp_rcv_established，其他的状态，调用 tcp_rcv_state_process；</li>
+<li>在 tcp_rcv_established 中，调用 tcp_data_queue，如果序列号能够接的上，则放入 sk_receive_queue 队列；如果序列号接不上，则暂时放入 out_of_order_queue 队列，等序列号能够接上的时候，再放入 sk_receive_queue 队列。</li>
+</ul>
+<p>至此内核接收网络包的过程到此结束，接下来就是用户态读取网络包的过程，这个过程分成几个层次。</p>
+<ul>
+<li>VFS 层：read 系统调用找到 struct file，根据里面的 file_operations 的定义，调用 sock_read_iter 函数。sock_read_iter 函数调用 sock_recvmsg 函数。</li>
+<li>Socket 层：从 struct file 里面的 private_data 得到 struct socket，根据里面 ops 的定义，调用 inet_recvmsg 函数。</li>
+<li>Sock 层：从 struct socket 里面的 sk 得到 struct sock，根据里面 sk_prot 的定义，调用 tcp_recvmsg 函数。</li>
+<li>TCP 层：tcp_recvmsg 函数会依次读取 receive_queue 队列、prequeue 队列和 backlog 队列。</li>
+</ul>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/0C89A4BD-8DAA-4F0B-B89D-53F0E8CA786B_2/bvnNjlSpIY0yAwtpnKqgzZqPyypszsw79x3ii9IXPa0z/Image.png" alt="Image.png"></p>
+]]></content>
+      <categories>
+        <category>OS</category>
+      </categories>
+      <tags>
+        <tag>OS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>操作系统里的内存管理</title>
+    <url>/2021/09/28/os-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_f2433484b95076e61f00e5b8b98a68f0_68721.jpg" alt="图怪兽_f2433484b95076e61f00e5b8b98a68f0_68721"></p>
+<h5 id="存储器结构"><a href="#存储器结构" class="headerlink" title="存储器结构"></a>存储器结构</h5><p>cpu -&gt; 寄存器 -&gt; 高速缓存 -&gt; 主存 -&gt; 磁盘</p>
+<h5 id="一种存储器抽象：地址空间"><a href="#一种存储器抽象：地址空间" class="headerlink" title="一种存储器抽象：地址空间"></a>一种存储器抽象：地址空间</h5><p>定义: 存储位置列表,存放可执行程序,程序的数据以及堆栈</p>
+<p>地址空间是进程可以用来寻址内存的地址集。每个进程都有它自己的地址空间，独立于其他进程的地址空间，但是</p>
+<p>某些进程会希望可以共享地址空间 </p>
+<span id="more"></span>
+
+
+<h5 id="映射内存-基址寄存器和变址寄存器"><a href="#映射内存-基址寄存器和变址寄存器" class="headerlink" title="映射内存? 基址寄存器和变址寄存器"></a>映射内存? 基址寄存器和变址寄存器</h5><p>每个 CPU 配置两个特殊硬件寄存器，通常叫做<code>基址寄存器(basic register)</code>和<code>变址寄存器(limit register)</code>。当</p>
+<p>使用基址寄存器和变址寄存器时，程序会装载到内存中的连续位置并且在装载期间无需重定位。当一个进程运行</p>
+<p>时，程序的起始物理地址装载到基址寄存器中，程序的长度则装载到变址寄存器中.</p>
+<ul>
+<li>基址寄存器：存储数据内存的起始位置</li>
+<li>变址寄存器：存储应用程序的长度</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210928135552448.png" alt="image-20210927200421691" style="zoom:50%;" />
+
+
+<h5 id="程序运行所需内存超过物理内存"><a href="#程序运行所需内存超过物理内存" class="headerlink" title="程序运行所需内存超过物理内存?"></a>程序运行所需内存超过物理内存?</h5><p>最简单的一种方式就是<code>交换(swapping)</code>技术，即把一个进程完整的调入内存，然后再内存中运行一段时间，再把</p>
+<p>它放回磁盘。空闲进程会存储在磁盘中，所以这些进程在没有运行时不会占用太多内存。另外一种策略叫做<code>虚拟</code></p>
+<p><code>内存(virtual memory)</code>，虚拟内存技术能够允许应用程序部分的运行在内存中.</p>
+<ul>
+<li><p><strong>交换</strong></p>
+<p>交换在内存创建了多个 <code>空闲区(hole)</code>，内存会把所有的空闲区尽可能向下移动合并成为一个大的空闲区。这</p>
+<p>项技术称为<code>内存紧缩(memory compaction)</code>,但这项技术会消耗很多CPU的时间,通常不使用</p>
+</li>
+<li><p><strong>虚拟内存</strong></p>
+<p>虚拟内存的基本思想是, <strong>每个程序都有自己的地址空间，这个地址空间被划分为多个称为<code>页面(page)</code>的块</strong>。</p>
+<p>每一页都是连续的地址范围。这些页被映射到物理内存，但并不是所有的页都必须在内存中才能运行程序。当</p>
+<p>程序引用到一部分在物理内存中的地址空间时，硬件会立刻执行必要的映射。当程序引用到一部分不在物理内</p>
+<p>存中的地址空间时，由操作系统负责将缺失的部分装入物理内存并重新执行失败的指令.</p>
+</li>
+</ul>
+<h5 id="虚拟内存中的分页"><a href="#虚拟内存中的分页" class="headerlink" title="虚拟内存中的分页"></a>虚拟内存中的分页</h5><p>在使用虚拟内存时，虚拟地址不会直接发送到内存总线上。相反，会使用 <code>MMU(Memory Management Unit)</code> 内存</p>
+<p>管理单元把虚拟地址映射为物理内存地址</p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210928152422814.png" alt="image-20210928152422814"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210928152951607.png" alt="image-20210928152951607"></p>
+<h5 id="大体流程"><a href="#大体流程" class="headerlink" title="大体流程"></a>大体流程</h5><p>CPU -&gt; 虚拟内存地址空间(被分成<code>页面</code>块) -&gt; MMU (内存单元管理) -&gt; 物理内存-&gt; 总线 -&gt; 操作设备</p>
+<h5 id="虚拟地址到物理地址的映射"><a href="#虚拟地址到物理地址的映射" class="headerlink" title="虚拟地址到物理地址的映射?"></a>虚拟地址到物理地址的映射?</h5><ul>
+<li><p>转换检测缓冲区 TLB (硬件层面)</p>
+<p>从硬件方面来解决这个问题，为计算机设置一个小型的硬件设备，能够将虚拟地址直接映射到物理地址，而不</p>
+<p>必再访问页表。这种设备被称为<code>转换检测缓冲区(Translation Lookaside Buffer, TLB)</code></p>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210928154218704.png" alt="image-20210928154218704"></p>
+<h5 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h5><table>
+<thead>
+<tr>
+<th align="left">算法</th>
+<th align="left">注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">最优算法</td>
+<td align="left">不可实现，但可以用作基准</td>
+</tr>
+<tr>
+<td align="left">NRU(最近未使用) 算法</td>
+<td align="left">和 LRU 算法很相似</td>
+</tr>
+<tr>
+<td align="left">FIFO(先进先出) 算法</td>
+<td align="left">有可能会抛弃重要的页面</td>
+</tr>
+<tr>
+<td align="left">第二次机会算法</td>
+<td align="left">比 FIFO 有较大的改善</td>
+</tr>
+<tr>
+<td align="left">时钟算法</td>
+<td align="left">实际使用</td>
+</tr>
+<tr>
+<td align="left">LRU(最近最少)算法</td>
+<td align="left">比较优秀，但是很难实现</td>
+</tr>
+<tr>
+<td align="left">NFU(最不经常食用)算法</td>
+<td align="left">和 LRU 很类似</td>
+</tr>
+<tr>
+<td align="left">老化算法</td>
+<td align="left">近似 LRU 的高效算法</td>
+</tr>
+<tr>
+<td align="left">工作集算法</td>
+<td align="left">实施起来开销很大</td>
+</tr>
+<tr>
+<td align="left">工作集时钟算法</td>
+<td align="left">比较有效的算法</td>
+</tr>
+</tbody></table>
+<h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210927200421691.png" alt="image-20210927200421691" style="zoom:50%;" />
+]]></content>
+      <categories>
+        <category>OS</category>
+      </categories>
+      <tags>
+        <tag>OS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>设计自定义线程池</title>
+    <url>/2023/10/14/java-threadpool/</url>
+    <content><![CDATA[<h2 id="什么是线程池？"><a href="#什么是线程池？" class="headerlink" title="什么是线程池？"></a>什么是线程池？</h2><p>线程池是一组预初始化的工作线程，由线程池管理器进行管理。线程池管理器负责将任务分发给工作线程并管理任务的执行。</p>
+<p>线程池不是为每个任务创建一个新线程，这样做可能效率低下并导致资源争用。线程池允许一组线程被创建一次，然后用于多个任务。这可以提高应用程序的性能和可伸缩性。</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*pOec-wF1ytIlwMIxQkQM3A.png" alt="1*pOec-wF1ytIlwMIxQkQM3A.png"></p>
+<span id="more"></span>
+<h2 id="设计线程池："><a href="#设计线程池：" class="headerlink" title="设计线程池："></a>设计线程池：</h2><p>要设计一个线程池，我们需要以下实体：</p>
+<ol>
+<li>线程池：将任务加入阻塞队列。</li>
+<li>阻塞队列：存储任务。</li>
+<li>任务执行器：执行任务。</li>
+</ol>
+<p><img src="https://miro.medium.com/v2/resize:fit:782/1*iOx_kUIuKsO2RLjtAdQHuA.png" alt="1*iOx_kUIuKsO2RLjtAdQHuA.png"></p>
+<h2 id="线程池："><a href="#线程池：" class="headerlink" title="线程池："></a>线程池：</h2><ol>
+<li>线程池类通过构造函数初始化阻塞队列的大小和线程池中可用的线程数。</li>
+<li>在构造函数中，我们创建给定数量的线程，并将任务执行器（实现了Runnable接口）的引用传递给线程并启动它们。</li>
+<li>线程池类具有submit(Runnable runnable)方法，用于将任务加入阻塞队列。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.BlockingQueue;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.LinkedBlockingDeque;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPool</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> BlockingQueue&lt;Runnable&gt; blockingQueue;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义队列的大小和线程数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThreadPool</span><span class="params">(<span class="keyword">int</span> queueSize, <span class="keyword">int</span> noOfThreads)</span> </span>&#123;</span><br><span class="line">        blockingQueue = <span class="keyword">new</span> LinkedBlockingDeque&lt;&gt;(queueSize);</span><br><span class="line">        TaskExecutor taskExecutor = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; noOfThreads; i++) &#123;</span><br><span class="line">            taskExecutor = <span class="keyword">new</span> TaskExecutor(blockingQueue);</span><br><span class="line">            Thread thread = <span class="keyword">new</span> Thread(taskExecutor);</span><br><span class="line">            thread.start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">submit</span><span class="params">(Runnable runnable)</span> </span>&#123;</span><br><span class="line">        blockingQueue.add(runnable);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="任务执行器："><a href="#任务执行器：" class="headerlink" title="任务执行器："></a>任务执行器：</h2><ol>
+<li>任务执行器是一个实现了Runnable接口的类，负责从阻塞队列中获取任务并执行它们。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TaskExecutor</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> BlockingQueue&lt;Runnable&gt; blockingQueue;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TaskExecutor</span><span class="params">(BlockingQueue&lt;Runnable&gt; blockingQueue)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.blockingQueue = blockingQueue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 从队列中取出任务并执行</span></span><br><span class="line">                Runnable runnable = blockingQueue.take();</span><br><span class="line">                runnable.run();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们来测试一下我们的线程池：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThreadPool</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ThreadPool threadPool = <span class="keyword">new</span> ThreadPool(<span class="number">3</span>, <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> taskNumber = <span class="number">1</span>; taskNumber &lt;= <span class="number">7</span>; taskNumber++) &#123;</span><br><span class="line">            TestTask testTask1 = <span class="keyword">new</span> TestTask(<span class="string">&quot;abcd_&quot;</span> + taskNumber);</span><br><span class="line">            threadPool.submit(testTask1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我想补充一点，为什么我们使用阻塞队列来保存任务？</p>
+</blockquote>
+<blockquote>
+<p>答案很简单，<code>BlockingQueue</code>允许线程在队列为空时等待新任务，并且只在有空间可用时才接受新任务，防止系统一次性处理过多任务导致超载。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>系统设计</category>
+      </categories>
+      <tags>
+        <tag>线程池</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>操作系统-上</title>
+    <url>/2022/11/28/os-%E7%B3%BB%E7%BB%9F%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<h3 id="Linux操作系统概览"><a href="#Linux操作系统概览" class="headerlink" title="Linux操作系统概览"></a>Linux操作系统概览</h3><h3 id="内核初始化"><a href="#内核初始化" class="headerlink" title="内核初始化"></a>内核初始化</h3><p>用户态 - 系统调用 - 保存寄存器 - 内核态执行系统调用 - 恢复寄存器 - 返回用户态</p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/6C97FED1-4457-463A-BB9F-129E0522EFC1_2/w6pwUQCiKUXyUFfECuUj53pGxyxlHwBMM0mT6ky8jmQz/Image.png" alt="Image.png"></p>
+<span id="more"></span>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/392EA7C3-802C-4D65-A9CC-8FEB117635BC_2/ifMx6XfepiWStQxnATEWxjaF2EH1t0DRLPTQmuNgoBkz/Image.png" alt="Image.png"></p>
+<h3 id="内核初始化-1"><a href="#内核初始化-1" class="headerlink" title="内核初始化"></a>内核初始化</h3><p>用户态 - 系统调用 - 保存寄存器 - 内核态执行系统调用 - 恢复寄存器 - 返回用户态</p>
+<p>do_execve-&gt;do_execveat_common-&gt;exec_binprm-&gt;search_binary_handler</p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/8C0B8233-7698-4735-983B-DCA5476B4827_2/ntxnj3T9WNpUiswKlq0hzHi6KeBvKpLyygeYM53KBRcz/Image.png" alt="Image.png"></p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/721E1E53-41CE-4DA9-BACA-0A68E2ADBF17_2/qNlEQyxFiV5as40yQuGord3RZPkmiB1hrv7SPj0cAsMz/Image.png" alt="Image.png"></p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/5A829BA1-FA33-4101-B84F-E8069AD1EFAB_2/19f0pAliUCw9ft44zNHvz7IFw5lINP573slQmyC6Iw8z/Image.png" alt="Image.png"></p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/2B6A58A2-8FEC-4FDA-B0C4-5D4CA8A971A3_2/j7yivE32hoQX2EubcOy6a2l2CTs74B4HPuDL72feOyYz/Image.png" alt="Image.png"></p>
+<h3 id="系统调用的过程"><a href="#系统调用的过程" class="headerlink" title="系统调用的过程"></a>系统调用的过程</h3><p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/0DDD62AD-0D19-43BF-AD55-A235DD08F56E_2/r4HVzwJt9D9PxiCCPNsbDHxzykazwdhg6mvKRU0GFi0z/Image.png" alt="Image.png"></p>
+<h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>进程从代码到二进制到运行时的过程</p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/83C26296-53BB-4CF2-9CCC-E0B32AD17B4E_2/dTncQCCyjMofAX3mvYPcVytn3yYMcF6FaDrUr1stS8Ez/Image.png" alt="Image.png"></p>
+<p><strong>进程相当于一个项目，而线程就是为了完成项目需求，而建立的一个个开发任务</strong></p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/AE54E495-E4F5-4B9C-8E03-6E2404114B09_2/0st7LYGrhqK203dy0pF42f9hwcypDhRmpVUnBixYn5Az/Image.png" alt="Image.png"></p>
+<p>在程序执行过程中，一旦调用到系统调用，就需要进入内核继续执行。那如何将用户态的执行和内核态的执行串起来呢？</p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/864FAF36-4E49-4C6C-BBC8-71989BA8C622_2/dlxgGJ42HolHy9XVGfST1BVW84jwGjAf3sQkd8FNJ6Iz/Image.png" alt="Image.png"></p>
+<h3 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h3><p>一个 CPU 上有一个队列，CFS 的队列是一棵红黑树，树的每一个节点都是一个 sched_entity，每个 sched_entity 都属于一个 task_struct，task_struct 里面有指针指向这个进程属于哪个调度类, 在调度的时候，依次调用调度类的函数，从 CPU 的队列中取出下一个进程</p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/E10D30AB-2AC7-40DA-AE9B-6917192F7560_2/tzkiy5maOcJ81T3exx6kisPDro8km6F8USEqMqUyMs0z/Image.png" alt="Image.png"></p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/5A746A48-918A-4C3C-A2ED-29DD2B01842C_2/EOgwSuwPTg7nN1yB0OJps1dTdOYJ0ZcKo2hilJvzBesz/Image.png" alt="Image.png"></p>
+<h3 id="主动调度"><a href="#主动调度" class="headerlink" title="主动调度"></a>主动调度</h3><p>主动调度的过程，也即一个运行中的进程主动调用 __schedule 让出 CPU。在 __schedule 里面会做两件事情，第一是选取下一个进程，第二是进行上下文切换。而上下文切换又分用户态进程空间的切换和内核态的切换</p>
+<h3 id="抢占式调度"><a href="#抢占式调度" class="headerlink" title="抢占式调度"></a>抢占式调度</h3><p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/C7BAE4F0-C716-45D2-A357-144B01BEEC0A_2/HuO73nvDo8bhM0YHq6u93dezjxnnrAvTqnCqEjUF7sYz/Image.png" alt="Image.png"></p>
+<h3 id="进程Fork创建的过程"><a href="#进程Fork创建的过程" class="headerlink" title="进程Fork创建的过程"></a>进程Fork创建的过程</h3><p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/FB7EC04C-FB5E-41BE-81CB-773F97093A7C_2/KElztMcWw4pPlSUkLP6CLeRjsnLZxj4eiD5J8WdB9Aoz/download.jpeg" alt="download.jpeg"></p>
+<h3 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h3><p>创建进程的话，调用的系统调用是 fork，在 copy_process 函数里面，会将五大结构 files_struct、fs_struct、sighand_struct、signal_struct、mm_struct 都复制一遍，从此父进程和子进程各用各的数据结构。而创建线程的话，调用的是系统调用 clone，在 copy_process 函数里面， 五大结构仅仅是引用计数加一，也即线程共享进程的数据结构。</p>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/66A8A068-5535-43C4-A2AE-78AE022856F7_2/6XpCOaTI7wC0oF3OpcpYjyCRxpsabAaeIHH2AwT5pZoz/Image.png" alt="Image.png"></p>
+<h3 id="一个进程运行需要的内存结构"><a href="#一个进程运行需要的内存结构" class="headerlink" title="一个进程运行需要的内存结构"></a>一个进程运行需要的内存结构</h3><p>用户态：</p>
+<ul>
+<li>代码段、全局变量、BSS</li>
+<li>函数栈</li>
+<li>堆</li>
+<li>内存映射区</li>
+</ul>
+<p>内核态：</p>
+<ul>
+<li>内核的代码、全局变量、BSS</li>
+<li>内核数据结构例如 task_struct</li>
+<li>内核栈</li>
+<li>内核中动态分配的内存</li>
+</ul>
+<p><img src="https://res.craft.do/user/full/27f84843-d4d8-568d-3b2d-db22e5d6ce15/doc/ED937B27-BC42-42DC-ABC6-04212DE63155/7966A56D-2424-4582-B71A-030F9507492F_2/CAI6OWeaBX0A0rZNg7ghsdMKmxbQxrbGlBy9kphqZU0z/Image.png" alt="Image.png"></p>
+]]></content>
+      <categories>
+        <category>OS</category>
+      </categories>
+      <tags>
+        <tag>OS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>操作系统里的进程和线程</title>
+    <url>/2021/09/28/os-%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</url>
+    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_81f15acdf27c9e27dd3e2e54d3360863_79599.png" alt="图怪兽_81f15acdf27c9e27dd3e2e54d3360863_79599"></p>
+<h5 id="什么是进程"><a href="#什么是进程" class="headerlink" title="什么是进程?"></a>什么是进程?</h5><p>一个进程就是一个正在执行的程序的实例，进程也包括程序计数器、寄存器和变量的当前值。从概念上来说，每个</p>
+<p>进程都有各自的虚拟 CPU，但是实际情况是 CPU 会在各个进程之间进行来回切换。</p>
+<h5 id="进程模型"><a href="#进程模型" class="headerlink" title="进程模型?"></a>进程模型?</h5><p>一个进程就是一个正在执行的程序的实例，进程也包括<code>程序计数器</code>、<code>寄存器</code>和<code>变量的当前值</code>。从概念上来说，每个</p>
+<p>进程都有各自的<code>虚拟 CPU</code>，但是实际情况是 CPU 会在各个进程之间进行来回切换。</p>
+<span id="more"></span>
+
+
+
+<p><strong>举例</strong></p>
+<p>4 道程序被抽象为 4 个拥有各自控制流程（即每个自己的程序计数器）的进程，并且每个程序都独立的运行。当</p>
+<p>然，实际上只有一个物理程序计数器，每个程序要运行时，其逻辑程序计数器会装载到物理程序计数器中。当程序</p>
+<p>运行结束后，其物理程序计数器就会是真正的程序计数器，然后再把它放回进程的逻辑计数器中。</p>
+<p><strong>概述</strong></p>
+<p>进程是某一类特定活动的总和，它有程序、输入输出以及状态。单个处理器可以被若干进程共享，它使用某</p>
+<p>种调度算法决定何时停止一个进程的工作，并转而为另外一个进程提供服务</p>
+<h5 id="进程状态"><a href="#进程状态" class="headerlink" title="进程状态"></a>进程状态</h5><p>每个进程是一个独立的实体，有其自己的程序计数器和内部状态，但是，进程之间存在关联关系</p>
+<ol>
+<li><code>运行态</code>，运行态指的就是进程实际占用 CPU 时间片运行时 (获得CPU 时间片)</li>
+<li><code>就绪态</code>，就绪态指的是可运行，但因为其他进程正在运行而处于就绪状态 (还没有获得CPU 时间片)</li>
+<li><code>阻塞态</code>，除非某种外部事件发生，否则进程不能运行</li>
+</ol>
+<p><strong>程序调度</strong> 指的是，决定哪个进程优先被运行和运行多久</p>
+<p><strong>操作系统最底层的就是调度程序</strong>，在它上面有许多进程。所有关于中断处理、启动进程和停止进程的具体细节都隐</p>
+<p>藏在调度程序中。事实上，调度程序只是一段非常小的程序</p>
+<h5 id="进程的实现"><a href="#进程的实现" class="headerlink" title="进程的实现"></a>进程的实现</h5><p>操作系统为了执行进程间的切换，会维护着一张表格，这张表就是 <code>进程表(process table)</code>。每个进程占用一个</p>
+<p>进程表项。该表项包含了进程状态的重要信息，包括程序计数器、堆栈指针、内存分配状况、所打开文件的状态、</p>
+<p>账号和调度信息，以及其他在进程由运行态转换到就绪态或阻塞态时所必须保存的信息，从而保证该进程随后能再</p>
+<p>次启动，就像从未被中断过一样。</p>
+<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210927135216802.png" alt="image-20210927135216802" style="zoom:50%;" />
+
+<h5 id="为什么要用线程"><a href="#为什么要用线程" class="headerlink" title="为什么要用线程?"></a>为什么要用线程?</h5><ul>
+<li>多线程之间会共享同一块地址空间和所有可用数据的能力，这是进程所不具备的</li>
+<li>线程要比进程<code>更轻量级</code>，由于线程更轻，所以它比进程更容易创建，也更容易撤销。在许多系统中，创建一个线程要比创建一个进程快 10 - 100 倍。</li>
+<li>第三个原因可能是性能方面的探讨，如果多个线程都是 CPU 密集型的，那么并不能获得性能上的增强，但是如果存在着大量的计算和大量的 I/O 处理，拥有多个线程能在这些活动中彼此重叠进行，从而会加快应用程序的执行速度</li>
+</ul>
+<h5 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型?"></a>线程模型?</h5><p>进程中拥有一个执行的线程，通常简写为 <code>线程(thread)</code>。线程会有程序计数器，用来记录接着要执行哪一条指</p>
+<p>令；线程还拥有寄存器，用来保存线程当前正在使用的变量；线程还会有堆栈，用来记录程序的执行路径。尽管线</p>
+<p>程必须在某个进程中执行，但是进程和线程完完全全是两个不同的概念，并且他们可以分开处理。进程用于把资源</p>
+<p>集中在一起，而<strong>线程则是 CPU 上调度执行的实体</strong>。</p>
+<p>在多个线程中，各个线程共享同一地址空间和其他资源。在多个进程中，进程共享物理内存、磁盘、打印机和其他</p>
+<p>资源。</p>
+<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210927141721690.png" alt="image-20210927141721690" style="zoom:50%;" />
+
+<h5 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h5><p>和进程一样，线程可以处于下面这几种状态：<strong>运行中、阻塞、就绪和终止</strong></p>
+<h5 id="线程的实现"><a href="#线程的实现" class="headerlink" title="线程的实现"></a>线程的实现</h5><ul>
+<li>在用户空间中实现线程</li>
+<li>在内核空间中实现线程</li>
+<li>在用户和内核空间中混合实现线程</li>
+</ul>
+<p>用户态VS内核态线程</p>
+<ol>
+<li><p>当一个线程阻塞时，内核可以进行选择，是运行在同一个进程中的另一个线程（如果有就绪线程的话）还是运</p>
+<p>行一个另一个进程中的线程。但是在用户实现中，运行时系统始终运行自己的线程，直到内核剥夺它的 CPU </p>
+<p>时间片（或者没有可运行的线程存在了）为止。</p>
+</li>
+<li><p>在内核中创建或者销毁线程的开销比较大</p>
+</li>
+<li><p>用户级线程和内核级线程之间的主要差别在于<code>性能</code>。用户级线程的切换需要少量的机器指令（想象一下Java程</p>
+<p>序的线程切换），而内核线程需要完整的上下文切换，修改内存映像，使高速缓存失效，这会导致了若干数量</p>
+<p>级的延迟。另一方面，在使用内核级线程时，一旦线程阻塞在 I/O 上就不需要在用户级线程中那样将整个进程</p>
+<p>挂起</p>
+</li>
+</ol>
+<h5 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h5><ul>
+<li><code>竞态条件</code>  <code>临界区</code> <code>忙等互斥</code> <code> 睡眠与唤醒</code> <code>信号量</code> <code>互斥量</code>  <code>管程</code> <code> 消息传递</code> <code>屏障</code> <code>避免锁</code></li>
+</ul>
+<h5 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h5><p>如果只有一个 CPU 可用，那么必须选择接下来哪个进程/线程可以运行。操作系统中有一个叫做 <code>调度程序</code></p>
+<p><code>(scheduler)</code> 的角色存在，它就是做这件事儿的，该程序使用的算法叫做 <code>调度算法(scheduling algorithm)</code></p>
+<ul>
+<li><p><strong>批处理系统中的调度:</strong> <code>先来先服务</code>, <code>最短作业优先</code>, <code>最短剩余优先</code></p>
+</li>
+<li><p><strong>实时系统中的调度:</strong> </p>
+<p>实时系统可以分为两类，<code>硬实时(hard real time)</code> 和 <code>软实时(soft real time)</code> 系统，前者意味着必须要满</p>
+<p>足绝对的截止时间；后者的含义是虽然不希望偶尔错失截止时间，但是可以容忍。</p>
+</li>
+<li><p><strong>交互式系统中的调度:</strong> </p>
+<p><code>轮询调度</code> 一种最古老、最简单、最公平并且最广泛使用的算法就是 <code>轮询算法(round-robin)</code>。每个进程都会被</p>
+<p>分配一个时间段，称为<code>时间片(quantum)</code>，在这个时间片内允许进程运行</p>
+<p><code>优先级调度</code>轮询调度假设了所有的进程是同等重要的。但事实情况可能不是这样。例如，在一所大学中的等</p>
+<p>级制度，首先是院长，然后是教授、秘书、后勤人员，最后是学生。这种将外部情况考虑在内就实现了<code>优先</code></p>
+<p><code>级调度(priority scheduling)</code></p>
+</li>
+</ul>
+<h5 id="概览图"><a href="#概览图" class="headerlink" title="概览图"></a>概览图</h5><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/image-20210927092731492.png" alt="image-20210927092731492" style="zoom:80%;" />
+
+<h4 id="文章参考："><a href="#文章参考：" class="headerlink" title="文章参考："></a>文章参考：</h4><p>《现代操作系统》第四版</p>
+<p>《Modern Operation System》fourth</p>
+<p> <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/SATA%E7%A1%AC%E7%9B%98/3947233?fr=aladdin">https://baike.baidu.com/item/SATA硬盘/3947233?fr=aladdin</a></p>
+<p> <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80/1329947?fr=aladdin">https://baike.baidu.com/item/虚拟地址/1329947?fr=aladdin</a></p>
+<p> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/cxuanBlog/p/12448298.html">https://www.cnblogs.com/cxuanBlog/p/12448298.html</a></p>
+]]></content>
+      <categories>
+        <category>OS</category>
+      </categories>
+      <tags>
+        <tag>OS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何做好监控微服务调⽤?</title>
     <url>/2021/06/16/service-06-16-%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E7%9B%91%E6%8E%A7%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%B0%83%E2%BD%A4/</url>
     <content><![CDATA[<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_17f35bc65eed401b374b1b5fcf552d44_83179.png" style="zoom:90%;" />
@@ -3246,70 +3246,6 @@
       </tags>
   </entry>
   <entry>
-    <title>软件工程师的关键原则-18个系统设计概念</title>
-    <url>/2023/11/11/systemDesign-concept/</url>
-    <content><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/75A77844-2DB2-4BB0-B17C-298A9D960897_2/mQBuMRK0FskOtnkEZYLfl2U4RmQTCze1yiF3qmEtHx0z/WeChat49289609a91e7d7c0e32077538409d13.png" alt="WeChat49289609a91e7d7c0e32077538409d13.png"></p>
-<p>要在系统设计中脱颖而出，深刻理解诸如<strong>负载均衡</strong>、<strong>缓存</strong>、<strong>分区</strong>、<strong>复制</strong>、<strong>数据库</strong>和<strong>代理</strong>等基本系统设计概念至关重要。</p>
-<p>在掌握这个主模板的基础上，我们将讨论18个重要的系统设计概念。以下是每个概念的简要描述：</p>
-<h3 id="1-域名系统-DNS"><a href="#1-域名系统-DNS" class="headerlink" title="1. 域名系统 (DNS)"></a>1. 域名系统 (DNS)</h3><p>域名系统（DNS）是互联网基础设施的一个基本组成部分，将用户友好的域名转换为其相应的IP地址。它充当了互联网的电话簿，允许用户通过输入易于记忆的域名而不是计算机用于识别彼此的数值IP地址（如“192.0.2.1”）来访问网站和服务。</p>
-<p>当您在Web浏览器中输入域名时，DNS负责查找相关的IP地址并将您的请求发送到适当的服务器。这个过程从您的计算机向递归解析器发送查询开始，然后递归解析器搜索一系列DNS服务器，从根服务器开始，然后是顶级域（TLD）服务器，最终是权威域名服务器。一旦找到IP地址，递归解析器将其返回给您的计算机，允许您的浏览器与目标服务器建立连接并访问所需的内容。</p>
-<span id="more"></span>
-
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/E422D047-3CF9-44FC-8485-DC0691A0D20F_2/BHwIE9I3p9Zq4obdSxwyhvPpxnyDaKy52K8lkxH15JIz/WeChat49853bf56d5a9f0c3582bd606f58336a.png" alt="WeChat49853bf56d5a9f0c3582bd606f58336a.png"></p>
-<p><strong>DNS</strong></p>
-<h3 id="2-负载均衡器"><a href="#2-负载均衡器" class="headerlink" title="2. 负载均衡器"></a>2. 负载均衡器</h3><p>负载均衡器是一种用于分发入站网络流量到多个服务器的网络设备或软件，以确保最佳资源利用、降低延迟并保持高可用性。在出现突发流量或服务器请求不均匀分布的情况下，负载均衡器在扩展应用程序和有效管理服务器工作负载方面发挥着至关重要的作用。</p>
-<p>负载均衡器使用各种算法来确定入站流量的分发。一些常见的算法包括：</p>
-<p>•<strong>轮询算法:</strong> 请求按顺序和均匀地分配到所有可用服务器。•<strong>最少连接算法:</strong> 负载均衡器将请求分配给具有最少活动连接的服务器，为较不繁忙的服务器提供优先。•<strong>IP哈希算法:</strong> 客户端的IP地址被哈希，生成的值用于确定请求应该被定向到哪个服务器。这种方法确保特定客户端的请求一直路由到相同的服务器，有助于维护会话一致性。</p>
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/CC0B4F86-331E-4864-98DE-240A50A68478_2/Q6ehJ8vV27Zplx3vzY8oxZAfcznDjsxBVrIghyNhHyUz/WeChatff70f6ceea4bec786b6b65a93e59d09d.png" alt="WeChatff70f6ceea4bec786b6b65a93e59d09d.png"></p>
-<p><strong>负载均衡器</strong></p>
-<h3 id="3-API-网关"><a href="#3-API-网关" class="headerlink" title="3. API 网关"></a>3. API 网关</h3><p>API网关是一种充当外部客户端与应用程序的内部微服务或基于API的后端服务之间中间件的服务器或服务。它是当今体</p>
-<p>系结构的重要组件，特别是在基于微服务的系统中，它简化了通信过程，为客户端提供访问各种服务的单一入口点。</p>
-<p>API网关的主要功能包括：</p>
-<p>1.请求路由：API网关根据预定义的规则和配置，将来自客户端的传入API请求路由到适当的后端服务或微服务。2.身份验证和授权：API网关管理用户身份验证和授权，确保只有经授权的客户端才能访问服务。它在将请求路由到后端服务之前验证API密钥、令牌或其他凭证。3.速率限制和节流：为了保护后端服务免受过大的负荷或滥用，API网关根据预定义的策略对客户端的请求进行速率限制或节流。4.缓存：为了降低延迟和后端负载，API网关缓存经常使用的响应，直接提供给客户端，无需查询后端服务。5.请求和响应转换：API网关可以修改请求和响应，例如转换数据格式、添加或删除标头，或更改查询参数，以确保客户端和服务之间的兼容性。</p>
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/B3A2CE16-8EC9-430C-9695-C2842A3D1D37_2/w37rfBPqalyxb7DI52yfi0j4vKFXC3pij31Cjy4qyD8z/WeChat22f909aa70c05447c174ad79acff2b14.png" alt="WeChat22f909aa70c05447c174ad79acff2b14.png"></p>
-<p><strong>API 网关</strong></p>
-<h3 id="4-内容交付网络-CDN"><a href="#4-内容交付网络-CDN" class="headerlink" title="4. 内容交付网络 (CDN)"></a>4. 内容交付网络 (CDN)</h3><p>内容交付网络（CDN）是一个分布式服务器网络，用于存储和传递内容，如图像、视频、样式表和脚本，以使用户可以从地理位置更接近他们的位置访问这些内容。CDN旨在提高内容传递的性能、速度和可靠性，无论用户相对于原始服务器的位置如何。以下是CDN的运作方式：</p>
-<p>1.当用户从网站或应用程序请求内容时，请求被定向到最近的CDN服务器，也称为边缘服务器。2.如果边缘服务器已经缓存了请求的内容，它将直接向用户提供内容。这个过程减少了延迟并提高了用户体验，因为内容传输的距离更短。3.如果边缘服务器没有缓存请求的内容，CDN将从原始服务器或附近的另一个CDN服务器检索内容。一旦内容被获取，它将被缓存在边缘服务器上并提供给用户。4.为了确保内容保持最新，CDN定期检查原始服务器以获取更改，并相应地更新其缓存。</p>
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/8F16CDFA-A6BF-4EF0-B255-1561D5B15668_2/Utyy4u8cXYJw1lMigHqx6kUrxQxY9xf9HEzu4dRzcx4z/WeChatc451501adf104c2494e86bd095b41249.png" alt="WeChatc451501adf104c2494e86bd095b41249.png"></p>
-<p><strong>CDN</strong></p>
-<h3 id="5-正向代理与反向代理"><a href="#5-正向代理与反向代理" class="headerlink" title="5. 正向代理与反向代理"></a>5. 正向代理与反向代理</h3><p>正向代理，也称为“代理服务器”或简称“代理”，是位于一个或多个客户机之前的服务器，充当客户机和互联网之间的中介。当客户机请求互联网上的资源时，请求首先发送到正向代理。正向代理然后代表客户机将请求发送到互联网，然后将</p>
-<p>响应返回给客户机。</p>
-<p>另一方面，反向代理是位于一个或多个Web服务器之前的服务器，充当Web服务器和互联网之间的中介。当客户端请求互联网上的资源时，请求首先发送到反向代理。反向代理然后将请求转发到其中一个Web服务器，然后将响应返回给客户端。</p>
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/E81692CA-56E1-40F6-AE65-CAEAC9BCE304_2/oLqKySBKilPBewMwpwsh8h6rlM11KLjM6qChoRMx3yYz/WeChate9fc5329308d7c48fd7180015ca4d82f.png" alt="WeChate9fc5329308d7c48fd7180015ca4d82f.png"></p>
-<p><strong>正向代理与反向代理</strong></p>
-<h3 id="6-缓存"><a href="#6-缓存" class="headerlink" title="6. 缓存"></a>6. 缓存</h3><p>缓存是位于应用程序和原始数据源（如数据库、文件系统或远程Web服务）之间的高速存储层。当应用程序请求数据时，首先检查缓存。如果数据存在于缓存中，将返回给应用程序。如果在缓存中找不到数据，则从其原始来源检索数据，将其存储在缓存中以备将来使用，然后返回给应用程序。在分布式系统中，缓存可以出现在多个位置，包括客户端、DNS、CDN、负载均衡器、API网关、服务器、数据库等等。</p>
-<p><strong>缓存</strong></p>
-<h3 id="7-数据分区"><a href="#7-数据分区" class="headerlink" title="7. 数据分区"></a>7. 数据分区</h3><p>在数据库中，<strong>水平分区</strong>，通常称为<strong>分片</strong>，涉及将表的行分成较小的表，并存储在不同的服务器或数据库实例上。这种方法用于在多个服务器之间分发数据库负载，从而提高性能。</p>
-<p>相反，<strong>垂直分区</strong>涉及将表的列分成单独的表。这个技术旨在减少表中的列数，提高只访问有限数量列的查询性能。</p>
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/CEDAB7A3-D6A6-49F8-9EC7-296A481F2ABC_2/pGPAgDIixcrQIS2hbMg1ay7mbfF3vBHxtepOyOuZeKUz/WeChateeefc7380c587916ff83aa5921aa6418.png" alt="WeChateeefc7380c587916ff83aa5921aa6418.png"></p>
-<p><strong>数据分区</strong></p>
-<h3 id="8-数据库复制"><a href="#8-数据库复制" class="headerlink" title="8. 数据库复制"></a>8. 数据库复制</h3><p>数据库复制是一种用于在不同服务器或位置之间维护相同数据库的方法。数据库复制的主要目标是增加数据的可用性、冗余和容错性，以确保系统即使在硬件故障或其他问题出现时仍然可以正常运行。</p>
-<p>在复制数据库配置中，一个服务器充当主数据库，而其他服务器则充当副本。这涉及在主数据库和副本之间同步数据，以确保它们都具有相同的最新信息。数据库复制提供了多个优点，包括：</p>
-<p>1.改进性能：通过在多个副本之间分发读查询，可以减轻主数据库的负载，从而提高查询响应时间。2.高可用性：如果主数据库发生故障或停机，副本可以继续提供数据，确保对应用程序的不间断访问。3.增强的数据保护：在不同位置维护数据库的多个副本有助于防止由于硬件故障或其他灾难而导致的数据丢失。4.负载平衡：副本可以处理读查询，从而实现更好的负载分配并减轻主数据库的整体压力。</p>
-<h3 id="9-分布式消息系统"><a href="#9-分布式消息系统" class="headerlink" title="9. 分布式消息系统"></a>9. 分布式消息系统</h3><p>分布式消息系统为多个可能分布在不同地理位置的应用程序、服务或组件之间交换消息提供了可靠、可扩展和容错的方式。这些系统通过解耦发送方和接收方组件，使它们能够独立开发和运行。分布式消息系统在大型或复杂系统中尤其有价值，比如微服务架构或分布式计算环境中。这些系统的示例包括Apache Kafka和RabbitMQ。</p>
-<h3 id="10-微服务"><a href="#10-微服务" class="headerlink" title="10. 微服务"></a>10. 微服务</h3><p>微服务代表一种架构风格，其中一个应用程序被组织成一组小型、松散耦合的、可以独立部署的服务。每个微服务负责应用程序内的特定功能或领域，并通过明确定义的API与其他微服务通信。这种方法不同于传统的单体架构，传统单体架构将应用程序构建为单一、紧密耦合的单元。</p>
-<p>微服务的主要特点包括：</p>
-<p>1.独立部署：每个微服务可以独立开发、测试和部署，无需影响其他微服务。2.技术多样性：每个微服务可以使用不同的技术栈，以满足其特定需求。3.易于维护：由于微服务的规模较小，它们通常更易于维护、扩展和修改。4.可扩展性：可以根据需要扩展单独的微服务，而无需为整个应用程序进行扩展。</p>
-<h3 id="11-数据库"><a href="#11-数据库" class="headerlink" title="11. 数据库"></a>11. 数据库</h3><p>数据库是一种结构化数据的持久存储系统，用于存储、检索和管理数据。数据库在各种应用程序和系统中都有广泛的应用，从基本的数据存储到复杂的分析和报告系统。主要的数据库类型包括：</p>
-<p>•<strong>关系型数据库（RDBMS）：</strong> 使用表格结构来存储数据，并支持SQL查询语言。常见的关系型数据库包括MySQL、PostgreSQL、Oracle和Microsoft SQL Server。•<strong>NoSQL数据库：</strong> 这些数据库不使用传统的表格结构，而使用文档、列族、键值对或图形等非关系数据结构来存储数据。NoSQL数据库包括MongoDB、Cassandra、Redis和Elasticsearch。•<strong>NewSQL数据库：</strong> 这是一种中间方式，结合了关系数据库和NoSQL数据库的某些特性。NewSQL数据库旨在提供可扩展性、高性能和分布式能力。</p>
-<h3 id="12-前端缓存"><a href="#12-前端缓存" class="headerlink" title="12. 前端缓存"></a>12. 前端缓存</h3><p>前端缓存是一种用于缓存Web应用程序的用户界面（HTML、CSS、JavaScript等）以提高性能的技术。前端缓存可以通过减少从服务器请求资源的次数、降低延迟并提供更快的用户体验来改进Web应用程序的性能。前端缓存通常采用浏览器缓存、CDN和缓存服务等多种形式。</p>
-<h3 id="13-后端缓存"><a href="#13-后端缓存" class="headerlink" title="13. 后端缓存"></a>13. 后端缓存</h3><p>后端缓存是一种用于缓存应用程序的数据和计算结果以提高性能的技术。它将数据存储在内存中，以便将来更快地检索。后端缓存通常用于存储数据库查询结果、API响应和计算密集型任务的结果。一些常见的后端缓存技术包括Redis和Memcached。</p>
-<h3 id="14-安全性"><a href="#14-安全性" class="headerlink" title="14. 安全性"></a>14. 安全性</h3><p>安全性是系统设计中至关重要的概念。它包括身份验证、授权、加密、跨站脚本（XSS）和跨站请求伪造（CSRF）防护、数据保护、网络安全等。系统设计应考虑各种威胁和安全攻击，以确保系统的数据和用户得到保护。</p>
-<h3 id="15-高可用性与容错性"><a href="#15-高可用性与容错性" class="headerlink" title="15. 高可用性与容错性"></a>15. 高可用性与容错性</h3><p>高可用性和容错性是系统设计的关键目标。高可用性涉及确保系统在面临故障或中断时保持可用。容错性涉及系统在出现故障或错误时能够恢复正常运行。实现高可用性和容错性通常需要使用负载均衡、故障转移、冗余和监控等技术。</p>
-<h3 id="16-事件驱动架构"><a href="#16-事件驱动架构" class="headerlink" title="16. 事件驱动架构"></a>16. 事件驱动架构</h3><p>事件驱动架构是一种应用程序架构，其中应用程序的不同组件通过事件进行通信。事件是应用程序中发生的特定动作或状态更改，可以触发其他组件的响应。事件驱动架构通常用于实现松散耦合的组件，以便能够更轻松地扩展和修改系统。</p>
-<h3 id="17-日志和监控"><a href="#17-日志和监控" class="headerlink" title="17. 日志和监控"></a>17. 日志和监控</h3><p>在系统设计中，日志和监控是关键工具，用于识别和解决性能问题、故障和安全问题。日志记录有助于跟踪系统的操作和问题，而监控则提供了实时的性能数据和警报。在分布式系统中，有效的日志和监控可以帮助工程师快速诊断问题和优化系统。</p>
-<h3 id="18-测试策略"><a href="#18-测试策略" class="headerlink" title="18. 测试策略"></a>18. 测试策略</h3><p>测试是系统设计和开发的关键组成部分。测试策略涉及确定测试范围、创建测试计划、编写测试用例、执行测试、自动化测试、性能测试等。有效的测试策略有助于确保系统的可靠性、性能和安全性。</p>
-<p>这18个系统设计概念涵盖了构建可伸缩、高性能、高可用性和安全的系统所需的核心知识。</p>
-<p>希望这篇文章对你有所帮助,没有浪费你的时间~</p>
-]]></content>
-      <categories>
-        <category>系统设计,网络技术</category>
-      </categories>
-      <tags>
-        <tag>CDN,系统设计,网络技术</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>计算机的层次化架构</title>
     <url>/2023/12/03/systemDesign-cpu/</url>
     <content><![CDATA[<p>计算机在多层次系统中运行。每个层次都经过优化，以执行特定的任务，确保整个机器的高效运行。</p>
@@ -3381,43 +3317,67 @@
       </tags>
   </entry>
   <entry>
-    <title>如何有效地扩展数据库服务器以满足日益增长的工作量 - 数据库扩展策略</title>
-    <url>/2023/10/22/systemDesign-db-extend/</url>
-    <content><![CDATA[<p>在当今以数据为驱动的世界中，企业面临着一个挑战，即在保证应用程序的最佳性能的同时，管理迅速增长的数据量。扩展数据库服务器在满足这些需求方面起着至关重要的作用。本篇博客将探讨各种策略，以有效地扩展数据库服务器，以处理不断增加的工作量，提升性能并确保数据可用性。</p>
-<h2 id="什么是数据库服务器扩展？"><a href="#什么是数据库服务器扩展？" class="headerlink" title="什么是数据库服务器扩展？"></a>什么是数据库服务器扩展？</h2><p>数据库服务器扩展是增加数据库服务器的容量和性能，以处理不断增长的数据量、用户请求和系统负载的过程。通过升级硬件组件，如 CPU、内存或存储，可以实现垂直扩展，这允许数据库服务器利用升级后硬件的改进能力来处理更大的工作量。垂直扩展通常受限于单个服务器的最大容量。</p>
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/F02E56CC-D70B-4A7E-B6D6-9295DB942209/96A64AAA-6C98-47AC-9881-31AF9FA9D99F_2/vcI07aKM3g3GBDLwMhNNOqfyG81LNJyu0syQj8eeUpUz/6151697987454_.pic.jpeg" alt="6151697987454_.pic.jpeg"></p>
+    <title>软件工程师的关键原则-18个系统设计概念</title>
+    <url>/2023/11/11/systemDesign-concept/</url>
+    <content><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/75A77844-2DB2-4BB0-B17C-298A9D960897_2/mQBuMRK0FskOtnkEZYLfl2U4RmQTCze1yiF3qmEtHx0z/WeChat49289609a91e7d7c0e32077538409d13.png" alt="WeChat49289609a91e7d7c0e32077538409d13.png"></p>
+<p>要在系统设计中脱颖而出，深刻理解诸如<strong>负载均衡</strong>、<strong>缓存</strong>、<strong>分区</strong>、<strong>复制</strong>、<strong>数据库</strong>和<strong>代理</strong>等基本系统设计概念至关重要。</p>
+<p>在掌握这个主模板的基础上，我们将讨论18个重要的系统设计概念。以下是每个概念的简要描述：</p>
+<h3 id="1-域名系统-DNS"><a href="#1-域名系统-DNS" class="headerlink" title="1. 域名系统 (DNS)"></a>1. 域名系统 (DNS)</h3><p>域名系统（DNS）是互联网基础设施的一个基本组成部分，将用户友好的域名转换为其相应的IP地址。它充当了互联网的电话簿，允许用户通过输入易于记忆的域名而不是计算机用于识别彼此的数值IP地址（如“192.0.2.1”）来访问网站和服务。</p>
+<p>当您在Web浏览器中输入域名时，DNS负责查找相关的IP地址并将您的请求发送到适当的服务器。这个过程从您的计算机向递归解析器发送查询开始，然后递归解析器搜索一系列DNS服务器，从根服务器开始，然后是顶级域（TLD）服务器，最终是权威域名服务器。一旦找到IP地址，递归解析器将其返回给您的计算机，允许您的浏览器与目标服务器建立连接并访问所需的内容。</p>
 <span id="more"></span>
 
-<h2 id="数据库服务器扩展的技术"><a href="#数据库服务器扩展的技术" class="headerlink" title="数据库服务器扩展的技术"></a>数据库服务器扩展的技术</h2><p>有多种方法可用于扩展数据库。它们是：</p>
-<h3 id="1-垂直扩展"><a href="#1-垂直扩展" class="headerlink" title="1. 垂直扩展"></a>1. 垂直扩展</h3><p>在垂直扩展，也称为升级或降级，通过升级硬件组件，如 CPU、内存或存储，来增加服务器的资源。 这种方法允许数据库服务器通过利用升级后硬件的改进能力来处理更大的工作量。垂直扩展通常受限于单个服务器的最大容量。</p>
-<h3 id="2-水平扩展"><a href="#2-水平扩展" class="headerlink" title="2. 水平扩展"></a>2. 水平扩展</h3><p>水平扩展关注的是向基础架构中添加更多数据库服务器。这种方法允许将工作负载分布在多个服务器上，减轻单个节点的负担。水平扩展也称为添加节点（扩展）或减少节点（收缩）。</p>
-<p>根据实现方式的不同，水平扩展还可以提高数据库的整体可靠性。它消除了单点故障，因为您增加了在故障转移情况下可以使用的节点数。然而，水平扩展也增加了时间、精力（因此成本）方面的开销，因为您需要更多的节点（因此有更多的故障点）来保持数据库功能正常。</p>
-<p>水平扩展比垂直扩展更困难，也更昂贵。</p>
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/F02E56CC-D70B-4A7E-B6D6-9295DB942209/943617F4-4586-48D7-A71C-3D5FF352DDDB_2/8LFoBH9y929Fy1if7HeZItrjoRi7MPXOk45vCZIak0sz/6161697987454_.pic.jpeg" alt="6161697987454_.pic.jpeg"></p>
-<p><strong>数据库集群和分片是实现水平扩展的常见技术。</strong></p>
-<h3 id="3-数据库复制"><a href="#3-数据库复制" class="headerlink" title="3. 数据库复制"></a>3. 数据库复制</h3><p>数据库复制涉及创建多个数据库的副本，并将工作负载分布在它们之间。 它通过将读请求定向到副本来提高读取性能，同时保留主服务器用于写入操作。</p>
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/F02E56CC-D70B-4A7E-B6D6-9295DB942209/8003376E-B7DC-44D8-B0F6-7B1B10AE7479_2/2ySUy6B1ONVKWtPZGBNL1v6PeQtMOZuzKlp6a73VemEz/6171697987454_.pic.jpeg" alt="6171697987454_.pic.jpeg"></p>
-<p>因此，在这里，数据库的副本帮助我们分发请求，从而降低了对单个数据库的负载。</p>
-<p>数据库复制涉及频繁地将数据从一个数据库或服务器复制或流式传输到另一个数据库，以便所有用户都可以访问同步的数据，而不管他们用来访问数据的是哪个系统。如果有数据更改，数据复制工具也会确保将更改应用于目标数据库。其结果是分布式数据存储网络，任何人都可以轻松地访问重要和相关的数据，并增加了不同位置之间的可用性。</p>
-<h3 id="4-缓存"><a href="#4-缓存" class="headerlink" title="4. 缓存"></a>4. 缓存</h3><p>缓存是将数据存储并从缓存中访问的过程。但请等等，什么是缓存？缓存是一个旨在存储数据的软件或硬件组件，以便未来对相同数据的请求可以更快地得到服务。</p>
-<p>缓存涉及将频繁访问的数据存储在内存中，以减少重复数据库查询的需求。</p>
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/F02E56CC-D70B-4A7E-B6D6-9295DB942209/26EB2C68-0068-4E84-9C9A-D2D78C249D32_2/iT6mLAXyingRleNT2Gt8dALNGI0Z145s0o7TmvB73HEz/6181697987454_.pic.jpeg" alt="6181697987454_.pic.jpeg"></p>
-<p>每当有新的请求到达时，首先会在缓存中搜索所请求的数据。当所请求的数据能够在缓存中找到时，称为“缓存命中”。相反，当无法在缓存中找到数据时，称为“缓存未命中”。显然，从缓存中读取所需数据被认为比重新计算结果或从原始数据存储中读取它更快。因此，从缓存中可以服务更多的请求，系统就越快。</p>
-<p>通过实施内存缓存层，比如 Redis 或 Memcached，组织可以显著提升数据库性能。缓存通过直接从内存中提供数据来卸载数据库服务器，从而降低响应时间并提高可扩展性。</p>
-<h3 id="5-分片"><a href="#5-分片" class="headerlink" title="5. 分片"></a>5. 分片</h3><p>分片是一种数据库分区的类型，其中将大型数据库分成较小的数据和不同节点。 分片涉及将数据分成较小的子集，并将其分布在多个服务器上。每个服务器处理特定的分区或分片，从而实现并行处理和改进性能。</p>
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/F02E56CC-D70B-4A7E-B6D6-9295DB942209/1BA867CF-700A-42F7-B9FC-2AFCAC580D2F_2/ZgG0e1q27MAoEyfIASNHhfSLC069OiHQ2jTPzg2GEaIz/6191697987454_.pic.jpeg" alt="6191697987454_.pic.jpeg"></p>
-<p>分片有两种类型：</p>
-<ol>
-<li>水平分片：在这种类型的分片中，数据库根据行进行分区。</li>
-<li>垂直分片：在这种类型的分片中，数据库根据列进行分区。</li>
-</ol>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>扩展数据库服务器是维持应用程序性能和适应不断增长的数据量的关键方面。通过采用垂直和水平扩展、复制、缓存和分区等策略，组织可以有效应对可扩展性挑战，并确保高效的数据库操作。然而，选择合适的扩展策略需要全面了解系统要求、工作负载模式和技术考虑因素。实施经过深思熟虑的扩展方法将使企业能够交付高性能的应用程序，同时有效地管理数据增长。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/E422D047-3CF9-44FC-8485-DC0691A0D20F_2/BHwIE9I3p9Zq4obdSxwyhvPpxnyDaKy52K8lkxH15JIz/WeChat49853bf56d5a9f0c3582bd606f58336a.png" alt="WeChat49853bf56d5a9f0c3582bd606f58336a.png"></p>
+<p><strong>DNS</strong></p>
+<h3 id="2-负载均衡器"><a href="#2-负载均衡器" class="headerlink" title="2. 负载均衡器"></a>2. 负载均衡器</h3><p>负载均衡器是一种用于分发入站网络流量到多个服务器的网络设备或软件，以确保最佳资源利用、降低延迟并保持高可用性。在出现突发流量或服务器请求不均匀分布的情况下，负载均衡器在扩展应用程序和有效管理服务器工作负载方面发挥着至关重要的作用。</p>
+<p>负载均衡器使用各种算法来确定入站流量的分发。一些常见的算法包括：</p>
+<p>•<strong>轮询算法:</strong> 请求按顺序和均匀地分配到所有可用服务器。•<strong>最少连接算法:</strong> 负载均衡器将请求分配给具有最少活动连接的服务器，为较不繁忙的服务器提供优先。•<strong>IP哈希算法:</strong> 客户端的IP地址被哈希，生成的值用于确定请求应该被定向到哪个服务器。这种方法确保特定客户端的请求一直路由到相同的服务器，有助于维护会话一致性。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/CC0B4F86-331E-4864-98DE-240A50A68478_2/Q6ehJ8vV27Zplx3vzY8oxZAfcznDjsxBVrIghyNhHyUz/WeChatff70f6ceea4bec786b6b65a93e59d09d.png" alt="WeChatff70f6ceea4bec786b6b65a93e59d09d.png"></p>
+<p><strong>负载均衡器</strong></p>
+<h3 id="3-API-网关"><a href="#3-API-网关" class="headerlink" title="3. API 网关"></a>3. API 网关</h3><p>API网关是一种充当外部客户端与应用程序的内部微服务或基于API的后端服务之间中间件的服务器或服务。它是当今体</p>
+<p>系结构的重要组件，特别是在基于微服务的系统中，它简化了通信过程，为客户端提供访问各种服务的单一入口点。</p>
+<p>API网关的主要功能包括：</p>
+<p>1.请求路由：API网关根据预定义的规则和配置，将来自客户端的传入API请求路由到适当的后端服务或微服务。2.身份验证和授权：API网关管理用户身份验证和授权，确保只有经授权的客户端才能访问服务。它在将请求路由到后端服务之前验证API密钥、令牌或其他凭证。3.速率限制和节流：为了保护后端服务免受过大的负荷或滥用，API网关根据预定义的策略对客户端的请求进行速率限制或节流。4.缓存：为了降低延迟和后端负载，API网关缓存经常使用的响应，直接提供给客户端，无需查询后端服务。5.请求和响应转换：API网关可以修改请求和响应，例如转换数据格式、添加或删除标头，或更改查询参数，以确保客户端和服务之间的兼容性。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/B3A2CE16-8EC9-430C-9695-C2842A3D1D37_2/w37rfBPqalyxb7DI52yfi0j4vKFXC3pij31Cjy4qyD8z/WeChat22f909aa70c05447c174ad79acff2b14.png" alt="WeChat22f909aa70c05447c174ad79acff2b14.png"></p>
+<p><strong>API 网关</strong></p>
+<h3 id="4-内容交付网络-CDN"><a href="#4-内容交付网络-CDN" class="headerlink" title="4. 内容交付网络 (CDN)"></a>4. 内容交付网络 (CDN)</h3><p>内容交付网络（CDN）是一个分布式服务器网络，用于存储和传递内容，如图像、视频、样式表和脚本，以使用户可以从地理位置更接近他们的位置访问这些内容。CDN旨在提高内容传递的性能、速度和可靠性，无论用户相对于原始服务器的位置如何。以下是CDN的运作方式：</p>
+<p>1.当用户从网站或应用程序请求内容时，请求被定向到最近的CDN服务器，也称为边缘服务器。2.如果边缘服务器已经缓存了请求的内容，它将直接向用户提供内容。这个过程减少了延迟并提高了用户体验，因为内容传输的距离更短。3.如果边缘服务器没有缓存请求的内容，CDN将从原始服务器或附近的另一个CDN服务器检索内容。一旦内容被获取，它将被缓存在边缘服务器上并提供给用户。4.为了确保内容保持最新，CDN定期检查原始服务器以获取更改，并相应地更新其缓存。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/8F16CDFA-A6BF-4EF0-B255-1561D5B15668_2/Utyy4u8cXYJw1lMigHqx6kUrxQxY9xf9HEzu4dRzcx4z/WeChatc451501adf104c2494e86bd095b41249.png" alt="WeChatc451501adf104c2494e86bd095b41249.png"></p>
+<p><strong>CDN</strong></p>
+<h3 id="5-正向代理与反向代理"><a href="#5-正向代理与反向代理" class="headerlink" title="5. 正向代理与反向代理"></a>5. 正向代理与反向代理</h3><p>正向代理，也称为“代理服务器”或简称“代理”，是位于一个或多个客户机之前的服务器，充当客户机和互联网之间的中介。当客户机请求互联网上的资源时，请求首先发送到正向代理。正向代理然后代表客户机将请求发送到互联网，然后将</p>
+<p>响应返回给客户机。</p>
+<p>另一方面，反向代理是位于一个或多个Web服务器之前的服务器，充当Web服务器和互联网之间的中介。当客户端请求互联网上的资源时，请求首先发送到反向代理。反向代理然后将请求转发到其中一个Web服务器，然后将响应返回给客户端。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/E81692CA-56E1-40F6-AE65-CAEAC9BCE304_2/oLqKySBKilPBewMwpwsh8h6rlM11KLjM6qChoRMx3yYz/WeChate9fc5329308d7c48fd7180015ca4d82f.png" alt="WeChate9fc5329308d7c48fd7180015ca4d82f.png"></p>
+<p><strong>正向代理与反向代理</strong></p>
+<h3 id="6-缓存"><a href="#6-缓存" class="headerlink" title="6. 缓存"></a>6. 缓存</h3><p>缓存是位于应用程序和原始数据源（如数据库、文件系统或远程Web服务）之间的高速存储层。当应用程序请求数据时，首先检查缓存。如果数据存在于缓存中，将返回给应用程序。如果在缓存中找不到数据，则从其原始来源检索数据，将其存储在缓存中以备将来使用，然后返回给应用程序。在分布式系统中，缓存可以出现在多个位置，包括客户端、DNS、CDN、负载均衡器、API网关、服务器、数据库等等。</p>
+<p><strong>缓存</strong></p>
+<h3 id="7-数据分区"><a href="#7-数据分区" class="headerlink" title="7. 数据分区"></a>7. 数据分区</h3><p>在数据库中，<strong>水平分区</strong>，通常称为<strong>分片</strong>，涉及将表的行分成较小的表，并存储在不同的服务器或数据库实例上。这种方法用于在多个服务器之间分发数据库负载，从而提高性能。</p>
+<p>相反，<strong>垂直分区</strong>涉及将表的列分成单独的表。这个技术旨在减少表中的列数，提高只访问有限数量列的查询性能。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/CEDAB7A3-D6A6-49F8-9EC7-296A481F2ABC_2/pGPAgDIixcrQIS2hbMg1ay7mbfF3vBHxtepOyOuZeKUz/WeChateeefc7380c587916ff83aa5921aa6418.png" alt="WeChateeefc7380c587916ff83aa5921aa6418.png"></p>
+<p><strong>数据分区</strong></p>
+<h3 id="8-数据库复制"><a href="#8-数据库复制" class="headerlink" title="8. 数据库复制"></a>8. 数据库复制</h3><p>数据库复制是一种用于在不同服务器或位置之间维护相同数据库的方法。数据库复制的主要目标是增加数据的可用性、冗余和容错性，以确保系统即使在硬件故障或其他问题出现时仍然可以正常运行。</p>
+<p>在复制数据库配置中，一个服务器充当主数据库，而其他服务器则充当副本。这涉及在主数据库和副本之间同步数据，以确保它们都具有相同的最新信息。数据库复制提供了多个优点，包括：</p>
+<p>1.改进性能：通过在多个副本之间分发读查询，可以减轻主数据库的负载，从而提高查询响应时间。2.高可用性：如果主数据库发生故障或停机，副本可以继续提供数据，确保对应用程序的不间断访问。3.增强的数据保护：在不同位置维护数据库的多个副本有助于防止由于硬件故障或其他灾难而导致的数据丢失。4.负载平衡：副本可以处理读查询，从而实现更好的负载分配并减轻主数据库的整体压力。</p>
+<h3 id="9-分布式消息系统"><a href="#9-分布式消息系统" class="headerlink" title="9. 分布式消息系统"></a>9. 分布式消息系统</h3><p>分布式消息系统为多个可能分布在不同地理位置的应用程序、服务或组件之间交换消息提供了可靠、可扩展和容错的方式。这些系统通过解耦发送方和接收方组件，使它们能够独立开发和运行。分布式消息系统在大型或复杂系统中尤其有价值，比如微服务架构或分布式计算环境中。这些系统的示例包括Apache Kafka和RabbitMQ。</p>
+<h3 id="10-微服务"><a href="#10-微服务" class="headerlink" title="10. 微服务"></a>10. 微服务</h3><p>微服务代表一种架构风格，其中一个应用程序被组织成一组小型、松散耦合的、可以独立部署的服务。每个微服务负责应用程序内的特定功能或领域，并通过明确定义的API与其他微服务通信。这种方法不同于传统的单体架构，传统单体架构将应用程序构建为单一、紧密耦合的单元。</p>
+<p>微服务的主要特点包括：</p>
+<p>1.独立部署：每个微服务可以独立开发、测试和部署，无需影响其他微服务。2.技术多样性：每个微服务可以使用不同的技术栈，以满足其特定需求。3.易于维护：由于微服务的规模较小，它们通常更易于维护、扩展和修改。4.可扩展性：可以根据需要扩展单独的微服务，而无需为整个应用程序进行扩展。</p>
+<h3 id="11-数据库"><a href="#11-数据库" class="headerlink" title="11. 数据库"></a>11. 数据库</h3><p>数据库是一种结构化数据的持久存储系统，用于存储、检索和管理数据。数据库在各种应用程序和系统中都有广泛的应用，从基本的数据存储到复杂的分析和报告系统。主要的数据库类型包括：</p>
+<p>•<strong>关系型数据库（RDBMS）：</strong> 使用表格结构来存储数据，并支持SQL查询语言。常见的关系型数据库包括MySQL、PostgreSQL、Oracle和Microsoft SQL Server。•<strong>NoSQL数据库：</strong> 这些数据库不使用传统的表格结构，而使用文档、列族、键值对或图形等非关系数据结构来存储数据。NoSQL数据库包括MongoDB、Cassandra、Redis和Elasticsearch。•<strong>NewSQL数据库：</strong> 这是一种中间方式，结合了关系数据库和NoSQL数据库的某些特性。NewSQL数据库旨在提供可扩展性、高性能和分布式能力。</p>
+<h3 id="12-前端缓存"><a href="#12-前端缓存" class="headerlink" title="12. 前端缓存"></a>12. 前端缓存</h3><p>前端缓存是一种用于缓存Web应用程序的用户界面（HTML、CSS、JavaScript等）以提高性能的技术。前端缓存可以通过减少从服务器请求资源的次数、降低延迟并提供更快的用户体验来改进Web应用程序的性能。前端缓存通常采用浏览器缓存、CDN和缓存服务等多种形式。</p>
+<h3 id="13-后端缓存"><a href="#13-后端缓存" class="headerlink" title="13. 后端缓存"></a>13. 后端缓存</h3><p>后端缓存是一种用于缓存应用程序的数据和计算结果以提高性能的技术。它将数据存储在内存中，以便将来更快地检索。后端缓存通常用于存储数据库查询结果、API响应和计算密集型任务的结果。一些常见的后端缓存技术包括Redis和Memcached。</p>
+<h3 id="14-安全性"><a href="#14-安全性" class="headerlink" title="14. 安全性"></a>14. 安全性</h3><p>安全性是系统设计中至关重要的概念。它包括身份验证、授权、加密、跨站脚本（XSS）和跨站请求伪造（CSRF）防护、数据保护、网络安全等。系统设计应考虑各种威胁和安全攻击，以确保系统的数据和用户得到保护。</p>
+<h3 id="15-高可用性与容错性"><a href="#15-高可用性与容错性" class="headerlink" title="15. 高可用性与容错性"></a>15. 高可用性与容错性</h3><p>高可用性和容错性是系统设计的关键目标。高可用性涉及确保系统在面临故障或中断时保持可用。容错性涉及系统在出现故障或错误时能够恢复正常运行。实现高可用性和容错性通常需要使用负载均衡、故障转移、冗余和监控等技术。</p>
+<h3 id="16-事件驱动架构"><a href="#16-事件驱动架构" class="headerlink" title="16. 事件驱动架构"></a>16. 事件驱动架构</h3><p>事件驱动架构是一种应用程序架构，其中应用程序的不同组件通过事件进行通信。事件是应用程序中发生的特定动作或状态更改，可以触发其他组件的响应。事件驱动架构通常用于实现松散耦合的组件，以便能够更轻松地扩展和修改系统。</p>
+<h3 id="17-日志和监控"><a href="#17-日志和监控" class="headerlink" title="17. 日志和监控"></a>17. 日志和监控</h3><p>在系统设计中，日志和监控是关键工具，用于识别和解决性能问题、故障和安全问题。日志记录有助于跟踪系统的操作和问题，而监控则提供了实时的性能数据和警报。在分布式系统中，有效的日志和监控可以帮助工程师快速诊断问题和优化系统。</p>
+<h3 id="18-测试策略"><a href="#18-测试策略" class="headerlink" title="18. 测试策略"></a>18. 测试策略</h3><p>测试是系统设计和开发的关键组成部分。测试策略涉及确定测试范围、创建测试计划、编写测试用例、执行测试、自动化测试、性能测试等。有效的测试策略有助于确保系统的可靠性、性能和安全性。</p>
+<p>这18个系统设计概念涵盖了构建可伸缩、高性能、高可用性和安全的系统所需的核心知识。</p>
+<p>希望这篇文章对你有所帮助,没有浪费你的时间~</p>
 ]]></content>
       <categories>
-        <category>CDN,系统设计,网络技术</category>
+        <category>系统设计,网络技术</category>
       </categories>
       <tags>
-        <tag>CDN,系统设计,数据库扩展,数据处理,网络性能优化</tag>
+        <tag>CDN,系统设计,网络技术</tag>
       </tags>
   </entry>
   <entry>
@@ -3650,6 +3610,46 @@
       </categories>
       <tags>
         <tag>system design</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何有效地扩展数据库服务器以满足日益增长的工作量 - 数据库扩展策略</title>
+    <url>/2023/10/22/systemDesign-db-extend/</url>
+    <content><![CDATA[<p>在当今以数据为驱动的世界中，企业面临着一个挑战，即在保证应用程序的最佳性能的同时，管理迅速增长的数据量。扩展数据库服务器在满足这些需求方面起着至关重要的作用。本篇博客将探讨各种策略，以有效地扩展数据库服务器，以处理不断增加的工作量，提升性能并确保数据可用性。</p>
+<h2 id="什么是数据库服务器扩展？"><a href="#什么是数据库服务器扩展？" class="headerlink" title="什么是数据库服务器扩展？"></a>什么是数据库服务器扩展？</h2><p>数据库服务器扩展是增加数据库服务器的容量和性能，以处理不断增长的数据量、用户请求和系统负载的过程。通过升级硬件组件，如 CPU、内存或存储，可以实现垂直扩展，这允许数据库服务器利用升级后硬件的改进能力来处理更大的工作量。垂直扩展通常受限于单个服务器的最大容量。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/F02E56CC-D70B-4A7E-B6D6-9295DB942209/96A64AAA-6C98-47AC-9881-31AF9FA9D99F_2/vcI07aKM3g3GBDLwMhNNOqfyG81LNJyu0syQj8eeUpUz/6151697987454_.pic.jpeg" alt="6151697987454_.pic.jpeg"></p>
+<span id="more"></span>
+
+<h2 id="数据库服务器扩展的技术"><a href="#数据库服务器扩展的技术" class="headerlink" title="数据库服务器扩展的技术"></a>数据库服务器扩展的技术</h2><p>有多种方法可用于扩展数据库。它们是：</p>
+<h3 id="1-垂直扩展"><a href="#1-垂直扩展" class="headerlink" title="1. 垂直扩展"></a>1. 垂直扩展</h3><p>在垂直扩展，也称为升级或降级，通过升级硬件组件，如 CPU、内存或存储，来增加服务器的资源。 这种方法允许数据库服务器通过利用升级后硬件的改进能力来处理更大的工作量。垂直扩展通常受限于单个服务器的最大容量。</p>
+<h3 id="2-水平扩展"><a href="#2-水平扩展" class="headerlink" title="2. 水平扩展"></a>2. 水平扩展</h3><p>水平扩展关注的是向基础架构中添加更多数据库服务器。这种方法允许将工作负载分布在多个服务器上，减轻单个节点的负担。水平扩展也称为添加节点（扩展）或减少节点（收缩）。</p>
+<p>根据实现方式的不同，水平扩展还可以提高数据库的整体可靠性。它消除了单点故障，因为您增加了在故障转移情况下可以使用的节点数。然而，水平扩展也增加了时间、精力（因此成本）方面的开销，因为您需要更多的节点（因此有更多的故障点）来保持数据库功能正常。</p>
+<p>水平扩展比垂直扩展更困难，也更昂贵。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/F02E56CC-D70B-4A7E-B6D6-9295DB942209/943617F4-4586-48D7-A71C-3D5FF352DDDB_2/8LFoBH9y929Fy1if7HeZItrjoRi7MPXOk45vCZIak0sz/6161697987454_.pic.jpeg" alt="6161697987454_.pic.jpeg"></p>
+<p><strong>数据库集群和分片是实现水平扩展的常见技术。</strong></p>
+<h3 id="3-数据库复制"><a href="#3-数据库复制" class="headerlink" title="3. 数据库复制"></a>3. 数据库复制</h3><p>数据库复制涉及创建多个数据库的副本，并将工作负载分布在它们之间。 它通过将读请求定向到副本来提高读取性能，同时保留主服务器用于写入操作。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/F02E56CC-D70B-4A7E-B6D6-9295DB942209/8003376E-B7DC-44D8-B0F6-7B1B10AE7479_2/2ySUy6B1ONVKWtPZGBNL1v6PeQtMOZuzKlp6a73VemEz/6171697987454_.pic.jpeg" alt="6171697987454_.pic.jpeg"></p>
+<p>因此，在这里，数据库的副本帮助我们分发请求，从而降低了对单个数据库的负载。</p>
+<p>数据库复制涉及频繁地将数据从一个数据库或服务器复制或流式传输到另一个数据库，以便所有用户都可以访问同步的数据，而不管他们用来访问数据的是哪个系统。如果有数据更改，数据复制工具也会确保将更改应用于目标数据库。其结果是分布式数据存储网络，任何人都可以轻松地访问重要和相关的数据，并增加了不同位置之间的可用性。</p>
+<h3 id="4-缓存"><a href="#4-缓存" class="headerlink" title="4. 缓存"></a>4. 缓存</h3><p>缓存是将数据存储并从缓存中访问的过程。但请等等，什么是缓存？缓存是一个旨在存储数据的软件或硬件组件，以便未来对相同数据的请求可以更快地得到服务。</p>
+<p>缓存涉及将频繁访问的数据存储在内存中，以减少重复数据库查询的需求。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/F02E56CC-D70B-4A7E-B6D6-9295DB942209/26EB2C68-0068-4E84-9C9A-D2D78C249D32_2/iT6mLAXyingRleNT2Gt8dALNGI0Z145s0o7TmvB73HEz/6181697987454_.pic.jpeg" alt="6181697987454_.pic.jpeg"></p>
+<p>每当有新的请求到达时，首先会在缓存中搜索所请求的数据。当所请求的数据能够在缓存中找到时，称为“缓存命中”。相反，当无法在缓存中找到数据时，称为“缓存未命中”。显然，从缓存中读取所需数据被认为比重新计算结果或从原始数据存储中读取它更快。因此，从缓存中可以服务更多的请求，系统就越快。</p>
+<p>通过实施内存缓存层，比如 Redis 或 Memcached，组织可以显著提升数据库性能。缓存通过直接从内存中提供数据来卸载数据库服务器，从而降低响应时间并提高可扩展性。</p>
+<h3 id="5-分片"><a href="#5-分片" class="headerlink" title="5. 分片"></a>5. 分片</h3><p>分片是一种数据库分区的类型，其中将大型数据库分成较小的数据和不同节点。 分片涉及将数据分成较小的子集，并将其分布在多个服务器上。每个服务器处理特定的分区或分片，从而实现并行处理和改进性能。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/F02E56CC-D70B-4A7E-B6D6-9295DB942209/1BA867CF-700A-42F7-B9FC-2AFCAC580D2F_2/ZgG0e1q27MAoEyfIASNHhfSLC069OiHQ2jTPzg2GEaIz/6191697987454_.pic.jpeg" alt="6191697987454_.pic.jpeg"></p>
+<p>分片有两种类型：</p>
+<ol>
+<li>水平分片：在这种类型的分片中，数据库根据行进行分区。</li>
+<li>垂直分片：在这种类型的分片中，数据库根据列进行分区。</li>
+</ol>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>扩展数据库服务器是维持应用程序性能和适应不断增长的数据量的关键方面。通过采用垂直和水平扩展、复制、缓存和分区等策略，组织可以有效应对可扩展性挑战，并确保高效的数据库操作。然而，选择合适的扩展策略需要全面了解系统要求、工作负载模式和技术考虑因素。实施经过深思熟虑的扩展方法将使企业能够交付高性能的应用程序，同时有效地管理数据增长。</p>
+]]></content>
+      <categories>
+        <category>CDN,系统设计,网络技术</category>
+      </categories>
+      <tags>
+        <tag>CDN,系统设计,数据库扩展,数据处理,网络性能优化</tag>
       </tags>
   </entry>
   <entry>
