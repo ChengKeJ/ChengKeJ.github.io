@@ -847,72 +847,6 @@
       </tags>
   </entry>
   <entry>
-    <title>hexo 博客加载优化</title>
-    <url>/2022/12/24/hexo-hexo-y/</url>
-    <content><![CDATA[<h1 id="hexo-博客加载优化"><a href="#hexo-博客加载优化" class="headerlink" title="hexo 博客加载优化"></a>hexo 博客加载优化</h1><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近趁着周末折腾自己博客的时候,发现刷页面的时候会有点卡顿,感觉页面性能很低,所以开始了下面的优化,分析下来结果还不错比之前快了很多,那让我们开始吧!</p>
-<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/1050E4F2-AB1F-423B-8DE0-393C1A892684/3E8FC5EB-EEB0-4C2D-94EC-C948F99002CA_2/D2DBPCbNGLqxlHxMmGlIfcTaOf8xxt6pIZxuqnXNyMwz/Image.png" alt="Image.png"></p>
-<p>简单的来说主要以下几个部分的优化:</p>
-<ul>
-<li><strong>压缩静态资源,提高访问速度</strong></li>
-<li><strong>图片懒加载</strong></li>
-</ul>
-<span id="more"></span>
-<h3 id="压缩静态资源"><a href="#压缩静态资源" class="headerlink" title="压缩静态资源"></a>压缩静态资源</h3><p>安装插件：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-neat --save</span><br></pre></td></tr></table></figure>
-
-<p>然后我们需要在站点配置文件_config.yml 中添加以下代码：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 博文压缩</span><br><span class="line">neat_enable: true</span><br><span class="line"># 压缩html</span><br><span class="line">neat_html:</span><br><span class="line">  enable: true</span><br><span class="line">  exclude:</span><br><span class="line"># 压缩css</span><br><span class="line">neat_css:</span><br><span class="line">  enable: true</span><br><span class="line">  exclude:</span><br><span class="line">    - &#39;**&#x2F;*.min.css&#39;</span><br><span class="line"># 压缩js</span><br><span class="line">neat_js:</span><br><span class="line">  enable: true</span><br><span class="line">  mangle: true</span><br><span class="line">  output:</span><br><span class="line">  compress:</span><br><span class="line">  exclude:</span><br><span class="line">    - &#39;**&#x2F;*.min.js&#39;</span><br><span class="line">    - &#39;**&#x2F;jquery.fancybox.pack.js&#39;</span><br><span class="line">    - &#39;**&#x2F;index.js&#39;</span><br><span class="line">    - &#39;**&#x2F;fireworks.js&#39;</span><br></pre></td></tr></table></figure>
-
-<h3 id="图片懒加载"><a href="#图片懒加载" class="headerlink" title="图片懒加载"></a>图片懒加载</h3><p>安装插件:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-lazyload-image --save</span><br></pre></td></tr></table></figure>
-
-<p>_config.yml 中添加以下代码:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 图片懒加载</span><br><span class="line">lazyload:</span><br><span class="line">  enable: true</span><br><span class="line">  onlypost: false</span><br><span class="line">  loadingImg: &#x2F;images&#x2F;loading.gif</span><br></pre></td></tr></table></figure>
-
-
-
-
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>zookeeper 安装教程</title>
-    <url>/2020/06/29/kafka-2020-06-29-zookeeper-mac%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<h3 id="brew安装"><a href="#brew安装" class="headerlink" title="brew安装"></a>brew安装</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">brew install zookeeper</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x3D;&#x3D;&gt; Downloading https:&#x2F;&#x2F;homebrew.bintray.com&#x2F;bottles&#x2F;zookeeper-3.4.13.mojave.bottle.tar.gz</span><br><span class="line">&#x3D;&#x3D;&gt; Downloading from https:&#x2F;&#x2F;akamai.bintray.com&#x2F;d1&#x2F;d1e4e7738cd147dceb3d91b32480c20ac5da27d129905f336ba51c0c01b8a476?__gd</span><br><span class="line">######################################################################## 100.0%</span><br><span class="line">&#x3D;&#x3D;&gt; Pouring zookeeper-3.4.13.mojave.bottle.tar.gz</span><br><span class="line">&#x3D;&#x3D;&gt; Caveats</span><br><span class="line">To have launchd start zookeeper now and restart at login:</span><br><span class="line">  brew services start zookeeper</span><br><span class="line">Or, if you don&#39;t want&#x2F;need a background service you can just run:</span><br><span class="line">  zkServer start</span><br><span class="line">&#x3D;&#x3D;&gt; Summary</span><br><span class="line">🍺  &#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;zookeeper&#x2F;3.4.13: 244 files, 33.4MB</span><br></pre></td></tr></table></figure>
-<p>查看zookeeper 信息</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">brew info zookeeper</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">zookeeper: stable 3.4.13 (bottled), HEAD</span><br><span class="line">Centralized server for distributed coordination of services</span><br><span class="line">https:&#x2F;&#x2F;zookeeper.apache.org&#x2F;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;zookeeper&#x2F;3.4.13 (244 files, 33.4MB) *</span><br><span class="line">  Poured from bottle on 2020-06-30 at 17:51:47</span><br><span class="line">From: https:&#x2F;&#x2F;github.com&#x2F;Homebrew&#x2F;homebrew-core&#x2F;blob&#x2F;master&#x2F;Formula&#x2F;zookeeper.rb</span><br><span class="line">&#x3D;&#x3D;&gt; Options</span><br><span class="line">--HEAD</span><br><span class="line">	Install HEAD version</span><br><span class="line">&#x3D;&#x3D;&gt; Caveats</span><br><span class="line">To have launchd start zookeeper now and restart at login:</span><br><span class="line">  brew services start zookeeper</span><br><span class="line">Or, if you don&#39;t want&#x2F;need a background service you can just run:</span><br><span class="line">  zkServer start</span><br><span class="line">&#x3D;&#x3D;&gt; Analytics</span><br><span class="line">install: 7,043 (30 days), 21,263 (90 days), 79,252 (365 days)</span><br><span class="line">install_on_request: 2,192 (30 days), 6,831 (90 days), 25,814 (365 days)</span><br><span class="line">build_error: 0 (30 days)</span><br></pre></td></tr></table></figure>
-<p>brew nstall 完成之后 对应配置如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;etc&#x2F;zookeeper</span><br><span class="line">chengkejundeMacBook-Pro:zookeeper c.kj$ ls</span><br><span class="line">defaults		log4j.properties	zoo.cfg			zoo_sample.cfg</span><br><span class="line">chengkejundeMacBook-Pro:zookeeper c.kj$</span><br></pre></td></tr></table></figure>
-<p>修改 zoo.cfg 搭建集群修改这些配置 因为只需要搭建一个伪集群所以没有修改其中参数，感兴趣的可以自己搜索一些教程～</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"># The number of milliseconds of each tick</span><br><span class="line">tickTime&#x3D;2000</span><br><span class="line"># The number of ticks that the initial</span><br><span class="line"># synchronization phase can take</span><br><span class="line">initLimit&#x3D;10</span><br><span class="line"># The number of ticks that can pass between</span><br><span class="line"># sending a request and getting an acknowledgement</span><br><span class="line">syncLimit&#x3D;5</span><br><span class="line"># the directory where the snapshot is stored.</span><br><span class="line"># do not use &#x2F;tmp for storage, &#x2F;tmp here is just</span><br><span class="line"># example sakes.</span><br><span class="line">dataDir&#x3D;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;zookeeper&#x2F;data</span><br><span class="line"># the port at which the clients will connect</span><br><span class="line">clientPort&#x3D;2181</span><br><span class="line"># the maximum number of client connections.</span><br><span class="line"># increase this if you need to handle more clients</span><br><span class="line">#maxClientCnxns&#x3D;60</span><br><span class="line">#</span><br><span class="line"># Be sure to read the maintenance section of the</span><br><span class="line"># administrator guide before turning on autopurge.</span><br><span class="line">#</span><br><span class="line"># http:&#x2F;&#x2F;zookeeper.apache.org&#x2F;doc&#x2F;current&#x2F;zookeeperAdmin.html#sc_maintenance</span><br><span class="line">#</span><br><span class="line"># The number of snapshots to retain in dataDir</span><br><span class="line">#autopurge.snapRetainCount&#x3D;3</span><br><span class="line"># Purge task interval in hours</span><br><span class="line"># Set to &quot;0&quot; to disable auto purge feature</span><br><span class="line">#autopurge.purgeInterval&#x3D;1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>为了能够在任意目录启动zookeeper集群，我们需要配置环境变量.<br> <br> ps:你也可以不配，这不是搭建集群的必要操作，只不过如果你不配置环境变量，那么每次启动zookeeper需要到安装文件的 bin 目录下去启动。<br> <br> 配置如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">chengkejundeMacBook-Pro:data c.kj$ open -e ~&#x2F;.bash_profile</span><br><span class="line">chengkejundeMacBook-Pro:data c.kj$ cat ~&#x2F;.bash_profile</span><br><span class="line">export M3_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;mvn&#x2F;apache-maven-3.3.9</span><br><span class="line">export GRADLE_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;gradle&#x2F;5.2.1</span><br><span class="line">export SCALA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;scala&#x2F;2.12.8</span><br><span class="line">export ZK_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;zookeeper&#x2F;3.4.13</span><br><span class="line">export PATH&#x3D;$M3_HOME&#x2F;bin:$PATH:$GRADLE_HOME&#x2F;bin:$SCALA_HOME&#x2F;bin:$ZK_HOME&#x2F;binchengkejundeMacBook-Pro:data c.kj$</span><br><span class="line">chengkejundeMacBook-Pro:data c.kj$</span><br><span class="line">chengkejundeMacBook-Pro:data c.kj$ source ~&#x2F;.bash_profile</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>启动命令：<br><code>zkServer start</code></p>
-<p>停止命令：<br><code>zkServer stop</code></p>
-<p>重启命令：<br><code>zkServer restart</code></p>
-<p>查看集群节点状态：<br><code>zkServer status</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">chengkejundeMacBook-Pro:~ c.kj$ zkServer start</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: &#x2F;usr&#x2F;local&#x2F;etc&#x2F;zookeeper&#x2F;zoo.cfg</span><br><span class="line">Starting zookeeper ... already running as process 49422.</span><br><span class="line">chengkejundeMacBook-Pro:~ c.kj$ zkServer status</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: &#x2F;usr&#x2F;local&#x2F;etc&#x2F;zookeeper&#x2F;zoo.cfg</span><br><span class="line">Mode: standalone</span><br><span class="line">chengkejundeMacBook-Pro:~ c.kj$</span><br></pre></td></tr></table></figure>
-<p>end ~</p>
-]]></content>
-      <categories>
-        <category>kafka</category>
-      </categories>
-      <tags>
-        <tag>zookeeper</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JVM内存结构</title>
     <url>/2020/10/12/jvm-2020-10-09-jvm%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/</url>
     <content><![CDATA[<p>1.7和1.8之间JVM内存结构以及它们的差异</p>
@@ -1012,6 +946,79 @@
       </categories>
       <tags>
         <tag>jvm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在3分钟内学习二分查找</title>
+    <url>/2023/12/17/algo-binary-search/</url>
+    <content><![CDATA[<p>二分查找是一种在有序数组中查找元素的算法，通过不断将搜索区域分成两半来实现。你可能在日常生活中已经不知不觉地使用了大脑里的二分查找。</p>
+<p>最常见的例子是在字典中查找一个单词。假设你想找到“马拉松”的定义。你不会从字典的开头开始查找。你会打开字典大约在中间位置。如果你在‘T’处，你已经过头了。所以，你会调整并分割差距，缩小范围直到找到“马拉松”。</p>
+<p><img src="/uploads/1*eyscCE4qgTvv-yHMQzfpoQ.png" alt="1*eyscCE4qgTvv-yHMQzfpoQ.png"></p>
+<p>这个逐步排除的过程就是二分查找的要点，但是针对数组的情况。</p>
+<h1 id="线性查找-vs-二分查找"><a href="#线性查找-vs-二分查找" class="headerlink" title="线性查找 vs 二分查找"></a>线性查找 vs 二分查找</h1><p>考虑一个从1到100的数字数组，你需要在这个范围内找到一个特定的数字，就像玩一个猜数游戏。</p>
+<h2 id="线性查找"><a href="#线性查找" class="headerlink" title="线性查找"></a>线性查找</h2><p>简单的方法是使用一个简单的for循环——遍历数组中的每个元素直到找到目标项。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findItem</span>(<span class="params">arr, item</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;  </span><br><span class="line">    <span class="keyword">if</span> (arr[i] === item) &#123;  </span><br><span class="line">      <span class="keyword">return</span> i;  </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span>; <span class="comment">// 未找到项</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个方法可以找到，但它的时间复杂度是O(n)；想象一下，如果你要找的数在1到1万亿之间。</p>
+<p>你可以比线性查找做得更好。</p>
+<span id="more"></span>
+
+<h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><p>使用二分查找，不是检查每个元素，而是从中间开始。如果你要找的数字更大，你向右走；如果更小，你向左走。</p>
+<p><img src="/uploads/1*hAOPpSt3hqukVmFdPrKefQ.png" alt="1*hAOPpSt3hqukVmFdPrKefQ.png"></p>
+<p>然后呢？你重复这个过程。中间，左边或右边，缩小可能性直到找到数字。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearch</span>(<span class="params">arr, target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> left = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> right = arr.length - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span>(left &lt;= right) &#123;</span><br><span class="line">    <span class="keyword">let</span> mid = <span class="built_in">Math</span>.floor((left + right) / <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">if</span>(arr[mid] === target) <span class="keyword">return</span> mid;</span><br><span class="line">    <span class="keyword">if</span>(arr[mid] &lt; target) left = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> right = mid - <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>它不仅能迅速切入数据；时间复杂度为O(logN)，比线性搜索快得多。</p>
+<p>在空间方面，它是O(1)。不需要额外的存储空间。</p>
+<h1 id="小结：何时使用二分查找？"><a href="#小结：何时使用二分查找？" class="headerlink" title="小结：何时使用二分查找？"></a>小结：何时使用二分查找？</h1><p>二分查找最常用于数组，但也可以应用于数据库中的有序序列、排序链表中的搜索算法，甚至决策过程中可以预测和系统地划分范围的情况。</p>
+<p><img src="/uploads/1*Rg-FcePvP1TUC1FN55UfcQ.png" alt="1*Rg-FcePvP1TUC1FN55UfcQ.png"></p>
+<p>重要的是，二分查找只能在排序的项目集合上执行。整个二分查找的方法基于这样一个原则，即集合是按顺序排列的，这样算法才能通过比较中间项来预测搜索项的位置。如果集合没有排序，这种预测就不起作用，算法也不能正确运行。</p>
+<h2 id="系统设计概念系列文章"><a href="#系统设计概念系列文章" class="headerlink" title="系统设计概念系列文章"></a>系统设计概念系列文章</h2><p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488478&idx=1&sn=351b322c2089d8fd7124cf801e0a0524&chksm=fb7c9d29cc0b143facd8d62fb15812d6d28e22749e1183c48d6946dbd13d2e206cd9826bfb20&scene=21#wechat_redirect">计算机的层次化架构</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488411&idx=1&sn=2520f364a171f0d747a855600c99cc4b&chksm=fb7c9d6ccc0b147a44627a8eef07b5772acbda406ce566afe306ed2b3c98f665e05c12b6ad36&scene=21#wechat_redirect">每个开发者都应该知道的7个原则</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488409&idx=1&sn=a02b97d71d301be4200ab25e4ffad0bc&chksm=fb7c9d6ecc0b1478f85986554735e307e2c92d45236f241dec44a529e9c799c521d5448f9f9a&scene=21#wechat_redirect">6个系统设计的基本概念</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488407&idx=1&sn=6072efba48ed2f9f1968594a1055a3f6&chksm=fb7c9d60cc0b14766e394d5c04f33d5b1c63987d6cf5b66732887e9ffedbbfc576e5a6617891&scene=21#wechat_redirect">数据库：系统设计的核心</a></p>
+<h2 id="图解系列"><a href="#图解系列" class="headerlink" title="图解系列"></a>图解系列</h2><p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488260&idx=1&sn=89701a38ab8af1c670b432b5e7bedf2d&chksm=fb7c9df3cc0b14e52a043999e59b5c1251c3183a61b8c9d35777f237d1478c07b7d01352346e&scene=21#wechat_redirect">系统设计中的缓存技术：完整指南</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488165&idx=1&sn=2c4aaad53e6ca87f61e23dfba2fd8f9e&chksm=fb7c9c52cc0b1544266bb7e008f55bfbaa9b2acdb512eb07beece554e9f766e80f12699208b7&scene=21#wechat_redirect">关系数据库的全景图</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247487961&idx=1&sn=f1437b130e1828f4c1c0c45806e4922f&chksm=fb7c9f2ecc0b1638cf34322599d4bd42c002bf2e37c642d9dbc596366f91f237f410b4e90fc5&scene=21#wechat_redirect">Redis 全景解析</a></p>
+<p>当然架构设计、全景图解系列还有很多,快来关注一起学习吧~</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>zookeeper 安装教程</title>
+    <url>/2020/06/29/kafka-2020-06-29-zookeeper-mac%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<h3 id="brew安装"><a href="#brew安装" class="headerlink" title="brew安装"></a>brew安装</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">brew install zookeeper</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x3D;&#x3D;&gt; Downloading https:&#x2F;&#x2F;homebrew.bintray.com&#x2F;bottles&#x2F;zookeeper-3.4.13.mojave.bottle.tar.gz</span><br><span class="line">&#x3D;&#x3D;&gt; Downloading from https:&#x2F;&#x2F;akamai.bintray.com&#x2F;d1&#x2F;d1e4e7738cd147dceb3d91b32480c20ac5da27d129905f336ba51c0c01b8a476?__gd</span><br><span class="line">######################################################################## 100.0%</span><br><span class="line">&#x3D;&#x3D;&gt; Pouring zookeeper-3.4.13.mojave.bottle.tar.gz</span><br><span class="line">&#x3D;&#x3D;&gt; Caveats</span><br><span class="line">To have launchd start zookeeper now and restart at login:</span><br><span class="line">  brew services start zookeeper</span><br><span class="line">Or, if you don&#39;t want&#x2F;need a background service you can just run:</span><br><span class="line">  zkServer start</span><br><span class="line">&#x3D;&#x3D;&gt; Summary</span><br><span class="line">🍺  &#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;zookeeper&#x2F;3.4.13: 244 files, 33.4MB</span><br></pre></td></tr></table></figure>
+<p>查看zookeeper 信息</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">brew info zookeeper</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">zookeeper: stable 3.4.13 (bottled), HEAD</span><br><span class="line">Centralized server for distributed coordination of services</span><br><span class="line">https:&#x2F;&#x2F;zookeeper.apache.org&#x2F;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;zookeeper&#x2F;3.4.13 (244 files, 33.4MB) *</span><br><span class="line">  Poured from bottle on 2020-06-30 at 17:51:47</span><br><span class="line">From: https:&#x2F;&#x2F;github.com&#x2F;Homebrew&#x2F;homebrew-core&#x2F;blob&#x2F;master&#x2F;Formula&#x2F;zookeeper.rb</span><br><span class="line">&#x3D;&#x3D;&gt; Options</span><br><span class="line">--HEAD</span><br><span class="line">	Install HEAD version</span><br><span class="line">&#x3D;&#x3D;&gt; Caveats</span><br><span class="line">To have launchd start zookeeper now and restart at login:</span><br><span class="line">  brew services start zookeeper</span><br><span class="line">Or, if you don&#39;t want&#x2F;need a background service you can just run:</span><br><span class="line">  zkServer start</span><br><span class="line">&#x3D;&#x3D;&gt; Analytics</span><br><span class="line">install: 7,043 (30 days), 21,263 (90 days), 79,252 (365 days)</span><br><span class="line">install_on_request: 2,192 (30 days), 6,831 (90 days), 25,814 (365 days)</span><br><span class="line">build_error: 0 (30 days)</span><br></pre></td></tr></table></figure>
+<p>brew nstall 完成之后 对应配置如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;etc&#x2F;zookeeper</span><br><span class="line">chengkejundeMacBook-Pro:zookeeper c.kj$ ls</span><br><span class="line">defaults		log4j.properties	zoo.cfg			zoo_sample.cfg</span><br><span class="line">chengkejundeMacBook-Pro:zookeeper c.kj$</span><br></pre></td></tr></table></figure>
+<p>修改 zoo.cfg 搭建集群修改这些配置 因为只需要搭建一个伪集群所以没有修改其中参数，感兴趣的可以自己搜索一些教程～</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"># The number of milliseconds of each tick</span><br><span class="line">tickTime&#x3D;2000</span><br><span class="line"># The number of ticks that the initial</span><br><span class="line"># synchronization phase can take</span><br><span class="line">initLimit&#x3D;10</span><br><span class="line"># The number of ticks that can pass between</span><br><span class="line"># sending a request and getting an acknowledgement</span><br><span class="line">syncLimit&#x3D;5</span><br><span class="line"># the directory where the snapshot is stored.</span><br><span class="line"># do not use &#x2F;tmp for storage, &#x2F;tmp here is just</span><br><span class="line"># example sakes.</span><br><span class="line">dataDir&#x3D;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;zookeeper&#x2F;data</span><br><span class="line"># the port at which the clients will connect</span><br><span class="line">clientPort&#x3D;2181</span><br><span class="line"># the maximum number of client connections.</span><br><span class="line"># increase this if you need to handle more clients</span><br><span class="line">#maxClientCnxns&#x3D;60</span><br><span class="line">#</span><br><span class="line"># Be sure to read the maintenance section of the</span><br><span class="line"># administrator guide before turning on autopurge.</span><br><span class="line">#</span><br><span class="line"># http:&#x2F;&#x2F;zookeeper.apache.org&#x2F;doc&#x2F;current&#x2F;zookeeperAdmin.html#sc_maintenance</span><br><span class="line">#</span><br><span class="line"># The number of snapshots to retain in dataDir</span><br><span class="line">#autopurge.snapRetainCount&#x3D;3</span><br><span class="line"># Purge task interval in hours</span><br><span class="line"># Set to &quot;0&quot; to disable auto purge feature</span><br><span class="line">#autopurge.purgeInterval&#x3D;1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>为了能够在任意目录启动zookeeper集群，我们需要配置环境变量.<br> <br> ps:你也可以不配，这不是搭建集群的必要操作，只不过如果你不配置环境变量，那么每次启动zookeeper需要到安装文件的 bin 目录下去启动。<br> <br> 配置如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">chengkejundeMacBook-Pro:data c.kj$ open -e ~&#x2F;.bash_profile</span><br><span class="line">chengkejundeMacBook-Pro:data c.kj$ cat ~&#x2F;.bash_profile</span><br><span class="line">export M3_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;mvn&#x2F;apache-maven-3.3.9</span><br><span class="line">export GRADLE_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;gradle&#x2F;5.2.1</span><br><span class="line">export SCALA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;scala&#x2F;2.12.8</span><br><span class="line">export ZK_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;zookeeper&#x2F;3.4.13</span><br><span class="line">export PATH&#x3D;$M3_HOME&#x2F;bin:$PATH:$GRADLE_HOME&#x2F;bin:$SCALA_HOME&#x2F;bin:$ZK_HOME&#x2F;binchengkejundeMacBook-Pro:data c.kj$</span><br><span class="line">chengkejundeMacBook-Pro:data c.kj$</span><br><span class="line">chengkejundeMacBook-Pro:data c.kj$ source ~&#x2F;.bash_profile</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>启动命令：<br><code>zkServer start</code></p>
+<p>停止命令：<br><code>zkServer stop</code></p>
+<p>重启命令：<br><code>zkServer restart</code></p>
+<p>查看集群节点状态：<br><code>zkServer status</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">chengkejundeMacBook-Pro:~ c.kj$ zkServer start</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: &#x2F;usr&#x2F;local&#x2F;etc&#x2F;zookeeper&#x2F;zoo.cfg</span><br><span class="line">Starting zookeeper ... already running as process 49422.</span><br><span class="line">chengkejundeMacBook-Pro:~ c.kj$ zkServer status</span><br><span class="line">ZooKeeper JMX enabled by default</span><br><span class="line">Using config: &#x2F;usr&#x2F;local&#x2F;etc&#x2F;zookeeper&#x2F;zoo.cfg</span><br><span class="line">Mode: standalone</span><br><span class="line">chengkejundeMacBook-Pro:~ c.kj$</span><br></pre></td></tr></table></figure>
+<p>end ~</p>
+]]></content>
+      <categories>
+        <category>kafka</category>
+      </categories>
+      <tags>
+        <tag>zookeeper</tag>
       </tags>
   </entry>
   <entry>
@@ -1241,6 +1248,116 @@
       </tags>
   </entry>
   <entry>
+    <title>hexo 博客加载优化</title>
+    <url>/2022/12/24/hexo-hexo-y/</url>
+    <content><![CDATA[<h1 id="hexo-博客加载优化"><a href="#hexo-博客加载优化" class="headerlink" title="hexo 博客加载优化"></a>hexo 博客加载优化</h1><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>最近趁着周末折腾自己博客的时候,发现刷页面的时候会有点卡顿,感觉页面性能很低,所以开始了下面的优化,分析下来结果还不错比之前快了很多,那让我们开始吧!</p>
+<p><img src="https://res.craft.do/user/full/d3f184bd-2fc6-ae80-c9ed-d9b26e0cd7ba/doc/1050E4F2-AB1F-423B-8DE0-393C1A892684/3E8FC5EB-EEB0-4C2D-94EC-C948F99002CA_2/D2DBPCbNGLqxlHxMmGlIfcTaOf8xxt6pIZxuqnXNyMwz/Image.png" alt="Image.png"></p>
+<p>简单的来说主要以下几个部分的优化:</p>
+<ul>
+<li><strong>压缩静态资源,提高访问速度</strong></li>
+<li><strong>图片懒加载</strong></li>
+</ul>
+<span id="more"></span>
+<h3 id="压缩静态资源"><a href="#压缩静态资源" class="headerlink" title="压缩静态资源"></a>压缩静态资源</h3><p>安装插件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-neat --save</span><br></pre></td></tr></table></figure>
+
+<p>然后我们需要在站点配置文件_config.yml 中添加以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 博文压缩</span><br><span class="line">neat_enable: true</span><br><span class="line"># 压缩html</span><br><span class="line">neat_html:</span><br><span class="line">  enable: true</span><br><span class="line">  exclude:</span><br><span class="line"># 压缩css</span><br><span class="line">neat_css:</span><br><span class="line">  enable: true</span><br><span class="line">  exclude:</span><br><span class="line">    - &#39;**&#x2F;*.min.css&#39;</span><br><span class="line"># 压缩js</span><br><span class="line">neat_js:</span><br><span class="line">  enable: true</span><br><span class="line">  mangle: true</span><br><span class="line">  output:</span><br><span class="line">  compress:</span><br><span class="line">  exclude:</span><br><span class="line">    - &#39;**&#x2F;*.min.js&#39;</span><br><span class="line">    - &#39;**&#x2F;jquery.fancybox.pack.js&#39;</span><br><span class="line">    - &#39;**&#x2F;index.js&#39;</span><br><span class="line">    - &#39;**&#x2F;fireworks.js&#39;</span><br></pre></td></tr></table></figure>
+
+<h3 id="图片懒加载"><a href="#图片懒加载" class="headerlink" title="图片懒加载"></a>图片懒加载</h3><p>安装插件:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-lazyload-image --save</span><br></pre></td></tr></table></figure>
+
+<p>_config.yml 中添加以下代码:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 图片懒加载</span><br><span class="line">lazyload:</span><br><span class="line">  enable: true</span><br><span class="line">  onlypost: false</span><br><span class="line">  loadingImg: &#x2F;images&#x2F;loading.gif</span><br></pre></td></tr></table></figure>
+
+
+
+
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Kafka 在分布式系统中八个使用场景</title>
+    <url>/2023/11/19/kafka-kafka/</url>
+    <content><![CDATA[<blockquote>
+<p>Kafka 最初是为大规模日志处理而构建的。它会保留消息直到过期，并允许消费者以自己的速度拉取消息。与其前身不同，Kafka 不仅仅是一个消息队列，它是一个适用于各种情况的开源事件流平台。让我们回顾一下流行的 Kafka 使用案例。</p>
+</blockquote>
+<h2 id="1-日志处理和分析"><a href="#1-日志处理和分析" class="headerlink" title="1. 日志处理和分析"></a>1. 日志处理和分析</h2><ul>
+<li>下图显示了一个典型的 ELK（Elastic-Logstash-Kibana）堆栈。Kafka高效地收集来自每个实例的日志流。</li>
+<li>ElasticSearch 从 Kafka 消耗日志并对其进行索引。Kibana 在 ElasticSearch 之上提供了搜索和可视化界面。</li>
+</ul>
+<p><img src="/uploads/1*kTAkXkIs0mD7zrkuZA7Ocg.png" alt="1*kTAkXkIs0mD7zrkuZA7Ocg.png"></p>
+<span id="more"></span>
+
+<h2 id="2-推荐中的数据流"><a href="#2-推荐中的数据流" class="headerlink" title="2. 推荐中的数据流"></a>2. 推荐中的数据流</h2><ul>
+<li>像亚马逊这样的电子商务网站使用过去的行为和类似的用户来计算产品推荐。</li>
+<li>下图显示了推荐系统的工作原理。Kafka 会流式传输原始的点击流数据，Flink 对其进行处理，模型训练从数据湖中消耗聚合数据。</li>
+<li>这允许不断改进每个用户的推荐相关性。另一个伟大的 Kafka 使用案例是实时点击流分析。</li>
+</ul>
+<p><img src="/uploads/1*3luo79062OAw-yPYMnSTjQ.png" alt="1*3luo79062OAw-yPYMnSTjQ.png"></p>
+<h2 id="3-系统监控和警报"><a href="#3-系统监控和警报" class="headerlink" title="3. 系统监控和警报"></a>3. 系统监控和警报</h2><ul>
+<li>与日志分析系统类似，我们需要收集用于监控和故障排除的系统度量信息。</li>
+<li>不同之处在于度量数据是结构化数据，而日志是非结构化文本。度量数据被发送到 Kafka 并在 Flink 中进行聚合。聚合后的数据被实时监控仪表板和警报系统（例如 PagerDuty）消耗。</li>
+</ul>
+<p><img src="/uploads/1*1JdHcMKoYmk17tspT76zTg.png" alt="1*1JdHcMKoYmk17tspT76zTg.png"></p>
+<h2 id="4-CDC（变更数据捕获）"><a href="#4-CDC（变更数据捕获）" class="headerlink" title="4. CDC（变更数据捕获）"></a>4. CDC（变更数据捕获）</h2><ul>
+<li>变更数据捕获（CDC）将数据库更改流式传输到其他系统以进行复制或缓存/索引更新。</li>
+<li>Kafka 也是构建数据管道的强大工具，这意味着您可以使用它从各种来源摄取数据，应用处理规则，并将数据存储在数据仓库、数据湖或数据网格中。</li>
+<li>例如，在下图中，交易日志被发送到 Kafka，并由 ElasticSearch、Redis 和辅助数据库摄取。</li>
+</ul>
+<p><img src="/uploads/1*GeYyb7RDExgEjom9DyC5UA.png" alt="1*GeYyb7RDExgEjom9DyC5UA.png"></p>
+<h2 id="5-系统迁移"><a href="#5-系统迁移" class="headerlink" title="5. 系统迁移"></a>5. 系统迁移</h2><ul>
+<li>升级旧服务具有挑战性 —— 旧的编程语言、复杂的逻辑和缺乏测试。我们可以通过利用消息中间件来减轻风险。</li>
+<li>在下图中，为了升级下图中的订单服务，我们更新了传统的订单服务以消耗 Kafka 的输入并将结果写入 ORDER 主题。新订单服务消耗相同的输入并将结果写入 ORDERNEW 主题。</li>
+<li>对账服务比较 ORDER 和 ORDERNEW。如果它们相同，新服务会通过测试。</li>
+</ul>
+<p><img src="/uploads/1*A-ZEA4YCeZT5Mpk5VkeZwg.png" alt="1*A-ZEA4YCeZT5Mpk5VkeZwg.png"></p>
+<h2 id="6-事件溯源"><a href="#6-事件溯源" class="headerlink" title="6. 事件溯源"></a>6. 事件溯源</h2><ul>
+<li>如果将事件作为系统中的第一类公民（即，真实来源）来处理，那么存储应用程序状态就是一系列事件，系统中的其他所有内容都可以从这些持久且不可变的事件中重新计算。</li>
+<li>事件溯源就是关于以事件序列捕获状态更改。公司通常将 Kafka 作为他们的主要事件存储。在出现任何故障、回滚或需要重建状态的情况下，您只需随时重新应用来自 Kafka 的事件。</li>
+</ul>
+<h2 id="7-消息传递"><a href="#7-消息传递" class="headerlink" title="7. 消息传递"></a>7. 消息传递</h2><ul>
+<li>Kafka 最好且最常见的用例之一是作为消息队列。Kafka 为您提供了一个可靠且可扩展的消息队列，可以处理大量数据。</li>
+<li>我们可以将消息组织成“主题”，这意味着您将每条消息发布到一个特定的主题，而在另一侧，消费者将订阅一个或多个主题，并从中消费消息。</li>
+<li>微服务之间解耦通信的最大优势在于，您可以随时将新服务添加到这些事件中，而不会增加系统的复杂性或不得不更改任何源代码。</li>
+</ul>
+<h2 id="8-提交日志"><a href="#8-提交日志" class="headerlink" title="8. 提交日志"></a>8. 提交日志</h2><ul>
+<li>Kafka 可以作为分布式系统的一种外部提交日志。这个日志有助于在节点之间复制数据，并充当了失败节点恢复其数据的重新同步机制。</li>
+<li>Kafka 中的日志压缩功能有助于支持此用途。</li>
+</ul>
+<blockquote>
+<p><em>别忘了点击“掌声”和“关注”按钮，帮助我撰写更多类似的文章。</em></p>
+</blockquote>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.confluent.io/learn/apache-kafka-benefits-and-use-cases/">Apache Kafka 的优势和使用案例</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>kafka,系统设计</category>
+      </categories>
+      <tags>
+        <tag>kafka,系统设计,网络技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>redis 基础-数据结构-整数集合</title>
+    <url>/2020/07/22/redis-2020-07-22-redis-%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%B4%E6%95%B0%E9%9B%86%E5%90%88/</url>
+    <content><![CDATA[<h4 id="整数集合定义"><a href="#整数集合定义" class="headerlink" title="整数集合定义:"></a>整数集合定义:</h4><p>整数集合（intset）是Redis用于保存整数值的集合抽象数据结构，它可以保存类型为int16_t、int32_t或者int64_t的整数值，并且保证集合中不会出现重复元素。</p>
+<h4 id="整数集合使用场景"><a href="#整数集合使用场景" class="headerlink" title="整数集合使用场景:"></a>整数集合使用场景:</h4><p>整数集合（intset）是集合键的底层实现之一，当一个集合只包含整数值元素，并且这个集合的元素数量不多时，Redis就会使用整数集合作为集合键的底层实现</p>
+]]></content>
+      <categories>
+        <category>redis</category>
+      </categories>
+      <tags>
+        <tag>redis 数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring5-Reactor函数式编程</title>
     <url>/2020/07/10/kafka-2020-07-10-Spring5-Reactor%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>反应式编程是一种可以替代命令式编程的编程范式。这种可替代性存在的原因在于反应式编程解决了命令式编程中的一些限制。理解这些限制，有助于你更好地理解反应式编程模型的优点</p>
@@ -1374,123 +1491,6 @@
       </categories>
       <tags>
         <tag>Spring</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Kafka 在分布式系统中八个使用场景</title>
-    <url>/2023/11/19/kafka-kafka/</url>
-    <content><![CDATA[<blockquote>
-<p>Kafka 最初是为大规模日志处理而构建的。它会保留消息直到过期，并允许消费者以自己的速度拉取消息。与其前身不同，Kafka 不仅仅是一个消息队列，它是一个适用于各种情况的开源事件流平台。让我们回顾一下流行的 Kafka 使用案例。</p>
-</blockquote>
-<h2 id="1-日志处理和分析"><a href="#1-日志处理和分析" class="headerlink" title="1. 日志处理和分析"></a>1. 日志处理和分析</h2><ul>
-<li>下图显示了一个典型的 ELK（Elastic-Logstash-Kibana）堆栈。Kafka高效地收集来自每个实例的日志流。</li>
-<li>ElasticSearch 从 Kafka 消耗日志并对其进行索引。Kibana 在 ElasticSearch 之上提供了搜索和可视化界面。</li>
-</ul>
-<p><img src="/uploads/1*kTAkXkIs0mD7zrkuZA7Ocg.png" alt="1*kTAkXkIs0mD7zrkuZA7Ocg.png"></p>
-<span id="more"></span>
-
-<h2 id="2-推荐中的数据流"><a href="#2-推荐中的数据流" class="headerlink" title="2. 推荐中的数据流"></a>2. 推荐中的数据流</h2><ul>
-<li>像亚马逊这样的电子商务网站使用过去的行为和类似的用户来计算产品推荐。</li>
-<li>下图显示了推荐系统的工作原理。Kafka 会流式传输原始的点击流数据，Flink 对其进行处理，模型训练从数据湖中消耗聚合数据。</li>
-<li>这允许不断改进每个用户的推荐相关性。另一个伟大的 Kafka 使用案例是实时点击流分析。</li>
-</ul>
-<p><img src="/uploads/1*3luo79062OAw-yPYMnSTjQ.png" alt="1*3luo79062OAw-yPYMnSTjQ.png"></p>
-<h2 id="3-系统监控和警报"><a href="#3-系统监控和警报" class="headerlink" title="3. 系统监控和警报"></a>3. 系统监控和警报</h2><ul>
-<li>与日志分析系统类似，我们需要收集用于监控和故障排除的系统度量信息。</li>
-<li>不同之处在于度量数据是结构化数据，而日志是非结构化文本。度量数据被发送到 Kafka 并在 Flink 中进行聚合。聚合后的数据被实时监控仪表板和警报系统（例如 PagerDuty）消耗。</li>
-</ul>
-<p><img src="/uploads/1*1JdHcMKoYmk17tspT76zTg.png" alt="1*1JdHcMKoYmk17tspT76zTg.png"></p>
-<h2 id="4-CDC（变更数据捕获）"><a href="#4-CDC（变更数据捕获）" class="headerlink" title="4. CDC（变更数据捕获）"></a>4. CDC（变更数据捕获）</h2><ul>
-<li>变更数据捕获（CDC）将数据库更改流式传输到其他系统以进行复制或缓存/索引更新。</li>
-<li>Kafka 也是构建数据管道的强大工具，这意味着您可以使用它从各种来源摄取数据，应用处理规则，并将数据存储在数据仓库、数据湖或数据网格中。</li>
-<li>例如，在下图中，交易日志被发送到 Kafka，并由 ElasticSearch、Redis 和辅助数据库摄取。</li>
-</ul>
-<p><img src="/uploads/1*GeYyb7RDExgEjom9DyC5UA.png" alt="1*GeYyb7RDExgEjom9DyC5UA.png"></p>
-<h2 id="5-系统迁移"><a href="#5-系统迁移" class="headerlink" title="5. 系统迁移"></a>5. 系统迁移</h2><ul>
-<li>升级旧服务具有挑战性 —— 旧的编程语言、复杂的逻辑和缺乏测试。我们可以通过利用消息中间件来减轻风险。</li>
-<li>在下图中，为了升级下图中的订单服务，我们更新了传统的订单服务以消耗 Kafka 的输入并将结果写入 ORDER 主题。新订单服务消耗相同的输入并将结果写入 ORDERNEW 主题。</li>
-<li>对账服务比较 ORDER 和 ORDERNEW。如果它们相同，新服务会通过测试。</li>
-</ul>
-<p><img src="/uploads/1*A-ZEA4YCeZT5Mpk5VkeZwg.png" alt="1*A-ZEA4YCeZT5Mpk5VkeZwg.png"></p>
-<h2 id="6-事件溯源"><a href="#6-事件溯源" class="headerlink" title="6. 事件溯源"></a>6. 事件溯源</h2><ul>
-<li>如果将事件作为系统中的第一类公民（即，真实来源）来处理，那么存储应用程序状态就是一系列事件，系统中的其他所有内容都可以从这些持久且不可变的事件中重新计算。</li>
-<li>事件溯源就是关于以事件序列捕获状态更改。公司通常将 Kafka 作为他们的主要事件存储。在出现任何故障、回滚或需要重建状态的情况下，您只需随时重新应用来自 Kafka 的事件。</li>
-</ul>
-<h2 id="7-消息传递"><a href="#7-消息传递" class="headerlink" title="7. 消息传递"></a>7. 消息传递</h2><ul>
-<li>Kafka 最好且最常见的用例之一是作为消息队列。Kafka 为您提供了一个可靠且可扩展的消息队列，可以处理大量数据。</li>
-<li>我们可以将消息组织成“主题”，这意味着您将每条消息发布到一个特定的主题，而在另一侧，消费者将订阅一个或多个主题，并从中消费消息。</li>
-<li>微服务之间解耦通信的最大优势在于，您可以随时将新服务添加到这些事件中，而不会增加系统的复杂性或不得不更改任何源代码。</li>
-</ul>
-<h2 id="8-提交日志"><a href="#8-提交日志" class="headerlink" title="8. 提交日志"></a>8. 提交日志</h2><ul>
-<li>Kafka 可以作为分布式系统的一种外部提交日志。这个日志有助于在节点之间复制数据，并充当了失败节点恢复其数据的重新同步机制。</li>
-<li>Kafka 中的日志压缩功能有助于支持此用途。</li>
-</ul>
-<blockquote>
-<p><em>别忘了点击“掌声”和“关注”按钮，帮助我撰写更多类似的文章。</em></p>
-</blockquote>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.confluent.io/learn/apache-kafka-benefits-and-use-cases/">Apache Kafka 的优势和使用案例</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>kafka,系统设计</category>
-      </categories>
-      <tags>
-        <tag>kafka,系统设计,网络技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>redis 基础-数据结构-整数集合</title>
-    <url>/2020/07/22/redis-2020-07-22-redis-%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%B4%E6%95%B0%E9%9B%86%E5%90%88/</url>
-    <content><![CDATA[<h4 id="整数集合定义"><a href="#整数集合定义" class="headerlink" title="整数集合定义:"></a>整数集合定义:</h4><p>整数集合（intset）是Redis用于保存整数值的集合抽象数据结构，它可以保存类型为int16_t、int32_t或者int64_t的整数值，并且保证集合中不会出现重复元素。</p>
-<h4 id="整数集合使用场景"><a href="#整数集合使用场景" class="headerlink" title="整数集合使用场景:"></a>整数集合使用场景:</h4><p>整数集合（intset）是集合键的底层实现之一，当一个集合只包含整数值元素，并且这个集合的元素数量不多时，Redis就会使用整数集合作为集合键的底层实现</p>
-]]></content>
-      <categories>
-        <category>redis</category>
-      </categories>
-      <tags>
-        <tag>redis 数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在3分钟内学习二分查找</title>
-    <url>/2023/12/17/algo-binary-search/</url>
-    <content><![CDATA[<p>二分查找是一种在有序数组中查找元素的算法，通过不断将搜索区域分成两半来实现。你可能在日常生活中已经不知不觉地使用了大脑里的二分查找。</p>
-<p>最常见的例子是在字典中查找一个单词。假设你想找到“马拉松”的定义。你不会从字典的开头开始查找。你会打开字典大约在中间位置。如果你在‘T’处，你已经过头了。所以，你会调整并分割差距，缩小范围直到找到“马拉松”。</p>
-<p><img src="/uploads/1*eyscCE4qgTvv-yHMQzfpoQ.png" alt="1*eyscCE4qgTvv-yHMQzfpoQ.png"></p>
-<p>这个逐步排除的过程就是二分查找的要点，但是针对数组的情况。</p>
-<h1 id="线性查找-vs-二分查找"><a href="#线性查找-vs-二分查找" class="headerlink" title="线性查找 vs 二分查找"></a>线性查找 vs 二分查找</h1><p>考虑一个从1到100的数字数组，你需要在这个范围内找到一个特定的数字，就像玩一个猜数游戏。</p>
-<h2 id="线性查找"><a href="#线性查找" class="headerlink" title="线性查找"></a>线性查找</h2><p>简单的方法是使用一个简单的for循环——遍历数组中的每个元素直到找到目标项。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findItem</span>(<span class="params">arr, item</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;  </span><br><span class="line">    <span class="keyword">if</span> (arr[i] === item) &#123;  </span><br><span class="line">      <span class="keyword">return</span> i;  </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span>; <span class="comment">// 未找到项</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这个方法可以找到，但它的时间复杂度是O(n)；想象一下，如果你要找的数在1到1万亿之间。</p>
-<p>你可以比线性查找做得更好。</p>
-<span id="more"></span>
-
-<h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><p>使用二分查找，不是检查每个元素，而是从中间开始。如果你要找的数字更大，你向右走；如果更小，你向左走。</p>
-<p><img src="/uploads/1*hAOPpSt3hqukVmFdPrKefQ.png" alt="1*hAOPpSt3hqukVmFdPrKefQ.png"></p>
-<p>然后呢？你重复这个过程。中间，左边或右边，缩小可能性直到找到数字。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binarySearch</span>(<span class="params">arr, target</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> left = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> right = arr.length - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span>(left &lt;= right) &#123;</span><br><span class="line">    <span class="keyword">let</span> mid = <span class="built_in">Math</span>.floor((left + right) / <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">if</span>(arr[mid] === target) <span class="keyword">return</span> mid;</span><br><span class="line">    <span class="keyword">if</span>(arr[mid] &lt; target) left = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> right = mid - <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>它不仅能迅速切入数据；时间复杂度为O(logN)，比线性搜索快得多。</p>
-<p>在空间方面，它是O(1)。不需要额外的存储空间。</p>
-<h1 id="小结：何时使用二分查找？"><a href="#小结：何时使用二分查找？" class="headerlink" title="小结：何时使用二分查找？"></a>小结：何时使用二分查找？</h1><p>二分查找最常用于数组，但也可以应用于数据库中的有序序列、排序链表中的搜索算法，甚至决策过程中可以预测和系统地划分范围的情况。</p>
-<p><img src="/uploads/1*Rg-FcePvP1TUC1FN55UfcQ.png" alt="1*Rg-FcePvP1TUC1FN55UfcQ.png"></p>
-<p>重要的是，二分查找只能在排序的项目集合上执行。整个二分查找的方法基于这样一个原则，即集合是按顺序排列的，这样算法才能通过比较中间项来预测搜索项的位置。如果集合没有排序，这种预测就不起作用，算法也不能正确运行。</p>
-<h2 id="系统设计概念系列文章"><a href="#系统设计概念系列文章" class="headerlink" title="系统设计概念系列文章"></a>系统设计概念系列文章</h2><p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488478&idx=1&sn=351b322c2089d8fd7124cf801e0a0524&chksm=fb7c9d29cc0b143facd8d62fb15812d6d28e22749e1183c48d6946dbd13d2e206cd9826bfb20&scene=21#wechat_redirect">计算机的层次化架构</a></p>
-<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488411&idx=1&sn=2520f364a171f0d747a855600c99cc4b&chksm=fb7c9d6ccc0b147a44627a8eef07b5772acbda406ce566afe306ed2b3c98f665e05c12b6ad36&scene=21#wechat_redirect">每个开发者都应该知道的7个原则</a></p>
-<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488409&idx=1&sn=a02b97d71d301be4200ab25e4ffad0bc&chksm=fb7c9d6ecc0b1478f85986554735e307e2c92d45236f241dec44a529e9c799c521d5448f9f9a&scene=21#wechat_redirect">6个系统设计的基本概念</a></p>
-<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488407&idx=1&sn=6072efba48ed2f9f1968594a1055a3f6&chksm=fb7c9d60cc0b14766e394d5c04f33d5b1c63987d6cf5b66732887e9ffedbbfc576e5a6617891&scene=21#wechat_redirect">数据库：系统设计的核心</a></p>
-<h2 id="图解系列"><a href="#图解系列" class="headerlink" title="图解系列"></a>图解系列</h2><p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488260&idx=1&sn=89701a38ab8af1c670b432b5e7bedf2d&chksm=fb7c9df3cc0b14e52a043999e59b5c1251c3183a61b8c9d35777f237d1478c07b7d01352346e&scene=21#wechat_redirect">系统设计中的缓存技术：完整指南</a></p>
-<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488165&idx=1&sn=2c4aaad53e6ca87f61e23dfba2fd8f9e&chksm=fb7c9c52cc0b1544266bb7e008f55bfbaa9b2acdb512eb07beece554e9f766e80f12699208b7&scene=21#wechat_redirect">关系数据库的全景图</a></p>
-<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247487961&idx=1&sn=f1437b130e1828f4c1c0c45806e4922f&chksm=fb7c9f2ecc0b1638cf34322599d4bd42c002bf2e37c642d9dbc596366f91f237f410b4e90fc5&scene=21#wechat_redirect">Redis 全景解析</a></p>
-<p>当然架构设计、全景图解系列还有很多,快来关注一起学习吧~</p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1907,6 +1907,90 @@
       </tags>
   </entry>
   <entry>
+    <title>redis 的事物</title>
+    <url>/2020/10/27/redis-2020-10-27-redis-%E7%9A%84%E4%BA%8B%E7%89%A9/</url>
+    <content><![CDATA[<p>MULTI 、 EXEC 、 DISCARD 和 WATCH 是 Redis 事务的基础。</p>
+<span id="more"></span>
+<p>事务可以一次执行多个命令， 并且带有以下两个重要的保证：</p>
+<ul>
+<li>事务是一个单独的隔离操作：事务中的所有命令都会序列化、按顺序地执行。事务在执行的过程中，不会被其他客户端发送来的命令请求所打断。</li>
+<li>事务是一个原子操作：事务中的命令要么全部被执行，要么全部都不执行。</li>
+</ul>
+<!--more-->
+<p>EXEC 命令负责触发并执行事务中的所有命令：<br>当使用 AOF 方式做持久化的时候， Redis 会使用单个 write(2) 命令将事务写入到磁盘中。<br>然而，如果 Redis 服务器因为某些原因被管理员杀死，或者遇上某种硬件故障，那么可能只有部分事务命令会被成功写入到磁盘中。<br>如果 Redis 在重新启动时发现 AOF 文件出了这样的问题，那么它会退出，并汇报一个错误。<br>使用 redis-check-aof 程序可以修复这一问题：它会移除 AOF 文件中不完整事务的信息，确保服务器可以顺利启动。</p>
+<ul>
+<li>如果客户端在使用 MULTI 开启了一个事务之后，却因为断线而没有成功执行 EXEC ，那么事务中的所有命令都不会被执行。</li>
+<li>另一方面，如果客户端成功在开启事务之后执行 EXEC ，那么事务中的所有命令都会被执行。<br>从 2.2 版本开始，Redis 还可以通过乐观锁（optimistic lock）实现 CAS （check-and-set）操作，具体信息请参考文档的后半部分。</li>
+</ul>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>MULTI 命令用于开启一个事务，它总是返回 OK 。</p>
+<p>MULTI 执行之后， 客户端可以继续向服务器发送任意多条命令， 这些命令不会立即被执行， 而是被放到一个队列中， 当 EXEC 命令被调用时， 所有队列中的命令才会被执行。</p>
+<p>另一方面， 通过调用 DISCARD ， 客户端可以清空事务队列， 并放弃执行事务。</p>
+<p>以下是一个事务例子， 它原子地增加了 foo 和 bar 两个键的值：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt; MULTI</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">&gt; INCR foo</span><br><span class="line">QUEUED</span><br><span class="line"></span><br><span class="line">&gt; INCR bar</span><br><span class="line">QUEUED</span><br><span class="line"></span><br><span class="line">&gt; EXEC</span><br><span class="line">1) (integer) 1</span><br><span class="line">2) (integer) 1</span><br></pre></td></tr></table></figure>
+<p>EXEC 命令的回复是一个数组， 数组中的每个元素都是执行事务中的命令所产生的回复。 其中， 回复元素的先后顺序和命令发送的先后顺序一致。</p>
+<p>当客户端处于事务状态时， 所有传入的命令都会返回一个内容为 QUEUED 的状态回复（status reply）， 这些被入队的命令将在 EXEC 命令被调用时执行。</p>
+<h3 id="事务中的错误"><a href="#事务中的错误" class="headerlink" title="事务中的错误"></a>事务中的错误</h3><p>使用事务时可能会遇上以下两种错误：</p>
+<ul>
+<li>事务在执行 EXEC 之前，入队的命令可能会出错。比如说，命令可能会产生语法错误（参数数量错误，参数名错误，等等），或者其他更严重的错误，比如内存不足（如果服务器使用 maxmemory 设置了最大内存限制的话）。</li>
+<li>命令可能在 EXEC 调用之后失败。举个例子，事务中的命令可能处理了错误类型的键，比如将列表命令用在了字符串键上面，诸如此类。<br>对于发生在 EXEC 执行之前的错误，客户端以前的做法是检查命令入队所得的返回值：如果命令入队时返回 QUEUED ，那么入队成功；否则，就是入队失败。如果有命令在入队时失败，那么大部分客户端都会停止并取消这个事务。</li>
+</ul>
+<p>不过，从 Redis 2.6.5 开始，服务器会对命令入队失败的情况进行记录，并在客户端调用 EXEC 命令时，拒绝执行并自动放弃这个事务。</p>
+<p>在 Redis 2.6.5 以前， Redis 只执行事务中那些入队成功的命令，而忽略那些入队失败的命令。 而新的处理方式则使得在流水线（pipeline）中包含事务变得简单，因为发送事务和读取事务的回复都只需要和服务器进行一次通讯。</p>
+<p>至于那些在 EXEC 命令执行之后所产生的错误， 并没有对它们进行特别处理： 即使事务中有某个/某些命令在执行时产生了错误， 事务中的其他命令仍然会继续执行。</p>
+<p>从协议的角度来看这个问题，会更容易理解一些。 以下例子中， LPOP 命令的执行将出错， 尽管调用它的语法是正确的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Trying 127.0.0.1...</span><br><span class="line">Connected to localhost.</span><br><span class="line">Escape character is &#39;^]&#39;.</span><br><span class="line"></span><br><span class="line">MULTI</span><br><span class="line">+OK</span><br><span class="line"></span><br><span class="line">SET a 3</span><br><span class="line">abc</span><br><span class="line"></span><br><span class="line">+QUEUED</span><br><span class="line">LPOP a</span><br><span class="line"></span><br><span class="line">+QUEUED</span><br><span class="line">EXEC</span><br><span class="line"></span><br><span class="line">*2</span><br><span class="line">+OK</span><br><span class="line">-ERR Operation against a key holding the wrong kind of value</span><br></pre></td></tr></table></figure>
+
+<p>EXEC 返回两条批量回复（bulk reply）： 第一条是 OK ，而第二条是 -ERR 。 至于怎样用合适的方法来表示事务中的错误， 则是由客户端自己决定的。</p>
+<p>最重要的是记住这样一条， 即使事务中有某条/某些命令执行失败了， 事务队列中的其他命令仍然会继续执行 —— Redis 不会停止执行事务中的命令。</p>
+<p>以下例子展示的是另一种情况， 当命令在入队时产生错误， 错误会立即被返回给客户端：</p>
+<p>MULTI<br>+OK</p>
+<p>INCR a b c<br>-ERR wrong number of arguments for ‘incr’ command<br>因为调用 INCR 命令的参数格式不正确， 所以这个 INCR 命令入队失败。</p>
+<h3 id="为什么-Redis-不支持回滚（roll-back）"><a href="#为什么-Redis-不支持回滚（roll-back）" class="headerlink" title="为什么 Redis 不支持回滚（roll back）"></a>为什么 Redis 不支持回滚（roll back）</h3><p>如果你有使用关系式数据库的经验， 那么 “Redis 在事务失败时不进行回滚，而是继续执行余下的命令”这种做法可能会让你觉得有点奇怪。</p>
+<p>以下是这种做法的优点：</p>
+<ul>
+<li>Redis 命令只会因为错误的语法而失败（并且这些问题不能在入队时发现），或是命令用在了错误类型的键上面：这也就是说，从实用性的角度来说，失败的命令是由编程错误造成的，而这些错误应该在开发的过程中被发现，而不应该出现在生产环境中。</li>
+<li>因为不需要对回滚进行支持，所以 Redis 的内部可以保持简单且快速。<br>有种观点认为 Redis 处理事务的做法会产生 bug ， 然而需要注意的是， 在通常情况下， 回滚并不能解决编程错误带来的问题。 举个例子， 如果你本来想通过 INCR 命令将键的值加上 1 ， 却不小心加上了 2 ， 又或者对错误类型的键执行了 INCR ， 回滚是没有办法处理这些情况的。</li>
+</ul>
+<p>鉴于没有任何机制能避免程序员自己造成的错误， 并且这类错误通常不会在生产环境中出现， 所以 Redis 选择了更简单、更快速的无回滚方式来处理事务。</p>
+<h3 id="放弃事务"><a href="#放弃事务" class="headerlink" title="放弃事务"></a>放弃事务</h3><p>当执行 DISCARD 命令时， 事务会被放弃， 事务队列会被清空， 并且客户端会从事务状态中退出：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">redis&gt; SET foo 1</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; MULTI</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; INCR foo</span><br><span class="line">QUEUED</span><br><span class="line"></span><br><span class="line">redis&gt; DISCARD</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; GET foo</span><br><span class="line">&quot;1&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="使用-check-and-set-操作实现乐观锁"><a href="#使用-check-and-set-操作实现乐观锁" class="headerlink" title="使用 check-and-set 操作实现乐观锁"></a>使用 check-and-set 操作实现乐观锁</h3><p>WATCH 命令可以为 Redis 事务提供 check-and-set （CAS）行为。</p>
+<p>被 WATCH 的键会被监视，并会发觉这些键是否被改动过了。 如果有至少一个被监视的键在 EXEC 执行之前被修改了， 那么整个事务都会被取消， EXEC 返回空多条批量回复（null multi-bulk reply）来表示事务已经失败。</p>
+<p>举个例子， 假设我们需要原子性地为某个值进行增 1 操作（假设 INCR 不存在）。</p>
+<p>首先我们可能会这样做：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val &#x3D; GET mykey</span><br><span class="line">val &#x3D; val + 1</span><br><span class="line">SET mykey $val</span><br></pre></td></tr></table></figure>
+<p>上面的这个实现在只有一个客户端的时候可以执行得很好。 但是， 当多个客户端同时对同一个键进行这样的操作时， 就会产生竞争条件。</p>
+<p>举个例子， 如果客户端 A 和 B 都读取了键原来的值， 比如 10 ， 那么两个客户端都会将键的值设为 11 ， 但正确的结果应该是 12 才对。</p>
+<p>有了 WATCH ， 我们就可以轻松地解决这类问题了：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">WATCH mykey</span><br><span class="line"></span><br><span class="line">val &#x3D; GET mykey</span><br><span class="line">val &#x3D; val + 1</span><br><span class="line"></span><br><span class="line">MULTI</span><br><span class="line">SET mykey $val</span><br><span class="line">EXEC</span><br></pre></td></tr></table></figure>
+<p>使用上面的代码， 如果在 WATCH 执行之后， EXEC 执行之前， 有其他客户端修改了 mykey 的值， 那么当前客户端的事务就会失败。 程序需要做的， 就是不断重试这个操作， 直到没有发生碰撞为止。</p>
+<p>这种形式的锁被称作乐观锁， 它是一种非常强大的锁机制。 并且因为大多数情况下， 不同的客户端会访问不同的键， 碰撞的情况一般都很少， 所以通常并不需要进行重试。</p>
+<h3 id="了解-WATCH"><a href="#了解-WATCH" class="headerlink" title="了解 WATCH"></a>了解 WATCH</h3><p>WATCH 使得 EXEC 命令需要有条件地执行： 事务只能在所有被监视键都没有被修改的前提下执行， 如果这个前提不能满足的话，事务就不会被执行。</p>
+<p>如果你使用 WATCH 监视了一个带过期时间的键， 那么即使这个键过期了， 事务仍然可以正常执行， 关于这方面的详细情况，请看这个帖子： <a target="_blank" rel="noopener" href="http://code.google.com/p/redis/issues/detail?id=270">http://code.google.com/p/redis/issues/detail?id=270</a></p>
+<p>WATCH 命令可以被调用多次。 对键的监视从 WATCH 执行之后开始生效， 直到调用 EXEC 为止。</p>
+<p>用户还可以在单个 WATCH 命令中监视任意多个键， 就像这样：</p>
+<p>redis&gt; WATCH key1 key2 key3<br>OK<br>当 EXEC 被调用时， 不管事务是否成功执行， 对所有键的监视都会被取消。</p>
+<p>另外， 当客户端断开连接时， 该客户端对键的监视也会被取消。</p>
+<p>使用无参数的 UNWATCH 命令可以手动取消对所有键的监视。 对于一些需要改动多个键的事务， 有时候程序需要同时对多个键进行加锁， 然后检查这些键的当前值是否符合程序的要求。 当值达不到要求时， 就可以使用 UNWATCH 命令来取消目前对键的监视， 中途放弃这个事务， 并等待事务的下次尝试。</p>
+<h3 id="使用-WATCH-实现-ZPOP"><a href="#使用-WATCH-实现-ZPOP" class="headerlink" title="使用 WATCH 实现 ZPOP"></a>使用 WATCH 实现 ZPOP</h3><p>WATCH 可以用于创建 Redis 没有内置的原子操作。</p>
+<p>举个例子， 以下代码实现了原创的 ZPOP 命令， 它可以原子地弹出有序集合中分值（score）最小的元素：</p>
+<p>WATCH zset<br>element = ZRANGE zset 0 0<br>MULTI<br>    ZREM zset element<br>EXEC<br>程序只要重复执行这段代码， 直到 EXEC 的返回值不是空多条回复（null multi-bulk reply）即可。</p>
+<h3 id="Redis-脚本和事务"><a href="#Redis-脚本和事务" class="headerlink" title="Redis 脚本和事务"></a>Redis 脚本和事务</h3><p>从定义上来说， Redis 中的脚本本身就是一种事务， 所以任何在事务里可以完成的事， 在脚本里面也能完成。 并且一般来说， 使用脚本要来得更简单，并且速度更快。</p>
+<p>因为脚本功能是 Redis 2.6 才引入的， 而事务功能则更早之前就存在了， 所以 Redis 才会同时存在两种处理事务的方法。</p>
+<p>不过我们并不打算在短时间内就移除事务功能， 因为事务提供了一种即使不使用脚本， 也可以避免竞争条件的方法， 而且事务本身的实现并不复杂。</p>
+<p>不过在不远的将来， 可能所有用户都会只使用脚本来实现事务也说不定。 如果真的发生这种情况的话， 那么我们将废弃并最终移除事务功能。</p>
+<blockquote>
+<p>译者：黄健宏<br>原文：<a target="_blank" rel="noopener" href="http://redisdoc.com/topic/transaction.html">http://redisdoc.com/topic/transaction.html</a><br>本文档翻译自： <a target="_blank" rel="noopener" href="http://redis.io/topics/transactions">http://redis.io/topics/transactions</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>redis</category>
+      </categories>
+      <tags>
+        <tag>redis 事物</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Redis — 不仅仅是缓存</title>
     <url>/2023/10/14/redis-redis/</url>
     <content><![CDATA[<p><img src="https://miro.medium.com/v2/resize:fit:1400/1*qIy3PMmEWNcD9Czh_21C8g.png" alt="1*qIy3PMmEWNcD9Czh_21C8g.png"></p>
@@ -2065,90 +2149,6 @@
       </categories>
       <tags>
         <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>redis 的事物</title>
-    <url>/2020/10/27/redis-2020-10-27-redis-%E7%9A%84%E4%BA%8B%E7%89%A9/</url>
-    <content><![CDATA[<p>MULTI 、 EXEC 、 DISCARD 和 WATCH 是 Redis 事务的基础。</p>
-<span id="more"></span>
-<p>事务可以一次执行多个命令， 并且带有以下两个重要的保证：</p>
-<ul>
-<li>事务是一个单独的隔离操作：事务中的所有命令都会序列化、按顺序地执行。事务在执行的过程中，不会被其他客户端发送来的命令请求所打断。</li>
-<li>事务是一个原子操作：事务中的命令要么全部被执行，要么全部都不执行。</li>
-</ul>
-<!--more-->
-<p>EXEC 命令负责触发并执行事务中的所有命令：<br>当使用 AOF 方式做持久化的时候， Redis 会使用单个 write(2) 命令将事务写入到磁盘中。<br>然而，如果 Redis 服务器因为某些原因被管理员杀死，或者遇上某种硬件故障，那么可能只有部分事务命令会被成功写入到磁盘中。<br>如果 Redis 在重新启动时发现 AOF 文件出了这样的问题，那么它会退出，并汇报一个错误。<br>使用 redis-check-aof 程序可以修复这一问题：它会移除 AOF 文件中不完整事务的信息，确保服务器可以顺利启动。</p>
-<ul>
-<li>如果客户端在使用 MULTI 开启了一个事务之后，却因为断线而没有成功执行 EXEC ，那么事务中的所有命令都不会被执行。</li>
-<li>另一方面，如果客户端成功在开启事务之后执行 EXEC ，那么事务中的所有命令都会被执行。<br>从 2.2 版本开始，Redis 还可以通过乐观锁（optimistic lock）实现 CAS （check-and-set）操作，具体信息请参考文档的后半部分。</li>
-</ul>
-<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>MULTI 命令用于开启一个事务，它总是返回 OK 。</p>
-<p>MULTI 执行之后， 客户端可以继续向服务器发送任意多条命令， 这些命令不会立即被执行， 而是被放到一个队列中， 当 EXEC 命令被调用时， 所有队列中的命令才会被执行。</p>
-<p>另一方面， 通过调用 DISCARD ， 客户端可以清空事务队列， 并放弃执行事务。</p>
-<p>以下是一个事务例子， 它原子地增加了 foo 和 bar 两个键的值：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt; MULTI</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">&gt; INCR foo</span><br><span class="line">QUEUED</span><br><span class="line"></span><br><span class="line">&gt; INCR bar</span><br><span class="line">QUEUED</span><br><span class="line"></span><br><span class="line">&gt; EXEC</span><br><span class="line">1) (integer) 1</span><br><span class="line">2) (integer) 1</span><br></pre></td></tr></table></figure>
-<p>EXEC 命令的回复是一个数组， 数组中的每个元素都是执行事务中的命令所产生的回复。 其中， 回复元素的先后顺序和命令发送的先后顺序一致。</p>
-<p>当客户端处于事务状态时， 所有传入的命令都会返回一个内容为 QUEUED 的状态回复（status reply）， 这些被入队的命令将在 EXEC 命令被调用时执行。</p>
-<h3 id="事务中的错误"><a href="#事务中的错误" class="headerlink" title="事务中的错误"></a>事务中的错误</h3><p>使用事务时可能会遇上以下两种错误：</p>
-<ul>
-<li>事务在执行 EXEC 之前，入队的命令可能会出错。比如说，命令可能会产生语法错误（参数数量错误，参数名错误，等等），或者其他更严重的错误，比如内存不足（如果服务器使用 maxmemory 设置了最大内存限制的话）。</li>
-<li>命令可能在 EXEC 调用之后失败。举个例子，事务中的命令可能处理了错误类型的键，比如将列表命令用在了字符串键上面，诸如此类。<br>对于发生在 EXEC 执行之前的错误，客户端以前的做法是检查命令入队所得的返回值：如果命令入队时返回 QUEUED ，那么入队成功；否则，就是入队失败。如果有命令在入队时失败，那么大部分客户端都会停止并取消这个事务。</li>
-</ul>
-<p>不过，从 Redis 2.6.5 开始，服务器会对命令入队失败的情况进行记录，并在客户端调用 EXEC 命令时，拒绝执行并自动放弃这个事务。</p>
-<p>在 Redis 2.6.5 以前， Redis 只执行事务中那些入队成功的命令，而忽略那些入队失败的命令。 而新的处理方式则使得在流水线（pipeline）中包含事务变得简单，因为发送事务和读取事务的回复都只需要和服务器进行一次通讯。</p>
-<p>至于那些在 EXEC 命令执行之后所产生的错误， 并没有对它们进行特别处理： 即使事务中有某个/某些命令在执行时产生了错误， 事务中的其他命令仍然会继续执行。</p>
-<p>从协议的角度来看这个问题，会更容易理解一些。 以下例子中， LPOP 命令的执行将出错， 尽管调用它的语法是正确的：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Trying 127.0.0.1...</span><br><span class="line">Connected to localhost.</span><br><span class="line">Escape character is &#39;^]&#39;.</span><br><span class="line"></span><br><span class="line">MULTI</span><br><span class="line">+OK</span><br><span class="line"></span><br><span class="line">SET a 3</span><br><span class="line">abc</span><br><span class="line"></span><br><span class="line">+QUEUED</span><br><span class="line">LPOP a</span><br><span class="line"></span><br><span class="line">+QUEUED</span><br><span class="line">EXEC</span><br><span class="line"></span><br><span class="line">*2</span><br><span class="line">+OK</span><br><span class="line">-ERR Operation against a key holding the wrong kind of value</span><br></pre></td></tr></table></figure>
-
-<p>EXEC 返回两条批量回复（bulk reply）： 第一条是 OK ，而第二条是 -ERR 。 至于怎样用合适的方法来表示事务中的错误， 则是由客户端自己决定的。</p>
-<p>最重要的是记住这样一条， 即使事务中有某条/某些命令执行失败了， 事务队列中的其他命令仍然会继续执行 —— Redis 不会停止执行事务中的命令。</p>
-<p>以下例子展示的是另一种情况， 当命令在入队时产生错误， 错误会立即被返回给客户端：</p>
-<p>MULTI<br>+OK</p>
-<p>INCR a b c<br>-ERR wrong number of arguments for ‘incr’ command<br>因为调用 INCR 命令的参数格式不正确， 所以这个 INCR 命令入队失败。</p>
-<h3 id="为什么-Redis-不支持回滚（roll-back）"><a href="#为什么-Redis-不支持回滚（roll-back）" class="headerlink" title="为什么 Redis 不支持回滚（roll back）"></a>为什么 Redis 不支持回滚（roll back）</h3><p>如果你有使用关系式数据库的经验， 那么 “Redis 在事务失败时不进行回滚，而是继续执行余下的命令”这种做法可能会让你觉得有点奇怪。</p>
-<p>以下是这种做法的优点：</p>
-<ul>
-<li>Redis 命令只会因为错误的语法而失败（并且这些问题不能在入队时发现），或是命令用在了错误类型的键上面：这也就是说，从实用性的角度来说，失败的命令是由编程错误造成的，而这些错误应该在开发的过程中被发现，而不应该出现在生产环境中。</li>
-<li>因为不需要对回滚进行支持，所以 Redis 的内部可以保持简单且快速。<br>有种观点认为 Redis 处理事务的做法会产生 bug ， 然而需要注意的是， 在通常情况下， 回滚并不能解决编程错误带来的问题。 举个例子， 如果你本来想通过 INCR 命令将键的值加上 1 ， 却不小心加上了 2 ， 又或者对错误类型的键执行了 INCR ， 回滚是没有办法处理这些情况的。</li>
-</ul>
-<p>鉴于没有任何机制能避免程序员自己造成的错误， 并且这类错误通常不会在生产环境中出现， 所以 Redis 选择了更简单、更快速的无回滚方式来处理事务。</p>
-<h3 id="放弃事务"><a href="#放弃事务" class="headerlink" title="放弃事务"></a>放弃事务</h3><p>当执行 DISCARD 命令时， 事务会被放弃， 事务队列会被清空， 并且客户端会从事务状态中退出：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">redis&gt; SET foo 1</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; MULTI</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; INCR foo</span><br><span class="line">QUEUED</span><br><span class="line"></span><br><span class="line">redis&gt; DISCARD</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; GET foo</span><br><span class="line">&quot;1&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="使用-check-and-set-操作实现乐观锁"><a href="#使用-check-and-set-操作实现乐观锁" class="headerlink" title="使用 check-and-set 操作实现乐观锁"></a>使用 check-and-set 操作实现乐观锁</h3><p>WATCH 命令可以为 Redis 事务提供 check-and-set （CAS）行为。</p>
-<p>被 WATCH 的键会被监视，并会发觉这些键是否被改动过了。 如果有至少一个被监视的键在 EXEC 执行之前被修改了， 那么整个事务都会被取消， EXEC 返回空多条批量回复（null multi-bulk reply）来表示事务已经失败。</p>
-<p>举个例子， 假设我们需要原子性地为某个值进行增 1 操作（假设 INCR 不存在）。</p>
-<p>首先我们可能会这样做：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val &#x3D; GET mykey</span><br><span class="line">val &#x3D; val + 1</span><br><span class="line">SET mykey $val</span><br></pre></td></tr></table></figure>
-<p>上面的这个实现在只有一个客户端的时候可以执行得很好。 但是， 当多个客户端同时对同一个键进行这样的操作时， 就会产生竞争条件。</p>
-<p>举个例子， 如果客户端 A 和 B 都读取了键原来的值， 比如 10 ， 那么两个客户端都会将键的值设为 11 ， 但正确的结果应该是 12 才对。</p>
-<p>有了 WATCH ， 我们就可以轻松地解决这类问题了：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">WATCH mykey</span><br><span class="line"></span><br><span class="line">val &#x3D; GET mykey</span><br><span class="line">val &#x3D; val + 1</span><br><span class="line"></span><br><span class="line">MULTI</span><br><span class="line">SET mykey $val</span><br><span class="line">EXEC</span><br></pre></td></tr></table></figure>
-<p>使用上面的代码， 如果在 WATCH 执行之后， EXEC 执行之前， 有其他客户端修改了 mykey 的值， 那么当前客户端的事务就会失败。 程序需要做的， 就是不断重试这个操作， 直到没有发生碰撞为止。</p>
-<p>这种形式的锁被称作乐观锁， 它是一种非常强大的锁机制。 并且因为大多数情况下， 不同的客户端会访问不同的键， 碰撞的情况一般都很少， 所以通常并不需要进行重试。</p>
-<h3 id="了解-WATCH"><a href="#了解-WATCH" class="headerlink" title="了解 WATCH"></a>了解 WATCH</h3><p>WATCH 使得 EXEC 命令需要有条件地执行： 事务只能在所有被监视键都没有被修改的前提下执行， 如果这个前提不能满足的话，事务就不会被执行。</p>
-<p>如果你使用 WATCH 监视了一个带过期时间的键， 那么即使这个键过期了， 事务仍然可以正常执行， 关于这方面的详细情况，请看这个帖子： <a target="_blank" rel="noopener" href="http://code.google.com/p/redis/issues/detail?id=270">http://code.google.com/p/redis/issues/detail?id=270</a></p>
-<p>WATCH 命令可以被调用多次。 对键的监视从 WATCH 执行之后开始生效， 直到调用 EXEC 为止。</p>
-<p>用户还可以在单个 WATCH 命令中监视任意多个键， 就像这样：</p>
-<p>redis&gt; WATCH key1 key2 key3<br>OK<br>当 EXEC 被调用时， 不管事务是否成功执行， 对所有键的监视都会被取消。</p>
-<p>另外， 当客户端断开连接时， 该客户端对键的监视也会被取消。</p>
-<p>使用无参数的 UNWATCH 命令可以手动取消对所有键的监视。 对于一些需要改动多个键的事务， 有时候程序需要同时对多个键进行加锁， 然后检查这些键的当前值是否符合程序的要求。 当值达不到要求时， 就可以使用 UNWATCH 命令来取消目前对键的监视， 中途放弃这个事务， 并等待事务的下次尝试。</p>
-<h3 id="使用-WATCH-实现-ZPOP"><a href="#使用-WATCH-实现-ZPOP" class="headerlink" title="使用 WATCH 实现 ZPOP"></a>使用 WATCH 实现 ZPOP</h3><p>WATCH 可以用于创建 Redis 没有内置的原子操作。</p>
-<p>举个例子， 以下代码实现了原创的 ZPOP 命令， 它可以原子地弹出有序集合中分值（score）最小的元素：</p>
-<p>WATCH zset<br>element = ZRANGE zset 0 0<br>MULTI<br>    ZREM zset element<br>EXEC<br>程序只要重复执行这段代码， 直到 EXEC 的返回值不是空多条回复（null multi-bulk reply）即可。</p>
-<h3 id="Redis-脚本和事务"><a href="#Redis-脚本和事务" class="headerlink" title="Redis 脚本和事务"></a>Redis 脚本和事务</h3><p>从定义上来说， Redis 中的脚本本身就是一种事务， 所以任何在事务里可以完成的事， 在脚本里面也能完成。 并且一般来说， 使用脚本要来得更简单，并且速度更快。</p>
-<p>因为脚本功能是 Redis 2.6 才引入的， 而事务功能则更早之前就存在了， 所以 Redis 才会同时存在两种处理事务的方法。</p>
-<p>不过我们并不打算在短时间内就移除事务功能， 因为事务提供了一种即使不使用脚本， 也可以避免竞争条件的方法， 而且事务本身的实现并不复杂。</p>
-<p>不过在不远的将来， 可能所有用户都会只使用脚本来实现事务也说不定。 如果真的发生这种情况的话， 那么我们将废弃并最终移除事务功能。</p>
-<blockquote>
-<p>译者：黄健宏<br>原文：<a target="_blank" rel="noopener" href="http://redisdoc.com/topic/transaction.html">http://redisdoc.com/topic/transaction.html</a><br>本文档翻译自： <a target="_blank" rel="noopener" href="http://redis.io/topics/transactions">http://redis.io/topics/transactions</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>redis</category>
-      </categories>
-      <tags>
-        <tag>redis 事物</tag>
       </tags>
   </entry>
   <entry>
@@ -2637,157 +2637,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如何做好监控微服务调⽤?</title>
-    <url>/2021/06/16/service-06-16-%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E7%9B%91%E6%8E%A7%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%B0%83%E2%BD%A4/</url>
-    <content><![CDATA[<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_17f35bc65eed401b374b1b5fcf552d44_83179.png" style="zoom:90%;" />
-
-<h6 id="监控对象"><a href="#监控对象" class="headerlink" title="监控对象"></a>监控对象</h6><ul>
-<li><p>⽤户端监控。通常是指业务直接对⽤户提供的功能的监控</p>
-</li>
-<li><p>接口监控。通常是指业务提供的功能所依赖的接口的监控</p>
-</li>
-</ul>
-<span id="more"></span>
-
-<ul>
-<li><p>资源监控。通常是指某个接⼝依赖的资源的监控。比如该接口使用的redis 缓存，对redis 的监控就是资源的</p>
-<p>监控</p>
-</li>
-<li><p>基础监控。通常是指对服务器本身的健康状况的监控。主要包括CPU利⽤率、内存使⽤量、I/O读写量、⽹卡</p>
-<p>带宽等</p>
-</li>
-</ul>
-<h6 id="监控指标"><a href="#监控指标" class="headerlink" title="监控指标"></a>监控指标</h6><ul>
-<li><p>请求量。请求量监控分为两个维度，⼀个是实时请求量QPS，⼀个是统计请求量PV。QPS（Queries Per</p>
-<p>Second） 即每秒查询次数来衡量，它反映了服务调⽤的实时变化情况。统计请求量⼀般⽤PV（Page View）</p>
-<p>即⼀段时间内⽤户的访 问量来衡量，⽐如⼀天的PV代表了服务⼀天的请求量，通常⽤来统计报表。</p>
-</li>
-<li><p>响应时间。⼤多数情况下，可以⽤⼀段时间内所有调⽤的平均耗时来反映请求的响应时间。可以把响应时间划</p>
-<p>分为多个区间，⽐如0～10ms、10ms～50ms、50ms～ 100ms、100ms～500ms、500ms以上这五个区</p>
-<p>间。除此之外，还可以从P90、P95、P99、P999⻆度来监控请求的响应时间，⽐如P99 = 500ms，意思是</p>
-<p>99%的请求响 应时间在500ms以内，它代表了请求的服务质量，即SLA。</p>
-</li>
-<li><p>错误率。错误率的监控通常⽤⼀段时间内调⽤失败的次数占调⽤总次数的⽐率来衡量，⽐如对于接⼝的错误率</p>
-<p>⼀般⽤接⼝ 返回错误码为503的⽐率来表示。</p>
-</li>
-</ul>
-<h6 id="监控维度"><a href="#监控维度" class="headerlink" title="监控维度"></a>监控维度</h6><ul>
-<li><p>全局维度。从整体⻆度监控对象的的请求量、平均耗时以及错误率，全局维度的监控⼀般是为了让你对监控对象的调⽤情 况有个整体了解。</p>
-</li>
-<li><p> 分机房维度。</p>
-</li>
-<li><p> 时间维度。同⼀个监控对象，在每天的同⼀时刻各种指标通常也不会⼀样</p>
-</li>
-<li><p>核⼼维度。业务上⼀般会依据重要性程度对监控对象进⾏分级，最简单的是分成核⼼业务和⾮核⼼业务。</p>
-<p>核⼼业务和⾮核⼼业务在部署上必须隔离，分开监控，这样才能对核⼼业务做重点保障。</p>
-</li>
-</ul>
-<h6 id="监控系统"><a href="#监控系统" class="headerlink" title="监控系统"></a>监控系统</h6><blockquote>
-<p>主要包括四个环节：数据采集、数据传输、数据处理和数据展示</p>
-</blockquote>
-<ul>
-<li><p>数据采集</p>
-<p>通常有两种数据收集⽅式：</p>
-<ul>
-<li><p><strong>服务主动上报</strong>，这种处理⽅式通过在业务代码或者服务框架⾥加⼊数据收集代码逻辑，在每⼀次服务</p>
-<p>调⽤完成后，主动上报服务的调⽤信息。</p>
-</li>
-<li><p><strong>代理收集</strong>，这种处理⽅式通过服务调⽤后把调⽤的详细信息记录到本地⽇志⽂件中，然后再通过代理去解</p>
-<p>析本地⽇志⽂ 件，然后再上报服务的调⽤信息。</p>
-</li>
-</ul>
-</li>
-<li><p>数据传输</p>
-<ul>
-<li><p><strong>UDP传输</strong>，这种处理⽅式是数据处理单元提供服务器的请求地址，数据采集后通过UDP协议与服务器建⽴</p>
-<p>连接，然后把数 据发送过去。</p>
-</li>
-<li><p><strong>Kafka传输</strong>，这种处理⽅式是数据采集后发送到指定的Topic，然后数据处理单元再订阅对应的Topic，就</p>
-<p>可以从Kafka消息队列中读取到对应的数据。</p>
-<img src="https://cdn.smalltechnologyjun.com//image-20210615200330740.png" alt="image-20210615200330740" style="zoom: 80%;" /></li>
-</ul>
-</li>
-<li><p>数据处理</p>
-<p>数据聚合两个维度：接口维度和机器维度</p>
-<p>聚合后的数据持久化： 索引数据库(es) 或者 时序数据库influxDB</p>
-</li>
-<li><p>数据展示</p>
-<p>数据展示有多种⽅式，⽐如曲线图、饼状图、格⼦图展示</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>微服务</category>
-      </categories>
-      <tags>
-        <tag>微服务治理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Optional 的使用会导致性能下降吗？</title>
-    <url>/2021/07/26/service-%E4%BD%A0%E9%9C%80%E8%A6%81%E6%8B%85%E5%BF%83Optional%E7%9B%B8%E5%85%B3%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%90%97/</url>
-    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_bb2845fd7f5a4c03fb9adb66715a5e02_14370.png" alt="图怪兽_bb2845fd7f5a4c03fb9adb66715a5e02_14370"></p>
-<p>几天前，我在论坛上发了一篇关于<code>Optional</code> 的文章。其中一条评论是一个非常好的问题:</p>
-<blockquote>
-<p>Optional 的使用会导致性能下降吗？</p>
-</blockquote>
-<p>答案是: 是的，它会的。但是你应该担心吗？</p>
-<span id="more"></span>
-
-<h2 id="使用Optional的好处"><a href="#使用Optional的好处" class="headerlink" title="使用Optional的好处"></a>使用Optional的好处</h2><p>Optional 类使我们这些开发人员的生活更轻松</p>
-<ul>
-<li>增加代码的可读性</li>
-<li>减少代码中的条件数</li>
-<li>更不容易出错</li>
-</ul>
-<p>让我们来看看 Optional 类的一些主要方法是如何实现的。</p>
-<!--more-->
-
-<h2 id="Optional-如何实现的？"><a href="#Optional-如何实现的？" class="headerlink" title="Optional 如何实现的？"></a>Optional 如何实现的？</h2><p>这里有一些 <code>Optional</code> 类的主要方法:</p>
-<p>基本上，它将值包装到一个新的 <code>Optional</code>对象中，并检查包装的值是否为<code>null</code>。</p>
-<p>即使没有使用 Optional，也必须检查值是否为 null。它可能比您做的检查多一些，但我认为您不必担心这一点。</p>
-<p>但是您必须知道，将值包装到新对象中将增加 GC 要收集的对象数量。这意味着堆使用量将增加得更快，CPU 使用量将更高(更多 GC 事件)。</p>
-<p>好吧，但是有多高呢？同样，这取决于您正在创建的可选对象的数量、堆的大小以及您的应用程序在不使用可选对象的情况下使用的 CPU 数量。</p>
-<p>例如，假设您对应用程序进行了基准测试，并得出结论，使用 Optional 将提高 CPU 使用率1个百分点。如果您的应用程序平均使用50% 的 CPU，那么使用51% 的可选 CPU 并不是一个很大的开销，对吧？</p>
-<p>但是，如果您的应用程序平均消耗5% 的 CPU，使用6% 意味着20% 的开销，这是相当重要的。</p>
-<h2 id="过早优化是万恶之源"><a href="#过早优化是万恶之源" class="headerlink" title="过早优化是万恶之源"></a>过早优化是万恶之源</h2><p>Joshua Bloch 在<a target="_blank" rel="noopener" href="https://www.amazon.com/gp/product/0134685997/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0134685997&linkCode=as2&tag=hbelmiro0f-20&linkId=213790c63c0d57baac2e45b3183a35b2">Effective Java</a> 一书中有整整一章(第67项: Optimize judiciously)谈到了优化。</p>
-<p>他在这一章的开头写道:</p>
-<blockquote>
-<p>关于最优化，有三个关注点是每个人都应该知道的:</p>
-<blockquote>
-<p>与其他任何单一原因(包括盲目的愚蠢)相比，更多的计算原罪是以效率的名义犯下的(不一定能实现)。</p>
-</blockquote>
-<p>William A. Wulf</p>
-<blockquote>
-<p>我们应该忘记小的副作用，比如说97% 的时间: 过早的优化是一切罪恶的根源。</p>
-</blockquote>
-<p>Donald E. Knuth</p>
-<blockquote>
-<p>在优化问题上，我们遵循两个规则:</p>
-<ul>
-<li>规则1. 不要这样做</li>
-<li>规则 2（仅适用于专家）。 暂时不要这样做——也就是说，除非你有一个非常清晰且未经优化的解决方案。</li>
-</ul>
-</blockquote>
-<p>M. A. Jackson</p>
-</blockquote>
-<p>因此，除非您需要一个快速的应用程序并且资源有限，否则不要过早担心性能问题。专注于编写好的代码，这样当你需要它的时候，它就很容易优化。此外，使用分析器查找对性能影响更大的位置。</p>
-<h2 id="谁会使用你的-API？"><a href="#谁会使用你的-API？" class="headerlink" title="谁会使用你的 API？"></a>谁会使用你的 API？</h2><p>这也是一个你需要问自己的好问题。如果您正在编写一个内部 API，您可以更自由地决定是否使用它。</p>
-<p>但是如果你正在编写一个公共 API，比如一个框架或者库，而你不知道什么样的应用程序在调用它，你可能需要更加灵活，给客户端选择是否使用可选的选项。</p>
-<p>您可以提供两个方法，一个返回  <code>Optional</code> ，另一个返回 <code>null</code>。但是，当创建一个可以返回 <code>null</code> 的方法时，尽量让它显式。使用注释  <code>javax.annotation.Nullable</code>。方法的可空性。 (<a target="_blank" rel="noopener" href="https://jcp.org/en/jsr/detail?id=305">JSR 305</a>)</p>
-<h2 id="最终，这取决于你"><a href="#最终，这取决于你" class="headerlink" title="最终，这取决于你"></a>最终，这取决于你</h2><p>你可以决定是否使用 Optional。没有一个简单的答案适用于所有情况。软件工程中的大多数事情都是这样的。这一切都是权衡取舍。</p>
-<p>所以，要意识到它是如何工作的，并评估替代方案。任何事情都有代价，你是那个可以决定是否承担的人。</p>
-<p>您认为为了提高性能而付出不可读且更容易出错的代码的代价是值得的吗？你知道这种进步有多重要吗？</p>
-<p>在大多数情况下，使用 <code>Optional</code>  并保持开心！<code>Optional</code>  是不错的!</p>
-]]></content>
-      <categories>
-        <category>微服务</category>
-      </categories>
-      <tags>
-        <tag>微服务治理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CDN初学者指南：是什么以及如何工作</title>
     <url>/2023/10/22/systemDesign-cdn/</url>
     <content><![CDATA[<p>内容交付网络（Content Delivery Network，CDN）是一种分布式服务器系统，旨在根据用户的地理位置提供网络内容。CDN的目标是减少加载时间、提高网站和在线应用程序性能。</p>
@@ -2836,6 +2685,70 @@
 ]]></content>
       <categories>
         <category>CDN,系统设计,网络技术</category>
+      </categories>
+      <tags>
+        <tag>CDN,系统设计,网络技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>软件工程师的关键原则-18个系统设计概念</title>
+    <url>/2023/11/11/systemDesign-concept/</url>
+    <content><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/75A77844-2DB2-4BB0-B17C-298A9D960897_2/mQBuMRK0FskOtnkEZYLfl2U4RmQTCze1yiF3qmEtHx0z/WeChat49289609a91e7d7c0e32077538409d13.png" alt="WeChat49289609a91e7d7c0e32077538409d13.png"></p>
+<p>要在系统设计中脱颖而出，深刻理解诸如<strong>负载均衡</strong>、<strong>缓存</strong>、<strong>分区</strong>、<strong>复制</strong>、<strong>数据库</strong>和<strong>代理</strong>等基本系统设计概念至关重要。</p>
+<p>在掌握这个主模板的基础上，我们将讨论18个重要的系统设计概念。以下是每个概念的简要描述：</p>
+<h3 id="1-域名系统-DNS"><a href="#1-域名系统-DNS" class="headerlink" title="1. 域名系统 (DNS)"></a>1. 域名系统 (DNS)</h3><p>域名系统（DNS）是互联网基础设施的一个基本组成部分，将用户友好的域名转换为其相应的IP地址。它充当了互联网的电话簿，允许用户通过输入易于记忆的域名而不是计算机用于识别彼此的数值IP地址（如“192.0.2.1”）来访问网站和服务。</p>
+<p>当您在Web浏览器中输入域名时，DNS负责查找相关的IP地址并将您的请求发送到适当的服务器。这个过程从您的计算机向递归解析器发送查询开始，然后递归解析器搜索一系列DNS服务器，从根服务器开始，然后是顶级域（TLD）服务器，最终是权威域名服务器。一旦找到IP地址，递归解析器将其返回给您的计算机，允许您的浏览器与目标服务器建立连接并访问所需的内容。</p>
+<span id="more"></span>
+
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/E422D047-3CF9-44FC-8485-DC0691A0D20F_2/BHwIE9I3p9Zq4obdSxwyhvPpxnyDaKy52K8lkxH15JIz/WeChat49853bf56d5a9f0c3582bd606f58336a.png" alt="WeChat49853bf56d5a9f0c3582bd606f58336a.png"></p>
+<p><strong>DNS</strong></p>
+<h3 id="2-负载均衡器"><a href="#2-负载均衡器" class="headerlink" title="2. 负载均衡器"></a>2. 负载均衡器</h3><p>负载均衡器是一种用于分发入站网络流量到多个服务器的网络设备或软件，以确保最佳资源利用、降低延迟并保持高可用性。在出现突发流量或服务器请求不均匀分布的情况下，负载均衡器在扩展应用程序和有效管理服务器工作负载方面发挥着至关重要的作用。</p>
+<p>负载均衡器使用各种算法来确定入站流量的分发。一些常见的算法包括：</p>
+<p>•<strong>轮询算法:</strong> 请求按顺序和均匀地分配到所有可用服务器。•<strong>最少连接算法:</strong> 负载均衡器将请求分配给具有最少活动连接的服务器，为较不繁忙的服务器提供优先。•<strong>IP哈希算法:</strong> 客户端的IP地址被哈希，生成的值用于确定请求应该被定向到哪个服务器。这种方法确保特定客户端的请求一直路由到相同的服务器，有助于维护会话一致性。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/CC0B4F86-331E-4864-98DE-240A50A68478_2/Q6ehJ8vV27Zplx3vzY8oxZAfcznDjsxBVrIghyNhHyUz/WeChatff70f6ceea4bec786b6b65a93e59d09d.png" alt="WeChatff70f6ceea4bec786b6b65a93e59d09d.png"></p>
+<p><strong>负载均衡器</strong></p>
+<h3 id="3-API-网关"><a href="#3-API-网关" class="headerlink" title="3. API 网关"></a>3. API 网关</h3><p>API网关是一种充当外部客户端与应用程序的内部微服务或基于API的后端服务之间中间件的服务器或服务。它是当今体</p>
+<p>系结构的重要组件，特别是在基于微服务的系统中，它简化了通信过程，为客户端提供访问各种服务的单一入口点。</p>
+<p>API网关的主要功能包括：</p>
+<p>1.请求路由：API网关根据预定义的规则和配置，将来自客户端的传入API请求路由到适当的后端服务或微服务。2.身份验证和授权：API网关管理用户身份验证和授权，确保只有经授权的客户端才能访问服务。它在将请求路由到后端服务之前验证API密钥、令牌或其他凭证。3.速率限制和节流：为了保护后端服务免受过大的负荷或滥用，API网关根据预定义的策略对客户端的请求进行速率限制或节流。4.缓存：为了降低延迟和后端负载，API网关缓存经常使用的响应，直接提供给客户端，无需查询后端服务。5.请求和响应转换：API网关可以修改请求和响应，例如转换数据格式、添加或删除标头，或更改查询参数，以确保客户端和服务之间的兼容性。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/B3A2CE16-8EC9-430C-9695-C2842A3D1D37_2/w37rfBPqalyxb7DI52yfi0j4vKFXC3pij31Cjy4qyD8z/WeChat22f909aa70c05447c174ad79acff2b14.png" alt="WeChat22f909aa70c05447c174ad79acff2b14.png"></p>
+<p><strong>API 网关</strong></p>
+<h3 id="4-内容交付网络-CDN"><a href="#4-内容交付网络-CDN" class="headerlink" title="4. 内容交付网络 (CDN)"></a>4. 内容交付网络 (CDN)</h3><p>内容交付网络（CDN）是一个分布式服务器网络，用于存储和传递内容，如图像、视频、样式表和脚本，以使用户可以从地理位置更接近他们的位置访问这些内容。CDN旨在提高内容传递的性能、速度和可靠性，无论用户相对于原始服务器的位置如何。以下是CDN的运作方式：</p>
+<p>1.当用户从网站或应用程序请求内容时，请求被定向到最近的CDN服务器，也称为边缘服务器。2.如果边缘服务器已经缓存了请求的内容，它将直接向用户提供内容。这个过程减少了延迟并提高了用户体验，因为内容传输的距离更短。3.如果边缘服务器没有缓存请求的内容，CDN将从原始服务器或附近的另一个CDN服务器检索内容。一旦内容被获取，它将被缓存在边缘服务器上并提供给用户。4.为了确保内容保持最新，CDN定期检查原始服务器以获取更改，并相应地更新其缓存。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/8F16CDFA-A6BF-4EF0-B255-1561D5B15668_2/Utyy4u8cXYJw1lMigHqx6kUrxQxY9xf9HEzu4dRzcx4z/WeChatc451501adf104c2494e86bd095b41249.png" alt="WeChatc451501adf104c2494e86bd095b41249.png"></p>
+<p><strong>CDN</strong></p>
+<h3 id="5-正向代理与反向代理"><a href="#5-正向代理与反向代理" class="headerlink" title="5. 正向代理与反向代理"></a>5. 正向代理与反向代理</h3><p>正向代理，也称为“代理服务器”或简称“代理”，是位于一个或多个客户机之前的服务器，充当客户机和互联网之间的中介。当客户机请求互联网上的资源时，请求首先发送到正向代理。正向代理然后代表客户机将请求发送到互联网，然后将</p>
+<p>响应返回给客户机。</p>
+<p>另一方面，反向代理是位于一个或多个Web服务器之前的服务器，充当Web服务器和互联网之间的中介。当客户端请求互联网上的资源时，请求首先发送到反向代理。反向代理然后将请求转发到其中一个Web服务器，然后将响应返回给客户端。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/E81692CA-56E1-40F6-AE65-CAEAC9BCE304_2/oLqKySBKilPBewMwpwsh8h6rlM11KLjM6qChoRMx3yYz/WeChate9fc5329308d7c48fd7180015ca4d82f.png" alt="WeChate9fc5329308d7c48fd7180015ca4d82f.png"></p>
+<p><strong>正向代理与反向代理</strong></p>
+<h3 id="6-缓存"><a href="#6-缓存" class="headerlink" title="6. 缓存"></a>6. 缓存</h3><p>缓存是位于应用程序和原始数据源（如数据库、文件系统或远程Web服务）之间的高速存储层。当应用程序请求数据时，首先检查缓存。如果数据存在于缓存中，将返回给应用程序。如果在缓存中找不到数据，则从其原始来源检索数据，将其存储在缓存中以备将来使用，然后返回给应用程序。在分布式系统中，缓存可以出现在多个位置，包括客户端、DNS、CDN、负载均衡器、API网关、服务器、数据库等等。</p>
+<p><strong>缓存</strong></p>
+<h3 id="7-数据分区"><a href="#7-数据分区" class="headerlink" title="7. 数据分区"></a>7. 数据分区</h3><p>在数据库中，<strong>水平分区</strong>，通常称为<strong>分片</strong>，涉及将表的行分成较小的表，并存储在不同的服务器或数据库实例上。这种方法用于在多个服务器之间分发数据库负载，从而提高性能。</p>
+<p>相反，<strong>垂直分区</strong>涉及将表的列分成单独的表。这个技术旨在减少表中的列数，提高只访问有限数量列的查询性能。</p>
+<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/CEDAB7A3-D6A6-49F8-9EC7-296A481F2ABC_2/pGPAgDIixcrQIS2hbMg1ay7mbfF3vBHxtepOyOuZeKUz/WeChateeefc7380c587916ff83aa5921aa6418.png" alt="WeChateeefc7380c587916ff83aa5921aa6418.png"></p>
+<p><strong>数据分区</strong></p>
+<h3 id="8-数据库复制"><a href="#8-数据库复制" class="headerlink" title="8. 数据库复制"></a>8. 数据库复制</h3><p>数据库复制是一种用于在不同服务器或位置之间维护相同数据库的方法。数据库复制的主要目标是增加数据的可用性、冗余和容错性，以确保系统即使在硬件故障或其他问题出现时仍然可以正常运行。</p>
+<p>在复制数据库配置中，一个服务器充当主数据库，而其他服务器则充当副本。这涉及在主数据库和副本之间同步数据，以确保它们都具有相同的最新信息。数据库复制提供了多个优点，包括：</p>
+<p>1.改进性能：通过在多个副本之间分发读查询，可以减轻主数据库的负载，从而提高查询响应时间。2.高可用性：如果主数据库发生故障或停机，副本可以继续提供数据，确保对应用程序的不间断访问。3.增强的数据保护：在不同位置维护数据库的多个副本有助于防止由于硬件故障或其他灾难而导致的数据丢失。4.负载平衡：副本可以处理读查询，从而实现更好的负载分配并减轻主数据库的整体压力。</p>
+<h3 id="9-分布式消息系统"><a href="#9-分布式消息系统" class="headerlink" title="9. 分布式消息系统"></a>9. 分布式消息系统</h3><p>分布式消息系统为多个可能分布在不同地理位置的应用程序、服务或组件之间交换消息提供了可靠、可扩展和容错的方式。这些系统通过解耦发送方和接收方组件，使它们能够独立开发和运行。分布式消息系统在大型或复杂系统中尤其有价值，比如微服务架构或分布式计算环境中。这些系统的示例包括Apache Kafka和RabbitMQ。</p>
+<h3 id="10-微服务"><a href="#10-微服务" class="headerlink" title="10. 微服务"></a>10. 微服务</h3><p>微服务代表一种架构风格，其中一个应用程序被组织成一组小型、松散耦合的、可以独立部署的服务。每个微服务负责应用程序内的特定功能或领域，并通过明确定义的API与其他微服务通信。这种方法不同于传统的单体架构，传统单体架构将应用程序构建为单一、紧密耦合的单元。</p>
+<p>微服务的主要特点包括：</p>
+<p>1.独立部署：每个微服务可以独立开发、测试和部署，无需影响其他微服务。2.技术多样性：每个微服务可以使用不同的技术栈，以满足其特定需求。3.易于维护：由于微服务的规模较小，它们通常更易于维护、扩展和修改。4.可扩展性：可以根据需要扩展单独的微服务，而无需为整个应用程序进行扩展。</p>
+<h3 id="11-数据库"><a href="#11-数据库" class="headerlink" title="11. 数据库"></a>11. 数据库</h3><p>数据库是一种结构化数据的持久存储系统，用于存储、检索和管理数据。数据库在各种应用程序和系统中都有广泛的应用，从基本的数据存储到复杂的分析和报告系统。主要的数据库类型包括：</p>
+<p>•<strong>关系型数据库（RDBMS）：</strong> 使用表格结构来存储数据，并支持SQL查询语言。常见的关系型数据库包括MySQL、PostgreSQL、Oracle和Microsoft SQL Server。•<strong>NoSQL数据库：</strong> 这些数据库不使用传统的表格结构，而使用文档、列族、键值对或图形等非关系数据结构来存储数据。NoSQL数据库包括MongoDB、Cassandra、Redis和Elasticsearch。•<strong>NewSQL数据库：</strong> 这是一种中间方式，结合了关系数据库和NoSQL数据库的某些特性。NewSQL数据库旨在提供可扩展性、高性能和分布式能力。</p>
+<h3 id="12-前端缓存"><a href="#12-前端缓存" class="headerlink" title="12. 前端缓存"></a>12. 前端缓存</h3><p>前端缓存是一种用于缓存Web应用程序的用户界面（HTML、CSS、JavaScript等）以提高性能的技术。前端缓存可以通过减少从服务器请求资源的次数、降低延迟并提供更快的用户体验来改进Web应用程序的性能。前端缓存通常采用浏览器缓存、CDN和缓存服务等多种形式。</p>
+<h3 id="13-后端缓存"><a href="#13-后端缓存" class="headerlink" title="13. 后端缓存"></a>13. 后端缓存</h3><p>后端缓存是一种用于缓存应用程序的数据和计算结果以提高性能的技术。它将数据存储在内存中，以便将来更快地检索。后端缓存通常用于存储数据库查询结果、API响应和计算密集型任务的结果。一些常见的后端缓存技术包括Redis和Memcached。</p>
+<h3 id="14-安全性"><a href="#14-安全性" class="headerlink" title="14. 安全性"></a>14. 安全性</h3><p>安全性是系统设计中至关重要的概念。它包括身份验证、授权、加密、跨站脚本（XSS）和跨站请求伪造（CSRF）防护、数据保护、网络安全等。系统设计应考虑各种威胁和安全攻击，以确保系统的数据和用户得到保护。</p>
+<h3 id="15-高可用性与容错性"><a href="#15-高可用性与容错性" class="headerlink" title="15. 高可用性与容错性"></a>15. 高可用性与容错性</h3><p>高可用性和容错性是系统设计的关键目标。高可用性涉及确保系统在面临故障或中断时保持可用。容错性涉及系统在出现故障或错误时能够恢复正常运行。实现高可用性和容错性通常需要使用负载均衡、故障转移、冗余和监控等技术。</p>
+<h3 id="16-事件驱动架构"><a href="#16-事件驱动架构" class="headerlink" title="16. 事件驱动架构"></a>16. 事件驱动架构</h3><p>事件驱动架构是一种应用程序架构，其中应用程序的不同组件通过事件进行通信。事件是应用程序中发生的特定动作或状态更改，可以触发其他组件的响应。事件驱动架构通常用于实现松散耦合的组件，以便能够更轻松地扩展和修改系统。</p>
+<h3 id="17-日志和监控"><a href="#17-日志和监控" class="headerlink" title="17. 日志和监控"></a>17. 日志和监控</h3><p>在系统设计中，日志和监控是关键工具，用于识别和解决性能问题、故障和安全问题。日志记录有助于跟踪系统的操作和问题，而监控则提供了实时的性能数据和警报。在分布式系统中，有效的日志和监控可以帮助工程师快速诊断问题和优化系统。</p>
+<h3 id="18-测试策略"><a href="#18-测试策略" class="headerlink" title="18. 测试策略"></a>18. 测试策略</h3><p>测试是系统设计和开发的关键组成部分。测试策略涉及确定测试范围、创建测试计划、编写测试用例、执行测试、自动化测试、性能测试等。有效的测试策略有助于确保系统的可靠性、性能和安全性。</p>
+<p>这18个系统设计概念涵盖了构建可伸缩、高性能、高可用性和安全的系统所需的核心知识。</p>
+<p>希望这篇文章对你有所帮助,没有浪费你的时间~</p>
+]]></content>
+      <categories>
+        <category>系统设计,网络技术</category>
       </categories>
       <tags>
         <tag>CDN,系统设计,网络技术</tag>
@@ -2962,70 +2875,6 @@
       </categories>
       <tags>
         <tag>软件设计,系统设计,六边形架构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>软件工程师的关键原则-18个系统设计概念</title>
-    <url>/2023/11/11/systemDesign-concept/</url>
-    <content><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/75A77844-2DB2-4BB0-B17C-298A9D960897_2/mQBuMRK0FskOtnkEZYLfl2U4RmQTCze1yiF3qmEtHx0z/WeChat49289609a91e7d7c0e32077538409d13.png" alt="WeChat49289609a91e7d7c0e32077538409d13.png"></p>
-<p>要在系统设计中脱颖而出，深刻理解诸如<strong>负载均衡</strong>、<strong>缓存</strong>、<strong>分区</strong>、<strong>复制</strong>、<strong>数据库</strong>和<strong>代理</strong>等基本系统设计概念至关重要。</p>
-<p>在掌握这个主模板的基础上，我们将讨论18个重要的系统设计概念。以下是每个概念的简要描述：</p>
-<h3 id="1-域名系统-DNS"><a href="#1-域名系统-DNS" class="headerlink" title="1. 域名系统 (DNS)"></a>1. 域名系统 (DNS)</h3><p>域名系统（DNS）是互联网基础设施的一个基本组成部分，将用户友好的域名转换为其相应的IP地址。它充当了互联网的电话簿，允许用户通过输入易于记忆的域名而不是计算机用于识别彼此的数值IP地址（如“192.0.2.1”）来访问网站和服务。</p>
-<p>当您在Web浏览器中输入域名时，DNS负责查找相关的IP地址并将您的请求发送到适当的服务器。这个过程从您的计算机向递归解析器发送查询开始，然后递归解析器搜索一系列DNS服务器，从根服务器开始，然后是顶级域（TLD）服务器，最终是权威域名服务器。一旦找到IP地址，递归解析器将其返回给您的计算机，允许您的浏览器与目标服务器建立连接并访问所需的内容。</p>
-<span id="more"></span>
-
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/E422D047-3CF9-44FC-8485-DC0691A0D20F_2/BHwIE9I3p9Zq4obdSxwyhvPpxnyDaKy52K8lkxH15JIz/WeChat49853bf56d5a9f0c3582bd606f58336a.png" alt="WeChat49853bf56d5a9f0c3582bd606f58336a.png"></p>
-<p><strong>DNS</strong></p>
-<h3 id="2-负载均衡器"><a href="#2-负载均衡器" class="headerlink" title="2. 负载均衡器"></a>2. 负载均衡器</h3><p>负载均衡器是一种用于分发入站网络流量到多个服务器的网络设备或软件，以确保最佳资源利用、降低延迟并保持高可用性。在出现突发流量或服务器请求不均匀分布的情况下，负载均衡器在扩展应用程序和有效管理服务器工作负载方面发挥着至关重要的作用。</p>
-<p>负载均衡器使用各种算法来确定入站流量的分发。一些常见的算法包括：</p>
-<p>•<strong>轮询算法:</strong> 请求按顺序和均匀地分配到所有可用服务器。•<strong>最少连接算法:</strong> 负载均衡器将请求分配给具有最少活动连接的服务器，为较不繁忙的服务器提供优先。•<strong>IP哈希算法:</strong> 客户端的IP地址被哈希，生成的值用于确定请求应该被定向到哪个服务器。这种方法确保特定客户端的请求一直路由到相同的服务器，有助于维护会话一致性。</p>
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/CC0B4F86-331E-4864-98DE-240A50A68478_2/Q6ehJ8vV27Zplx3vzY8oxZAfcznDjsxBVrIghyNhHyUz/WeChatff70f6ceea4bec786b6b65a93e59d09d.png" alt="WeChatff70f6ceea4bec786b6b65a93e59d09d.png"></p>
-<p><strong>负载均衡器</strong></p>
-<h3 id="3-API-网关"><a href="#3-API-网关" class="headerlink" title="3. API 网关"></a>3. API 网关</h3><p>API网关是一种充当外部客户端与应用程序的内部微服务或基于API的后端服务之间中间件的服务器或服务。它是当今体</p>
-<p>系结构的重要组件，特别是在基于微服务的系统中，它简化了通信过程，为客户端提供访问各种服务的单一入口点。</p>
-<p>API网关的主要功能包括：</p>
-<p>1.请求路由：API网关根据预定义的规则和配置，将来自客户端的传入API请求路由到适当的后端服务或微服务。2.身份验证和授权：API网关管理用户身份验证和授权，确保只有经授权的客户端才能访问服务。它在将请求路由到后端服务之前验证API密钥、令牌或其他凭证。3.速率限制和节流：为了保护后端服务免受过大的负荷或滥用，API网关根据预定义的策略对客户端的请求进行速率限制或节流。4.缓存：为了降低延迟和后端负载，API网关缓存经常使用的响应，直接提供给客户端，无需查询后端服务。5.请求和响应转换：API网关可以修改请求和响应，例如转换数据格式、添加或删除标头，或更改查询参数，以确保客户端和服务之间的兼容性。</p>
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/B3A2CE16-8EC9-430C-9695-C2842A3D1D37_2/w37rfBPqalyxb7DI52yfi0j4vKFXC3pij31Cjy4qyD8z/WeChat22f909aa70c05447c174ad79acff2b14.png" alt="WeChat22f909aa70c05447c174ad79acff2b14.png"></p>
-<p><strong>API 网关</strong></p>
-<h3 id="4-内容交付网络-CDN"><a href="#4-内容交付网络-CDN" class="headerlink" title="4. 内容交付网络 (CDN)"></a>4. 内容交付网络 (CDN)</h3><p>内容交付网络（CDN）是一个分布式服务器网络，用于存储和传递内容，如图像、视频、样式表和脚本，以使用户可以从地理位置更接近他们的位置访问这些内容。CDN旨在提高内容传递的性能、速度和可靠性，无论用户相对于原始服务器的位置如何。以下是CDN的运作方式：</p>
-<p>1.当用户从网站或应用程序请求内容时，请求被定向到最近的CDN服务器，也称为边缘服务器。2.如果边缘服务器已经缓存了请求的内容，它将直接向用户提供内容。这个过程减少了延迟并提高了用户体验，因为内容传输的距离更短。3.如果边缘服务器没有缓存请求的内容，CDN将从原始服务器或附近的另一个CDN服务器检索内容。一旦内容被获取，它将被缓存在边缘服务器上并提供给用户。4.为了确保内容保持最新，CDN定期检查原始服务器以获取更改，并相应地更新其缓存。</p>
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/8F16CDFA-A6BF-4EF0-B255-1561D5B15668_2/Utyy4u8cXYJw1lMigHqx6kUrxQxY9xf9HEzu4dRzcx4z/WeChatc451501adf104c2494e86bd095b41249.png" alt="WeChatc451501adf104c2494e86bd095b41249.png"></p>
-<p><strong>CDN</strong></p>
-<h3 id="5-正向代理与反向代理"><a href="#5-正向代理与反向代理" class="headerlink" title="5. 正向代理与反向代理"></a>5. 正向代理与反向代理</h3><p>正向代理，也称为“代理服务器”或简称“代理”，是位于一个或多个客户机之前的服务器，充当客户机和互联网之间的中介。当客户机请求互联网上的资源时，请求首先发送到正向代理。正向代理然后代表客户机将请求发送到互联网，然后将</p>
-<p>响应返回给客户机。</p>
-<p>另一方面，反向代理是位于一个或多个Web服务器之前的服务器，充当Web服务器和互联网之间的中介。当客户端请求互联网上的资源时，请求首先发送到反向代理。反向代理然后将请求转发到其中一个Web服务器，然后将响应返回给客户端。</p>
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/E81692CA-56E1-40F6-AE65-CAEAC9BCE304_2/oLqKySBKilPBewMwpwsh8h6rlM11KLjM6qChoRMx3yYz/WeChate9fc5329308d7c48fd7180015ca4d82f.png" alt="WeChate9fc5329308d7c48fd7180015ca4d82f.png"></p>
-<p><strong>正向代理与反向代理</strong></p>
-<h3 id="6-缓存"><a href="#6-缓存" class="headerlink" title="6. 缓存"></a>6. 缓存</h3><p>缓存是位于应用程序和原始数据源（如数据库、文件系统或远程Web服务）之间的高速存储层。当应用程序请求数据时，首先检查缓存。如果数据存在于缓存中，将返回给应用程序。如果在缓存中找不到数据，则从其原始来源检索数据，将其存储在缓存中以备将来使用，然后返回给应用程序。在分布式系统中，缓存可以出现在多个位置，包括客户端、DNS、CDN、负载均衡器、API网关、服务器、数据库等等。</p>
-<p><strong>缓存</strong></p>
-<h3 id="7-数据分区"><a href="#7-数据分区" class="headerlink" title="7. 数据分区"></a>7. 数据分区</h3><p>在数据库中，<strong>水平分区</strong>，通常称为<strong>分片</strong>，涉及将表的行分成较小的表，并存储在不同的服务器或数据库实例上。这种方法用于在多个服务器之间分发数据库负载，从而提高性能。</p>
-<p>相反，<strong>垂直分区</strong>涉及将表的列分成单独的表。这个技术旨在减少表中的列数，提高只访问有限数量列的查询性能。</p>
-<p><img src="https://res.craft.do/user/full/c4fcd313-f319-c77e-e1f2-f4caca9f2c87/doc/4A23BC2F-F18E-4384-96A0-CC28554D239A/CEDAB7A3-D6A6-49F8-9EC7-296A481F2ABC_2/pGPAgDIixcrQIS2hbMg1ay7mbfF3vBHxtepOyOuZeKUz/WeChateeefc7380c587916ff83aa5921aa6418.png" alt="WeChateeefc7380c587916ff83aa5921aa6418.png"></p>
-<p><strong>数据分区</strong></p>
-<h3 id="8-数据库复制"><a href="#8-数据库复制" class="headerlink" title="8. 数据库复制"></a>8. 数据库复制</h3><p>数据库复制是一种用于在不同服务器或位置之间维护相同数据库的方法。数据库复制的主要目标是增加数据的可用性、冗余和容错性，以确保系统即使在硬件故障或其他问题出现时仍然可以正常运行。</p>
-<p>在复制数据库配置中，一个服务器充当主数据库，而其他服务器则充当副本。这涉及在主数据库和副本之间同步数据，以确保它们都具有相同的最新信息。数据库复制提供了多个优点，包括：</p>
-<p>1.改进性能：通过在多个副本之间分发读查询，可以减轻主数据库的负载，从而提高查询响应时间。2.高可用性：如果主数据库发生故障或停机，副本可以继续提供数据，确保对应用程序的不间断访问。3.增强的数据保护：在不同位置维护数据库的多个副本有助于防止由于硬件故障或其他灾难而导致的数据丢失。4.负载平衡：副本可以处理读查询，从而实现更好的负载分配并减轻主数据库的整体压力。</p>
-<h3 id="9-分布式消息系统"><a href="#9-分布式消息系统" class="headerlink" title="9. 分布式消息系统"></a>9. 分布式消息系统</h3><p>分布式消息系统为多个可能分布在不同地理位置的应用程序、服务或组件之间交换消息提供了可靠、可扩展和容错的方式。这些系统通过解耦发送方和接收方组件，使它们能够独立开发和运行。分布式消息系统在大型或复杂系统中尤其有价值，比如微服务架构或分布式计算环境中。这些系统的示例包括Apache Kafka和RabbitMQ。</p>
-<h3 id="10-微服务"><a href="#10-微服务" class="headerlink" title="10. 微服务"></a>10. 微服务</h3><p>微服务代表一种架构风格，其中一个应用程序被组织成一组小型、松散耦合的、可以独立部署的服务。每个微服务负责应用程序内的特定功能或领域，并通过明确定义的API与其他微服务通信。这种方法不同于传统的单体架构，传统单体架构将应用程序构建为单一、紧密耦合的单元。</p>
-<p>微服务的主要特点包括：</p>
-<p>1.独立部署：每个微服务可以独立开发、测试和部署，无需影响其他微服务。2.技术多样性：每个微服务可以使用不同的技术栈，以满足其特定需求。3.易于维护：由于微服务的规模较小，它们通常更易于维护、扩展和修改。4.可扩展性：可以根据需要扩展单独的微服务，而无需为整个应用程序进行扩展。</p>
-<h3 id="11-数据库"><a href="#11-数据库" class="headerlink" title="11. 数据库"></a>11. 数据库</h3><p>数据库是一种结构化数据的持久存储系统，用于存储、检索和管理数据。数据库在各种应用程序和系统中都有广泛的应用，从基本的数据存储到复杂的分析和报告系统。主要的数据库类型包括：</p>
-<p>•<strong>关系型数据库（RDBMS）：</strong> 使用表格结构来存储数据，并支持SQL查询语言。常见的关系型数据库包括MySQL、PostgreSQL、Oracle和Microsoft SQL Server。•<strong>NoSQL数据库：</strong> 这些数据库不使用传统的表格结构，而使用文档、列族、键值对或图形等非关系数据结构来存储数据。NoSQL数据库包括MongoDB、Cassandra、Redis和Elasticsearch。•<strong>NewSQL数据库：</strong> 这是一种中间方式，结合了关系数据库和NoSQL数据库的某些特性。NewSQL数据库旨在提供可扩展性、高性能和分布式能力。</p>
-<h3 id="12-前端缓存"><a href="#12-前端缓存" class="headerlink" title="12. 前端缓存"></a>12. 前端缓存</h3><p>前端缓存是一种用于缓存Web应用程序的用户界面（HTML、CSS、JavaScript等）以提高性能的技术。前端缓存可以通过减少从服务器请求资源的次数、降低延迟并提供更快的用户体验来改进Web应用程序的性能。前端缓存通常采用浏览器缓存、CDN和缓存服务等多种形式。</p>
-<h3 id="13-后端缓存"><a href="#13-后端缓存" class="headerlink" title="13. 后端缓存"></a>13. 后端缓存</h3><p>后端缓存是一种用于缓存应用程序的数据和计算结果以提高性能的技术。它将数据存储在内存中，以便将来更快地检索。后端缓存通常用于存储数据库查询结果、API响应和计算密集型任务的结果。一些常见的后端缓存技术包括Redis和Memcached。</p>
-<h3 id="14-安全性"><a href="#14-安全性" class="headerlink" title="14. 安全性"></a>14. 安全性</h3><p>安全性是系统设计中至关重要的概念。它包括身份验证、授权、加密、跨站脚本（XSS）和跨站请求伪造（CSRF）防护、数据保护、网络安全等。系统设计应考虑各种威胁和安全攻击，以确保系统的数据和用户得到保护。</p>
-<h3 id="15-高可用性与容错性"><a href="#15-高可用性与容错性" class="headerlink" title="15. 高可用性与容错性"></a>15. 高可用性与容错性</h3><p>高可用性和容错性是系统设计的关键目标。高可用性涉及确保系统在面临故障或中断时保持可用。容错性涉及系统在出现故障或错误时能够恢复正常运行。实现高可用性和容错性通常需要使用负载均衡、故障转移、冗余和监控等技术。</p>
-<h3 id="16-事件驱动架构"><a href="#16-事件驱动架构" class="headerlink" title="16. 事件驱动架构"></a>16. 事件驱动架构</h3><p>事件驱动架构是一种应用程序架构，其中应用程序的不同组件通过事件进行通信。事件是应用程序中发生的特定动作或状态更改，可以触发其他组件的响应。事件驱动架构通常用于实现松散耦合的组件，以便能够更轻松地扩展和修改系统。</p>
-<h3 id="17-日志和监控"><a href="#17-日志和监控" class="headerlink" title="17. 日志和监控"></a>17. 日志和监控</h3><p>在系统设计中，日志和监控是关键工具，用于识别和解决性能问题、故障和安全问题。日志记录有助于跟踪系统的操作和问题，而监控则提供了实时的性能数据和警报。在分布式系统中，有效的日志和监控可以帮助工程师快速诊断问题和优化系统。</p>
-<h3 id="18-测试策略"><a href="#18-测试策略" class="headerlink" title="18. 测试策略"></a>18. 测试策略</h3><p>测试是系统设计和开发的关键组成部分。测试策略涉及确定测试范围、创建测试计划、编写测试用例、执行测试、自动化测试、性能测试等。有效的测试策略有助于确保系统的可靠性、性能和安全性。</p>
-<p>这18个系统设计概念涵盖了构建可伸缩、高性能、高可用性和安全的系统所需的核心知识。</p>
-<p>希望这篇文章对你有所帮助,没有浪费你的时间~</p>
-]]></content>
-      <categories>
-        <category>系统设计,网络技术</category>
-      </categories>
-      <tags>
-        <tag>CDN,系统设计,网络技术</tag>
       </tags>
   </entry>
   <entry>
@@ -3912,6 +3761,157 @@
       </categories>
       <tags>
         <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何做好监控微服务调⽤?</title>
+    <url>/2021/06/16/service-06-16-%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E7%9B%91%E6%8E%A7%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%B0%83%E2%BD%A4/</url>
+    <content><![CDATA[<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_17f35bc65eed401b374b1b5fcf552d44_83179.png" style="zoom:90%;" />
+
+<h6 id="监控对象"><a href="#监控对象" class="headerlink" title="监控对象"></a>监控对象</h6><ul>
+<li><p>⽤户端监控。通常是指业务直接对⽤户提供的功能的监控</p>
+</li>
+<li><p>接口监控。通常是指业务提供的功能所依赖的接口的监控</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<ul>
+<li><p>资源监控。通常是指某个接⼝依赖的资源的监控。比如该接口使用的redis 缓存，对redis 的监控就是资源的</p>
+<p>监控</p>
+</li>
+<li><p>基础监控。通常是指对服务器本身的健康状况的监控。主要包括CPU利⽤率、内存使⽤量、I/O读写量、⽹卡</p>
+<p>带宽等</p>
+</li>
+</ul>
+<h6 id="监控指标"><a href="#监控指标" class="headerlink" title="监控指标"></a>监控指标</h6><ul>
+<li><p>请求量。请求量监控分为两个维度，⼀个是实时请求量QPS，⼀个是统计请求量PV。QPS（Queries Per</p>
+<p>Second） 即每秒查询次数来衡量，它反映了服务调⽤的实时变化情况。统计请求量⼀般⽤PV（Page View）</p>
+<p>即⼀段时间内⽤户的访 问量来衡量，⽐如⼀天的PV代表了服务⼀天的请求量，通常⽤来统计报表。</p>
+</li>
+<li><p>响应时间。⼤多数情况下，可以⽤⼀段时间内所有调⽤的平均耗时来反映请求的响应时间。可以把响应时间划</p>
+<p>分为多个区间，⽐如0～10ms、10ms～50ms、50ms～ 100ms、100ms～500ms、500ms以上这五个区</p>
+<p>间。除此之外，还可以从P90、P95、P99、P999⻆度来监控请求的响应时间，⽐如P99 = 500ms，意思是</p>
+<p>99%的请求响 应时间在500ms以内，它代表了请求的服务质量，即SLA。</p>
+</li>
+<li><p>错误率。错误率的监控通常⽤⼀段时间内调⽤失败的次数占调⽤总次数的⽐率来衡量，⽐如对于接⼝的错误率</p>
+<p>⼀般⽤接⼝ 返回错误码为503的⽐率来表示。</p>
+</li>
+</ul>
+<h6 id="监控维度"><a href="#监控维度" class="headerlink" title="监控维度"></a>监控维度</h6><ul>
+<li><p>全局维度。从整体⻆度监控对象的的请求量、平均耗时以及错误率，全局维度的监控⼀般是为了让你对监控对象的调⽤情 况有个整体了解。</p>
+</li>
+<li><p> 分机房维度。</p>
+</li>
+<li><p> 时间维度。同⼀个监控对象，在每天的同⼀时刻各种指标通常也不会⼀样</p>
+</li>
+<li><p>核⼼维度。业务上⼀般会依据重要性程度对监控对象进⾏分级，最简单的是分成核⼼业务和⾮核⼼业务。</p>
+<p>核⼼业务和⾮核⼼业务在部署上必须隔离，分开监控，这样才能对核⼼业务做重点保障。</p>
+</li>
+</ul>
+<h6 id="监控系统"><a href="#监控系统" class="headerlink" title="监控系统"></a>监控系统</h6><blockquote>
+<p>主要包括四个环节：数据采集、数据传输、数据处理和数据展示</p>
+</blockquote>
+<ul>
+<li><p>数据采集</p>
+<p>通常有两种数据收集⽅式：</p>
+<ul>
+<li><p><strong>服务主动上报</strong>，这种处理⽅式通过在业务代码或者服务框架⾥加⼊数据收集代码逻辑，在每⼀次服务</p>
+<p>调⽤完成后，主动上报服务的调⽤信息。</p>
+</li>
+<li><p><strong>代理收集</strong>，这种处理⽅式通过服务调⽤后把调⽤的详细信息记录到本地⽇志⽂件中，然后再通过代理去解</p>
+<p>析本地⽇志⽂ 件，然后再上报服务的调⽤信息。</p>
+</li>
+</ul>
+</li>
+<li><p>数据传输</p>
+<ul>
+<li><p><strong>UDP传输</strong>，这种处理⽅式是数据处理单元提供服务器的请求地址，数据采集后通过UDP协议与服务器建⽴</p>
+<p>连接，然后把数 据发送过去。</p>
+</li>
+<li><p><strong>Kafka传输</strong>，这种处理⽅式是数据采集后发送到指定的Topic，然后数据处理单元再订阅对应的Topic，就</p>
+<p>可以从Kafka消息队列中读取到对应的数据。</p>
+<img src="https://cdn.smalltechnologyjun.com//image-20210615200330740.png" alt="image-20210615200330740" style="zoom: 80%;" /></li>
+</ul>
+</li>
+<li><p>数据处理</p>
+<p>数据聚合两个维度：接口维度和机器维度</p>
+<p>聚合后的数据持久化： 索引数据库(es) 或者 时序数据库influxDB</p>
+</li>
+<li><p>数据展示</p>
+<p>数据展示有多种⽅式，⽐如曲线图、饼状图、格⼦图展示</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>微服务</category>
+      </categories>
+      <tags>
+        <tag>微服务治理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Optional 的使用会导致性能下降吗？</title>
+    <url>/2021/07/26/service-%E4%BD%A0%E9%9C%80%E8%A6%81%E6%8B%85%E5%BF%83Optional%E7%9B%B8%E5%85%B3%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%90%97/</url>
+    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_bb2845fd7f5a4c03fb9adb66715a5e02_14370.png" alt="图怪兽_bb2845fd7f5a4c03fb9adb66715a5e02_14370"></p>
+<p>几天前，我在论坛上发了一篇关于<code>Optional</code> 的文章。其中一条评论是一个非常好的问题:</p>
+<blockquote>
+<p>Optional 的使用会导致性能下降吗？</p>
+</blockquote>
+<p>答案是: 是的，它会的。但是你应该担心吗？</p>
+<span id="more"></span>
+
+<h2 id="使用Optional的好处"><a href="#使用Optional的好处" class="headerlink" title="使用Optional的好处"></a>使用Optional的好处</h2><p>Optional 类使我们这些开发人员的生活更轻松</p>
+<ul>
+<li>增加代码的可读性</li>
+<li>减少代码中的条件数</li>
+<li>更不容易出错</li>
+</ul>
+<p>让我们来看看 Optional 类的一些主要方法是如何实现的。</p>
+<!--more-->
+
+<h2 id="Optional-如何实现的？"><a href="#Optional-如何实现的？" class="headerlink" title="Optional 如何实现的？"></a>Optional 如何实现的？</h2><p>这里有一些 <code>Optional</code> 类的主要方法:</p>
+<p>基本上，它将值包装到一个新的 <code>Optional</code>对象中，并检查包装的值是否为<code>null</code>。</p>
+<p>即使没有使用 Optional，也必须检查值是否为 null。它可能比您做的检查多一些，但我认为您不必担心这一点。</p>
+<p>但是您必须知道，将值包装到新对象中将增加 GC 要收集的对象数量。这意味着堆使用量将增加得更快，CPU 使用量将更高(更多 GC 事件)。</p>
+<p>好吧，但是有多高呢？同样，这取决于您正在创建的可选对象的数量、堆的大小以及您的应用程序在不使用可选对象的情况下使用的 CPU 数量。</p>
+<p>例如，假设您对应用程序进行了基准测试，并得出结论，使用 Optional 将提高 CPU 使用率1个百分点。如果您的应用程序平均使用50% 的 CPU，那么使用51% 的可选 CPU 并不是一个很大的开销，对吧？</p>
+<p>但是，如果您的应用程序平均消耗5% 的 CPU，使用6% 意味着20% 的开销，这是相当重要的。</p>
+<h2 id="过早优化是万恶之源"><a href="#过早优化是万恶之源" class="headerlink" title="过早优化是万恶之源"></a>过早优化是万恶之源</h2><p>Joshua Bloch 在<a target="_blank" rel="noopener" href="https://www.amazon.com/gp/product/0134685997/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0134685997&linkCode=as2&tag=hbelmiro0f-20&linkId=213790c63c0d57baac2e45b3183a35b2">Effective Java</a> 一书中有整整一章(第67项: Optimize judiciously)谈到了优化。</p>
+<p>他在这一章的开头写道:</p>
+<blockquote>
+<p>关于最优化，有三个关注点是每个人都应该知道的:</p>
+<blockquote>
+<p>与其他任何单一原因(包括盲目的愚蠢)相比，更多的计算原罪是以效率的名义犯下的(不一定能实现)。</p>
+</blockquote>
+<p>William A. Wulf</p>
+<blockquote>
+<p>我们应该忘记小的副作用，比如说97% 的时间: 过早的优化是一切罪恶的根源。</p>
+</blockquote>
+<p>Donald E. Knuth</p>
+<blockquote>
+<p>在优化问题上，我们遵循两个规则:</p>
+<ul>
+<li>规则1. 不要这样做</li>
+<li>规则 2（仅适用于专家）。 暂时不要这样做——也就是说，除非你有一个非常清晰且未经优化的解决方案。</li>
+</ul>
+</blockquote>
+<p>M. A. Jackson</p>
+</blockquote>
+<p>因此，除非您需要一个快速的应用程序并且资源有限，否则不要过早担心性能问题。专注于编写好的代码，这样当你需要它的时候，它就很容易优化。此外，使用分析器查找对性能影响更大的位置。</p>
+<h2 id="谁会使用你的-API？"><a href="#谁会使用你的-API？" class="headerlink" title="谁会使用你的 API？"></a>谁会使用你的 API？</h2><p>这也是一个你需要问自己的好问题。如果您正在编写一个内部 API，您可以更自由地决定是否使用它。</p>
+<p>但是如果你正在编写一个公共 API，比如一个框架或者库，而你不知道什么样的应用程序在调用它，你可能需要更加灵活，给客户端选择是否使用可选的选项。</p>
+<p>您可以提供两个方法，一个返回  <code>Optional</code> ，另一个返回 <code>null</code>。但是，当创建一个可以返回 <code>null</code> 的方法时，尽量让它显式。使用注释  <code>javax.annotation.Nullable</code>。方法的可空性。 (<a target="_blank" rel="noopener" href="https://jcp.org/en/jsr/detail?id=305">JSR 305</a>)</p>
+<h2 id="最终，这取决于你"><a href="#最终，这取决于你" class="headerlink" title="最终，这取决于你"></a>最终，这取决于你</h2><p>你可以决定是否使用 Optional。没有一个简单的答案适用于所有情况。软件工程中的大多数事情都是这样的。这一切都是权衡取舍。</p>
+<p>所以，要意识到它是如何工作的，并评估替代方案。任何事情都有代价，你是那个可以决定是否承担的人。</p>
+<p>您认为为了提高性能而付出不可读且更容易出错的代码的代价是值得的吗？你知道这种进步有多重要吗？</p>
+<p>在大多数情况下，使用 <code>Optional</code>  并保持开心！<code>Optional</code>  是不错的!</p>
+]]></content>
+      <categories>
+        <category>微服务</category>
+      </categories>
+      <tags>
+        <tag>微服务治理</tag>
       </tags>
   </entry>
   <entry>
