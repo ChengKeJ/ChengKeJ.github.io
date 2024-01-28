@@ -456,6 +456,21 @@
       </tags>
   </entry>
   <entry>
+    <title>计算机网络思维导图</title>
+    <url>/2020/11/12/internet-2020-11-26-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
+    <content><![CDATA[<p>分享计算机网络思维导图，持续更新ing</p>
+<span id="more"></span>
+
+<p><img src="https://raw.githubusercontent.com/ChengKeJ/ChengKeJ.github.io/master/img/internet.png"></p>
+]]></content>
+      <categories>
+        <category>network</category>
+      </categories>
+      <tags>
+        <tag>网络基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nagle和延迟确认带来的性能问题</title>
     <url>/2022/12/23/internet-nagle/</url>
     <content><![CDATA[<h1 id="Nagle和延迟确认带来的性能问题"><a href="#Nagle和延迟确认带来的性能问题" class="headerlink" title="Nagle和延迟确认带来的性能问题"></a>Nagle和延迟确认带来的性能问题</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>从网上看到的一个问题的跟踪@林沛满 ，觉得很有意思记录下来</p>
@@ -493,21 +508,6 @@
       </categories>
       <tags>
         <tag>tcp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>计算机网络思维导图</title>
-    <url>/2020/11/12/internet-2020-11-26-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/</url>
-    <content><![CDATA[<p>分享计算机网络思维导图，持续更新ing</p>
-<span id="more"></span>
-
-<p><img src="https://raw.githubusercontent.com/ChengKeJ/ChengKeJ.github.io/master/img/internet.png"></p>
-]]></content>
-      <categories>
-        <category>network</category>
-      </categories>
-      <tags>
-        <tag>网络基础</tag>
       </tags>
   </entry>
   <entry>
@@ -1099,6 +1099,95 @@
       </tags>
   </entry>
   <entry>
+    <title>深入了解kafka系列-主题</title>
+    <url>/2020/07/03/kafka-2020-07-03-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3kafka%E7%B3%BB%E5%88%97-%E4%B8%BB%E9%A2%98/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>主题和分区是Kafka 的两个核心概念，前面系列中讲述的生产者和消费者的设计理念所针对的都是主题和分区层面的操作。主题作为消息的归类，可以再细分为一个或多个分区，分区也可以看作对消息的二次归类。分区的划分不仅为Kafka提供了可伸缩性、水平扩展的功能，还通过多副本机制来为Kafka提供数据冗余以提高数据可靠性。</p>
+</blockquote>
+<p>从Kafka的底层实现来说，主题和分区都是逻辑上的概念，分区可以有一至多个副本，每个副本对应一个日志文件，每个日志文件对应一至多个日志分段（LogSegment），每个日志分段还可以细分为索引文件、日志存储文件和快照文件等。不过对于使用Kafka进行消息收发的普通用户而言，了解到分区这一层面足以应对大部分的使用场景,这里暂时只说到主题和分区,更底层的内容会在后续这个系列持续讲解~</p>
+<span id="more"></span>
+
+
+<h3 id="主题的管理"><a href="#主题的管理" class="headerlink" title="主题的管理"></a>主题的管理</h3><p>主题的管理包括创建主题、查看主题信息、修改主题和删除主题等操作。可以通过 Kafka提供的 kafka-topics.sh脚本来执行这些操作，这个脚本位于$KAFKA_HOME/bin/目录下，其核心代码仅有一行，具体如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">exec $(dirname $0)&#x2F;kafka-run-class.sh kafka.admin.TopicCommand &quot;$@&quot;</span><br></pre></td></tr></table></figure>
+
+<p>当然主题的管理并非只有使用 kafka-topics.sh 脚本这一种方式，我们还可以通过KafkaAdminClient 的方式实现（这种方式实质上是通过发送 CreateTopicsRequest、DeleteTopicsRequest 等请求来实现的,甚至我们还可以通过直接操纵日志文件和ZooKeeper节点来实现,这个后续我会单独抽出来放在这个系列继续讲解~</p>
+<ul>
+<li>1 创建主题</li>
+</ul>
+<p> 如果broker端配置参数auto.create.topics.enable设置为true（默认值就是true），那么当生产者向一个尚未创建的主题发送消息时，会自动创建一个分区数为num.partitions （默认值为1）、副本因子为default.replication.factor（默认值为1）的主题。不建议这样操作,topic 未知难以维护,建议下面这种方式:</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --create --zookeeper localhost:2181&#x2F;kafka100 --topic topic-create --replication-factor 2 --partitions 4</span><br></pre></td></tr></table></figure>
+<p> 上面的示例中创建了一个分区数为 4、副本因子为 2 的主题.</p>
+<p> 三个broker节点一共创建了8个文件夹，这个数字8实质上是分区数4与副本因子2的乘积。每个副本（或者更确切地说应该是日志，副本与日志一一对应）才真正对应了一个命名形式如＜topic＞-＜partition＞的文件夹。主题、分区、副本和 Log（日志）的关系如图所示</p>
+<p> <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gghbnbj175j30wi082adz.jpg"></p>
+<p>同一个分区中的多个副本必须分布在不同的broker中，这样才能提供有效的数据冗余。对于示例中的分区数为4、副本因子为2、broker数为3的情况下，按照2、3、3的分区副本个数分配给各个broker是最优的选择。再比如在分区数为3、副本因子为3，并且broker数同样为3的情况下，分配3、3、3的分区副本个数给各个broker是最优的选择，也就是每个broker中都拥有所有分区的一个副本。</p>
+<ul>
+<li>2 分区副本的分配</li>
+</ul>
+<p>这里的分区分配是指为集群制定创建主题时的分区副本分配方案，即在哪个broker中创建哪些分区的副本<br>在创建主题时，如果使用了replica-assignment参数，那么就按照指定的方案来进行分区副本的创建；如果没有使用replica-assignment参数，那么就需要按照内部的逻辑来计算分配方案了。使用kafka-topics.sh脚本创建主题时的内部分配逻辑按照机架信息划分成两种策略：未指定机架信息和指定机架信息。如果集群中所有的 broker节点都没有配置broker.rack参数，或者使用disable-rack-aware参数来创建主题，那么采用的就是未指定机架信息的分配策略，否则采用的就是指定机架信息的分配策略</p>
+<ul>
+<li>3 查看主题</li>
+</ul>
+<p>kafka-topics.sh脚本有5种指令类型：create、list、describe、alter和delete。其中list和describe指令可以用来方便地查看主题信息,通过list指令可以查看当前所有可用的主题，示例如下:<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --zookeeper localhost:2181 --list</span><br></pre></td></tr></table></figure><br> 查看指定topic信息<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --zookeeper localhost:2181 --describe --topic topic-create</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>4 修改主题</li>
+</ul>
+<p>当一个主题被创建之后，依然允许我们对其做一定的修改，比如修改分区个数、修改配置等，这个修改的功能就是由kafka-topics.sh脚本中的alter指令提供的。我们首先来看如何增加主题的分区数。以前面的主题topic-config为例，当前分区数为1，修改为3，示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># bin&#x2F;kafka-topics.sh --zookeeper localhost:2181&#x2F;kafka --alter --topic topic-config --partitions 3</span><br><span class="line">WARNING: If partitions are increased for a topic that has a key, the partition logic or ordering of the messages will be affected</span><br><span class="line">Adding partitions succeeded!</span><br><span class="line"> </span><br><span class="line"># bin&#x2F;kafka-topics.sh --zookeeper localhost:2181&#x2F;kafka --describe --topic topic-create</span><br><span class="line">Topic:topic-config    PartitionCount:3  ReplicationFactor:1   Configs:</span><br><span class="line">Topic: topic-config    Partition: 0 Leader: 2    Replicas: 2  Isr: 2</span><br><span class="line">Topic: topic-config    Partition: 1 Leader: 0    Replicas: 0  Isr: 0</span><br><span class="line">Topic: topic-config    Partition: 2 Leader: 1    Replicas: 1  Isr: 1</span><br></pre></td></tr></table></figure>
+<p>当主题中的消息包含key时（即key不为null），根据key计算分区的行为就会受到影响,对于基于key计算的主题而言，建议在一开始就设置好分区数量，避免以后对其进行调整。目前Kafka只支持增加分区数而不支持减少分区数.</p>
+<ul>
+<li>5 删除主题</li>
+</ul>
+<p>如果确定不再使用一个主题，那么最好的方式是将其删除，这样可以释放一些资源，比如磁盘、文件句柄等。kafka-topics.sh脚本中的delete指令就可以用来删除主题，比如删除一个主题topic-delete.</p>
+<h3 id="初识KafkaAdminClient"><a href="#初识KafkaAdminClient" class="headerlink" title="初识KafkaAdminClient"></a>初识KafkaAdminClient</h3><p>一般情况下，我们都习惯使用kafka-topics.sh脚本来管理主题，但有时候我们希望将主题管理类的功能集成到公司内部的系统中，打造集管理、监控、运维、告警为一体的生态平台.</p>
+<p>KafkaAdminClient继承了org.apache.kafka.clients.admin.AdminClient抽象类，并提供了多种方法。篇幅限制，下面只列出与本章内容相关的一些方法。</p>
+<ul>
+<li> 创建主题：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CreateTopicsResult createTopics（Collection＜NewTopic＞newTopics）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li> 删除主题：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DeleteTopicsResult deleteTopics（Collection＜String＞topics）。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li> 列出所有可用的主题：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ListTopicsResult listTopics（）。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li> 查看主题的信息：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DescribeTopicsResult describeTopics（Collection＜String＞topicNames）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li> 查询配置信息：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DescribeConfigsResult describeConfigs（Collection＜ConfigResource＞resources）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改配置信息：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AlterConfigsResult alterConfigs（Map＜ConfigResource，Config＞configs）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>增加分区：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CreatePartitionsResult createPartitions（Map＜String，NewPartitions＞newPartitions）</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>原创不易，如果觉得有点用的话，请毫不留情点个赞，转发一下，这将是我持续输出优质文章的最强动力。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>kafka</category>
+      </categories>
+      <tags>
+        <tag>kafka</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>深入了解kafka系列-生产者</title>
     <url>/2020/07/01/kafka-2020-06-30-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3kafka%E7%B3%BB%E5%88%97-%E7%94%9F%E4%BA%A7%E8%80%85/</url>
     <content><![CDATA[<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><blockquote>
@@ -1224,95 +1313,6 @@
 <p>  除了查找不到消费位移，位移越界也会触发 auto.offset.reset 参数的执行 ，然而有些时候，我们需要一种更细粒度的掌控，可以让我们从特定的位移处开始拉取消息，哎 ！这个时候 KafkaConsumer 中的 seek（）方法正好提供了这个功能，让我们得以追前消费或回溯消费。seek（）方法的具体定义如下：</p>
   <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public void seek(TopicPartition partition, long offset) &#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>seek（）方法为我们提供了从特定位置读取消息的能力，我们可以通过这个方法来向前跳过若干消息，也可以通过这个方法来向后回溯若干消息，这样为消息的消费提供了很大的灵活性</p>
-<blockquote>
-<p>原创不易，如果觉得有点用的话，请毫不留情点个赞，转发一下，这将是我持续输出优质文章的最强动力。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>kafka</category>
-      </categories>
-      <tags>
-        <tag>kafka</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>深入了解kafka系列-主题</title>
-    <url>/2020/07/03/kafka-2020-07-03-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3kafka%E7%B3%BB%E5%88%97-%E4%B8%BB%E9%A2%98/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>主题和分区是Kafka 的两个核心概念，前面系列中讲述的生产者和消费者的设计理念所针对的都是主题和分区层面的操作。主题作为消息的归类，可以再细分为一个或多个分区，分区也可以看作对消息的二次归类。分区的划分不仅为Kafka提供了可伸缩性、水平扩展的功能，还通过多副本机制来为Kafka提供数据冗余以提高数据可靠性。</p>
-</blockquote>
-<p>从Kafka的底层实现来说，主题和分区都是逻辑上的概念，分区可以有一至多个副本，每个副本对应一个日志文件，每个日志文件对应一至多个日志分段（LogSegment），每个日志分段还可以细分为索引文件、日志存储文件和快照文件等。不过对于使用Kafka进行消息收发的普通用户而言，了解到分区这一层面足以应对大部分的使用场景,这里暂时只说到主题和分区,更底层的内容会在后续这个系列持续讲解~</p>
-<span id="more"></span>
-
-
-<h3 id="主题的管理"><a href="#主题的管理" class="headerlink" title="主题的管理"></a>主题的管理</h3><p>主题的管理包括创建主题、查看主题信息、修改主题和删除主题等操作。可以通过 Kafka提供的 kafka-topics.sh脚本来执行这些操作，这个脚本位于$KAFKA_HOME/bin/目录下，其核心代码仅有一行，具体如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">exec $(dirname $0)&#x2F;kafka-run-class.sh kafka.admin.TopicCommand &quot;$@&quot;</span><br></pre></td></tr></table></figure>
-
-<p>当然主题的管理并非只有使用 kafka-topics.sh 脚本这一种方式，我们还可以通过KafkaAdminClient 的方式实现（这种方式实质上是通过发送 CreateTopicsRequest、DeleteTopicsRequest 等请求来实现的,甚至我们还可以通过直接操纵日志文件和ZooKeeper节点来实现,这个后续我会单独抽出来放在这个系列继续讲解~</p>
-<ul>
-<li>1 创建主题</li>
-</ul>
-<p> 如果broker端配置参数auto.create.topics.enable设置为true（默认值就是true），那么当生产者向一个尚未创建的主题发送消息时，会自动创建一个分区数为num.partitions （默认值为1）、副本因子为default.replication.factor（默认值为1）的主题。不建议这样操作,topic 未知难以维护,建议下面这种方式:</p>
- <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --create --zookeeper localhost:2181&#x2F;kafka100 --topic topic-create --replication-factor 2 --partitions 4</span><br></pre></td></tr></table></figure>
-<p> 上面的示例中创建了一个分区数为 4、副本因子为 2 的主题.</p>
-<p> 三个broker节点一共创建了8个文件夹，这个数字8实质上是分区数4与副本因子2的乘积。每个副本（或者更确切地说应该是日志，副本与日志一一对应）才真正对应了一个命名形式如＜topic＞-＜partition＞的文件夹。主题、分区、副本和 Log（日志）的关系如图所示</p>
-<p> <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gghbnbj175j30wi082adz.jpg"></p>
-<p>同一个分区中的多个副本必须分布在不同的broker中，这样才能提供有效的数据冗余。对于示例中的分区数为4、副本因子为2、broker数为3的情况下，按照2、3、3的分区副本个数分配给各个broker是最优的选择。再比如在分区数为3、副本因子为3，并且broker数同样为3的情况下，分配3、3、3的分区副本个数给各个broker是最优的选择，也就是每个broker中都拥有所有分区的一个副本。</p>
-<ul>
-<li>2 分区副本的分配</li>
-</ul>
-<p>这里的分区分配是指为集群制定创建主题时的分区副本分配方案，即在哪个broker中创建哪些分区的副本<br>在创建主题时，如果使用了replica-assignment参数，那么就按照指定的方案来进行分区副本的创建；如果没有使用replica-assignment参数，那么就需要按照内部的逻辑来计算分配方案了。使用kafka-topics.sh脚本创建主题时的内部分配逻辑按照机架信息划分成两种策略：未指定机架信息和指定机架信息。如果集群中所有的 broker节点都没有配置broker.rack参数，或者使用disable-rack-aware参数来创建主题，那么采用的就是未指定机架信息的分配策略，否则采用的就是指定机架信息的分配策略</p>
-<ul>
-<li>3 查看主题</li>
-</ul>
-<p>kafka-topics.sh脚本有5种指令类型：create、list、describe、alter和delete。其中list和describe指令可以用来方便地查看主题信息,通过list指令可以查看当前所有可用的主题，示例如下:<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --zookeeper localhost:2181 --list</span><br></pre></td></tr></table></figure><br> 查看指定topic信息<br> <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --zookeeper localhost:2181 --describe --topic topic-create</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>4 修改主题</li>
-</ul>
-<p>当一个主题被创建之后，依然允许我们对其做一定的修改，比如修改分区个数、修改配置等，这个修改的功能就是由kafka-topics.sh脚本中的alter指令提供的。我们首先来看如何增加主题的分区数。以前面的主题topic-config为例，当前分区数为1，修改为3，示例如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># bin&#x2F;kafka-topics.sh --zookeeper localhost:2181&#x2F;kafka --alter --topic topic-config --partitions 3</span><br><span class="line">WARNING: If partitions are increased for a topic that has a key, the partition logic or ordering of the messages will be affected</span><br><span class="line">Adding partitions succeeded!</span><br><span class="line"> </span><br><span class="line"># bin&#x2F;kafka-topics.sh --zookeeper localhost:2181&#x2F;kafka --describe --topic topic-create</span><br><span class="line">Topic:topic-config    PartitionCount:3  ReplicationFactor:1   Configs:</span><br><span class="line">Topic: topic-config    Partition: 0 Leader: 2    Replicas: 2  Isr: 2</span><br><span class="line">Topic: topic-config    Partition: 1 Leader: 0    Replicas: 0  Isr: 0</span><br><span class="line">Topic: topic-config    Partition: 2 Leader: 1    Replicas: 1  Isr: 1</span><br></pre></td></tr></table></figure>
-<p>当主题中的消息包含key时（即key不为null），根据key计算分区的行为就会受到影响,对于基于key计算的主题而言，建议在一开始就设置好分区数量，避免以后对其进行调整。目前Kafka只支持增加分区数而不支持减少分区数.</p>
-<ul>
-<li>5 删除主题</li>
-</ul>
-<p>如果确定不再使用一个主题，那么最好的方式是将其删除，这样可以释放一些资源，比如磁盘、文件句柄等。kafka-topics.sh脚本中的delete指令就可以用来删除主题，比如删除一个主题topic-delete.</p>
-<h3 id="初识KafkaAdminClient"><a href="#初识KafkaAdminClient" class="headerlink" title="初识KafkaAdminClient"></a>初识KafkaAdminClient</h3><p>一般情况下，我们都习惯使用kafka-topics.sh脚本来管理主题，但有时候我们希望将主题管理类的功能集成到公司内部的系统中，打造集管理、监控、运维、告警为一体的生态平台.</p>
-<p>KafkaAdminClient继承了org.apache.kafka.clients.admin.AdminClient抽象类，并提供了多种方法。篇幅限制，下面只列出与本章内容相关的一些方法。</p>
-<ul>
-<li> 创建主题：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CreateTopicsResult createTopics（Collection＜NewTopic＞newTopics）</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li> 删除主题：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DeleteTopicsResult deleteTopics（Collection＜String＞topics）。</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li> 列出所有可用的主题：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ListTopicsResult listTopics（）。</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li> 查看主题的信息：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DescribeTopicsResult describeTopics（Collection＜String＞topicNames）</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li> 查询配置信息：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DescribeConfigsResult describeConfigs（Collection＜ConfigResource＞resources）</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>修改配置信息：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">AlterConfigsResult alterConfigs（Map＜ConfigResource，Config＞configs）</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>增加分区：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CreatePartitionsResult createPartitions（Map＜String，NewPartitions＞newPartitions）</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>原创不易，如果觉得有点用的话，请毫不留情点个赞，转发一下，这将是我持续输出优质文章的最强动力。</p>
 </blockquote>
@@ -2188,157 +2188,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如何做好监控微服务调⽤?</title>
-    <url>/2021/06/16/service-06-16-%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E7%9B%91%E6%8E%A7%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%B0%83%E2%BD%A4/</url>
-    <content><![CDATA[<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_17f35bc65eed401b374b1b5fcf552d44_83179.png" style="zoom:90%;" />
-
-<h6 id="监控对象"><a href="#监控对象" class="headerlink" title="监控对象"></a>监控对象</h6><ul>
-<li><p>⽤户端监控。通常是指业务直接对⽤户提供的功能的监控</p>
-</li>
-<li><p>接口监控。通常是指业务提供的功能所依赖的接口的监控</p>
-</li>
-</ul>
-<span id="more"></span>
-
-<ul>
-<li><p>资源监控。通常是指某个接⼝依赖的资源的监控。比如该接口使用的redis 缓存，对redis 的监控就是资源的</p>
-<p>监控</p>
-</li>
-<li><p>基础监控。通常是指对服务器本身的健康状况的监控。主要包括CPU利⽤率、内存使⽤量、I/O读写量、⽹卡</p>
-<p>带宽等</p>
-</li>
-</ul>
-<h6 id="监控指标"><a href="#监控指标" class="headerlink" title="监控指标"></a>监控指标</h6><ul>
-<li><p>请求量。请求量监控分为两个维度，⼀个是实时请求量QPS，⼀个是统计请求量PV。QPS（Queries Per</p>
-<p>Second） 即每秒查询次数来衡量，它反映了服务调⽤的实时变化情况。统计请求量⼀般⽤PV（Page View）</p>
-<p>即⼀段时间内⽤户的访 问量来衡量，⽐如⼀天的PV代表了服务⼀天的请求量，通常⽤来统计报表。</p>
-</li>
-<li><p>响应时间。⼤多数情况下，可以⽤⼀段时间内所有调⽤的平均耗时来反映请求的响应时间。可以把响应时间划</p>
-<p>分为多个区间，⽐如0～10ms、10ms～50ms、50ms～ 100ms、100ms～500ms、500ms以上这五个区</p>
-<p>间。除此之外，还可以从P90、P95、P99、P999⻆度来监控请求的响应时间，⽐如P99 = 500ms，意思是</p>
-<p>99%的请求响 应时间在500ms以内，它代表了请求的服务质量，即SLA。</p>
-</li>
-<li><p>错误率。错误率的监控通常⽤⼀段时间内调⽤失败的次数占调⽤总次数的⽐率来衡量，⽐如对于接⼝的错误率</p>
-<p>⼀般⽤接⼝ 返回错误码为503的⽐率来表示。</p>
-</li>
-</ul>
-<h6 id="监控维度"><a href="#监控维度" class="headerlink" title="监控维度"></a>监控维度</h6><ul>
-<li><p>全局维度。从整体⻆度监控对象的的请求量、平均耗时以及错误率，全局维度的监控⼀般是为了让你对监控对象的调⽤情 况有个整体了解。</p>
-</li>
-<li><p> 分机房维度。</p>
-</li>
-<li><p> 时间维度。同⼀个监控对象，在每天的同⼀时刻各种指标通常也不会⼀样</p>
-</li>
-<li><p>核⼼维度。业务上⼀般会依据重要性程度对监控对象进⾏分级，最简单的是分成核⼼业务和⾮核⼼业务。</p>
-<p>核⼼业务和⾮核⼼业务在部署上必须隔离，分开监控，这样才能对核⼼业务做重点保障。</p>
-</li>
-</ul>
-<h6 id="监控系统"><a href="#监控系统" class="headerlink" title="监控系统"></a>监控系统</h6><blockquote>
-<p>主要包括四个环节：数据采集、数据传输、数据处理和数据展示</p>
-</blockquote>
-<ul>
-<li><p>数据采集</p>
-<p>通常有两种数据收集⽅式：</p>
-<ul>
-<li><p><strong>服务主动上报</strong>，这种处理⽅式通过在业务代码或者服务框架⾥加⼊数据收集代码逻辑，在每⼀次服务</p>
-<p>调⽤完成后，主动上报服务的调⽤信息。</p>
-</li>
-<li><p><strong>代理收集</strong>，这种处理⽅式通过服务调⽤后把调⽤的详细信息记录到本地⽇志⽂件中，然后再通过代理去解</p>
-<p>析本地⽇志⽂ 件，然后再上报服务的调⽤信息。</p>
-</li>
-</ul>
-</li>
-<li><p>数据传输</p>
-<ul>
-<li><p><strong>UDP传输</strong>，这种处理⽅式是数据处理单元提供服务器的请求地址，数据采集后通过UDP协议与服务器建⽴</p>
-<p>连接，然后把数 据发送过去。</p>
-</li>
-<li><p><strong>Kafka传输</strong>，这种处理⽅式是数据采集后发送到指定的Topic，然后数据处理单元再订阅对应的Topic，就</p>
-<p>可以从Kafka消息队列中读取到对应的数据。</p>
-<img src="https://cdn.smalltechnologyjun.com//image-20210615200330740.png" alt="image-20210615200330740" style="zoom: 80%;" /></li>
-</ul>
-</li>
-<li><p>数据处理</p>
-<p>数据聚合两个维度：接口维度和机器维度</p>
-<p>聚合后的数据持久化： 索引数据库(es) 或者 时序数据库influxDB</p>
-</li>
-<li><p>数据展示</p>
-<p>数据展示有多种⽅式，⽐如曲线图、饼状图、格⼦图展示</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>微服务</category>
-      </categories>
-      <tags>
-        <tag>微服务治理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Optional 的使用会导致性能下降吗？</title>
-    <url>/2021/07/26/service-%E4%BD%A0%E9%9C%80%E8%A6%81%E6%8B%85%E5%BF%83Optional%E7%9B%B8%E5%85%B3%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%90%97/</url>
-    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_bb2845fd7f5a4c03fb9adb66715a5e02_14370.png" alt="图怪兽_bb2845fd7f5a4c03fb9adb66715a5e02_14370"></p>
-<p>几天前，我在论坛上发了一篇关于<code>Optional</code> 的文章。其中一条评论是一个非常好的问题:</p>
-<blockquote>
-<p>Optional 的使用会导致性能下降吗？</p>
-</blockquote>
-<p>答案是: 是的，它会的。但是你应该担心吗？</p>
-<span id="more"></span>
-
-<h2 id="使用Optional的好处"><a href="#使用Optional的好处" class="headerlink" title="使用Optional的好处"></a>使用Optional的好处</h2><p>Optional 类使我们这些开发人员的生活更轻松</p>
-<ul>
-<li>增加代码的可读性</li>
-<li>减少代码中的条件数</li>
-<li>更不容易出错</li>
-</ul>
-<p>让我们来看看 Optional 类的一些主要方法是如何实现的。</p>
-<!--more-->
-
-<h2 id="Optional-如何实现的？"><a href="#Optional-如何实现的？" class="headerlink" title="Optional 如何实现的？"></a>Optional 如何实现的？</h2><p>这里有一些 <code>Optional</code> 类的主要方法:</p>
-<p>基本上，它将值包装到一个新的 <code>Optional</code>对象中，并检查包装的值是否为<code>null</code>。</p>
-<p>即使没有使用 Optional，也必须检查值是否为 null。它可能比您做的检查多一些，但我认为您不必担心这一点。</p>
-<p>但是您必须知道，将值包装到新对象中将增加 GC 要收集的对象数量。这意味着堆使用量将增加得更快，CPU 使用量将更高(更多 GC 事件)。</p>
-<p>好吧，但是有多高呢？同样，这取决于您正在创建的可选对象的数量、堆的大小以及您的应用程序在不使用可选对象的情况下使用的 CPU 数量。</p>
-<p>例如，假设您对应用程序进行了基准测试，并得出结论，使用 Optional 将提高 CPU 使用率1个百分点。如果您的应用程序平均使用50% 的 CPU，那么使用51% 的可选 CPU 并不是一个很大的开销，对吧？</p>
-<p>但是，如果您的应用程序平均消耗5% 的 CPU，使用6% 意味着20% 的开销，这是相当重要的。</p>
-<h2 id="过早优化是万恶之源"><a href="#过早优化是万恶之源" class="headerlink" title="过早优化是万恶之源"></a>过早优化是万恶之源</h2><p>Joshua Bloch 在<a target="_blank" rel="noopener" href="https://www.amazon.com/gp/product/0134685997/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0134685997&linkCode=as2&tag=hbelmiro0f-20&linkId=213790c63c0d57baac2e45b3183a35b2">Effective Java</a> 一书中有整整一章(第67项: Optimize judiciously)谈到了优化。</p>
-<p>他在这一章的开头写道:</p>
-<blockquote>
-<p>关于最优化，有三个关注点是每个人都应该知道的:</p>
-<blockquote>
-<p>与其他任何单一原因(包括盲目的愚蠢)相比，更多的计算原罪是以效率的名义犯下的(不一定能实现)。</p>
-</blockquote>
-<p>William A. Wulf</p>
-<blockquote>
-<p>我们应该忘记小的副作用，比如说97% 的时间: 过早的优化是一切罪恶的根源。</p>
-</blockquote>
-<p>Donald E. Knuth</p>
-<blockquote>
-<p>在优化问题上，我们遵循两个规则:</p>
-<ul>
-<li>规则1. 不要这样做</li>
-<li>规则 2（仅适用于专家）。 暂时不要这样做——也就是说，除非你有一个非常清晰且未经优化的解决方案。</li>
-</ul>
-</blockquote>
-<p>M. A. Jackson</p>
-</blockquote>
-<p>因此，除非您需要一个快速的应用程序并且资源有限，否则不要过早担心性能问题。专注于编写好的代码，这样当你需要它的时候，它就很容易优化。此外，使用分析器查找对性能影响更大的位置。</p>
-<h2 id="谁会使用你的-API？"><a href="#谁会使用你的-API？" class="headerlink" title="谁会使用你的 API？"></a>谁会使用你的 API？</h2><p>这也是一个你需要问自己的好问题。如果您正在编写一个内部 API，您可以更自由地决定是否使用它。</p>
-<p>但是如果你正在编写一个公共 API，比如一个框架或者库，而你不知道什么样的应用程序在调用它，你可能需要更加灵活，给客户端选择是否使用可选的选项。</p>
-<p>您可以提供两个方法，一个返回  <code>Optional</code> ，另一个返回 <code>null</code>。但是，当创建一个可以返回 <code>null</code> 的方法时，尽量让它显式。使用注释  <code>javax.annotation.Nullable</code>。方法的可空性。 (<a target="_blank" rel="noopener" href="https://jcp.org/en/jsr/detail?id=305">JSR 305</a>)</p>
-<h2 id="最终，这取决于你"><a href="#最终，这取决于你" class="headerlink" title="最终，这取决于你"></a>最终，这取决于你</h2><p>你可以决定是否使用 Optional。没有一个简单的答案适用于所有情况。软件工程中的大多数事情都是这样的。这一切都是权衡取舍。</p>
-<p>所以，要意识到它是如何工作的，并评估替代方案。任何事情都有代价，你是那个可以决定是否承担的人。</p>
-<p>您认为为了提高性能而付出不可读且更容易出错的代码的代价是值得的吗？你知道这种进步有多重要吗？</p>
-<p>在大多数情况下，使用 <code>Optional</code>  并保持开心！<code>Optional</code>  是不错的!</p>
-]]></content>
-      <categories>
-        <category>微服务</category>
-      </categories>
-      <tags>
-        <tag>微服务治理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>redis 基础-数据结构-整数集合</title>
     <url>/2020/07/22/redis-2020-07-22-redis-%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%95%B4%E6%95%B0%E9%9B%86%E5%90%88/</url>
     <content><![CDATA[<h4 id="整数集合定义"><a href="#整数集合定义" class="headerlink" title="整数集合定义:"></a>整数集合定义:</h4><p>整数集合（intset）是Redis用于保存整数值的集合抽象数据结构，它可以保存类型为int16_t、int32_t或者int64_t的整数值，并且保证集合中不会出现重复元素。</p>
@@ -2530,98 +2379,6 @@
       </tags>
   </entry>
   <entry>
-    <title>redis 基础-数据结构-字典</title>
-    <url>/2020/07/29/redis-2020-07-29-redis-%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%AD%97%E5%85%B8/</url>
-    <content><![CDATA[<h4 id="字典定义"><a href="#字典定义" class="headerlink" title="字典定义:"></a>字典定义:</h4><p>字典（dictionary）， 又名映射（map）或关联数组（associative array）， 是一种抽象数据结构， 由一集键值对（key-value pairs）组成， 各个键值对的键各不相同， 程序可以添加新的键值对到字典中， 或者基于键进行查找、更新或删除等操作。</p>
-<span id="more"></span>
-
-<p>字典的主要用途有以下两个： 1.实现数据库键空间（key space）2.用作 Hash 类型键的底层实现之一,具体可以看redis 5大对象那篇文章。</p>
-<h4 id="字典的实现"><a href="#字典的实现" class="headerlink" title="字典的实现"></a>字典的实现</h4><p>Redis的字典使用哈希表作为底层实现，一个哈希表里面可以有多个哈希表节点，而每个哈希表节点就保存了字典中的一个键值对。</p>
-<ul>
-<li>哈希表</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6x5esz0sj317w0h4dim.jpg"></p>
-<p>table属性是一个数组，数组中的每个元素都是一个指向dict.h/dictEntry结构的指针，每个dictEntry结构保存着一个键值对。size属性记录了哈希表的大小，也即是table数组的大小，而used属性则记录了哈希表目前已有节点（键值对）的数量。sizemask属性的值总是等于size-1，这个属性和哈希值一起决定一个键应该被放到table数组的哪个索引上面</p>
-<p>一个大小为4的空哈希表:</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6x8e3dn2j30xa0eeq62.jpg"></p>
-<ul>
-<li>哈希表节点</li>
-</ul>
-<p>哈希表节点使用dictEntry结构表示，每个dictEntry结构都保存着一个键值对。</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7nrf2momj317o0icdhx.jpg"></p>
-<p>next属性是指向另一个哈希表节点的指针，这个指针可以将多个哈希值相同的键值对连接在一次，以此来解决键冲突（collision）的问题</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7nu7hg4qj312w08m0un.jpg"></p>
-<h4 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7nx14aclj317s0hc413.jpg"></p>
-<p>type属性和privdata属性是针对不同类型的键值对，为创建多态字典而设置的：</p>
-<ul>
-<li><p>type属性是一个指向dictType结构的指针，每个dictType结构保存了一簇用于操作特定类型键值对的函数，Redis会为用途不同的字典设置不同的类型特定函数。</p>
-</li>
-<li><p>而privdata属性则保存了需要传给那些类型特定函数的可选参数。</p>
-</li>
-</ul>
-<p>ht属性是一个包含两个项的数组，数组中的每个项都是一个dictht哈希表，一般情况下，字典只使用ht[0]哈希表，ht[1]哈希表只会在对ht[0]哈希表进行rehash时使用</p>
-<p>除了ht[1]之外，另一个和rehash有关的属性就是rehashidx，它记录了rehash目前的进度，如果目前没有在进行rehash，那么它的值为-1</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7o1vruinj316c0fygot.jpg"></p>
-<h4 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h4><p>当有新的键值对添加到字典中，需要根据key 算出对应的哈希值和索引值，然后再根据索引值，将包含新键值对的哈希表节点放到哈希表数组的指定索引上面</p>
-<p>Redis计算哈希值和索引值的方法如下:</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7o7ofn6gj318208odhy.jpg"></p>
-<ul>
-<li>举列：</li>
-</ul>
-<p>  我们要将一个键值对k0和v0添加到字典，先利用上面语句获取hash值，然后获取对应的索引值。</p>
-<p>  <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7oaramw2j31560caacn.jpg"></p>
-<h4 id="解决键冲突"><a href="#解决键冲突" class="headerlink" title="解决键冲突"></a>解决键冲突</h4><p>当有两个或以上数量的键被分配到了哈希表数组的同一个索引上面时，我们称这些键发生了冲突（collision）.</p>
-<p>Redis的哈希表使用链地址法（separate chaining）来解决键冲突，每个哈希表节点都有一个next指针，多个哈希表节点可以用next指针构成一个单向链表，被分配到同一个索引上的多个节点可以用这个单向链表连接起来，这就解决了键冲突的问题。  </p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7t7jdv02j30z40bgacf.jpg"></p>
-<h4 id="rehash"><a href="#rehash" class="headerlink" title="rehash"></a>rehash</h4><p>扩展和收缩哈希表的工作可以通过执行rehash（重新散列）操作来完成，Redis对字典的哈希表执行rehash的步骤如下：</p>
-<p>1）为字典的ht[1]哈希表分配空间，这个哈希表的空间大小取决于要执行的操作，以及ht[0]当前包含的键值对数量（也即是ht[0].used属性的值）：</p>
-<ul>
-<li>如果执行的是扩展操作，那么ht[1]的大小为第一个大于等于ht[0].used*2的2 n（2的n次方幂）；</li>
-<li>如果执行的是收缩操作，那么ht[1]的大小为第一个大于等于ht[0].used的2 n。</li>
-</ul>
-<p>2）将保存在ht[0]中的所有键值对rehash到ht[1]上面：rehash指的是重新计算键的哈希值和索引值，然后将键值对放置到ht[1]哈希表的指定位置上。</p>
-<p>3）当ht[0]包含的所有键值对都迁移到了ht[1]之后（ht[0]变为空表），释放ht[0]，将ht[1]设置为ht[0]，并在ht[1]新创建一个空白哈希表，为下一次rehash做准备。</p>
-<blockquote>
-<p>执行rehash之前的字典</p>
-</blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7tfuiudnj310a0hi0wp.jpg"></p>
-<blockquote>
-<p>为字典的ht[1]哈希表分配空间</p>
-</blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7tfuiudnj310a0hi0wp.jpg"></p>
-<blockquote>
-<p>将ht[0]包含的四个键值对都rehash到ht[1]</p>
-</blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7ticpjpwj314c0i8434.jpg"></p>
-<blockquote>
-<p>释放ht[0]，并将ht[1]设置为ht[0]，然后为ht[1]分配一个空白哈希表</p>
-</blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7tiy9y4vj310k0huwik.jpg"></p>
-<p>另一方面，当哈希表的负载因子小于0.1时，程序自动开始对哈希表执行收缩操作</p>
-<h4 id="渐进式rehash"><a href="#渐进式rehash" class="headerlink" title="渐进式rehash"></a>渐进式rehash</h4><p>背景：如果哈希表里保存的键值对数量不是四个，而是四百万、四千万甚至四亿个键值对，那么要一次性将这些键值对全部rehash到ht[1]的话，庞大的计算量可能会导致服务器在一段时间内停止服务。</p>
-<p>为了避免rehash对服务器性能造成影响，服务器不是一次性将ht[0]里面的所有键值对全部rehash到ht[1]，而是分多次、渐进式地将ht[0]里面的键值对慢慢地rehash到ht[1]。</p>
-<p>以下是哈希表渐进式rehash的详细步骤：</p>
-<ul>
-<li><p>1）为ht[1]分配空间，让字典同时持有ht[0]和ht[1]两个哈希表。</p>
-</li>
-<li><p>2）在字典中维持一个索引计数器变量rehashidx，并将它的值设置为0，表示rehash工作正式开始。</p>
-</li>
-<li><p>3）在rehash进行期间，每次对字典执行添加、删除、查找或者更新操作时，程序除了执行指定的操作以外，还会顺带将ht[0]哈希表在rehashidx索引上的所有键值对rehash到ht[1]，当rehash工作完成之后，程序将rehashidx属性的值增一。</p>
-</li>
-<li><p>4）随着字典操作的不断执行，最终在某个时间点上，ht[0]的所有键值对都会被rehash至ht[1]，这时程序将rehashidx属性的值设为-1，表示rehash操作已完成。渐进式rehash的好处在于它采取分而治之的方式，将rehash键值对所需的计算工作均摊到对字典的每个添加、删除、查找和更新操作上，从而避免了集中式rehash而带来的庞大计算量</p>
-</li>
-</ul>
-<p>在渐进式rehash执行期间，新添加到字典的键值对一律会被保存到ht[1]里面，而ht[0]则不再进行任何添加操作，这一措施保证了ht[0]包含的键值对数量会只减不增，并随着rehash操作的执行而最终变成空表。</p>
-<h4 id="字典API"><a href="#字典API" class="headerlink" title="字典API"></a>字典API</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7w8rgux8j31080bk0x6.jpg"></p>
-]]></content>
-      <categories>
-        <category>redis</category>
-      </categories>
-      <tags>
-        <tag>redis 数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>redis 基础-数据结构-简单动态字符串</title>
     <url>/2020/07/28/redis-2020-07-28-redis-%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AE%80%E5%8D%95%E5%8A%A8%E6%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
     <content><![CDATA[<h4 id="简单动态字符串定义"><a href="#简单动态字符串定义" class="headerlink" title="简单动态字符串定义:"></a>简单动态字符串定义:</h4><p>每个sds.h/sdshdr结构表示一个SDS值</p>
@@ -2722,6 +2479,222 @@
       </categories>
       <tags>
         <tag>redis 数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>redis 基础-数据结构-字典</title>
+    <url>/2020/07/29/redis-2020-07-29-redis-%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%AD%97%E5%85%B8/</url>
+    <content><![CDATA[<h4 id="字典定义"><a href="#字典定义" class="headerlink" title="字典定义:"></a>字典定义:</h4><p>字典（dictionary）， 又名映射（map）或关联数组（associative array）， 是一种抽象数据结构， 由一集键值对（key-value pairs）组成， 各个键值对的键各不相同， 程序可以添加新的键值对到字典中， 或者基于键进行查找、更新或删除等操作。</p>
+<span id="more"></span>
+
+<p>字典的主要用途有以下两个： 1.实现数据库键空间（key space）2.用作 Hash 类型键的底层实现之一,具体可以看redis 5大对象那篇文章。</p>
+<h4 id="字典的实现"><a href="#字典的实现" class="headerlink" title="字典的实现"></a>字典的实现</h4><p>Redis的字典使用哈希表作为底层实现，一个哈希表里面可以有多个哈希表节点，而每个哈希表节点就保存了字典中的一个键值对。</p>
+<ul>
+<li>哈希表</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6x5esz0sj317w0h4dim.jpg"></p>
+<p>table属性是一个数组，数组中的每个元素都是一个指向dict.h/dictEntry结构的指针，每个dictEntry结构保存着一个键值对。size属性记录了哈希表的大小，也即是table数组的大小，而used属性则记录了哈希表目前已有节点（键值对）的数量。sizemask属性的值总是等于size-1，这个属性和哈希值一起决定一个键应该被放到table数组的哪个索引上面</p>
+<p>一个大小为4的空哈希表:</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6x8e3dn2j30xa0eeq62.jpg"></p>
+<ul>
+<li>哈希表节点</li>
+</ul>
+<p>哈希表节点使用dictEntry结构表示，每个dictEntry结构都保存着一个键值对。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7nrf2momj317o0icdhx.jpg"></p>
+<p>next属性是指向另一个哈希表节点的指针，这个指针可以将多个哈希值相同的键值对连接在一次，以此来解决键冲突（collision）的问题</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7nu7hg4qj312w08m0un.jpg"></p>
+<h4 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7nx14aclj317s0hc413.jpg"></p>
+<p>type属性和privdata属性是针对不同类型的键值对，为创建多态字典而设置的：</p>
+<ul>
+<li><p>type属性是一个指向dictType结构的指针，每个dictType结构保存了一簇用于操作特定类型键值对的函数，Redis会为用途不同的字典设置不同的类型特定函数。</p>
+</li>
+<li><p>而privdata属性则保存了需要传给那些类型特定函数的可选参数。</p>
+</li>
+</ul>
+<p>ht属性是一个包含两个项的数组，数组中的每个项都是一个dictht哈希表，一般情况下，字典只使用ht[0]哈希表，ht[1]哈希表只会在对ht[0]哈希表进行rehash时使用</p>
+<p>除了ht[1]之外，另一个和rehash有关的属性就是rehashidx，它记录了rehash目前的进度，如果目前没有在进行rehash，那么它的值为-1</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7o1vruinj316c0fygot.jpg"></p>
+<h4 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h4><p>当有新的键值对添加到字典中，需要根据key 算出对应的哈希值和索引值，然后再根据索引值，将包含新键值对的哈希表节点放到哈希表数组的指定索引上面</p>
+<p>Redis计算哈希值和索引值的方法如下:</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7o7ofn6gj318208odhy.jpg"></p>
+<ul>
+<li>举列：</li>
+</ul>
+<p>  我们要将一个键值对k0和v0添加到字典，先利用上面语句获取hash值，然后获取对应的索引值。</p>
+<p>  <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7oaramw2j31560caacn.jpg"></p>
+<h4 id="解决键冲突"><a href="#解决键冲突" class="headerlink" title="解决键冲突"></a>解决键冲突</h4><p>当有两个或以上数量的键被分配到了哈希表数组的同一个索引上面时，我们称这些键发生了冲突（collision）.</p>
+<p>Redis的哈希表使用链地址法（separate chaining）来解决键冲突，每个哈希表节点都有一个next指针，多个哈希表节点可以用next指针构成一个单向链表，被分配到同一个索引上的多个节点可以用这个单向链表连接起来，这就解决了键冲突的问题。  </p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7t7jdv02j30z40bgacf.jpg"></p>
+<h4 id="rehash"><a href="#rehash" class="headerlink" title="rehash"></a>rehash</h4><p>扩展和收缩哈希表的工作可以通过执行rehash（重新散列）操作来完成，Redis对字典的哈希表执行rehash的步骤如下：</p>
+<p>1）为字典的ht[1]哈希表分配空间，这个哈希表的空间大小取决于要执行的操作，以及ht[0]当前包含的键值对数量（也即是ht[0].used属性的值）：</p>
+<ul>
+<li>如果执行的是扩展操作，那么ht[1]的大小为第一个大于等于ht[0].used*2的2 n（2的n次方幂）；</li>
+<li>如果执行的是收缩操作，那么ht[1]的大小为第一个大于等于ht[0].used的2 n。</li>
+</ul>
+<p>2）将保存在ht[0]中的所有键值对rehash到ht[1]上面：rehash指的是重新计算键的哈希值和索引值，然后将键值对放置到ht[1]哈希表的指定位置上。</p>
+<p>3）当ht[0]包含的所有键值对都迁移到了ht[1]之后（ht[0]变为空表），释放ht[0]，将ht[1]设置为ht[0]，并在ht[1]新创建一个空白哈希表，为下一次rehash做准备。</p>
+<blockquote>
+<p>执行rehash之前的字典</p>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7tfuiudnj310a0hi0wp.jpg"></p>
+<blockquote>
+<p>为字典的ht[1]哈希表分配空间</p>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7tfuiudnj310a0hi0wp.jpg"></p>
+<blockquote>
+<p>将ht[0]包含的四个键值对都rehash到ht[1]</p>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7ticpjpwj314c0i8434.jpg"></p>
+<blockquote>
+<p>释放ht[0]，并将ht[1]设置为ht[0]，然后为ht[1]分配一个空白哈希表</p>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7tiy9y4vj310k0huwik.jpg"></p>
+<p>另一方面，当哈希表的负载因子小于0.1时，程序自动开始对哈希表执行收缩操作</p>
+<h4 id="渐进式rehash"><a href="#渐进式rehash" class="headerlink" title="渐进式rehash"></a>渐进式rehash</h4><p>背景：如果哈希表里保存的键值对数量不是四个，而是四百万、四千万甚至四亿个键值对，那么要一次性将这些键值对全部rehash到ht[1]的话，庞大的计算量可能会导致服务器在一段时间内停止服务。</p>
+<p>为了避免rehash对服务器性能造成影响，服务器不是一次性将ht[0]里面的所有键值对全部rehash到ht[1]，而是分多次、渐进式地将ht[0]里面的键值对慢慢地rehash到ht[1]。</p>
+<p>以下是哈希表渐进式rehash的详细步骤：</p>
+<ul>
+<li><p>1）为ht[1]分配空间，让字典同时持有ht[0]和ht[1]两个哈希表。</p>
+</li>
+<li><p>2）在字典中维持一个索引计数器变量rehashidx，并将它的值设置为0，表示rehash工作正式开始。</p>
+</li>
+<li><p>3）在rehash进行期间，每次对字典执行添加、删除、查找或者更新操作时，程序除了执行指定的操作以外，还会顺带将ht[0]哈希表在rehashidx索引上的所有键值对rehash到ht[1]，当rehash工作完成之后，程序将rehashidx属性的值增一。</p>
+</li>
+<li><p>4）随着字典操作的不断执行，最终在某个时间点上，ht[0]的所有键值对都会被rehash至ht[1]，这时程序将rehashidx属性的值设为-1，表示rehash操作已完成。渐进式rehash的好处在于它采取分而治之的方式，将rehash键值对所需的计算工作均摊到对字典的每个添加、删除、查找和更新操作上，从而避免了集中式rehash而带来的庞大计算量</p>
+</li>
+</ul>
+<p>在渐进式rehash执行期间，新添加到字典的键值对一律会被保存到ht[1]里面，而ht[0]则不再进行任何添加操作，这一措施保证了ht[0]包含的键值对数量会只减不增，并随着rehash操作的执行而最终变成空表。</p>
+<h4 id="字典API"><a href="#字典API" class="headerlink" title="字典API"></a>字典API</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh7w8rgux8j31080bk0x6.jpg"></p>
+]]></content>
+      <categories>
+        <category>redis</category>
+      </categories>
+      <tags>
+        <tag>redis 数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>redis 的线程模型</title>
+    <url>/2020/10/26/redis-2020-10-26-redis-%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h3 id="Redis-的线程模型"><a href="#Redis-的线程模型" class="headerlink" title="Redis 的线程模型"></a>Redis 的线程模型</h3><p>Redis 内部使用文件事件处理器 file event handler ，这个文件事件处理器是单线程的，所以 Redis 才叫做单线程的模型。它采用 IO 多路复用机制同时监听多个 socket，将产生事件的 socket 压入内存队列中，事件分派器根据 socket 上的事件类型来选择对应的事件处理器进行处理。</p>
+<span id="more"></span>
+<p>文件事件处理器的结构包含 4 个部分：</p>
+<ul>
+<li>多个 socket</li>
+<li>IO 多路复用程序</li>
+<li>文件事件分派器</li>
+<li>事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）</li>
+</ul>
+<p>多个 socket 可能会并发产生不同的操作，每个操作对应不同的文件事件，但是 IO 多路复用程序会监听多个 socket，会将产生事件的 socket 放入队列中排队，事件分派器每次从队列中取出一个 socket，根据 socket 的事件类型交给对应的事件处理器进行处理。</p>
+<p>来看客户端与 Redis 的一次通信过程：</p>
+<p>Redis-single-thread-model</p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk2qyo3nu4j31c80r8n45.jpg"></p>
+<p>要明白，通信是通过 socket 来完成的，不懂的同学可以先去看一看 socket 网络编程。</p>
+<p>首先，Redis 服务端进程初始化的时候，会将 server socket 的 AE_READABLE 事件与连接应答处理器关联。</p>
+<p>客户端 socket01 向 Redis 进程的 server socket 请求建立连接，此时 server socket 会产生一个 AE_READABLE 事件，IO 多路复用程序监听到 server socket 产生的事件后，将该 socket 压入队列中。文件事件分派器从队列中获取 socket，交给连接应答处理器。连接应答处理器会创建一个能与客户端通信的 socket01，并将该 socket01 的 AE_READABLE 事件与命令请求处理器关联。</p>
+<p>假设此时客户端发送了一个 set key value 请求，此时 Redis 中的 socket01 会产生 AE_READABLE 事件，IO 多路复用程序将 socket01 压入队列，此时事件分派器从队列中获取到 socket01 产生的 AE_READABLE 事件，由于前面 socket01 的 AE_READABLE 事件已经与命令请求处理器关联，因此事件分派器将事件交给命令请求处理器来处理。命令请求处理器读取 socket01 的 key value 并在自己内存中完成 key value 的设置。操作完成后，它会将 socket01 的 AE_WRITABLE 事件与命令回复处理器关联。</p>
+<p>如果此时客户端准备好接收返回结果了，那么 Redis 中的 socket01 会产生一个 AE_WRITABLE 事件，同样压入队列中，事件分派器找到相关联的命令回复处理器，由命令回复处理器对 socket01 输入本次操作的一个结果，比如 ok ，之后解除 socket01 的 AE_WRITABLE 事件与命令回复处理器的关联。</p>
+<p>这样便完成了一次通信。</p>
+<h3 id="为啥-Redis-单线程模型也能效率这么高？"><a href="#为啥-Redis-单线程模型也能效率这么高？" class="headerlink" title="为啥 Redis 单线程模型也能效率这么高？"></a>为啥 Redis 单线程模型也能效率这么高？</h3><ul>
+<li>纯内存操作。</li>
+<li>核心是基于非阻塞的 IO 多路复用机制。</li>
+<li> C 语言实现，一般来说，C 语言实现的程序“距离”操作系统更近，执行速度相对会更快。</li>
+<li> 单线程反而避免了多线程的频繁上下文切换问题，预防了多线程可能产生的竞争问题。</li>
+</ul>
+<h3 id="Redis-6-0-开始引入多线程"><a href="#Redis-6-0-开始引入多线程" class="headerlink" title="Redis 6.0 开始引入多线程"></a>Redis 6.0 开始引入多线程</h3><p>注意！ Redis 6.0 之后的版本抛弃了单线程模型这一设计，原本使用单线程运行的 Redis 也开始选择性地使用多线程模型。</p>
+<p>前面还在强调 Redis 单线程模型的高效性，现在为什么又要引入多线程？这其实说明 Redis 在有些方面，单线程已经不具有优势了。因为读写网络的 Read/Write 系统调用在 Redis 执行期间占用了大部分 CPU 时间，如果把网络读写做成多线程的方式对性能会有很大提升。</p>
+<p>Redis 的多线程部分只是用来处理网络数据的读写和协议解析，执行命令仍然是单线程。 之所以这么设计是不想 Redis 因为多线程而变得复杂，需要去控制 key、lua、事务、LPUSH/LPOP 等等的并发问题。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Redis 选择使用单线程模型处理客户端的请求主要还是因为 CPU 不是 Redis 服务器的瓶颈，所以使用多线程模型带来的性能提升并不能抵消它带来的开发成本和维护成本，系统的性能瓶颈也主要在网络 I/O 操作上；而 Redis 引入多线程操作也是出于性能上的考虑，对于一些大键值对的删除操作，通过多线程非阻塞地释放内存空间也能减少对 Redis 主线程阻塞的时间，提高执行的效率。</p>
+]]></content>
+      <categories>
+        <category>redis</category>
+      </categories>
+      <tags>
+        <tag>redis 线程模型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>redis 的事物</title>
+    <url>/2020/10/27/redis-2020-10-27-redis-%E7%9A%84%E4%BA%8B%E7%89%A9/</url>
+    <content><![CDATA[<p>MULTI 、 EXEC 、 DISCARD 和 WATCH 是 Redis 事务的基础。</p>
+<span id="more"></span>
+<p>事务可以一次执行多个命令， 并且带有以下两个重要的保证：</p>
+<ul>
+<li>事务是一个单独的隔离操作：事务中的所有命令都会序列化、按顺序地执行。事务在执行的过程中，不会被其他客户端发送来的命令请求所打断。</li>
+<li>事务是一个原子操作：事务中的命令要么全部被执行，要么全部都不执行。</li>
+</ul>
+<!--more-->
+<p>EXEC 命令负责触发并执行事务中的所有命令：<br>当使用 AOF 方式做持久化的时候， Redis 会使用单个 write(2) 命令将事务写入到磁盘中。<br>然而，如果 Redis 服务器因为某些原因被管理员杀死，或者遇上某种硬件故障，那么可能只有部分事务命令会被成功写入到磁盘中。<br>如果 Redis 在重新启动时发现 AOF 文件出了这样的问题，那么它会退出，并汇报一个错误。<br>使用 redis-check-aof 程序可以修复这一问题：它会移除 AOF 文件中不完整事务的信息，确保服务器可以顺利启动。</p>
+<ul>
+<li>如果客户端在使用 MULTI 开启了一个事务之后，却因为断线而没有成功执行 EXEC ，那么事务中的所有命令都不会被执行。</li>
+<li>另一方面，如果客户端成功在开启事务之后执行 EXEC ，那么事务中的所有命令都会被执行。<br>从 2.2 版本开始，Redis 还可以通过乐观锁（optimistic lock）实现 CAS （check-and-set）操作，具体信息请参考文档的后半部分。</li>
+</ul>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>MULTI 命令用于开启一个事务，它总是返回 OK 。</p>
+<p>MULTI 执行之后， 客户端可以继续向服务器发送任意多条命令， 这些命令不会立即被执行， 而是被放到一个队列中， 当 EXEC 命令被调用时， 所有队列中的命令才会被执行。</p>
+<p>另一方面， 通过调用 DISCARD ， 客户端可以清空事务队列， 并放弃执行事务。</p>
+<p>以下是一个事务例子， 它原子地增加了 foo 和 bar 两个键的值：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt; MULTI</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">&gt; INCR foo</span><br><span class="line">QUEUED</span><br><span class="line"></span><br><span class="line">&gt; INCR bar</span><br><span class="line">QUEUED</span><br><span class="line"></span><br><span class="line">&gt; EXEC</span><br><span class="line">1) (integer) 1</span><br><span class="line">2) (integer) 1</span><br></pre></td></tr></table></figure>
+<p>EXEC 命令的回复是一个数组， 数组中的每个元素都是执行事务中的命令所产生的回复。 其中， 回复元素的先后顺序和命令发送的先后顺序一致。</p>
+<p>当客户端处于事务状态时， 所有传入的命令都会返回一个内容为 QUEUED 的状态回复（status reply）， 这些被入队的命令将在 EXEC 命令被调用时执行。</p>
+<h3 id="事务中的错误"><a href="#事务中的错误" class="headerlink" title="事务中的错误"></a>事务中的错误</h3><p>使用事务时可能会遇上以下两种错误：</p>
+<ul>
+<li>事务在执行 EXEC 之前，入队的命令可能会出错。比如说，命令可能会产生语法错误（参数数量错误，参数名错误，等等），或者其他更严重的错误，比如内存不足（如果服务器使用 maxmemory 设置了最大内存限制的话）。</li>
+<li>命令可能在 EXEC 调用之后失败。举个例子，事务中的命令可能处理了错误类型的键，比如将列表命令用在了字符串键上面，诸如此类。<br>对于发生在 EXEC 执行之前的错误，客户端以前的做法是检查命令入队所得的返回值：如果命令入队时返回 QUEUED ，那么入队成功；否则，就是入队失败。如果有命令在入队时失败，那么大部分客户端都会停止并取消这个事务。</li>
+</ul>
+<p>不过，从 Redis 2.6.5 开始，服务器会对命令入队失败的情况进行记录，并在客户端调用 EXEC 命令时，拒绝执行并自动放弃这个事务。</p>
+<p>在 Redis 2.6.5 以前， Redis 只执行事务中那些入队成功的命令，而忽略那些入队失败的命令。 而新的处理方式则使得在流水线（pipeline）中包含事务变得简单，因为发送事务和读取事务的回复都只需要和服务器进行一次通讯。</p>
+<p>至于那些在 EXEC 命令执行之后所产生的错误， 并没有对它们进行特别处理： 即使事务中有某个/某些命令在执行时产生了错误， 事务中的其他命令仍然会继续执行。</p>
+<p>从协议的角度来看这个问题，会更容易理解一些。 以下例子中， LPOP 命令的执行将出错， 尽管调用它的语法是正确的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Trying 127.0.0.1...</span><br><span class="line">Connected to localhost.</span><br><span class="line">Escape character is &#39;^]&#39;.</span><br><span class="line"></span><br><span class="line">MULTI</span><br><span class="line">+OK</span><br><span class="line"></span><br><span class="line">SET a 3</span><br><span class="line">abc</span><br><span class="line"></span><br><span class="line">+QUEUED</span><br><span class="line">LPOP a</span><br><span class="line"></span><br><span class="line">+QUEUED</span><br><span class="line">EXEC</span><br><span class="line"></span><br><span class="line">*2</span><br><span class="line">+OK</span><br><span class="line">-ERR Operation against a key holding the wrong kind of value</span><br></pre></td></tr></table></figure>
+
+<p>EXEC 返回两条批量回复（bulk reply）： 第一条是 OK ，而第二条是 -ERR 。 至于怎样用合适的方法来表示事务中的错误， 则是由客户端自己决定的。</p>
+<p>最重要的是记住这样一条， 即使事务中有某条/某些命令执行失败了， 事务队列中的其他命令仍然会继续执行 —— Redis 不会停止执行事务中的命令。</p>
+<p>以下例子展示的是另一种情况， 当命令在入队时产生错误， 错误会立即被返回给客户端：</p>
+<p>MULTI<br>+OK</p>
+<p>INCR a b c<br>-ERR wrong number of arguments for ‘incr’ command<br>因为调用 INCR 命令的参数格式不正确， 所以这个 INCR 命令入队失败。</p>
+<h3 id="为什么-Redis-不支持回滚（roll-back）"><a href="#为什么-Redis-不支持回滚（roll-back）" class="headerlink" title="为什么 Redis 不支持回滚（roll back）"></a>为什么 Redis 不支持回滚（roll back）</h3><p>如果你有使用关系式数据库的经验， 那么 “Redis 在事务失败时不进行回滚，而是继续执行余下的命令”这种做法可能会让你觉得有点奇怪。</p>
+<p>以下是这种做法的优点：</p>
+<ul>
+<li>Redis 命令只会因为错误的语法而失败（并且这些问题不能在入队时发现），或是命令用在了错误类型的键上面：这也就是说，从实用性的角度来说，失败的命令是由编程错误造成的，而这些错误应该在开发的过程中被发现，而不应该出现在生产环境中。</li>
+<li>因为不需要对回滚进行支持，所以 Redis 的内部可以保持简单且快速。<br>有种观点认为 Redis 处理事务的做法会产生 bug ， 然而需要注意的是， 在通常情况下， 回滚并不能解决编程错误带来的问题。 举个例子， 如果你本来想通过 INCR 命令将键的值加上 1 ， 却不小心加上了 2 ， 又或者对错误类型的键执行了 INCR ， 回滚是没有办法处理这些情况的。</li>
+</ul>
+<p>鉴于没有任何机制能避免程序员自己造成的错误， 并且这类错误通常不会在生产环境中出现， 所以 Redis 选择了更简单、更快速的无回滚方式来处理事务。</p>
+<h3 id="放弃事务"><a href="#放弃事务" class="headerlink" title="放弃事务"></a>放弃事务</h3><p>当执行 DISCARD 命令时， 事务会被放弃， 事务队列会被清空， 并且客户端会从事务状态中退出：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">redis&gt; SET foo 1</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; MULTI</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; INCR foo</span><br><span class="line">QUEUED</span><br><span class="line"></span><br><span class="line">redis&gt; DISCARD</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; GET foo</span><br><span class="line">&quot;1&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="使用-check-and-set-操作实现乐观锁"><a href="#使用-check-and-set-操作实现乐观锁" class="headerlink" title="使用 check-and-set 操作实现乐观锁"></a>使用 check-and-set 操作实现乐观锁</h3><p>WATCH 命令可以为 Redis 事务提供 check-and-set （CAS）行为。</p>
+<p>被 WATCH 的键会被监视，并会发觉这些键是否被改动过了。 如果有至少一个被监视的键在 EXEC 执行之前被修改了， 那么整个事务都会被取消， EXEC 返回空多条批量回复（null multi-bulk reply）来表示事务已经失败。</p>
+<p>举个例子， 假设我们需要原子性地为某个值进行增 1 操作（假设 INCR 不存在）。</p>
+<p>首先我们可能会这样做：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val &#x3D; GET mykey</span><br><span class="line">val &#x3D; val + 1</span><br><span class="line">SET mykey $val</span><br></pre></td></tr></table></figure>
+<p>上面的这个实现在只有一个客户端的时候可以执行得很好。 但是， 当多个客户端同时对同一个键进行这样的操作时， 就会产生竞争条件。</p>
+<p>举个例子， 如果客户端 A 和 B 都读取了键原来的值， 比如 10 ， 那么两个客户端都会将键的值设为 11 ， 但正确的结果应该是 12 才对。</p>
+<p>有了 WATCH ， 我们就可以轻松地解决这类问题了：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">WATCH mykey</span><br><span class="line"></span><br><span class="line">val &#x3D; GET mykey</span><br><span class="line">val &#x3D; val + 1</span><br><span class="line"></span><br><span class="line">MULTI</span><br><span class="line">SET mykey $val</span><br><span class="line">EXEC</span><br></pre></td></tr></table></figure>
+<p>使用上面的代码， 如果在 WATCH 执行之后， EXEC 执行之前， 有其他客户端修改了 mykey 的值， 那么当前客户端的事务就会失败。 程序需要做的， 就是不断重试这个操作， 直到没有发生碰撞为止。</p>
+<p>这种形式的锁被称作乐观锁， 它是一种非常强大的锁机制。 并且因为大多数情况下， 不同的客户端会访问不同的键， 碰撞的情况一般都很少， 所以通常并不需要进行重试。</p>
+<h3 id="了解-WATCH"><a href="#了解-WATCH" class="headerlink" title="了解 WATCH"></a>了解 WATCH</h3><p>WATCH 使得 EXEC 命令需要有条件地执行： 事务只能在所有被监视键都没有被修改的前提下执行， 如果这个前提不能满足的话，事务就不会被执行。</p>
+<p>如果你使用 WATCH 监视了一个带过期时间的键， 那么即使这个键过期了， 事务仍然可以正常执行， 关于这方面的详细情况，请看这个帖子： <a target="_blank" rel="noopener" href="http://code.google.com/p/redis/issues/detail?id=270">http://code.google.com/p/redis/issues/detail?id=270</a></p>
+<p>WATCH 命令可以被调用多次。 对键的监视从 WATCH 执行之后开始生效， 直到调用 EXEC 为止。</p>
+<p>用户还可以在单个 WATCH 命令中监视任意多个键， 就像这样：</p>
+<p>redis&gt; WATCH key1 key2 key3<br>OK<br>当 EXEC 被调用时， 不管事务是否成功执行， 对所有键的监视都会被取消。</p>
+<p>另外， 当客户端断开连接时， 该客户端对键的监视也会被取消。</p>
+<p>使用无参数的 UNWATCH 命令可以手动取消对所有键的监视。 对于一些需要改动多个键的事务， 有时候程序需要同时对多个键进行加锁， 然后检查这些键的当前值是否符合程序的要求。 当值达不到要求时， 就可以使用 UNWATCH 命令来取消目前对键的监视， 中途放弃这个事务， 并等待事务的下次尝试。</p>
+<h3 id="使用-WATCH-实现-ZPOP"><a href="#使用-WATCH-实现-ZPOP" class="headerlink" title="使用 WATCH 实现 ZPOP"></a>使用 WATCH 实现 ZPOP</h3><p>WATCH 可以用于创建 Redis 没有内置的原子操作。</p>
+<p>举个例子， 以下代码实现了原创的 ZPOP 命令， 它可以原子地弹出有序集合中分值（score）最小的元素：</p>
+<p>WATCH zset<br>element = ZRANGE zset 0 0<br>MULTI<br>    ZREM zset element<br>EXEC<br>程序只要重复执行这段代码， 直到 EXEC 的返回值不是空多条回复（null multi-bulk reply）即可。</p>
+<h3 id="Redis-脚本和事务"><a href="#Redis-脚本和事务" class="headerlink" title="Redis 脚本和事务"></a>Redis 脚本和事务</h3><p>从定义上来说， Redis 中的脚本本身就是一种事务， 所以任何在事务里可以完成的事， 在脚本里面也能完成。 并且一般来说， 使用脚本要来得更简单，并且速度更快。</p>
+<p>因为脚本功能是 Redis 2.6 才引入的， 而事务功能则更早之前就存在了， 所以 Redis 才会同时存在两种处理事务的方法。</p>
+<p>不过我们并不打算在短时间内就移除事务功能， 因为事务提供了一种即使不使用脚本， 也可以避免竞争条件的方法， 而且事务本身的实现并不复杂。</p>
+<p>不过在不远的将来， 可能所有用户都会只使用脚本来实现事务也说不定。 如果真的发生这种情况的话， 那么我们将废弃并最终移除事务功能。</p>
+<blockquote>
+<p>译者：黄健宏<br>原文：<a target="_blank" rel="noopener" href="http://redisdoc.com/topic/transaction.html">http://redisdoc.com/topic/transaction.html</a><br>本文档翻译自： <a target="_blank" rel="noopener" href="http://redis.io/topics/transactions">http://redis.io/topics/transactions</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>redis</category>
+      </categories>
+      <tags>
+        <tag>redis 事物</tag>
       </tags>
   </entry>
   <entry>
@@ -2945,130 +2918,6 @@
       </tags>
   </entry>
   <entry>
-    <title>redis 的线程模型</title>
-    <url>/2020/10/26/redis-2020-10-26-redis-%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<h3 id="Redis-的线程模型"><a href="#Redis-的线程模型" class="headerlink" title="Redis 的线程模型"></a>Redis 的线程模型</h3><p>Redis 内部使用文件事件处理器 file event handler ，这个文件事件处理器是单线程的，所以 Redis 才叫做单线程的模型。它采用 IO 多路复用机制同时监听多个 socket，将产生事件的 socket 压入内存队列中，事件分派器根据 socket 上的事件类型来选择对应的事件处理器进行处理。</p>
-<span id="more"></span>
-<p>文件事件处理器的结构包含 4 个部分：</p>
-<ul>
-<li>多个 socket</li>
-<li>IO 多路复用程序</li>
-<li>文件事件分派器</li>
-<li>事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）</li>
-</ul>
-<p>多个 socket 可能会并发产生不同的操作，每个操作对应不同的文件事件，但是 IO 多路复用程序会监听多个 socket，会将产生事件的 socket 放入队列中排队，事件分派器每次从队列中取出一个 socket，根据 socket 的事件类型交给对应的事件处理器进行处理。</p>
-<p>来看客户端与 Redis 的一次通信过程：</p>
-<p>Redis-single-thread-model</p>
-<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gk2qyo3nu4j31c80r8n45.jpg"></p>
-<p>要明白，通信是通过 socket 来完成的，不懂的同学可以先去看一看 socket 网络编程。</p>
-<p>首先，Redis 服务端进程初始化的时候，会将 server socket 的 AE_READABLE 事件与连接应答处理器关联。</p>
-<p>客户端 socket01 向 Redis 进程的 server socket 请求建立连接，此时 server socket 会产生一个 AE_READABLE 事件，IO 多路复用程序监听到 server socket 产生的事件后，将该 socket 压入队列中。文件事件分派器从队列中获取 socket，交给连接应答处理器。连接应答处理器会创建一个能与客户端通信的 socket01，并将该 socket01 的 AE_READABLE 事件与命令请求处理器关联。</p>
-<p>假设此时客户端发送了一个 set key value 请求，此时 Redis 中的 socket01 会产生 AE_READABLE 事件，IO 多路复用程序将 socket01 压入队列，此时事件分派器从队列中获取到 socket01 产生的 AE_READABLE 事件，由于前面 socket01 的 AE_READABLE 事件已经与命令请求处理器关联，因此事件分派器将事件交给命令请求处理器来处理。命令请求处理器读取 socket01 的 key value 并在自己内存中完成 key value 的设置。操作完成后，它会将 socket01 的 AE_WRITABLE 事件与命令回复处理器关联。</p>
-<p>如果此时客户端准备好接收返回结果了，那么 Redis 中的 socket01 会产生一个 AE_WRITABLE 事件，同样压入队列中，事件分派器找到相关联的命令回复处理器，由命令回复处理器对 socket01 输入本次操作的一个结果，比如 ok ，之后解除 socket01 的 AE_WRITABLE 事件与命令回复处理器的关联。</p>
-<p>这样便完成了一次通信。</p>
-<h3 id="为啥-Redis-单线程模型也能效率这么高？"><a href="#为啥-Redis-单线程模型也能效率这么高？" class="headerlink" title="为啥 Redis 单线程模型也能效率这么高？"></a>为啥 Redis 单线程模型也能效率这么高？</h3><ul>
-<li>纯内存操作。</li>
-<li>核心是基于非阻塞的 IO 多路复用机制。</li>
-<li> C 语言实现，一般来说，C 语言实现的程序“距离”操作系统更近，执行速度相对会更快。</li>
-<li> 单线程反而避免了多线程的频繁上下文切换问题，预防了多线程可能产生的竞争问题。</li>
-</ul>
-<h3 id="Redis-6-0-开始引入多线程"><a href="#Redis-6-0-开始引入多线程" class="headerlink" title="Redis 6.0 开始引入多线程"></a>Redis 6.0 开始引入多线程</h3><p>注意！ Redis 6.0 之后的版本抛弃了单线程模型这一设计，原本使用单线程运行的 Redis 也开始选择性地使用多线程模型。</p>
-<p>前面还在强调 Redis 单线程模型的高效性，现在为什么又要引入多线程？这其实说明 Redis 在有些方面，单线程已经不具有优势了。因为读写网络的 Read/Write 系统调用在 Redis 执行期间占用了大部分 CPU 时间，如果把网络读写做成多线程的方式对性能会有很大提升。</p>
-<p>Redis 的多线程部分只是用来处理网络数据的读写和协议解析，执行命令仍然是单线程。 之所以这么设计是不想 Redis 因为多线程而变得复杂，需要去控制 key、lua、事务、LPUSH/LPOP 等等的并发问题。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Redis 选择使用单线程模型处理客户端的请求主要还是因为 CPU 不是 Redis 服务器的瓶颈，所以使用多线程模型带来的性能提升并不能抵消它带来的开发成本和维护成本，系统的性能瓶颈也主要在网络 I/O 操作上；而 Redis 引入多线程操作也是出于性能上的考虑，对于一些大键值对的删除操作，通过多线程非阻塞地释放内存空间也能减少对 Redis 主线程阻塞的时间，提高执行的效率。</p>
-]]></content>
-      <categories>
-        <category>redis</category>
-      </categories>
-      <tags>
-        <tag>redis 线程模型</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>redis 的事物</title>
-    <url>/2020/10/27/redis-2020-10-27-redis-%E7%9A%84%E4%BA%8B%E7%89%A9/</url>
-    <content><![CDATA[<p>MULTI 、 EXEC 、 DISCARD 和 WATCH 是 Redis 事务的基础。</p>
-<span id="more"></span>
-<p>事务可以一次执行多个命令， 并且带有以下两个重要的保证：</p>
-<ul>
-<li>事务是一个单独的隔离操作：事务中的所有命令都会序列化、按顺序地执行。事务在执行的过程中，不会被其他客户端发送来的命令请求所打断。</li>
-<li>事务是一个原子操作：事务中的命令要么全部被执行，要么全部都不执行。</li>
-</ul>
-<!--more-->
-<p>EXEC 命令负责触发并执行事务中的所有命令：<br>当使用 AOF 方式做持久化的时候， Redis 会使用单个 write(2) 命令将事务写入到磁盘中。<br>然而，如果 Redis 服务器因为某些原因被管理员杀死，或者遇上某种硬件故障，那么可能只有部分事务命令会被成功写入到磁盘中。<br>如果 Redis 在重新启动时发现 AOF 文件出了这样的问题，那么它会退出，并汇报一个错误。<br>使用 redis-check-aof 程序可以修复这一问题：它会移除 AOF 文件中不完整事务的信息，确保服务器可以顺利启动。</p>
-<ul>
-<li>如果客户端在使用 MULTI 开启了一个事务之后，却因为断线而没有成功执行 EXEC ，那么事务中的所有命令都不会被执行。</li>
-<li>另一方面，如果客户端成功在开启事务之后执行 EXEC ，那么事务中的所有命令都会被执行。<br>从 2.2 版本开始，Redis 还可以通过乐观锁（optimistic lock）实现 CAS （check-and-set）操作，具体信息请参考文档的后半部分。</li>
-</ul>
-<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>MULTI 命令用于开启一个事务，它总是返回 OK 。</p>
-<p>MULTI 执行之后， 客户端可以继续向服务器发送任意多条命令， 这些命令不会立即被执行， 而是被放到一个队列中， 当 EXEC 命令被调用时， 所有队列中的命令才会被执行。</p>
-<p>另一方面， 通过调用 DISCARD ， 客户端可以清空事务队列， 并放弃执行事务。</p>
-<p>以下是一个事务例子， 它原子地增加了 foo 和 bar 两个键的值：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt; MULTI</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">&gt; INCR foo</span><br><span class="line">QUEUED</span><br><span class="line"></span><br><span class="line">&gt; INCR bar</span><br><span class="line">QUEUED</span><br><span class="line"></span><br><span class="line">&gt; EXEC</span><br><span class="line">1) (integer) 1</span><br><span class="line">2) (integer) 1</span><br></pre></td></tr></table></figure>
-<p>EXEC 命令的回复是一个数组， 数组中的每个元素都是执行事务中的命令所产生的回复。 其中， 回复元素的先后顺序和命令发送的先后顺序一致。</p>
-<p>当客户端处于事务状态时， 所有传入的命令都会返回一个内容为 QUEUED 的状态回复（status reply）， 这些被入队的命令将在 EXEC 命令被调用时执行。</p>
-<h3 id="事务中的错误"><a href="#事务中的错误" class="headerlink" title="事务中的错误"></a>事务中的错误</h3><p>使用事务时可能会遇上以下两种错误：</p>
-<ul>
-<li>事务在执行 EXEC 之前，入队的命令可能会出错。比如说，命令可能会产生语法错误（参数数量错误，参数名错误，等等），或者其他更严重的错误，比如内存不足（如果服务器使用 maxmemory 设置了最大内存限制的话）。</li>
-<li>命令可能在 EXEC 调用之后失败。举个例子，事务中的命令可能处理了错误类型的键，比如将列表命令用在了字符串键上面，诸如此类。<br>对于发生在 EXEC 执行之前的错误，客户端以前的做法是检查命令入队所得的返回值：如果命令入队时返回 QUEUED ，那么入队成功；否则，就是入队失败。如果有命令在入队时失败，那么大部分客户端都会停止并取消这个事务。</li>
-</ul>
-<p>不过，从 Redis 2.6.5 开始，服务器会对命令入队失败的情况进行记录，并在客户端调用 EXEC 命令时，拒绝执行并自动放弃这个事务。</p>
-<p>在 Redis 2.6.5 以前， Redis 只执行事务中那些入队成功的命令，而忽略那些入队失败的命令。 而新的处理方式则使得在流水线（pipeline）中包含事务变得简单，因为发送事务和读取事务的回复都只需要和服务器进行一次通讯。</p>
-<p>至于那些在 EXEC 命令执行之后所产生的错误， 并没有对它们进行特别处理： 即使事务中有某个/某些命令在执行时产生了错误， 事务中的其他命令仍然会继续执行。</p>
-<p>从协议的角度来看这个问题，会更容易理解一些。 以下例子中， LPOP 命令的执行将出错， 尽管调用它的语法是正确的：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Trying 127.0.0.1...</span><br><span class="line">Connected to localhost.</span><br><span class="line">Escape character is &#39;^]&#39;.</span><br><span class="line"></span><br><span class="line">MULTI</span><br><span class="line">+OK</span><br><span class="line"></span><br><span class="line">SET a 3</span><br><span class="line">abc</span><br><span class="line"></span><br><span class="line">+QUEUED</span><br><span class="line">LPOP a</span><br><span class="line"></span><br><span class="line">+QUEUED</span><br><span class="line">EXEC</span><br><span class="line"></span><br><span class="line">*2</span><br><span class="line">+OK</span><br><span class="line">-ERR Operation against a key holding the wrong kind of value</span><br></pre></td></tr></table></figure>
-
-<p>EXEC 返回两条批量回复（bulk reply）： 第一条是 OK ，而第二条是 -ERR 。 至于怎样用合适的方法来表示事务中的错误， 则是由客户端自己决定的。</p>
-<p>最重要的是记住这样一条， 即使事务中有某条/某些命令执行失败了， 事务队列中的其他命令仍然会继续执行 —— Redis 不会停止执行事务中的命令。</p>
-<p>以下例子展示的是另一种情况， 当命令在入队时产生错误， 错误会立即被返回给客户端：</p>
-<p>MULTI<br>+OK</p>
-<p>INCR a b c<br>-ERR wrong number of arguments for ‘incr’ command<br>因为调用 INCR 命令的参数格式不正确， 所以这个 INCR 命令入队失败。</p>
-<h3 id="为什么-Redis-不支持回滚（roll-back）"><a href="#为什么-Redis-不支持回滚（roll-back）" class="headerlink" title="为什么 Redis 不支持回滚（roll back）"></a>为什么 Redis 不支持回滚（roll back）</h3><p>如果你有使用关系式数据库的经验， 那么 “Redis 在事务失败时不进行回滚，而是继续执行余下的命令”这种做法可能会让你觉得有点奇怪。</p>
-<p>以下是这种做法的优点：</p>
-<ul>
-<li>Redis 命令只会因为错误的语法而失败（并且这些问题不能在入队时发现），或是命令用在了错误类型的键上面：这也就是说，从实用性的角度来说，失败的命令是由编程错误造成的，而这些错误应该在开发的过程中被发现，而不应该出现在生产环境中。</li>
-<li>因为不需要对回滚进行支持，所以 Redis 的内部可以保持简单且快速。<br>有种观点认为 Redis 处理事务的做法会产生 bug ， 然而需要注意的是， 在通常情况下， 回滚并不能解决编程错误带来的问题。 举个例子， 如果你本来想通过 INCR 命令将键的值加上 1 ， 却不小心加上了 2 ， 又或者对错误类型的键执行了 INCR ， 回滚是没有办法处理这些情况的。</li>
-</ul>
-<p>鉴于没有任何机制能避免程序员自己造成的错误， 并且这类错误通常不会在生产环境中出现， 所以 Redis 选择了更简单、更快速的无回滚方式来处理事务。</p>
-<h3 id="放弃事务"><a href="#放弃事务" class="headerlink" title="放弃事务"></a>放弃事务</h3><p>当执行 DISCARD 命令时， 事务会被放弃， 事务队列会被清空， 并且客户端会从事务状态中退出：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">redis&gt; SET foo 1</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; MULTI</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; INCR foo</span><br><span class="line">QUEUED</span><br><span class="line"></span><br><span class="line">redis&gt; DISCARD</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; GET foo</span><br><span class="line">&quot;1&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="使用-check-and-set-操作实现乐观锁"><a href="#使用-check-and-set-操作实现乐观锁" class="headerlink" title="使用 check-and-set 操作实现乐观锁"></a>使用 check-and-set 操作实现乐观锁</h3><p>WATCH 命令可以为 Redis 事务提供 check-and-set （CAS）行为。</p>
-<p>被 WATCH 的键会被监视，并会发觉这些键是否被改动过了。 如果有至少一个被监视的键在 EXEC 执行之前被修改了， 那么整个事务都会被取消， EXEC 返回空多条批量回复（null multi-bulk reply）来表示事务已经失败。</p>
-<p>举个例子， 假设我们需要原子性地为某个值进行增 1 操作（假设 INCR 不存在）。</p>
-<p>首先我们可能会这样做：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val &#x3D; GET mykey</span><br><span class="line">val &#x3D; val + 1</span><br><span class="line">SET mykey $val</span><br></pre></td></tr></table></figure>
-<p>上面的这个实现在只有一个客户端的时候可以执行得很好。 但是， 当多个客户端同时对同一个键进行这样的操作时， 就会产生竞争条件。</p>
-<p>举个例子， 如果客户端 A 和 B 都读取了键原来的值， 比如 10 ， 那么两个客户端都会将键的值设为 11 ， 但正确的结果应该是 12 才对。</p>
-<p>有了 WATCH ， 我们就可以轻松地解决这类问题了：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">WATCH mykey</span><br><span class="line"></span><br><span class="line">val &#x3D; GET mykey</span><br><span class="line">val &#x3D; val + 1</span><br><span class="line"></span><br><span class="line">MULTI</span><br><span class="line">SET mykey $val</span><br><span class="line">EXEC</span><br></pre></td></tr></table></figure>
-<p>使用上面的代码， 如果在 WATCH 执行之后， EXEC 执行之前， 有其他客户端修改了 mykey 的值， 那么当前客户端的事务就会失败。 程序需要做的， 就是不断重试这个操作， 直到没有发生碰撞为止。</p>
-<p>这种形式的锁被称作乐观锁， 它是一种非常强大的锁机制。 并且因为大多数情况下， 不同的客户端会访问不同的键， 碰撞的情况一般都很少， 所以通常并不需要进行重试。</p>
-<h3 id="了解-WATCH"><a href="#了解-WATCH" class="headerlink" title="了解 WATCH"></a>了解 WATCH</h3><p>WATCH 使得 EXEC 命令需要有条件地执行： 事务只能在所有被监视键都没有被修改的前提下执行， 如果这个前提不能满足的话，事务就不会被执行。</p>
-<p>如果你使用 WATCH 监视了一个带过期时间的键， 那么即使这个键过期了， 事务仍然可以正常执行， 关于这方面的详细情况，请看这个帖子： <a target="_blank" rel="noopener" href="http://code.google.com/p/redis/issues/detail?id=270">http://code.google.com/p/redis/issues/detail?id=270</a></p>
-<p>WATCH 命令可以被调用多次。 对键的监视从 WATCH 执行之后开始生效， 直到调用 EXEC 为止。</p>
-<p>用户还可以在单个 WATCH 命令中监视任意多个键， 就像这样：</p>
-<p>redis&gt; WATCH key1 key2 key3<br>OK<br>当 EXEC 被调用时， 不管事务是否成功执行， 对所有键的监视都会被取消。</p>
-<p>另外， 当客户端断开连接时， 该客户端对键的监视也会被取消。</p>
-<p>使用无参数的 UNWATCH 命令可以手动取消对所有键的监视。 对于一些需要改动多个键的事务， 有时候程序需要同时对多个键进行加锁， 然后检查这些键的当前值是否符合程序的要求。 当值达不到要求时， 就可以使用 UNWATCH 命令来取消目前对键的监视， 中途放弃这个事务， 并等待事务的下次尝试。</p>
-<h3 id="使用-WATCH-实现-ZPOP"><a href="#使用-WATCH-实现-ZPOP" class="headerlink" title="使用 WATCH 实现 ZPOP"></a>使用 WATCH 实现 ZPOP</h3><p>WATCH 可以用于创建 Redis 没有内置的原子操作。</p>
-<p>举个例子， 以下代码实现了原创的 ZPOP 命令， 它可以原子地弹出有序集合中分值（score）最小的元素：</p>
-<p>WATCH zset<br>element = ZRANGE zset 0 0<br>MULTI<br>    ZREM zset element<br>EXEC<br>程序只要重复执行这段代码， 直到 EXEC 的返回值不是空多条回复（null multi-bulk reply）即可。</p>
-<h3 id="Redis-脚本和事务"><a href="#Redis-脚本和事务" class="headerlink" title="Redis 脚本和事务"></a>Redis 脚本和事务</h3><p>从定义上来说， Redis 中的脚本本身就是一种事务， 所以任何在事务里可以完成的事， 在脚本里面也能完成。 并且一般来说， 使用脚本要来得更简单，并且速度更快。</p>
-<p>因为脚本功能是 Redis 2.6 才引入的， 而事务功能则更早之前就存在了， 所以 Redis 才会同时存在两种处理事务的方法。</p>
-<p>不过我们并不打算在短时间内就移除事务功能， 因为事务提供了一种即使不使用脚本， 也可以避免竞争条件的方法， 而且事务本身的实现并不复杂。</p>
-<p>不过在不远的将来， 可能所有用户都会只使用脚本来实现事务也说不定。 如果真的发生这种情况的话， 那么我们将废弃并最终移除事务功能。</p>
-<blockquote>
-<p>译者：黄健宏<br>原文：<a target="_blank" rel="noopener" href="http://redisdoc.com/topic/transaction.html">http://redisdoc.com/topic/transaction.html</a><br>本文档翻译自： <a target="_blank" rel="noopener" href="http://redis.io/topics/transactions">http://redis.io/topics/transactions</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>redis</category>
-      </categories>
-      <tags>
-        <tag>redis 事物</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CDN初学者指南：是什么以及如何工作</title>
     <url>/2023/10/22/systemDesign-cdn/</url>
     <content><![CDATA[<p>内容交付网络（Content Delivery Network，CDN）是一种分布式服务器系统，旨在根据用户的地理位置提供网络内容。CDN的目标是减少加载时间、提高网站和在线应用程序性能。</p>
@@ -3120,6 +2969,157 @@
       </categories>
       <tags>
         <tag>CDN,系统设计,网络技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Optional 的使用会导致性能下降吗？</title>
+    <url>/2021/07/26/service-%E4%BD%A0%E9%9C%80%E8%A6%81%E6%8B%85%E5%BF%83Optional%E7%9B%B8%E5%85%B3%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%90%97/</url>
+    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_bb2845fd7f5a4c03fb9adb66715a5e02_14370.png" alt="图怪兽_bb2845fd7f5a4c03fb9adb66715a5e02_14370"></p>
+<p>几天前，我在论坛上发了一篇关于<code>Optional</code> 的文章。其中一条评论是一个非常好的问题:</p>
+<blockquote>
+<p>Optional 的使用会导致性能下降吗？</p>
+</blockquote>
+<p>答案是: 是的，它会的。但是你应该担心吗？</p>
+<span id="more"></span>
+
+<h2 id="使用Optional的好处"><a href="#使用Optional的好处" class="headerlink" title="使用Optional的好处"></a>使用Optional的好处</h2><p>Optional 类使我们这些开发人员的生活更轻松</p>
+<ul>
+<li>增加代码的可读性</li>
+<li>减少代码中的条件数</li>
+<li>更不容易出错</li>
+</ul>
+<p>让我们来看看 Optional 类的一些主要方法是如何实现的。</p>
+<!--more-->
+
+<h2 id="Optional-如何实现的？"><a href="#Optional-如何实现的？" class="headerlink" title="Optional 如何实现的？"></a>Optional 如何实现的？</h2><p>这里有一些 <code>Optional</code> 类的主要方法:</p>
+<p>基本上，它将值包装到一个新的 <code>Optional</code>对象中，并检查包装的值是否为<code>null</code>。</p>
+<p>即使没有使用 Optional，也必须检查值是否为 null。它可能比您做的检查多一些，但我认为您不必担心这一点。</p>
+<p>但是您必须知道，将值包装到新对象中将增加 GC 要收集的对象数量。这意味着堆使用量将增加得更快，CPU 使用量将更高(更多 GC 事件)。</p>
+<p>好吧，但是有多高呢？同样，这取决于您正在创建的可选对象的数量、堆的大小以及您的应用程序在不使用可选对象的情况下使用的 CPU 数量。</p>
+<p>例如，假设您对应用程序进行了基准测试，并得出结论，使用 Optional 将提高 CPU 使用率1个百分点。如果您的应用程序平均使用50% 的 CPU，那么使用51% 的可选 CPU 并不是一个很大的开销，对吧？</p>
+<p>但是，如果您的应用程序平均消耗5% 的 CPU，使用6% 意味着20% 的开销，这是相当重要的。</p>
+<h2 id="过早优化是万恶之源"><a href="#过早优化是万恶之源" class="headerlink" title="过早优化是万恶之源"></a>过早优化是万恶之源</h2><p>Joshua Bloch 在<a target="_blank" rel="noopener" href="https://www.amazon.com/gp/product/0134685997/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0134685997&linkCode=as2&tag=hbelmiro0f-20&linkId=213790c63c0d57baac2e45b3183a35b2">Effective Java</a> 一书中有整整一章(第67项: Optimize judiciously)谈到了优化。</p>
+<p>他在这一章的开头写道:</p>
+<blockquote>
+<p>关于最优化，有三个关注点是每个人都应该知道的:</p>
+<blockquote>
+<p>与其他任何单一原因(包括盲目的愚蠢)相比，更多的计算原罪是以效率的名义犯下的(不一定能实现)。</p>
+</blockquote>
+<p>William A. Wulf</p>
+<blockquote>
+<p>我们应该忘记小的副作用，比如说97% 的时间: 过早的优化是一切罪恶的根源。</p>
+</blockquote>
+<p>Donald E. Knuth</p>
+<blockquote>
+<p>在优化问题上，我们遵循两个规则:</p>
+<ul>
+<li>规则1. 不要这样做</li>
+<li>规则 2（仅适用于专家）。 暂时不要这样做——也就是说，除非你有一个非常清晰且未经优化的解决方案。</li>
+</ul>
+</blockquote>
+<p>M. A. Jackson</p>
+</blockquote>
+<p>因此，除非您需要一个快速的应用程序并且资源有限，否则不要过早担心性能问题。专注于编写好的代码，这样当你需要它的时候，它就很容易优化。此外，使用分析器查找对性能影响更大的位置。</p>
+<h2 id="谁会使用你的-API？"><a href="#谁会使用你的-API？" class="headerlink" title="谁会使用你的 API？"></a>谁会使用你的 API？</h2><p>这也是一个你需要问自己的好问题。如果您正在编写一个内部 API，您可以更自由地决定是否使用它。</p>
+<p>但是如果你正在编写一个公共 API，比如一个框架或者库，而你不知道什么样的应用程序在调用它，你可能需要更加灵活，给客户端选择是否使用可选的选项。</p>
+<p>您可以提供两个方法，一个返回  <code>Optional</code> ，另一个返回 <code>null</code>。但是，当创建一个可以返回 <code>null</code> 的方法时，尽量让它显式。使用注释  <code>javax.annotation.Nullable</code>。方法的可空性。 (<a target="_blank" rel="noopener" href="https://jcp.org/en/jsr/detail?id=305">JSR 305</a>)</p>
+<h2 id="最终，这取决于你"><a href="#最终，这取决于你" class="headerlink" title="最终，这取决于你"></a>最终，这取决于你</h2><p>你可以决定是否使用 Optional。没有一个简单的答案适用于所有情况。软件工程中的大多数事情都是这样的。这一切都是权衡取舍。</p>
+<p>所以，要意识到它是如何工作的，并评估替代方案。任何事情都有代价，你是那个可以决定是否承担的人。</p>
+<p>您认为为了提高性能而付出不可读且更容易出错的代码的代价是值得的吗？你知道这种进步有多重要吗？</p>
+<p>在大多数情况下，使用 <code>Optional</code>  并保持开心！<code>Optional</code>  是不错的!</p>
+]]></content>
+      <categories>
+        <category>微服务</category>
+      </categories>
+      <tags>
+        <tag>微服务治理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何做好监控微服务调⽤?</title>
+    <url>/2021/06/16/service-06-16-%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E7%9B%91%E6%8E%A7%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%B0%83%E2%BD%A4/</url>
+    <content><![CDATA[<img src="https://cdn.jsdelivr.net/gh/ChengKeJ/pic@master/img/%E5%9B%BE%E6%80%AA%E5%85%BD_17f35bc65eed401b374b1b5fcf552d44_83179.png" style="zoom:90%;" />
+
+<h6 id="监控对象"><a href="#监控对象" class="headerlink" title="监控对象"></a>监控对象</h6><ul>
+<li><p>⽤户端监控。通常是指业务直接对⽤户提供的功能的监控</p>
+</li>
+<li><p>接口监控。通常是指业务提供的功能所依赖的接口的监控</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<ul>
+<li><p>资源监控。通常是指某个接⼝依赖的资源的监控。比如该接口使用的redis 缓存，对redis 的监控就是资源的</p>
+<p>监控</p>
+</li>
+<li><p>基础监控。通常是指对服务器本身的健康状况的监控。主要包括CPU利⽤率、内存使⽤量、I/O读写量、⽹卡</p>
+<p>带宽等</p>
+</li>
+</ul>
+<h6 id="监控指标"><a href="#监控指标" class="headerlink" title="监控指标"></a>监控指标</h6><ul>
+<li><p>请求量。请求量监控分为两个维度，⼀个是实时请求量QPS，⼀个是统计请求量PV。QPS（Queries Per</p>
+<p>Second） 即每秒查询次数来衡量，它反映了服务调⽤的实时变化情况。统计请求量⼀般⽤PV（Page View）</p>
+<p>即⼀段时间内⽤户的访 问量来衡量，⽐如⼀天的PV代表了服务⼀天的请求量，通常⽤来统计报表。</p>
+</li>
+<li><p>响应时间。⼤多数情况下，可以⽤⼀段时间内所有调⽤的平均耗时来反映请求的响应时间。可以把响应时间划</p>
+<p>分为多个区间，⽐如0～10ms、10ms～50ms、50ms～ 100ms、100ms～500ms、500ms以上这五个区</p>
+<p>间。除此之外，还可以从P90、P95、P99、P999⻆度来监控请求的响应时间，⽐如P99 = 500ms，意思是</p>
+<p>99%的请求响 应时间在500ms以内，它代表了请求的服务质量，即SLA。</p>
+</li>
+<li><p>错误率。错误率的监控通常⽤⼀段时间内调⽤失败的次数占调⽤总次数的⽐率来衡量，⽐如对于接⼝的错误率</p>
+<p>⼀般⽤接⼝ 返回错误码为503的⽐率来表示。</p>
+</li>
+</ul>
+<h6 id="监控维度"><a href="#监控维度" class="headerlink" title="监控维度"></a>监控维度</h6><ul>
+<li><p>全局维度。从整体⻆度监控对象的的请求量、平均耗时以及错误率，全局维度的监控⼀般是为了让你对监控对象的调⽤情 况有个整体了解。</p>
+</li>
+<li><p> 分机房维度。</p>
+</li>
+<li><p> 时间维度。同⼀个监控对象，在每天的同⼀时刻各种指标通常也不会⼀样</p>
+</li>
+<li><p>核⼼维度。业务上⼀般会依据重要性程度对监控对象进⾏分级，最简单的是分成核⼼业务和⾮核⼼业务。</p>
+<p>核⼼业务和⾮核⼼业务在部署上必须隔离，分开监控，这样才能对核⼼业务做重点保障。</p>
+</li>
+</ul>
+<h6 id="监控系统"><a href="#监控系统" class="headerlink" title="监控系统"></a>监控系统</h6><blockquote>
+<p>主要包括四个环节：数据采集、数据传输、数据处理和数据展示</p>
+</blockquote>
+<ul>
+<li><p>数据采集</p>
+<p>通常有两种数据收集⽅式：</p>
+<ul>
+<li><p><strong>服务主动上报</strong>，这种处理⽅式通过在业务代码或者服务框架⾥加⼊数据收集代码逻辑，在每⼀次服务</p>
+<p>调⽤完成后，主动上报服务的调⽤信息。</p>
+</li>
+<li><p><strong>代理收集</strong>，这种处理⽅式通过服务调⽤后把调⽤的详细信息记录到本地⽇志⽂件中，然后再通过代理去解</p>
+<p>析本地⽇志⽂ 件，然后再上报服务的调⽤信息。</p>
+</li>
+</ul>
+</li>
+<li><p>数据传输</p>
+<ul>
+<li><p><strong>UDP传输</strong>，这种处理⽅式是数据处理单元提供服务器的请求地址，数据采集后通过UDP协议与服务器建⽴</p>
+<p>连接，然后把数 据发送过去。</p>
+</li>
+<li><p><strong>Kafka传输</strong>，这种处理⽅式是数据采集后发送到指定的Topic，然后数据处理单元再订阅对应的Topic，就</p>
+<p>可以从Kafka消息队列中读取到对应的数据。</p>
+<img src="https://cdn.smalltechnologyjun.com//image-20210615200330740.png" alt="image-20210615200330740" style="zoom: 80%;" /></li>
+</ul>
+</li>
+<li><p>数据处理</p>
+<p>数据聚合两个维度：接口维度和机器维度</p>
+<p>聚合后的数据持久化： 索引数据库(es) 或者 时序数据库influxDB</p>
+</li>
+<li><p>数据展示</p>
+<p>数据展示有多种⽅式，⽐如曲线图、饼状图、格⼦图展示</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>微服务</category>
+      </categories>
+      <tags>
+        <tag>微服务治理</tag>
       </tags>
   </entry>
   <entry>
@@ -3653,51 +3653,6 @@
       </tags>
   </entry>
   <entry>
-    <title>分片并不意味着分布式</title>
-    <url>/2023/12/03/systemDesign-shard/</url>
-    <content><![CDATA[<p>Sharding（分片）是一种将数据和负载分布到多个独立的数据库实例的技术。这种方法通过将原始数据集分割为分片来利用水平可扩展性，然后将这些分片分布到多个数据库实例中。</p>
-<p><img src="/uploads/1*yg3PV8O2RO4YegyiYeiItA.png" alt="1*yg3PV8O2RO4YegyiYeiItA.png"></p>
-<p>但是，尽管”分布”一词出现在分片的定义中，但分片数据库并不是分布式数据库。</p>
-<span id="more"></span>
-
-<h2 id="分片解决方案"><a href="#分片解决方案" class="headerlink" title="分片解决方案"></a>分片解决方案</h2><p>每个分片解决方案在其架构中都有一个关键组件。该组件可以有各种名称，包括协调器、路由器或导演：</p>
-<p><img src="/uploads/1*kp39_8mQ0E9bIO0Lw3PGFw.png" alt="1*kp39_8mQ0E9bIO0Lw3PGFw.png"></p>
-<p>协调器是唯一一个知道数据分布的组件。它将客户端请求映射到特定的分片，然后转发到相应的数据库实例。这就是为什么客户端必须始终通过协调器路由其请求的原因。</p>
-<p>例如，如果客户端想要将新记录插入到<code>Car</code>表中，请求首先会传递到协调器。协调器将记录的主键映射到其中一个分片，然后将请求转发到负责该分片的数据库实例。</p>
-<p><img src="/uploads/1*YNUB6y8WJnp0CCVAXSjQ0g.png" alt="1*YNUB6y8WJnp0CCVAXSjQ0g.png"></p>
-<p>在上面的示意图中，首先，协调器将键<code>121</code>映射到分片<code>10</code>，然后将记录插入到存储在拥有分片<code>10</code>的数据库实例上的表<code>car_10</code>中。</p>
-<p>然而，还有一个问题：为什么在分片解决方案中需要协调器呢？答案很直接。分片存储在设计用于单服务器部署的数据库实例上。</p>
-<p><em>这些数据库实例不相互通信，也不支持任何能促进这种通信的协议。它们彼此不知道，存在于各自的隔离环境中，对于它们是一个更大系统的一部分这一事实毫不知情。</em></p>
-<p>因此，在分片解决方案中，协调器是不可或缺的。如果您有兴趣更深入地了解分片数据库架构，请考虑探索用于PostgreSQL的CitusData或Azure CosmosDB，用于MySQL的Vitess，用于Oracle的Distributed Autonomous Database以及MongoDB Sharded Cluster。</p>
-<h2 id="分布式数据库"><a href="#分布式数据库" class="headerlink" title="分布式数据库"></a>分布式数据库</h2><p>与分片数据库解决方案类似，分布式数据库也使用类似的分片技术在数据库节点群集中分发数据和负载。但是，与分片解决方案不同，分布式数据库不依赖于协调器组件。</p>
-<p><strong>分布式数据库建立在共享无关架构上</strong>，没有像协调器这样的单一组件负担着做出许多决策：</p>
-<p><img src="/uploads/1*deOgcXccWs9lKUSgLPNOww.png" alt="1*deOgcXccWs9lKUSgLPNOww.png"></p>
-<p><em>集群中的所有节点都知道对方，因此也知道数据的分布。通过直接通信，每个节点可以将客户端请求路由到适当的分片所有者。此外，它们可以执行和协调多节点事务。当扩展到更多节点时，集群会自动重新平衡和分割分片。节点保持数据的冗余副本（基于配置的复制因子），即使某些节点失败，也可以继续操作而无需停机。</em></p>
-<p>所有这些对于客户端来说是透明的，客户端只需与任何节点建立连接，然后允许该节点管理分布式方面。</p>
-<p>例如，客户端可能连接到<code>node1</code>并插入具有id<code>121</code>的新的<code>Car</code>记录。如果<code>node1</code>是记录分片的所有者，则它将在本地存储记录，并使用共识算法将更改复制到其他节点的子集。如果不是，<code>node1</code>将记录转发到分片的所有者，可能是<code>node4</code>。</p>
-<p><img src="/uploads/1*weEdq2BxIpf6GiLjipns5Q.png" alt="1*weEdq2BxIpf6GiLjipns5Q.png"></p>
-<p>如果您有兴趣探索真正分布式数据库的架构，请考虑研究Google Spanner，YugabyteDB，CockroachDB，Apache Cassandra或Apache Ignite。</p>
-<p>在数据库领域，分片和分布经常被混为一谈，但它们有着不同的目的。</p>
-<p>虽然分片涉及将数据分割到多个独立的实例中，但这并不意味着系统本质上是分布式的。分片解决方案中协调器的存在，该协调器指导客户端请求到适当的分片，突显了这一区别。</p>
-<p>另一方面，建立在共享无关架构上的分布式数据库缺乏这种集中式协调器。这些系统中的节点都知道对方，管理数据分布，并无缝处理客户端请求。</p>
-<p>这两种架构都有其优点，了解它们的细微差别对于进行数据库设计和选择至关重要。</p>
-<h2 id="系统设计概念系列文章"><a href="#系统设计概念系列文章" class="headerlink" title="系统设计概念系列文章"></a>系统设计概念系列文章</h2><p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488478&idx=1&sn=351b322c2089d8fd7124cf801e0a0524&chksm=fb7c9d29cc0b143facd8d62fb15812d6d28e22749e1183c48d6946dbd13d2e206cd9826bfb20&scene=21#wechat_redirect">计算机的层次化架构</a></p>
-<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488411&idx=1&sn=2520f364a171f0d747a855600c99cc4b&chksm=fb7c9d6ccc0b147a44627a8eef07b5772acbda406ce566afe306ed2b3c98f665e05c12b6ad36&scene=21#wechat_redirect">每个开发者都应该知道的7个原则</a></p>
-<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488409&idx=1&sn=a02b97d71d301be4200ab25e4ffad0bc&chksm=fb7c9d6ecc0b1478f85986554735e307e2c92d45236f241dec44a529e9c799c521d5448f9f9a&scene=21#wechat_redirect">6个系统设计的基本概念</a></p>
-<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488407&idx=1&sn=6072efba48ed2f9f1968594a1055a3f6&chksm=fb7c9d60cc0b14766e394d5c04f33d5b1c63987d6cf5b66732887e9ffedbbfc576e5a6617891&scene=21#wechat_redirect">数据库：系统设计的核心</a></p>
-<h2 id="图解系列"><a href="#图解系列" class="headerlink" title="图解系列"></a>图解系列</h2><p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488260&idx=1&sn=89701a38ab8af1c670b432b5e7bedf2d&chksm=fb7c9df3cc0b14e52a043999e59b5c1251c3183a61b8c9d35777f237d1478c07b7d01352346e&scene=21#wechat_redirect">系统设计中的缓存技术：完整指南</a></p>
-<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488165&idx=1&sn=2c4aaad53e6ca87f61e23dfba2fd8f9e&chksm=fb7c9c52cc0b1544266bb7e008f55bfbaa9b2acdb512eb07beece554e9f766e80f12699208b7&scene=21#wechat_redirect">关系数据库的全景图</a></p>
-<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247487961&idx=1&sn=f1437b130e1828f4c1c0c45806e4922f&chksm=fb7c9f2ecc0b1638cf34322599d4bd42c002bf2e37c642d9dbc596366f91f237f410b4e90fc5&scene=21#wechat_redirect">Redis 全景解析</a></p>
-<p>当然架构设计、全景图解系列还有很多,快来关注一起学习吧~</p>
-]]></content>
-      <categories>
-        <category>数据库分片</category>
-      </categories>
-      <tags>
-        <tag>系统设计,数据库分片,分片技术</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>主从复制 (Master-Slave Replication) 在系统设计与网络技术中的应用</title>
     <url>/2023/10/22/systemDesign-replication/</url>
     <content><![CDATA[<p>在数据库复制中，我们创建相同数据库的副本，并将其分布在多个节点（副本）上。然而，在拥有多个副本的情况下，一个问题出现了：如何确保每次写操作后所有数据都传播到所有副本？最常见的解决方案是主从复制，也称为<strong>主动/被动</strong>或<strong>单主复制</strong>。</p>
@@ -3780,6 +3735,51 @@
       </categories>
       <tags>
         <tag>主从复制,系统设计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>分片并不意味着分布式</title>
+    <url>/2023/12/03/systemDesign-shard/</url>
+    <content><![CDATA[<p>Sharding（分片）是一种将数据和负载分布到多个独立的数据库实例的技术。这种方法通过将原始数据集分割为分片来利用水平可扩展性，然后将这些分片分布到多个数据库实例中。</p>
+<p><img src="/uploads/1*yg3PV8O2RO4YegyiYeiItA.png" alt="1*yg3PV8O2RO4YegyiYeiItA.png"></p>
+<p>但是，尽管”分布”一词出现在分片的定义中，但分片数据库并不是分布式数据库。</p>
+<span id="more"></span>
+
+<h2 id="分片解决方案"><a href="#分片解决方案" class="headerlink" title="分片解决方案"></a>分片解决方案</h2><p>每个分片解决方案在其架构中都有一个关键组件。该组件可以有各种名称，包括协调器、路由器或导演：</p>
+<p><img src="/uploads/1*kp39_8mQ0E9bIO0Lw3PGFw.png" alt="1*kp39_8mQ0E9bIO0Lw3PGFw.png"></p>
+<p>协调器是唯一一个知道数据分布的组件。它将客户端请求映射到特定的分片，然后转发到相应的数据库实例。这就是为什么客户端必须始终通过协调器路由其请求的原因。</p>
+<p>例如，如果客户端想要将新记录插入到<code>Car</code>表中，请求首先会传递到协调器。协调器将记录的主键映射到其中一个分片，然后将请求转发到负责该分片的数据库实例。</p>
+<p><img src="/uploads/1*YNUB6y8WJnp0CCVAXSjQ0g.png" alt="1*YNUB6y8WJnp0CCVAXSjQ0g.png"></p>
+<p>在上面的示意图中，首先，协调器将键<code>121</code>映射到分片<code>10</code>，然后将记录插入到存储在拥有分片<code>10</code>的数据库实例上的表<code>car_10</code>中。</p>
+<p>然而，还有一个问题：为什么在分片解决方案中需要协调器呢？答案很直接。分片存储在设计用于单服务器部署的数据库实例上。</p>
+<p><em>这些数据库实例不相互通信，也不支持任何能促进这种通信的协议。它们彼此不知道，存在于各自的隔离环境中，对于它们是一个更大系统的一部分这一事实毫不知情。</em></p>
+<p>因此，在分片解决方案中，协调器是不可或缺的。如果您有兴趣更深入地了解分片数据库架构，请考虑探索用于PostgreSQL的CitusData或Azure CosmosDB，用于MySQL的Vitess，用于Oracle的Distributed Autonomous Database以及MongoDB Sharded Cluster。</p>
+<h2 id="分布式数据库"><a href="#分布式数据库" class="headerlink" title="分布式数据库"></a>分布式数据库</h2><p>与分片数据库解决方案类似，分布式数据库也使用类似的分片技术在数据库节点群集中分发数据和负载。但是，与分片解决方案不同，分布式数据库不依赖于协调器组件。</p>
+<p><strong>分布式数据库建立在共享无关架构上</strong>，没有像协调器这样的单一组件负担着做出许多决策：</p>
+<p><img src="/uploads/1*deOgcXccWs9lKUSgLPNOww.png" alt="1*deOgcXccWs9lKUSgLPNOww.png"></p>
+<p><em>集群中的所有节点都知道对方，因此也知道数据的分布。通过直接通信，每个节点可以将客户端请求路由到适当的分片所有者。此外，它们可以执行和协调多节点事务。当扩展到更多节点时，集群会自动重新平衡和分割分片。节点保持数据的冗余副本（基于配置的复制因子），即使某些节点失败，也可以继续操作而无需停机。</em></p>
+<p>所有这些对于客户端来说是透明的，客户端只需与任何节点建立连接，然后允许该节点管理分布式方面。</p>
+<p>例如，客户端可能连接到<code>node1</code>并插入具有id<code>121</code>的新的<code>Car</code>记录。如果<code>node1</code>是记录分片的所有者，则它将在本地存储记录，并使用共识算法将更改复制到其他节点的子集。如果不是，<code>node1</code>将记录转发到分片的所有者，可能是<code>node4</code>。</p>
+<p><img src="/uploads/1*weEdq2BxIpf6GiLjipns5Q.png" alt="1*weEdq2BxIpf6GiLjipns5Q.png"></p>
+<p>如果您有兴趣探索真正分布式数据库的架构，请考虑研究Google Spanner，YugabyteDB，CockroachDB，Apache Cassandra或Apache Ignite。</p>
+<p>在数据库领域，分片和分布经常被混为一谈，但它们有着不同的目的。</p>
+<p>虽然分片涉及将数据分割到多个独立的实例中，但这并不意味着系统本质上是分布式的。分片解决方案中协调器的存在，该协调器指导客户端请求到适当的分片，突显了这一区别。</p>
+<p>另一方面，建立在共享无关架构上的分布式数据库缺乏这种集中式协调器。这些系统中的节点都知道对方，管理数据分布，并无缝处理客户端请求。</p>
+<p>这两种架构都有其优点，了解它们的细微差别对于进行数据库设计和选择至关重要。</p>
+<h2 id="系统设计概念系列文章"><a href="#系统设计概念系列文章" class="headerlink" title="系统设计概念系列文章"></a>系统设计概念系列文章</h2><p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488478&idx=1&sn=351b322c2089d8fd7124cf801e0a0524&chksm=fb7c9d29cc0b143facd8d62fb15812d6d28e22749e1183c48d6946dbd13d2e206cd9826bfb20&scene=21#wechat_redirect">计算机的层次化架构</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488411&idx=1&sn=2520f364a171f0d747a855600c99cc4b&chksm=fb7c9d6ccc0b147a44627a8eef07b5772acbda406ce566afe306ed2b3c98f665e05c12b6ad36&scene=21#wechat_redirect">每个开发者都应该知道的7个原则</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488409&idx=1&sn=a02b97d71d301be4200ab25e4ffad0bc&chksm=fb7c9d6ecc0b1478f85986554735e307e2c92d45236f241dec44a529e9c799c521d5448f9f9a&scene=21#wechat_redirect">6个系统设计的基本概念</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488407&idx=1&sn=6072efba48ed2f9f1968594a1055a3f6&chksm=fb7c9d60cc0b14766e394d5c04f33d5b1c63987d6cf5b66732887e9ffedbbfc576e5a6617891&scene=21#wechat_redirect">数据库：系统设计的核心</a></p>
+<h2 id="图解系列"><a href="#图解系列" class="headerlink" title="图解系列"></a>图解系列</h2><p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488260&idx=1&sn=89701a38ab8af1c670b432b5e7bedf2d&chksm=fb7c9df3cc0b14e52a043999e59b5c1251c3183a61b8c9d35777f237d1478c07b7d01352346e&scene=21#wechat_redirect">系统设计中的缓存技术：完整指南</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488165&idx=1&sn=2c4aaad53e6ca87f61e23dfba2fd8f9e&chksm=fb7c9c52cc0b1544266bb7e008f55bfbaa9b2acdb512eb07beece554e9f766e80f12699208b7&scene=21#wechat_redirect">关系数据库的全景图</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247487961&idx=1&sn=f1437b130e1828f4c1c0c45806e4922f&chksm=fb7c9f2ecc0b1638cf34322599d4bd42c002bf2e37c642d9dbc596366f91f237f410b4e90fc5&scene=21#wechat_redirect">Redis 全景解析</a></p>
+<p>当然架构设计、全景图解系列还有很多,快来关注一起学习吧~</p>
+]]></content>
+      <categories>
+        <category>数据库分片</category>
+      </categories>
+      <tags>
+        <tag>系统设计,数据库分片,分片技术</tag>
       </tags>
   </entry>
   <entry>
