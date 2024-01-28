@@ -1,0 +1,10 @@
+https://smalltechnologyjun.com/2024/01/27/systemDesign-code/
+https://smalltechnologyjun.com/2024/01/03/vpn-v2ray/
+https://smalltechnologyjun.com/2023/12/17/algo-binary-search/
+https://smalltechnologyjun.com/2023/12/17/redis-system-redis/
+https://smalltechnologyjun.com/2023/12/03/systemDesign-cpu/
+https://smalltechnologyjun.com/2023/12/03/systemDesign-shard/
+https://smalltechnologyjun.com/2023/11/26/systemDesign-web/
+https://smalltechnologyjun.com/2023/11/19/kafka-kafka/
+https://smalltechnologyjun.com/2023/11/11/systemDesign-concept/
+https://smalltechnologyjun.com/2023/10/22/systemDesign-cdn/
