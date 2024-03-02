@@ -4208,4 +4208,63 @@ Just My Socks 官网：<a rel="nofollow noopener" target="_blank" href="https://
         <tag>vpn</tag>
       </tags>
   </entry>
+  <entry>
+    <title>系统设计:设计Spotify</title>
+    <url>/2024/02/02/systemDesign-spotifyDesgin/</url>
+    <content><![CDATA[<p><img src="/uploads//spotifyhome.png" alt="Image.png"></p>
+<h1 id="初始阶段：基础版本"><a href="#初始阶段：基础版本" class="headerlink" title="初始阶段：基础版本"></a>初始阶段：基础版本</h1><p><strong>需求:</strong> 初始要求是处理<strong>50万用户和3000万首歌曲</strong>。我们将有播放歌曲的用户和上传歌曲的艺术家。</p>
+<p><img src="/uploads/1*6V8fzH4kUg780E7AJExMsA.png" alt="1*6V8fzH4kUg780E7AJExMsA.png"></p>
+<h2 id="估算：数据计算"><a href="#估算：数据计算" class="headerlink" title="估算：数据计算"></a>估算：数据计算</h2><p>让我们从估算我们需要的存储开始。首先，我们需要将歌曲存储在某种存储中。</p>
+<ul>
+<li><strong>歌曲存储：</strong> Spotify等服务通常使用Ogg Vorbis或AAC等格式进行流媒体传输，假设平均歌曲大小为3MB，我们需要<strong>3MB * 3000万 = 90TB</strong>的存储空间用于歌曲。</li>
+<li><strong>歌曲元数据：</strong> 我们还需要存储歌曲元数据和用户配置文件信息。每首歌平均的元数据大小约为100字节 — <strong>100字节 * 3000万 = 3GB</strong></li>
+<li><strong>用户元数据：</strong> 平均而言，我们将每个用户存储1KB的数据 — <strong>1KB * 50万 = 0.5GB</strong></li>
+</ul>
+<p><img src="/uploads/1*FMBXX3b6J8ZIazoEvC54Rg.png" alt="1*FMBXX3b6J8ZIazoEvC54Rg.png"></p>
+<span id="more"></span>
+
+<h2 id="高级设计"><a href="#高级设计" class="headerlink" title="高级设计"></a>高级设计</h2><p><strong>移动应用：</strong> 我们将有一个移动应用，是用户与服务互动的前端。用户可以搜索歌曲，播放音乐，创建播放列表等。当用户执行操作（如播放歌曲）时，应用程序将发送请求到后端服务器。</p>
+<p><strong>负载均衡器：</strong> 但在到达服务器之前，我们有一个负载均衡器，用于在多个web服务器之间分发传入流量。这提高了应用程序的可用性和容错性。</p>
+<p><img src="/uploads/1*XyJ1imhs2idC0wC5hFhntQ.png" alt="1*XyJ1imhs2idC0wC5hFhntQ.png"></p>
+<p><strong>Web服务器（API）：</strong> Web服务器是处理移动应用程序发来的请求的API。例如，如果用户想播放一首歌，请求将发送到这些Web服务器。服务器然后确定歌曲的位置（在数据库或存储服务中）以及如何检索它。</p>
+<h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><p>数据存储将分为两个独立的服务 — <strong>歌曲的Blob存储</strong>，我们将在其中存储实际的歌曲文件，以及<strong>SQL数据库，我们将在其中存储歌曲和用户元数据</strong>。</p>
+<p><img src="/uploads/1*4mPgHXsOkytHoQvX0jTKKw.png" alt="1*4mPgHXsOkytHoQvX0jTKKw.png"></p>
+<p><strong>歌曲 — Blob存储（例如AWS S3、GCP、Azure Blob存储）：</strong> 实际的歌曲文件存储在Blob（二进制大对象）存储服务中。这些服务设计用于存储大量非结构化数据。</p>
+<p><strong>用户、艺术家和歌曲元数据 — SQL数据库：</strong> 该SQL数据库存储结构化数据，如用户信息（如用户名、密码和电子邮件地址）以及关于歌曲的元数据（如歌曲名称、艺术家名称、专辑详细信息等）。</p>
+<p>为什么使用SQL？SQL数据库非常适合这种类型的结构化数据，因为它们允许进行复杂的查询和不同类型数据之间的关系。</p>
+<p>每个歌曲文件都存储为“blob”，而SQL数据库通常存储对此文件的引用（如URL）。</p>
+<h2 id="SQL数据库结构"><a href="#SQL数据库结构" class="headerlink" title="SQL数据库结构"></a>SQL数据库结构</h2><p>以下是我们SQL数据库中表及其关系的基本大纲：</p>
+<p>我们将需要一个<strong>用户表</strong>，其中包含用户元数据，如UserID、Username、Email、PasswordHash、CreatedAt、LastLogin等。</p>
+<p><img src="/uploads/1*YTJ3VHLupy9peG2C6u0PHQ.png" alt="1*YTJ3VHLupy9peG2C6u0PHQ.png"></p>
+<p><strong>歌曲表</strong>将保存歌曲的元数据信息，例如SongID、Title、ArtistID、Duration、ReleaseDate和FileURL，即指向歌曲文件存储位置的URL（例如在blob存储中）。</p>
+<p><strong>艺术家表</strong>将包含艺术家信息 — ArtistID、Name、Bio、Country等。</p>
+<p><strong>关系：</strong> 我们将在<strong>艺术家歌曲表</strong>中连接艺术家和歌曲表，其中将有<code>**ArtistID**</code>（指向艺术家表的外键）和<code>**SongID**</code>（指向歌曲表的外键）。从那里，我们可以获取歌曲元数据，其中还将包含指向歌曲所在的<strong>Blob存储</strong>的<code>**FileURL**</code>属性。</p>
+<h2 id="将所有内容整合"><a href="#将所有内容整合" class="headerlink" title="将所有内容整合"></a>将所有内容整合</h2><p><img src="/uploads/1*FNqvivFHngTauwsFphWXQA.png" alt="1*FNqvivFHngTauwsFphWXQA.png"></p>
+<p>因此，Web服务器将从SQL数据库获取歌曲元数据，从中获取<code>fileURL</code>，然后将其分块流式传输到移动应用程序。或者我们可以直接从对象存储流式传输到客户端，绕过Web服务器以减轻负载。</p>
+<h1 id="扩展阶段：5000万用户，2亿首歌曲"><a href="#扩展阶段：5000万用户，2亿首歌曲" class="headerlink" title="扩展阶段：5000万用户，2亿首歌曲"></a>扩展阶段：5000万用户，2亿首歌曲</h1><p>现在如果我们扩展到5000万用户和2亿首歌曲呢？我们首先需要重新计算数据。这意味着SQL数据存储需要存储200/30 = 约6.66倍的歌曲元数据：</p>
+<p><strong>每首歌100字节 * 2亿首歌 = 20GB</strong></p>
+<p>用户元数据也是如此：</p>
+<p><strong>每个用户1KB * 5000万用户 = 50GB</strong></p>
+<h2 id="引入CDN"><a href="#引入CDN" class="headerlink" title="引入CDN"></a>引入CDN</h2><p>由于流量增加 — 我们需要引入缓存和CDN（如Cloudfront / Cloudflare）来提供歌曲，每个CDN将在地理上接近一个区域；因此，它可以比Web服务器更快地提供歌曲。</p>
+<p><img src="/uploads/1*hy3bDujPaovzVEDiTua2vQ.png" alt="1*hy3bDujPaovzVEDiTua2vQ.png"></p>
+<p>我们可以使用LRU（Least Recently Used）淘汰策略缓存热门歌曲，而不热门的歌曲仍然将从Blob存储中获取，然后缓存在CDN中。</p>
+<p>歌曲文件还可以直接从云存储流式传输到客户端，这将减轻Web服务器的负载。</p>
+<h2 id="扩展数据库：领导者-跟随者技术"><a href="#扩展数据库：领导者-跟随者技术" class="headerlink" title="扩展数据库：领导者-跟随者技术"></a>扩展数据库：领导者-跟随者技术</h2><p>数据库也需要扩展。由于我们知道我们的应用程序获得的读取次数比写入次数多，也就是有很多用户听歌曲，但相对较少的艺术家上传歌曲 — 我们可以使用<strong>领导者 → 跟随者技术</strong>，有一个<strong>领导者数据库</strong>负责接受读取和写入，以及多个<strong>跟随者或从数据库</strong>仅用于检索歌曲和用户元数据。</p>
+<p><img src="/uploads/1*rVoxlvoqbENlbf0ciOIdog.png" alt="1*rVoxlvoqbENlbf0ciOIdog.png"></p>
+<h2 id="系统设计概念系列文章"><a href="#系统设计概念系列文章" class="headerlink" title="系统设计概念系列文章"></a>系统设计概念系列文章</h2><p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488478&idx=1&sn=351b322c2089d8fd7124cf801e0a0524&chksm=fb7c9d29cc0b143facd8d62fb15812d6d28e22749e1183c48d6946dbd13d2e206cd9826bfb20&scene=21#wechat_redirect">计算机的层次化架构</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488411&idx=1&sn=2520f364a171f0d747a855600c99cc4b&chksm=fb7c9d6ccc0b147a44627a8eef07b5772acbda406ce566afe306ed2b3c98f665e05c12b6ad36&scene=21#wechat_redirect">每个开发者都应该知道的7个原则</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488409&idx=1&sn=a02b97d71d301be4200ab25e4ffad0bc&chksm=fb7c9d6ecc0b1478f85986554735e307e2c92d45236f241dec44a529e9c799c521d5448f9f9a&scene=21#wechat_redirect">6个系统设计的基本概念</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488407&idx=1&sn=6072efba48ed2f9f1968594a1055a3f6&chksm=fb7c9d60cc0b14766e394d5c04f33d5b1c63987d6cf5b66732887e9ffedbbfc576e5a6617891&scene=21#wechat_redirect">数据库：系统设计的核心</a></p>
+<h2 id="图解系列"><a href="#图解系列" class="headerlink" title="图解系列"></a>图解系列</h2><p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488260&idx=1&sn=89701a38ab8af1c670b432b5e7bedf2d&chksm=fb7c9df3cc0b14e52a043999e59b5c1251c3183a61b8c9d35777f237d1478c07b7d01352346e&scene=21#wechat_redirect">系统设计中的缓存技术：完整指南</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247488165&idx=1&sn=2c4aaad53e6ca87f61e23dfba2fd8f9e&chksm=fb7c9c52cc0b1544266bb7e008f55bfbaa9b2acdb512eb07beece554e9f766e80f12699208b7&scene=21#wechat_redirect">关系数据库的全景图</a></p>
+<p><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU0NDMzMjY5Ng==&mid=2247487961&idx=1&sn=f1437b130e1828f4c1c0c45806e4922f&chksm=fb7c9f2ecc0b1638cf34322599d4bd42c002bf2e37c642d9dbc596366f91f237f410b4e90fc5&scene=21#wechat_redirect">Redis 全景解析</a></p>
+<p>当然架构设计、全景图解系列还有很多,快来关注一起学习吧~</p>
+]]></content>
+      <categories>
+        <category>系统设计</category>
+      </categories>
+      <tags>
+        <tag>软件设计,系统设计,六边形架构</tag>
+      </tags>
+  </entry>
 </search>
